@@ -1,0 +1,12 @@
+@api = http://localhost:3000/api/envio
+
+
+### post correo
+POST {{api}}
+Content-Type: application/json
+
+{
+    "correo": "CLIENTE",
+    "asunto": "Hola",
+    "mensaje": "Prueba de correo 2"
+}

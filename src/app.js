@@ -8,6 +8,7 @@ import usuarioRoutes from "./routes/usuarios.router.js";
 import historialRoutes from "./routes/historial.router.js";
 import modeloRoutes from "./routes/modelos.router.js";
 import logoRoutes from "./routes/logos.router.js";
+import solicitudRoutes from "./routes/solicitudExterna.router.js";
 
 //import morgan from "morgan";
 //import config from "./config.js";
@@ -30,6 +31,7 @@ app.use("/api", usuarioRoutes);
 app.use("/api", historialRoutes);
 app.use("/api", modeloRoutes);
 app.use("/api", logoRoutes);
+app.use("/api", solicitudRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
