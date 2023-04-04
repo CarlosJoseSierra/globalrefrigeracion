@@ -24,7 +24,7 @@ var querys = {
   getAllClientes: "SELECT CLI_id,CLI_nombre FROM CLIENTE",
   getClienteById: "SELECT * FROM CLIENTE Where CLI_id = @Id",
   //Querys Tabla Modelos de Equipos
-  getAllEquipos: "SELECT * FROM EQUIPO ORDER BY UBIC_ciudad",
+  getAllEquipos: "SELECT * FROM EQUIPO ORDER BY EQUIP_modelo",
   getEquipoById: "SELECT * FROM EQUIPO Where EQ_id = @Id",
   //Querys Tabla Modelos de Usuarios
   getAllUsuarios: "SELECT * FROM USUARIOS",
