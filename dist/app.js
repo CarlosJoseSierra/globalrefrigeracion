@@ -14,8 +14,10 @@ var _historialRouter = _interopRequireDefault(require("./routes/historial.router
 var _modelosRouter = _interopRequireDefault(require("./routes/modelos.router.js"));
 var _logosRouter = _interopRequireDefault(require("./routes/logos.router.js"));
 var _solicitudExternaRouter = _interopRequireDefault(require("./routes/solicitudExterna.router.js"));
+var _areaservicioRoutes = _interopRequireDefault(require("./routes/areaservicio.routes.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //import cors from "cors";
+//const cors = require("cors");
 
 //import morgan from "morgan";
 //import config from "./config.js";
@@ -39,6 +41,7 @@ app.use("/api", _historialRouter["default"]);
 app.use("/api", _modelosRouter["default"]);
 app.use("/api", _logosRouter["default"]);
 app.use("/api", _solicitudExternaRouter["default"]);
+app.use("/api", _areaservicioRoutes["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'

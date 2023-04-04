@@ -1,5 +1,6 @@
 import express from "express";
 //import cors from "cors";
+//const cors = require("cors");
 import activoRoutes from "./routes/activos.router.js";
 import clienteRoutes from "./routes/clientes.router.js";
 import equipoRoutes from "./routes/equipos.router.js";
@@ -9,7 +10,7 @@ import historialRoutes from "./routes/historial.router.js";
 import modeloRoutes from "./routes/modelos.router.js";
 import logoRoutes from "./routes/logos.router.js";
 import solicitudRoutes from "./routes/solicitudExterna.router.js";
-
+import areaservicioRoutes from "./routes/areaservicio.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
 
@@ -32,6 +33,7 @@ app.use("/api", historialRoutes);
 app.use("/api", modeloRoutes);
 app.use("/api", logoRoutes);
 app.use("/api", solicitudRoutes);
+app.use("/api", areaservicioRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'

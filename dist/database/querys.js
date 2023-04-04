@@ -13,7 +13,7 @@ var querys = {
   updateProductById: "UPDATE [PRODUCTO SET PROD_codigo = @name, PROD_nombre = @description, PROD_medida = @quantity WHERE PROD_id = @Id",
   //Querys Tabla Equipo_Completo
   getAllActivos: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre,EQC_LOGO_id,LOGO_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id inner join LOGO ON EQC_LOGO_id = LOGO_id",
-  getActivoByCliente: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id WHERE EQC_CLI_id = @idCliente  or EQC_CLI_id = @idCliente2",
+  getActivoByCliente: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id WHERE (EQC_CLI_id = @idCliente  or EQC_CLI_id = @idCliente2) and EQC_id in (SELECT max(EQC_id) from EQUIPO_COMPLETO GROUP BY EQC_serie) order by EQC_serie",
   getActivoById: "SELECT * FROM EQUIPO_COMPLETO Where EQC_id = @Id",
   getActivoByTag: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id Where EQC_codTag = @EQC_codTag",
   addNewActivo: "INSERT INTO EQUIPO_COMPLETO (EQC_serie, EQC_placa, EQC_EQUIP_id,EQC_CLI_id,EQC_USU_ing,EQC_fecha_ing,EQC_codTag,EQC_LOGO_id) VALUES (@EQC_serie,@EQC_placa,@EQC_EQUIP_id,@EQC_CLI_id,@EQC_USU_ing,GETDATE(),@EQC_codTag,@EQC_LOGO_id);",
@@ -52,6 +52,11 @@ var querys = {
   getTotalModelos: "SELECT TOP 7 COUNT(AS_id) AS CONTEO,EQUIP_modelo  FROM AREA_SERVICIO INNER JOIN EQUIPO ON AS_EQUIP_id = EQUIP_id WHERE (AS_OT_id>0) GROUP BY EQUIP_modelo ORDER BY CONTEO DESC",
   //Querys Tabla Logos
   getAllLogos: "SELECT LOGO_id,LOGO_nombre FROM LOGO",
-  getLogoById: "SELECT LOGO_id,LOGO_nombre FROM LOGO Where LOGO_id = @Id"
+  getLogoById: "SELECT LOGO_id,LOGO_nombre FROM LOGO Where LOGO_id = @Id",
+  //Querys Tabla Ubicacion
+  getAllCiudad: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION ORDER BY UBIC_ciudad",
+  //Query Busqueda por Serie y Placa
+  getAreaByPlaca: "SELECT AS_serie,AS_placa,AS_EQUIP_id,AS_CLI_id,AS_LOGO_id,AS_SC_id,AS_UBIC_id,ISNULL(SC_codUniversal,'') AS SC_codUniversal,ISNULL(SC_direccion,'') AS SC_direccion,ISNULL(SC_establecimiento,'') AS SC_establecimiento,ISNULL(SC_nombre,'') AS SC_nombre,EQUIP_descripcion FROM AREA_SERVICIO INNER JOIN EQUIPO ON AS_EQUIP_id = EQUIP_id LEFT JOIN SUBCLIENTE ON AS_SC_id = SC_id WHERE (AS_CLI_id = @idCliente1 or AS_CLI_id = @idCliente2) and  AS_serie like @placa and AS_id in (SELECT MAX(AS_id) FROM AREA_SERVICIO GROUP BY AS_serie) ORDER BY AS_placa",
+  getAreaBySerie: "SELECT AS_serie,AS_placa,AS_EQUIP_id,AS_CLI_id,AS_LOGO_id,AS_SC_id,AS_UBIC_id,ISNULL(SC_codUniversal,'') AS SC_codUniversal,ISNULL(SC_direccion,'') AS SC_direccion,ISNULL(SC_establecimiento,'') AS SC_establecimiento,ISNULL(SC_nombre,'') AS SC_nombre,EQUIP_descripcion FROM AREA_SERVICIO INNER JOIN EQUIPO ON AS_EQUIP_id = EQUIP_id LEFT JOIN SUBCLIENTE ON AS_SC_id = SC_id WHERE (AS_CLI_id = @idCliente1 or AS_CLI_id = @idCliente2) and  AS_serie like @serie and AS_id in (SELECT MAX(AS_id) FROM AREA_SERVICIO GROUP BY AS_serie) ORDER BY AS_serie"
 };
 exports.querys = querys;

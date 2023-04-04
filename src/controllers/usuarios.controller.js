@@ -47,7 +47,8 @@ export const getByUserPass = async (req, res) => {
           if(result.recordset[0]['USU_clave'] == USU_clave){
             const userFormToken={
               id:result.recordset[0]['USU_id'],
-              nameU: result.recordset[0]['USU_usuario']}
+              nameU: result.recordset[0]['USU_usuario'],
+              }
               //const token = jwt.sign(userFormToken,process.env.SECRET_WORD)
               const token = '00ggg';
             return res.json({status: "ok", msg: result.recordset[0],token:token});
