@@ -1,5 +1,5 @@
 import express from "express";
-//import cors from "cors";
+import cors from "cors";
 //const cors = require("cors");
 import activoRoutes from "./routes/activos.router.js";
 import clienteRoutes from "./routes/clientes.router.js";
@@ -17,7 +17,7 @@ import areaservicioRoutes from "./routes/areaservicio.routes.js";
 const app = express();
 
 // Middlewares
-//app.use(cors());
+app.use(cors());
 //app.use(morgan("dev"));
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
