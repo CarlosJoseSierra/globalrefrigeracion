@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
     getCiudad,
     getProvincia,
-} from "../controllers/lozalizacion.controller";
+} from "../controllers/localizacion.controller";
 
 const router = Router();
 
