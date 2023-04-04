@@ -27,7 +27,9 @@ var app = (0, _express["default"])();
 // Middlewares
 app.use((0, _cors["default"])());
 //app.use(morgan("dev"));
-//app.use(express.urlencoded({ extended: false }));
+app.use(_express["default"].urlencoded({
+  extended: false
+}));
 app.use(_express["default"].json());
 
 // Routes
