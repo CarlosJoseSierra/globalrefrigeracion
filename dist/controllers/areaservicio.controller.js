@@ -21,7 +21,7 @@ var getAreaBySerie = /*#__PURE__*/function () {
         case 3:
           pool = _context.sent;
           _context.next = 6;
-          return pool.request().input("serie", req.params.serie).query(_database.querys.getAreaBySerie);
+          return pool.request().input("serie", req.params.serie).input("idCliente1", req.params.idCliente1).input("idCliente2", req.params.idCliente2).query(_database.querys.getAreaBySerie);
         case 6:
           result = _context.sent;
           return _context.abrupt("return", res.json(result.recordset[0]));
@@ -53,7 +53,7 @@ var getAreaByPlaca = /*#__PURE__*/function () {
         case 3:
           pool = _context2.sent;
           _context2.next = 6;
-          return pool.request().input("placa", req.params.placa).query(_database.querys.getAreaByPlaca);
+          return pool.request().input("placa", req.params.placa).input("idCliente1", req.params.idCliente1).input("idCliente2", req.params.idCliente2).query(_database.querys.getAreaByPlaca);
         case 6:
           result = _context2.sent;
           return _context2.abrupt("return", res.json(result.recordset[0]));
