@@ -8,8 +8,8 @@ export const dbSettings = {
   database: config.dbDatabase, */
   user: "sa",
   password: "Solomon2011",
-  //server: "181.198.20.179",
-  server: "DESKTOP-DQQ2201",
+  server: "181.198.20.179",
+  //server: "DESKTOP-DQQ2201",
   database: "PRODUCCION",
   options: {
     encrypt: false, // for azure
