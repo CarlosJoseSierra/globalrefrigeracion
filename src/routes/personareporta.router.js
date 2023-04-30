@@ -1,15 +1,13 @@
 import { Router } from "express";
 import {
   getPersonaReporta,
-  getPersonaReportaById,
+  getPersonaReportaByIdCliente,
 } from "../controllers/personareporta.controller";
 
 const router = Router();
 
 router.get("/preporta", getPersonaReporta);
-
-router.get("/preporta/:id", getPersonaReportaById);
-router.get("/preporta/:idCliente", getPersonaReportaByIdCliente);
+router.get("/preporta/:id", getPersonaReportaByIdCliente);
 
 
 export default router;

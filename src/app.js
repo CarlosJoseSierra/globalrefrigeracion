@@ -12,6 +12,7 @@ import logoRoutes from "./routes/logos.router.js";
 import solicitudRoutes from "./routes/solicitudExterna.router.js";
 import areaservicioRoutes from "./routes/areaservicio.routes.js";
 import localizacionRoutes from "./routes/localizacion.routes.js";
+import personareportaRoutes from "./routes/personareporta.router";
 //import morgan from "morgan";
 //import config from "./config.js";
 
@@ -36,6 +37,7 @@ app.use("/api", logoRoutes);
 app.use("/api", solicitudRoutes);
 app.use("/api", areaservicioRoutes);
 app.use("/api", localizacionRoutes);
+app.use("/api", personareportaRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'

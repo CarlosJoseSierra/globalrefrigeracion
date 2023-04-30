@@ -67,7 +67,6 @@ export const querys = {
   getAllTipoServicio:"SELECT TPS_id, TPS_nombre FROM TIPO_SERVICIO ORDER BY TPS_nombre",
 
   //Querys Tabla PersonaReporta
-  getAllPersonaReporta: "SELECT PR_id,PR_nombre,PR_CLI_id FROM PERSONA_REPORTA ORDER BY CLI_nombre", 
-  getPersonaReportaById: "SELECT * FROM PERSONA_REPORTA Where PR_id = @Id",
-  getPersonaReportaById: "SELECT * FROM PERSONA_REPORTA Where PR_CLI_id = @Id",
+  getAllPersonaReporta: "SELECT PR_id,PR_nombre,PR_CLI_id FROM PERSONA_REPORTA ORDER BY PR_nombre", 
+  getPersonaReportaByIdCliente: "SELECT * FROM PERSONA_REPORTA Where PR_CLI_id = @Id",
 };
