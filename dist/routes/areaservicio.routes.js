@@ -12,5 +12,7 @@ router.get("/areaservicio/x/:placa/:idCliente1/:idCliente2", _areaservicio.getAr
 router.get("/areaservicio/x", _areaservicio.getAreaSinTecnico); //Obtengo el listado de cts que no se haya asignado tecnico
 
 router.put("/areaservicio/x/:id", _areaservicio.updateActivoByTecnico); //Actualizo ct pot tecnico
+
+router.get("/areaservicio/y/:id", _areaservicio.getAreaByTecnico); //Obtengo las tareas pendientes de los tecnicos
 var _default = router;
 exports["default"] = _default;

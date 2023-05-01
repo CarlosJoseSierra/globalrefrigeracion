@@ -67,13 +67,8 @@ Content-Type: application/json
 {{api4}}/4
 
 
-@api100 = http://localhost:3000/api/areaservicio/x
+@api100 = http://localhost:3000/api/areaservicio/y
 
 ### get idCliente
-PUT {{api100}}/7845
-Content-Type: application/json
+{{api100}}/1
 
-{
-    "AS_USU_id": "1",
-    "AS_USU_ing": "20"
-}

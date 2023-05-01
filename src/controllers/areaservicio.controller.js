@@ -49,7 +49,7 @@ export const getAreaByPlaca = async (req, res) => {
 
   
   export const updateActivoByTecnico = async (req, res) => {
-    const { AS_id, AS_USU_id,AS_USU_ing } = req.body;
+    const {AS_USU_id,AS_USU_ing } = req.body;
   
     // validating
     if (AS_USU_id == null ||  AS_USU_ing==null) {
@@ -76,4 +76,21 @@ export const getAreaByPlaca = async (req, res) => {
       res.status(500);
       res.send(error.message);
     }
+  };
+
+  export const getAreaByTecnico = async (req, res) => {
+    
+    try {
+      const pool = await getConnection();
+  
+      const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.getAreaByTecnico);
+  
+        return res.json(result.recordset);
+      } catch (error) {
+        res.status(500);
+        res.send(error.message);
+      }
   };
