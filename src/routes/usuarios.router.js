@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   getUsuarios,
-  getUsuarioById,
+  getUsuarioByCargo,
   getByUserPass,
   getUser,
 } from "../controllers/usuarios.controller";
@@ -14,6 +14,6 @@ router.get("/usuarios", getUsuarios);
 
 router.post("/usuarios/login", getByUserPass);
 //router.post("/usuarios/login", getUser);
-//router.get("/usuarios/:id", getUsuarioById);
+router.get("/usuarios/tec", getUsuarioByCargo);
 
 export default router;

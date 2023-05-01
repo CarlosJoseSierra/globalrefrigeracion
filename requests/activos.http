@@ -67,7 +67,7 @@ Content-Type: application/json
 {{api4}}/4
 
 
-@api100 = http://localhost:3000/api/preporta
+@api100 = http://localhost:3000/api/usuarios/tec
 
 ### get idCliente
-{{api100}}/1
+{{api100}}

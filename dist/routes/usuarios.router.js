@@ -13,6 +13,6 @@ router.get("/usuarios", _usuarios.getUsuarios);
 
 router.post("/usuarios/login", _usuarios.getByUserPass);
 //router.post("/usuarios/login", getUser);
-//router.get("/usuarios/:id", getUsuarioById);
+router.get("/usuarios/tec", _usuarios.getUsuarioByCargo);
 var _default = router;
 exports["default"] = _default;
