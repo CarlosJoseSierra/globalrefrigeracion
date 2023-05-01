@@ -69,4 +69,7 @@ export const querys = {
   //Querys Tabla PersonaReporta
   getAllPersonaReporta: "SELECT PR_id,PR_nombre,PR_CLI_id FROM PERSONA_REPORTA ORDER BY PR_nombre", 
   getPersonaReportaByIdCliente: "SELECT * FROM PERSONA_REPORTA Where PR_CLI_id = @Id",
+
+  //Query por COtizacion sin asignar tecnico
+  getAreaSinTecnico: "select AS_id, AS_secuencial,AS_SS_id,AS_USU_id,AS_fecha,AS_CLI_id,AS_AT_id,AS_OT_id,AS_OT_codigo,AS_TPS_id,AS_EC_id,AS_UBIC_id,AS_serie,AS_placa,AS_EQUIP_id,AS_LOGO_id,AS_observacionTecnica,AS_FECHA_ing,AS_USU_ing,AS_Subtotal,AS_impuesto,AS_iva,AS_total,AS_descCliente,AS_descuento,AS_descuentoR,AS_descuentoS,AS_descuentoP,AS_fechaIngreso,AS_EstadoFactura,AS_Reporte,AS_SC_id,AS_ES_id,AS_IE_id,AS_SEDE_id,AS_fechaReq,AS_semana,AS_numReq,AS_PR_id,AS_UBIC_id2,AS_TPSP_id,AS_VEND_id,AS_serie2,AS_placa2,AS_EQUIP_id2,AS_LOGO_id2,AS_observacion2,AS_EM_id,AS_CT_idOrigen  from AREA_SERVICIO where (AS_SS_id = 2 or AS_SS_id = 4) and (AS_USU_id = 29) and (AS_fecha > '04-29-2023')",
 };

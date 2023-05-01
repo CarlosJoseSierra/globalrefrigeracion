@@ -70,4 +70,4 @@ Content-Type: application/json
 @api100 = http://localhost:3000/api/preporta
 
 ### get idCliente
-{{api100}}
+{{api100}}/1
