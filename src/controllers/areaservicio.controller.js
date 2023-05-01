@@ -52,7 +52,7 @@ export const getAreaByPlaca = async (req, res) => {
     const { AS_id, AS_USU_id,AS_USU_ing } = req.body;
   
     // validating
-    if (AS_id == null || AS_USU_id == null ||  AS_USU_ing==null) {
+    if (AS_USU_id == null ||  AS_USU_ing==null) {
       return res.status(400).json({ msg: "Favor ingresar Datos Requeridos" });
     }
   

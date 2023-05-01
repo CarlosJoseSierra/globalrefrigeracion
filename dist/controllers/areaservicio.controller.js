@@ -112,7 +112,7 @@ var updateActivoByTecnico = /*#__PURE__*/function () {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
           _req$body = req.body, AS_id = _req$body.AS_id, AS_USU_id = _req$body.AS_USU_id, AS_USU_ing = _req$body.AS_USU_ing; // validating
-          if (!(AS_id == null || AS_USU_id == null || AS_USU_ing == null)) {
+          if (!(AS_USU_id == null || AS_USU_ing == null)) {
             _context4.next = 3;
             break;
           }

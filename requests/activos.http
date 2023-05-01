@@ -67,7 +67,13 @@ Content-Type: application/json
 {{api4}}/4
 
 
-@api100 = http://localhost:3000/api/usuarios/tec
+@api100 = http://localhost:3000/api/areaservicio/x
 
 ### get idCliente
-{{api100}}
+PUT {{api100}}/7845
+Content-Type: application/json
+
+{
+    "AS_USU_id": "1",
+    "AS_USU_ing": "20"
+}

@@ -75,4 +75,7 @@ export const querys = {
 
   //Query de obtencion de usuarios con cargo de tecnico
   getAllUsuariosByCargo:"SELECT USU_id,USU_usuario FROM USUARIOS WHERE USU_cargo like 'TECNICO' ORDER BY USU_usuario",
+
+  //Query que actualiza la ct con el id del tecnico 
+  updateActivoByTecnico:"UPDATE AREA_SERVICIO SET AS_USU_id = @AS_USU_id,AS_USU_ing = @AS_USU_ing WHERE AS_id = @id  ",
 };
