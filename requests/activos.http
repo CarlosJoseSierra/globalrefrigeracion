@@ -72,3 +72,6 @@ Content-Type: application/json
 ### get idCliente
 {{api100}}/1
 
+
+
+@api200 = http://localhost:3000/api/tservicioPers
