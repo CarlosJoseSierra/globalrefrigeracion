@@ -86,6 +86,6 @@ export const querys = {
   getAllTipoServicioPers:"SELECT TPSP_id AS TPS_id, TPSP_nombre AS TPS_nombre FROM TIPO_SERVICIO_PERS ORDER BY TPSP_nombre",
 
   //Querys Tabla SubCliente
-  getAllSubClientes: "SELECT SC_id,SC_nombre,SC_codUniversal,SC_establecimiento,SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE ORDER BY SC_nombre", 
+  getAllSubClientes: "SELECT SC_id,UPPER(REPLACE(REPLACE(SC_nombre,'\n',''),'\r','')) AS SC_nombre, UPPER(REPLACE(REPLACE(SC_codUniversal,'\n',''),'\r','')) AS SC_codUniversal, UPPER(REPLACE(REPLACE(SC_establecimiento,'\n',''),'\r','')) AS SC_establecimiento, UPPER(REPLACE(REPLACE(SC_direccion,'\n',''),'\r','')) AS SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE WHERE SC_nombre != '' ORDER BY SC_nombre", 
   getSubClienteById: "SELECT SC_id,SC_nombre,SC_codUniversal,SC_establecimiento,SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE WHERE SC_id = @Id",
 };
