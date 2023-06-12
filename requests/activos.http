@@ -73,5 +73,11 @@ Content-Type: application/json
 {{api100}}/1
 
 
-
+### get idCliente
 @api200 = http://localhost:3000/api/tservicioPers
+{{api200}}
+
+
+### get idCliente
+@api201 = http://localhost:3000/api/subcliente
+{{api201}}
