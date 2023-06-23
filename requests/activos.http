@@ -81,3 +81,18 @@ Content-Type: application/json
 ### get idCliente
 @api201 = http://localhost:3000/api/subcliente
 {{api201}}
+
+### add a product
+POST http://localhost:3000/api/subclienteI
+Content-Type: application/json
+
+{
+    "SC_nombre": "cjsa5",
+   "SC_codUniversal": "cjsa005",
+   "SC_direccion": "Tulipanes5",
+    "SC_establecimiento": "Los Tulipanes5",
+   "SC_USU_ing": 18,
+   "SC_identificacion": "09193543405",
+   "SC_referencia": "Escuela Continente Americano5",
+   "SC_tipoNegocio": "Desarrollo de Software5"
+}

@@ -75,6 +75,8 @@ var querys = {
   getAllTipoServicioPers: "SELECT TPSP_id AS TPS_id, TPSP_nombre AS TPS_nombre FROM TIPO_SERVICIO_PERS ORDER BY TPSP_nombre",
   //Querys Tabla SubCliente
   getAllSubClientes: "SELECT SC_id,UPPER(REPLACE(REPLACE(SC_nombre,'\n',''),'\r','')) AS SC_nombre, UPPER(REPLACE(REPLACE(SC_codUniversal,'\n',''),'\r','')) AS SC_codUniversal, UPPER(REPLACE(REPLACE(SC_establecimiento,'\n',''),'\r','')) AS SC_establecimiento, UPPER(REPLACE(REPLACE(SC_direccion,'\n',''),'\r','')) AS SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE WHERE SC_nombre != '' ORDER BY SC_nombre",
-  getSubClienteById: "SELECT SC_id,SC_nombre,SC_codUniversal,SC_establecimiento,SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE WHERE SC_id = @Id"
+  getSubClienteById: "SELECT SC_id,SC_nombre,SC_codUniversal,SC_establecimiento,SC_direccion,SC_telefono,SC_identificacion,SC_referencia,SC_tipoNegocio FROM SUBCLIENTE WHERE SC_id = @Id",
+  addNewSubCliente: "INSERT INTO SUBCLIENTE (SC_nombre, SC_codUniversal,SC_establecimiento,SC_direccion,SC_telefono,SC_USU_ing,SC_fecha_ing,SC_identificacion,SC_referencia,SC_tipoNegocio) OUTPUT Inserted.SC_id VALUES (@SC_nombre, @SC_codUniversal, @SC_establecimiento,@SC_direccion, @SC_telefono,@SC_USU_ing, GETDATE(), @SC_identificacion, @SC_referencia, @SC_tipoNegocio)",
+  updateSubClienteById: "UPDATE SUBCLIENTE SET SC_codUniversal = @SC_codUniversal, SC_direccion=@SC_direccion, SC_establecimiento =@SC_establecimiento, SC_telefono = @SC_telefono, SC_USU_ing = @SC_USU_ing, SC_identificacion = @SC_identificacion, SC_referencia = @SC_referencia, SC_tipoNegocio = @SC_tipoNegocio WHERE SC_id = @id"
 };
 exports.querys = querys;
