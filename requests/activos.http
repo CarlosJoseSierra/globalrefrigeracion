@@ -208,3 +208,8 @@ Content-Type: application/json
 
 @api2010 = http://localhost:3000/api/areaservicio/mov
 {{api2010}}
+
+### get idCliente
+
+@api2011 = http://localhost:3000/api/areaservicio/z/04/012024/04302024
+{{api2011}}

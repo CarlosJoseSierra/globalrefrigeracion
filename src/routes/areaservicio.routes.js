@@ -8,6 +8,7 @@ import {
     createNewAreaServicio,
     getAreaServicioMovimiento,
     getAreaServicioMantenimiento,
+    getReporteGeneral,
 } from "../controllers/areaservicio.controller";
 
 const router = Router();
@@ -28,5 +29,7 @@ router.get("/areaservicio/mov", getAreaServicioMovimiento); //Obtengo las cts co
 
 router.get("/areaservicio/mant", getAreaServicioMantenimiento); //Obtengo las cts con area de servicio mantenimiento
 
+router.get("/areaservicio/z/:date1/:date2", getReporteGeneral);
+//router.get("/areaservicio/z/", getReporteGeneral);
 
 export default router;
