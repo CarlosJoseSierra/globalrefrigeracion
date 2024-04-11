@@ -21,6 +21,7 @@ var _personareportaRouter = _interopRequireDefault(require("./routes/personarepo
 var _tiposerviciopersRouter = _interopRequireDefault(require("./routes/tiposerviciopers.router.js"));
 var _subclienteRouter = _interopRequireDefault(require("./routes/subcliente.router.js"));
 var _prefacturaRoutes = _interopRequireDefault(require("./routes/prefactura.routes.js"));
+var _resumenRoutes = _interopRequireDefault(require("./routes/resumen.routes.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
@@ -54,6 +55,7 @@ app.use("/api", _personareportaRouter["default"]);
 app.use("/api", _tiposerviciopersRouter["default"]);
 app.use("/api", _subclienteRouter["default"]);
 app.use("/api", _prefacturaRoutes["default"]);
+app.use("/api", _resumenRoutes["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'
