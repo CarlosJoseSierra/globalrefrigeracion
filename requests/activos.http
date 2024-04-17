@@ -211,5 +211,5 @@ Content-Type: application/json
 
 ### get idCliente
 
-@api2011 = http://localhost:3000/api/areaservicio/z/04/012024/04302024
+@api2011 = http://localhost:3000/api/resumen
 {{api2011}}
