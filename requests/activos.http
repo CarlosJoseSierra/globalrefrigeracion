@@ -206,7 +206,7 @@ Content-Type: application/json
 
 ### get idCliente
 
-@api2010 = http://localhost:3000/api/areaservicio/mov
+@api2010 = http://localhost:3000/api/clientes/x/
 {{api2010}}
 
 ### get idCliente

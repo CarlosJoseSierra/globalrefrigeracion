@@ -26,14 +26,3 @@ export const getClienteById = async (req, res) => {
     res.send(error.message);
   }
 };
-
-export const getClienteKardex = async (req,res) => {
-  try {
-    const pool = await getConnection();
-    const result = await pool.request().query(querys.getClienteKardex);
-    res.json(result.recordset);
-  } catch (error) {
-    res.status(500);
-    res.send(error.message);
-  }
-};

@@ -17,6 +17,7 @@ import tiposervicioPers from "./routes/tiposerviciopers.router.js";
 import subclienteRoutes from "./routes/subcliente.router.js";
 import facturaRoutes from "./routes/prefactura.routes.js";
 import resumenRoutes from "./routes/resumen.routes.js";
+import kardexRoutes from "./routes/kardex.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
 
@@ -46,6 +47,7 @@ app.use("/api", tiposervicioPers);
 app.use("/api", subclienteRoutes);
 app.use("/api", facturaRoutes);
 app.use("/api", resumenRoutes);
+app.use("/api", kardexRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
