@@ -10,5 +10,6 @@ var router = (0, _express.Router)();
 router.get("/inventario", _corteinventario.getInventory);
 router.post("/inventario/new", _corteinventario.createNewInventory);
 router.get("/inventario/:id", _corteinventario.getInventoryById);
+router.get("/inventario/corte", _corteinventario.getInventoryCorte);
 var _default = router;
 exports["default"] = _default;

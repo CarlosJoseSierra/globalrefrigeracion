@@ -61,6 +61,17 @@ export const createNewInventory = async (req, res) => {
   }
 };
 
+export const getInventoryCorte = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request().query(querys.getInventoryCorte);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
 
 
 
