@@ -23,6 +23,7 @@ var _subclienteRouter = _interopRequireDefault(require("./routes/subcliente.rout
 var _prefacturaRoutes = _interopRequireDefault(require("./routes/prefactura.routes.js"));
 var _resumenRoutes = _interopRequireDefault(require("./routes/resumen.routes.js"));
 var _kardexRoutes = _interopRequireDefault(require("./routes/kardex.routes.js"));
+var _corteinventarioRoutes = _interopRequireDefault(require("./routes/corteinventario.routes.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
@@ -58,6 +59,7 @@ app.use("/api", _subclienteRouter["default"]);
 app.use("/api", _prefacturaRoutes["default"]);
 app.use("/api", _resumenRoutes["default"]);
 app.use("/api", _kardexRoutes["default"]);
+app.use("/api", _corteinventarioRoutes["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'
