@@ -96,6 +96,6 @@ var querys = {
   getAllInventory: "SELECT CINV_id, CINV_descripcion, CINV_CLI_id, CINV_fechaIni,CINV_fechaCierre, CINV_ingreso, CINV_entrega, CINV_saldo, CINV_FECHA_ing, CINV_USU_ing FROM CORTE_INVENTARIO",
   getInventoryById: "SELECT CINV_id, CINV_descripcion, CINV_CLI_id, CINV_fechaIni,CINV_fechaCierre, CINV_ingreso, CINV_entrega, CINV_saldo, CINV_FECHA_ing, CINV_USU_ing FROM CORTE_INVENTARIO WHERE CINV_id = @id",
   addNewInventario: "INSERT INTO CORTE_INVENTARIO ([CINV_descripcion],[CINV_CLI_id],[CINV_fechaIni],[CINV_fechaCierre],[CINV_ingreso],[CINV_entrega],[CINV_saldo],[CINV_FECHA_ing],[CINV_USU_ing]) OUTPUT Inserted.CINV_id VALUES (@CINV_descripcion,@CINV_CLI_id,@CINV_fechaIni,@CINV_fechaCierre,@CINV_ingreso,@CINV_entrega,@CINV_saldo, GETDATE(),@CINV_USU_ing)",
-  getInventoryCorte: "SELECT CINV_id, CINV_descripcion, CINV_CLI_id, CINV_fechaIni,CINV_fechaCierre, CINV_ingreso, CINV_entrega, CINV_saldo, CINV_FECHA_ing, CINV_USU_ing FROM CORTE_INVENTARIO"
+  getInventoryCorte: "SELECT CINV_id, CINV_descripcion, CINV_CLI_id, CINV_fechaInicio,CINV_fechaCierre, CINV_Totalingreso, CINV_Totalentrega, CINV_saldoAnterior, CINV_FECHA_ing, CINV_USU_ing FROM CORTE_INVENTARIO"
 };
 exports.querys = querys;
