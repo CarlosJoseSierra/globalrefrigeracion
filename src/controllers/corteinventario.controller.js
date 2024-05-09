@@ -1,16 +1,5 @@
 import { getConnection, querys, sql } from "../database";
 
-export const getInventory = async (req, res) => {
-  try {
-    const pool = await getConnection();
-    const result = await pool.request().query(querys.getAllInventory);
-    res.json(result.recordset);
-  } catch (error) {
-    res.status(500);
-    res.send(error.message);
-  }
-};
-
 
 export const getInventoryById = async (req, res) => {
   try {
@@ -28,7 +17,7 @@ export const getInventoryById = async (req, res) => {
 };
 
 export const createNewInventory = async (req, res) => {
-  const { CINV_descripcion, CINV_CLI_id,CINV_fechaIni,CINV_fechaCierre,CINV_ingreso,CINV_entrega,CINV_saldo,CINV_USU_ing} = req.body;
+  const { CINV_descripcion, CINV_CLI_id,CINV_fechaInicio,CINV_fechaCierre,CINV_Totalingreso,CINV_Totalentrega,CINV_saldoAnterior,CINV_USU_ing} = req.body;
   
   // validating
   if (CINV_descripcion == null || CINV_USU_ing == null) {
@@ -40,13 +29,13 @@ export const createNewInventory = async (req, res) => {
     const result = await pool
       .request()
       .input("CINV_descripcion", sql.VarChar, CINV_descripcion)
-      .input("CINV_CLI_id", sql.VarChar, CINV_CLI_id)
-      .input("CINV_fechaIni", sql.VarChar, CINV_fechaIni)
-      .input("CINV_fechaCierre", sql.VarChar, CINV_fechaCierre)
-      .input("CINV_ingreso", sql.VarChar, CINV_ingreso)
-      .input("CINV_entrega", sql.VarChar, CINV_entrega)
-      .input("CINV_saldo", sql.VarChar, CINV_saldo)
-      .input("CINV_USU_ing", sql.VarChar, CINV_USU_ing)
+      .input("CINV_CLI_id", sql.Decimal, CINV_CLI_id)
+      .input("CINV_fechaInicio", sql.Date, CINV_fechaInicio)
+      .input("CINV_fechaCierre", sql.Date, CINV_fechaCierre)
+      .input("CINV_Totalingreso", sql.Decimal, CINV_Totalingreso)
+      .input("CINV_Totalentrega", sql.Decimal, CINV_Totalentrega)
+      .input("CINV_saldoAnterior", sql.Decimal, CINV_saldoAnterior)
+      .input("CINV_USU_ing", sql.Decimal, CINV_USU_ing)
       .query(querys.addNewInventario);
       if(result.rowsAffected[0]==1){
         return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,INV_id:result.recordset[0].INV_id,INV_BOD_id:INV_BOD_id});

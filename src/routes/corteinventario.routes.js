@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  getInventory,
   createNewInventory,
   getInventoryById,
   getInventoryCorte,
@@ -8,12 +7,10 @@ import {
 
 const router = Router();
 
-router.get("/inventario", getInventory);
-
 router.post("/inventario/new", createNewInventory);
 
 router.get("/inventario/:id", getInventoryById);
 
-router.get("/inventario/corte", getInventoryCorte);
+router.get("/inventario", getInventoryCorte);
 
 export default router;
