@@ -1,13 +1,13 @@
 import { Router } from "express";
 import {
-  createNewInventory,
+  addNewInventory,
   getInventoryById,
   getInventoryCorte,
 } from "../controllers/corteinventario.controller";
 
 const router = Router();
 
-router.post("/inventario/new", createNewInventory);
+router.post("/inventario/new", addNewInventory);
 
 router.get("/inventario/:id", getInventoryById);
 

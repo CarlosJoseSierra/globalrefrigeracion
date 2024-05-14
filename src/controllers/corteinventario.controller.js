@@ -16,7 +16,7 @@ export const getInventoryById = async (req, res) => {
   }
 };
 
-export const createNewInventory = async (req, res) => {
+export const addNewInventory = async (req, res) => {
   const { CINV_descripcion, CINV_CLI_id,CINV_fechaInicio,CINV_fechaCierre,CINV_Totalingreso,CINV_Totalentrega,CINV_saldoAnterior,CINV_USU_ing} = req.body;
   
   // validating
@@ -38,7 +38,7 @@ export const createNewInventory = async (req, res) => {
       .input("CINV_USU_ing", sql.Decimal, CINV_USU_ing)
       .query(querys.addNewInventario);
       if(result.rowsAffected[0]==1){
-        return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,INV_id:result.recordset[0].INV_id,INV_BOD_id:INV_BOD_id});
+        return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,INV_id:result.recordset[0].INV_id});
       }else{
         return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
       }
