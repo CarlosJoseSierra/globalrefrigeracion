@@ -97,7 +97,8 @@ var querys = {
   addNewInventario: "INSERT INTO CORTE_INVENTARIO ([CINV_descripcion],[CINV_CLI_id],[CINV_fechaInicio],[CINV_fechaCierre],[CINV_Totalingreso],[CINV_Totalentrega],[CINV_saldoAnterior],[CINV_FECHA_ing],[CINV_USU_ing]) OUTPUT Inserted.CINV_id VALUES (@CINV_descripcion,@CINV_CLI_id,@CINV_fechaInicio,@CINV_fechaCierre,@CINV_Totalingreso,@CINV_Totalentrega,@CINV_saldoAnterior, GETDATE(),@CINV_USU_ing)",
   getInventoryCorte: "SELECT CINV_id,CINV_descripcion,CINV_CLI_id,CONVERT(DATE,CINV_fechaInicio) AS CINV_fechaInicio,CONVERT(DATE,CINV_fechaCierre) AS CINV_fechaCierre,CINV_Totalingreso,CINV_Totalentrega,CINV_saldoAnterior,CINV_FECHA_ing,CINV_USU_ing FROM CORTE_INVENTARIO",
   //GLOBAL REFRIGERACION
-  getDataEquiposMapa: "SELECT T.UBIC_provincia AS EQC_MAP_provincia, COUNT(DISTINCT(T.AS_UBIC_id)) AS CONTEO FROM (SELECT UBIC_provincia,AS_UBIC_id FROM AREA_SERVICIO INNER JOIN UBICACION ON AS_UBIC_id = UBIC_id WHERE AS_SS_id = 2) T GROUP BY T.UBIC_provincia",
-  getUsuarioById: "SELECT * FROM USUARIOS Where USU_id = @Id"
+  getDataEquiposMapa: "SELECT T.UBIC_provincia AS EQC_MAP_provincia, COUNT(T.AS_UBIC_id) AS CONTEO FROM (SELECT UBIC_provincia,AS_UBIC_id FROM AREA_SERVICIO INNER JOIN UBICACION ON AS_UBIC_id = UBIC_id WHERE AS_SS_id = 2 AND AS_ES_id =1 ) T GROUP BY T.UBIC_provincia ORDER BY T.UBIC_provincia",
+  getUsuarioById: "SELECT * FROM USUARIOS Where USU_id = @Id",
+  getTopFiveTecnicos: "SELECT T2.DESCRIPCION AS DESCRIPCION ,T2.CANTIDAD AS CANTIDAD FROM (SELECT T.USU_nombre AS DESCRIPCION, COUNT(T.AS_USU_id) AS CANTIDAD FROM (SELECT  USU_nombre,AS_USU_id FROM AREA_SERVICIO INNER JOIN USUARIOS ON AS_USU_id = USU_id WHERE AS_SS_id = 2 AND AS_ES_id =1) T GROUP BY T.USU_nombre) T2 ORDER BY T2.CANTIDAD DESC"
 };
 exports.querys = querys;

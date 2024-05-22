@@ -27,5 +27,6 @@ router.get("/historial6y", _historial.getHistTotalDisponible);
 
 //GLOBAL REFRIGERACION
 router.get("/historialxy", _historial.getTotalEquiposMapa);
+router.get("/historialT", _historial.getTopFiveTecnicos);
 var _default = router;
 exports["default"] = _default;
