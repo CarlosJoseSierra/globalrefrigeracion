@@ -39,7 +39,7 @@ router.get("/historialz", getHistorialTotalEquipoEntregado);
 router.get("/historial4z", getHistTotalEntregado);
 router.get("/historial5x", getHistTotalReparado);
 router.get("/historial6y", getHistTotalDisponible);
-router.get("/historial7y", getHistTotalDisponible);
+
 
 //GLOBAL REFRIGERACION
 router.get("/historialxy", getTotalEquiposMapa);
