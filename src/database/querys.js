@@ -26,7 +26,7 @@ export const querys = {
   getEquipoById: "SELECT * FROM EQUIPO Where EQ_id = @Id",
   //Querys Tabla Modelos de Usuarios
   getAllUsuarios: "SELECT * FROM USUARIOS ORDER BY USU_nombre", 
-  getUsuarioById: "SELECT * FROM USUARIOS Where USU_id = @Id",
+  
   getUserPass: "SELECT * FROM USUARIOS Where USU_usuario like @USU_usuario",
   //Querys Tabla Historial Equipos
   getDataReparados:  "SELECT T.MES,COUNT(DISTINCT(T.HIST_AS_id))AS CONTEO FROM(SELECT DATENAME(MONTH, HIST_AS_fecha ) AS MES, HIST_AS_id,AS_CLI_id FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN AREA_SERVICIO ON HIST_AS_id = AS_id WHERE  HIST_AS_TPS_id = 2 or HIST_AS_TPS_id = 3 or HIST_AS_TPS_id = 4 or HIST_AS_TPS_id = 5 or HIST_AS_TPS_id = 6 or HIST_AS_TPS_id = 8 GROUP BY HIST_AS_fecha,HIST_AS_id,AS_CLI_id) T WHERE T.AS_CLI_id = @id OR T.AS_CLI_id = @id2 GROUP BY T.MES, T.AS_CLI_id ORDER BY (CASE WHEN T.MES='Enero' THEN 1 WHEN T.MES='Febrero' THEN 2 WHEN T.MES='Marzo' THEN 3 WHEN T.MES='Abril' THEN 4 WHEN T.MES='Mayo' THEN 5 WHEN T.MES='Junio' THEN 6 WHEN T.MES='Julio' THEN 7 WHEN T.MES='Agosto' THEN 8 WHEN T.MES='Septiembre' THEN 9 WHEN T.MES='Octubre' THEN 10 WHEN T.MES='Noviembre' THEN 11 WHEN T.MES='Deciembre' THEN 12 ELSE 0 END)",
@@ -109,4 +109,10 @@ export const querys = {
   getInventoryById:"SELECT CINV_id, CINV_descripcion, CINV_CLI_id, CINV_fechaInicio,CINV_fechaCierre, CINV_Totalingreso, CINV_Totalentrega, CINV_saldoAnterior, CINV_FECHA_ing, CINV_USU_ing FROM CORTE_INVENTARIO WHERE CINV_id = @id",
   addNewInventario:"INSERT INTO CORTE_INVENTARIO ([CINV_descripcion],[CINV_CLI_id],[CINV_fechaInicio],[CINV_fechaCierre],[CINV_Totalingreso],[CINV_Totalentrega],[CINV_saldoAnterior],[CINV_FECHA_ing],[CINV_USU_ing]) OUTPUT Inserted.CINV_id VALUES (@CINV_descripcion,@CINV_CLI_id,@CINV_fechaInicio,@CINV_fechaCierre,@CINV_Totalingreso,@CINV_Totalentrega,@CINV_saldoAnterior, GETDATE(),@CINV_USU_ing)",
   getInventoryCorte:"SELECT CINV_id,CINV_descripcion,CINV_CLI_id,CONVERT(DATE,CINV_fechaInicio) AS CINV_fechaInicio,CONVERT(DATE,CINV_fechaCierre) AS CINV_fechaCierre,CINV_Totalingreso,CINV_Totalentrega,CINV_saldoAnterior,CINV_FECHA_ing,CINV_USU_ing FROM CORTE_INVENTARIO",
+
+
+
+  //GLOBAL REFRIGERACION
+  getDataEquiposMapa:  "SELECT T.UBIC_provincia AS EQC_MAP_provincia, COUNT(DISTINCT(T.AS_UBIC_id)) AS CONTEO FROM (SELECT UBIC_provincia,AS_UBIC_id FROM AREA_SERVICIO INNER JOIN UBICACION ON AS_UBIC_id = UBIC_id WHERE AS_SS_id = 2) T GROUP BY T.UBIC_provincia",
+  getUsuarioById: "SELECT * FROM USUARIOS Where USU_id = @Id",
 };

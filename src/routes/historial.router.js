@@ -14,6 +14,7 @@ import {
   getHistTotalEntregado,
   getHistTotalReparado,
   getHistTotalDisponible,
+  getTotalEquiposMapa,
 
 } from "../controllers/historial.controller";
 
@@ -36,6 +37,9 @@ router.get("/historialz", getHistorialTotalEquipoEntregado);
 router.get("/historial4z", getHistTotalEntregado);
 router.get("/historial5x", getHistTotalReparado);
 router.get("/historial6y", getHistTotalDisponible);
+
+//GLOBAL REFRIGERACION
+router.get("/historialxy", getTotalEquiposMapa);
 
 
 
