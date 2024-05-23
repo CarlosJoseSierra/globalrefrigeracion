@@ -27,8 +27,8 @@ var dbSettings = {
   server: "181.198.20.179",
   //server: "192.168.15.6",
   //server: "DESKTOP-DQQ2201",
-  //database: "PRODUCCIONPRUEBA",
-  database: "PRODUCCION",
+  database: "PRODUCCIONPRUEBA",
+  //database: "PRODUCCION",
   options: {
     encrypt: false,
     // for azure
