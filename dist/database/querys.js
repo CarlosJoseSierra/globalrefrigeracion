@@ -54,8 +54,6 @@ var querys = {
   getLogoById: "SELECT LOGO_id,LOGO_nombre FROM LOGO Where LOGO_id = @Id",
   //Querys Tabla Ubicacion
   getAllCiudad: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION ORDER BY UBIC_ciudad",
-  //Query TipoServicio
-  getAllTipoServicio: "SELECT TPS_id, TPS_nombre FROM TIPO_SERVICIO ORDER BY TPS_nombre",
   //Querys Tabla PersonaReporta
   getAllPersonaReporta: "SELECT PR_id,PR_nombre,PR_CLI_id FROM PERSONA_REPORTA ORDER BY PR_nombre",
   getPersonaReportaByIdCliente: "SELECT * FROM PERSONA_REPORTA Where PR_CLI_id = @Id",
@@ -99,6 +97,7 @@ var querys = {
   //GLOBAL REFRIGERACION
   getDataEquiposMapa: "SELECT T.UBIC_provincia AS EQC_MAP_provincia, COUNT(T.AS_UBIC_id) AS CONTEO FROM (SELECT UBIC_provincia,AS_UBIC_id FROM AREA_SERVICIO INNER JOIN UBICACION ON AS_UBIC_id = UBIC_id WHERE AS_SS_id = 2 AND AS_ES_id =1 ) T GROUP BY T.UBIC_provincia ORDER BY T.UBIC_provincia",
   getUsuarioById: "SELECT * FROM USUARIOS Where USU_id = @Id",
-  getTopFiveTecnicos: "SELECT TOP 5 T2.DESCRIPCION AS DESCRIPCION ,T2.CANTIDAD AS CANTIDAD FROM (SELECT T.USU_nombre AS DESCRIPCION, COUNT(T.AS_USU_id) AS CANTIDAD FROM (SELECT  USU_nombre,AS_USU_id FROM AREA_SERVICIO INNER JOIN USUARIOS ON AS_USU_id = USU_id WHERE AS_SS_id = 2 AND AS_ES_id =1) T GROUP BY T.USU_nombre) T2 ORDER BY T2.CANTIDAD DESC"
+  getTopFiveTecnicos: "SELECT TOP 5 T2.DESCRIPCION AS DESCRIPCION ,T2.CANTIDAD AS CANTIDAD FROM (SELECT T.USU_nombre AS DESCRIPCION, COUNT(T.AS_USU_id) AS CANTIDAD FROM (SELECT  USU_nombre,AS_USU_id FROM AREA_SERVICIO INNER JOIN USUARIOS ON AS_USU_id = USU_id WHERE AS_SS_id = 2 AND AS_ES_id =1) T GROUP BY T.USU_nombre) T2 ORDER BY T2.CANTIDAD DESC",
+  getAllTipoServicio: "SELECT TPS_id, TPS_nombre FROM TIPO_SERVICIO ORDER BY TPS_nombre"
 };
 exports.querys = querys;
