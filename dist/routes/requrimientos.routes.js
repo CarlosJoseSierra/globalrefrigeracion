@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _express = require("express");
-var _usuarios = require("../controllers/usuarios.controller");
+var _requerimientos = require("../controllers/requerimientos.controller");
 var router = (0, _express.Router)();
-router.get("/requerimientos", _usuarios.getAllRequerimientos);
-router.get("/requerimientos/act", _usuarios.getRequerimientosActivos);
+router.get("/requerimientos", _requerimientos.getAllRequerimientos);
+router.get("/requerimientos/act", _requerimientos.getRequerimientosActivos);
 var _default = router;
 exports["default"] = _default;

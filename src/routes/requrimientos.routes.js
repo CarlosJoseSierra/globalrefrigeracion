@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   getRequerimientosActivos,
   getAllRequerimientos,
-} from "../controllers/usuarios.controller";
+} from "../controllers/requerimientos.controller";
 
 const router = Router();
 
