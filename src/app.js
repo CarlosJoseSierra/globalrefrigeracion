@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+//import cors from "cors";
 //const cors = require("cors");
 import activoRoutes from "./routes/activos.router.js";
 import clienteRoutes from "./routes/clientes.router.js";
@@ -23,7 +23,7 @@ import tiposervicio from "./routes/tiposervicio.routes.js";
 import requerimientos from "./routes/requrimientos.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
-
+var cors = require('cors');
 const app = express();
 
 // Middlewares
