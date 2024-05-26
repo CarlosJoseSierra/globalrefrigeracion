@@ -4,8 +4,8 @@
   "description": "nodejs and Microsoft SQL Server Datbase REST API",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d dist",
-       "start": "node dist"
+    
+    "start": "node dist"
   },
   "keywords": [],
   "author": "",
