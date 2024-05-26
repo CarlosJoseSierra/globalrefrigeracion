@@ -20,6 +20,7 @@ import resumenRoutes from "./routes/resumen.routes.js";
 import kardexRoutes from "./routes/kardex.routes.js";
 import corteInventarioRoutes from "./routes/corteinventario.routes.js";
 import tiposervicio from "./routes/tiposervicio.routes.js";
+import requerimientos from "./routes/requrimientos.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
 
@@ -52,6 +53,7 @@ app.use("/api", resumenRoutes);
 app.use("/api", kardexRoutes);
 app.use("/api", corteInventarioRoutes);
 app.use("/api", tiposervicio);
+app.use("/api", requerimientos);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
