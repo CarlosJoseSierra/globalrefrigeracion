@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _express = _interopRequireDefault(require("express"));
+var _cors = _interopRequireDefault(require("cors"));
 var _activosRouter = _interopRequireDefault(require("./routes/activos.router.js"));
 var _clientesRouter = _interopRequireDefault(require("./routes/clientes.router.js"));
 var _equiposRouter = _interopRequireDefault(require("./routes/equipos.router.js"));
@@ -24,18 +25,17 @@ var _resumenRoutes = _interopRequireDefault(require("./routes/resumen.routes.js"
 var _kardexRoutes = _interopRequireDefault(require("./routes/kardex.routes.js"));
 var _corteinventarioRoutes = _interopRequireDefault(require("./routes/corteinventario.routes.js"));
 var _tiposervicioRoutes = _interopRequireDefault(require("./routes/tiposervicio.routes.js"));
-var _requrimientosRoutes = _interopRequireDefault(require("./routes/requrimientos.routes.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-//import cors from "cors";
 //const cors = require("cors");
 
+//import requerimientos from "./routes/requrimientos.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
-var cors = require('cors');
+//var cors = require('cors');
 var app = (0, _express["default"])();
 
 // Middlewares
-app.use(cors());
+app.use((0, _cors["default"])());
 //app.use(morgan("dev"));
 app.use(_express["default"].urlencoded({
   extended: false
@@ -63,7 +63,7 @@ app.use("/api", _resumenRoutes["default"]);
 app.use("/api", _kardexRoutes["default"]);
 app.use("/api", _corteinventarioRoutes["default"]);
 app.use("/api", _tiposervicioRoutes["default"]);
-app.use("/api", _requrimientosRoutes["default"]);
+//app.use("/api", requerimientos);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'
