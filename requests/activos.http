@@ -99,56 +99,48 @@ Content-Type: application/json
 
 
 ### add a product
-POST http://localhost:3000/api/areaservicio
+POST http://localhost:3000/api/requerimientos/new
 Content-Type: application/json
 
 {   
-    "AS_SS_id":4,
-    "AS_USU_id":29,
-      "AS_fecha": "26/06/2023",
-    "AS_CLI_id":1,
-    "AS_AT_id":1,
-    "AS_OT_id":1,
-    "AS_OT_codigo":"",
-    "AS_TPS_id":1,
-    "AS_EC_id":1,
-    "AS_UBIC_id":1,
-    "AS_serie":"123",
-    "AS_placa":"456",
-    "AS_EQUIP_id":1,
-    "AS_LOGO_id":1,
-    "AS_observacionTecnica":"cjsa",
-    "AS_USU_ing":1,
-    "AS_Subtotal":0,
-    "AS_impuesto":0,
-    "AS_iva":0,
-    "AS_total":0,
-    "AS_descCliente":0,
-    "AS_descuento":0,
-    "AS_descuentoR":0,
-    "AS_descuentoS":0,
-    "AS_descuentoP":0,
-    "AS_EstadoFactura":0,
-    "AS_Reporte":"cjsa",
-    "AS_SC_id":1,
-    "AS_ES_id":4,
-    "AS_IE_id":0,
-    "AS_SEDE_id":1,
-    "AS_fechaReq": "26/06/2023",
-    "AS_semana":"",
-    "AS_numReq":"",
-    "AS_PR_id":1,
-    "AS_UBIC_id2":1,
-    "AS_TPSP_id":1,
-    "AS_VEND_id":0,
-    "AS_serie2":"123",
-    "AS_placa2":"456",
-    "AS_EQUIP_id2":1,
-    "AS_LOGO_id2":1,
-    "AS_observacion2":"cjsa",
-    "AS_EM_id":0,
-    "AS_CT_idOrigen":0,
-    "AS_serieCompresor":"cjsa"
+    "Ciudad":82,
+    "Cliente":13,
+    "Direccion": "guasmo",
+    "Establecimiento":"Establecimiento",
+    "FechaReq":"10/06/2024",
+    "IVA":1,
+    "Maps":"ccc",
+    "Modelo":1,
+    "Observacion":1,
+    "PersonaR":"cc",
+    "Placa":"123",
+    "Serie":"456",
+    "Servicio":1,
+    "Subcliente":"dsfdsfsdfsdf",
+    "Subtotal":10,
+    "TecnicoChofer":1,
+    "Telefono":"ddgdfsgdf",
+    "TipoServicio":0,
+    "Total":11,
+    "idReq":5,
+    "details":[{
+        "productName":1,
+        "qty":1,
+        "salesPrice":2.37,
+        "total":7.42
+    },
+    {
+        "productName":3,
+        "qty":1,
+        "salesPrice":7.42,
+        "total":7.42
+    },
+    {
+        "productName":5,
+        "qty":3,
+        "salesPrice":0.05,
+        "total":0.15
+    }]
 }
 
 
