@@ -106,6 +106,6 @@ var querys = {
   addNewRequerimientoDetalle: "INSERT INTO REQUERIMIENTOS_DETALLE(REQDET_REQ_id,REQDET_PROD_id,REQDET_cantidad,REQDET_pvp,REQDET_total,REQDET_Estado) VALUES (@REQDET_REQ_id,@REQDET_PROD_id,@REQDET_cantidad,@REQDET_pvp,@REQDET_total,1)",
   editRequerimiento: "UPDATE REQUERIMIENTOS SET REQ_personaReporta = @REQ_personaReporta,REQ_fecha = @REQ_fecha, REQ_TPS_id = @REQ_TPS_id, REQ_serie =@REQ_serie,REQ_placa = @REQ_placa,REQ_EQUIP_id = @REQ_EQUIP_id, v = @REQ_CLI_id,REQ_contacto = @REQ_contacto,REQ_establecimiento = @REQ_establecimiento,REQ_telefono = @REQ_telefono, REQ_direccion = @REQ_direccion, REQ_UBIC_id = @REQ_UBIC_id, REQ_observacion = @REQ_observacion,REQ_ubicacionMaps = @REQ_ubicacionMaps,REQ_SubTotal= @REQ_SubTotal,REQ_IVA = @REQ_IVA,REQ_total = @REQ_total,REQ_USU_edit = @REQ_USU_edit,REQ_fecha_edit = GETDATE() WHERE REQ_id = @id",
   cambiarEstadoRequerimientoDetalle: "UPDATE REQUERIMIENTOS_DETALLE SET REQDET_Estado = 0 WHERE REQDET_REQ_id = @REQDET_REQ_id",
-  getDetalleByIdReq: "SELECT REQDET_id,REQDET_REQ_id,REQDET_PROD_id,REQDET_cantidad,REQDET_pvp,REQDET_total FROM REQUERIMIENTOS_DETALLE WHERE REQDET_REQ_id = @REQDET_REQ_id AND REQDET_Estado = 1"
+  getDetalleByIdReq: "SELECT REQDET_id,REQDET_REQ_id,REQDET_PROD_id,REQDET_cantidad,REQDET_pvp,REQDET_total FROM REQUERIMIENTOS_DETALLE WHERE (REQDET_REQ_id = @REQDET_REQ_id AND REQDET_Estado = 1)"
 };
 exports.querys = querys;
