@@ -6,6 +6,6 @@ import {
 
 const router = Router();
 
-router.get("/detallesreq", getRequerimientosDetalle);
+router.get("/detallesreq/:id", getRequerimientosDetalle);
 
 export default router;
