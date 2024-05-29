@@ -25,7 +25,7 @@ var getRequerimientosDetalle = /*#__PURE__*/function () {
           return pool.request().input("REQDET_REQ_id", req.params.id).query(_database.querys.getDetalleByIdReq);
         case 6:
           result = _context.sent;
-          return _context.abrupt("return", res.json(result.recordset[0]));
+          return _context.abrupt("return", res.json(result.recordset));
         case 10:
           _context.prev = 10;
           _context.t0 = _context["catch"](0);

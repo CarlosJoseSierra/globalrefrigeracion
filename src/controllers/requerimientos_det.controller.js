@@ -8,7 +8,7 @@ export const getRequerimientosDetalle = async (req, res) => {
           .request()
           .input("REQDET_REQ_id", req.params.id)
           .query(querys.getDetalleByIdReq);
-        return res.json(result.recordset[0]);
+        return res.json(result.recordset);
       } catch (error) {
         res.status(500);
         res.send(error.message);
