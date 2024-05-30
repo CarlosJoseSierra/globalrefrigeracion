@@ -149,6 +149,20 @@ export const getRequerimientosActivos = async (req, res) => {
                 .query(querys.addNewRequerimientoDetalle);
               }
             }
+          }else{
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].total)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
+                .query(querys.addNewRequerimientoDetalle);
+              }
+            }
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
