@@ -93,10 +93,20 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientos = async (req, res) => {
     try {
+      if(req.body.Subtotal==null){
+        req.body.Subtotal = 0;
+      }
+      if(req.body.IVA==null){
+        req.body.IVA = 0;
+      }
+      if(req.body.Total==null){
+        req.body.Total = 0;
+      }
       const pool = await getConnection();
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("REQ_SS_id", sql.VarChar, req.body.Servicio)
         .input("REQ_personaReporta", sql.VarChar, req.body.PersonaR)
         .input("REQ_fecha", sql.DateTime, req.body.FechaReq)
         .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
