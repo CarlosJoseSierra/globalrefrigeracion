@@ -120,27 +120,27 @@ export const getRequerimientosActivos = async (req, res) => {
         if(result.rowsAffected==1){
           //cambiar estado deldetalle a cero
           const pool2 = await getConnection();
-          const result = await pool2
+          const result2 = await pool2
           .request()
-          .input("REQDET_REQ_id", req.body.idRequerimiento)
+          .input("REQDET_REQ_id", req.params.id)
           .query(querys.cambiarEstadoRequerimientoDetalle);
           //ingresar los nuevos registros
-          if(result.rowsAffected==1){
+          if(result2.rowsAffected>0){
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const pool3 = await getConnection();
-                const result = await pool3
+                const result3 = await pool3
                 .request()
                 .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
                 .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
                 .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].total)
-                .input("REQDET_REQ_id", sql.Decimal,req.body.idRequerimiento)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
                 .query(querys.addNewRequerimientoDetalle);
               }
             }
-            return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
           }
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{
           return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});

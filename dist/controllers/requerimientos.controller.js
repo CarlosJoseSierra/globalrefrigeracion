@@ -169,7 +169,7 @@ var createRequerimientos = /*#__PURE__*/function () {
 exports.createRequerimientos = createRequerimientos;
 var editRequerimientos = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
-    var pool, result, pool2, _result2, i, pool3, _result3;
+    var pool, result, pool2, result2, i, pool3, result3;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -191,11 +191,11 @@ var editRequerimientos = /*#__PURE__*/function () {
         case 10:
           pool2 = _context4.sent;
           _context4.next = 13;
-          return pool2.request().input("REQDET_REQ_id", req.body.idRequerimiento).query(_database.querys.cambiarEstadoRequerimientoDetalle);
+          return pool2.request().input("REQDET_REQ_id", req.params.id).query(_database.querys.cambiarEstadoRequerimientoDetalle);
         case 13:
-          _result2 = _context4.sent;
-          if (!(_result2.rowsAffected == 1)) {
-            _context4.next = 28;
+          result2 = _context4.sent;
+          if (!(result2.rowsAffected > 0)) {
+            _context4.next = 27;
             break;
           }
           if (!(req.body.details.length > 0)) {
@@ -213,9 +213,9 @@ var editRequerimientos = /*#__PURE__*/function () {
         case 20:
           pool3 = _context4.sent;
           _context4.next = 23;
-          return pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[i].total).input("REQDET_REQ_id", _database.sql.Decimal, req.body.idRequerimiento).query(_database.querys.addNewRequerimientoDetalle);
+          return pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[i].total).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
         case 23:
-          _result3 = _context4.sent;
+          result3 = _context4.sent;
         case 24:
           i++;
           _context4.next = 17;
@@ -226,9 +226,6 @@ var editRequerimientos = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 28:
-          _context4.next = 31;
-          break;
         case 30:
           return _context4.abrupt("return", res.status(400).json({
             status: "400",

@@ -99,47 +99,30 @@ Content-Type: application/json
 
 
 ### add a product
-POST http://localhost:3000/api/requerimientos/new
+PUT http://localhost:3000/api/requerimientos/3
 Content-Type: application/json
 
 {   
-    "Ciudad":82,
-    "Cliente":13,
-    "Direccion": "guasmo",
-    "Establecimiento":"Establecimiento",
+    "Ciudad":81,
+    "Cliente":12,
+    "Direccion": "AlboradaA",
+    "Establecimiento":"Tiendas Don Guillermo",
     "FechaReq":"10/06/2024",
-    "IVA":1,
-    "Maps":"ccc",
-    "Modelo":1,
-    "Observacion":1,
-    "PersonaR":"cc",
-    "Placa":"123",
-    "Serie":"456",
+    "IVA":3,
+    "Maps":"algo",
+    "Modelo":2,
+    "Observacion":"Fuga",
+    "PersonaR":"Kevin Victores",
+    "Placa":"H558889",
+    "Serie":"P89625",
     "Servicio":1,
-    "Subcliente":"dsfdsfsdfsdf",
+    "Subcliente":"Don Guillermo",
     "Subtotal":10,
-    "TecnicoChofer":1,
-    "Telefono":"ddgdfsgdf",
-    "TipoServicio":0,
-    "Total":11,
-    "idReq":5,
+    "TecnicoChofer":2,
+    "Telefono":"09193543401",
+    "TipoServicio":4,
+    "Total":13,
     "details":[{
-        "productName":1,
-        "qty":1,
-        "salesPrice":2.37,
-        "total":7.42
-    },
-    {
-        "productName":3,
-        "qty":1,
-        "salesPrice":7.42,
-        "total":7.42
-    },
-    {
-        "productName":5,
-        "qty":3,
-        "salesPrice":0.05,
-        "total":0.15
     }]
 }
 
@@ -198,7 +181,7 @@ Content-Type: application/json
 
 ### get idCliente
 
-@api2010 = http://localhost:3000/api/clientes/x/
+@api2010 = http://localhost:3000/api/detallesreq/3
 {{api2010}}
 
 ### get idCliente
