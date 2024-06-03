@@ -177,7 +177,7 @@ export const getAreaByPlaca = async (req, res) => {
       res.status(500);
       res.send(error.message);
     }
-  }
+  };
 
 
   export const getAreaServicioMovimiento = async (req, res) => {
@@ -219,5 +219,54 @@ export const getAreaByPlaca = async (req, res) => {
     } catch (error) {
       res.status(500);
     }
-  }
+  };
+
+  export const createNewAreaServicioByRequerimiento = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const codigo = await pool.request().query(querys.getLastIdAreaServivio);
+      let idC = 0;
+      if(codigo.recordset[0].AS_id == 0){
+        idC = 1; 
+       }
+       else{
+         idC = codigo.recordset[0].AS_id;
+       }
+
+       let secuencial = '';
+      secuencial = "CT"+idC
+      
+        const pool2 = await getConnection();
+        const result = await pool2
+        .request()
+        .input("AS_secuencial", sql.VarChar, secuencial)
+        .input("AS_SS_id", sql.Decimal, req.body.Servicio)
+        .input("AS_USU_id", sql.Decimal, req.body.TecnicoChofer)
+        .input("AS_CLI_id", sql.Decimal, req.body.Cliente)
+        .input("AS_TPS_id", sql.Decimal, req.body.TipoServicio)
+        .input("AS_UBIC_id", sql.Decimal, req.body.Ciudad)
+        .input("AS_serie", sql.VarChar, req.body.Serie)
+        .input("AS_placa", sql.VarChar, req.body.Placa)
+        .input("AS_EQUIP_id", sql.Decimal, req.body.Modelo)
+        .input("AS_observacionTecnica", sql.VarChar, req.body.ObservacionTecnica)
+        .input("AS_USU_ing", sql.Decimal, req.body.id)
+        .input("AS_Subtotal", sql.Decimal(18,2), req.body.Subtotal)
+        .input("AS_iva", sql.Decimal(18,2), req.body.IVA)
+        .input("AS_total", sql.Decimal, req.body.Total)
+        .input("AS_Reporte", sql.VarChar, req.body.CodigoReq)
+        .input("AS_IE_id", sql.Decimal, req.body.idReq)
+        .input("AS_fechaReq", sql.DateTime, req.body.FechaReq)
+        .query(querys.addNewAreaServicioByReq);
+        if(result.rowsAffected==1){
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,codigo:secuencial});
+        }else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0, codigo:''});
+        }
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+
 

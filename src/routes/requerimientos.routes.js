@@ -4,6 +4,8 @@ import {
   getAllRequerimientos,
   createRequerimientos,
   editRequerimientos,
+  editRequerimientosVisitaTecnica,
+  editRequerimientosAprobacion,
 } from "../controllers/requerimientos.controller";
 
 const router = Router();
@@ -12,5 +14,7 @@ router.get("/requerimientos", getAllRequerimientos);
 router.get("/requerimientos/act", getRequerimientosActivos);
 router.post("/requerimientos/new", createRequerimientos);
 router.put("/requerimientos/:id",editRequerimientos);
+router.put("/requerimientos/x/:id",editRequerimientosVisitaTecnica);
+router.put("/requerimientos/y/:id",editRequerimientosAprobacion);
 
 export default router;

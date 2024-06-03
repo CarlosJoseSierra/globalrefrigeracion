@@ -24,7 +24,6 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const createRequerimientos = async (req, res) => {
-    
     try {
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdRequerimiento);
@@ -106,9 +105,9 @@ export const getRequerimientosActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("REQ_fecha", sql.DateTime, req.body.FechaReq)
         .input("REQ_SS_id", sql.VarChar, req.body.Servicio)
         .input("REQ_personaReporta", sql.VarChar, req.body.PersonaR)
-        .input("REQ_fecha", sql.DateTime, req.body.FechaReq)
         .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
         .input("REQ_serie", sql.VarChar, req.body.Serie)
         .input("REQ_placa", sql.VarChar, req.body.Placa)
@@ -164,6 +163,79 @@ export const getRequerimientosActivos = async (req, res) => {
               }
             }
           }
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+        }
+       else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+        }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editRequerimientosVisitaTecnica = async (req, res) => {
+    try {
+      if(req.body.Subtotal==null){
+        req.body.Subtotal = 0;
+      }
+      if(req.body.IVA==null){
+        req.body.IVA = 0;
+      }
+      if(req.body.Total==null){
+        req.body.Total = 0;
+      }
+      const pool = await getConnection();
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("REQ_fechaVisita", sql.DateTime, req.body.FechaVisita)
+        .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
+        .input("REQ_serie", sql.VarChar, req.body.Serie)
+        .input("REQ_placa", sql.VarChar, req.body.Placa)
+        .input("REQ_EQUIP_id", sql.Decimal, req.body.Modelo)
+        .input("REQ_contacto", sql.VarChar, req.body.Subcliente)
+        .input("REQ_establecimiento", sql.VarChar, req.body.Establecimiento)
+        .input("REQ_telefono", sql.VarChar, req.body.Telefono)
+        .input("REQ_direccion", sql.VarChar, req.body.Direccion)
+        .input("REQ_observacionTecnica", sql.VarChar, req.body.ObservacionTecnica)
+        .input("REQ_SubTotal", sql.Decimal(18,2), req.body.Subtotal)
+        .input("REQ_IVA", sql.Decimal(18,2), req.body.IVA)
+        .input("REQ_total", sql.Decimal(18,2), req.body.Total) 
+        .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .query(querys.editRequerimientoVisitaTecnica);
+        if(result.rowsAffected==1){
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+        }
+       else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+        }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editRequerimientosAprobacion = async (req, res) => {
+    try {
+      if(req.body.Subtotal==null){
+        req.body.Subtotal = 0;
+      }
+      if(req.body.IVA==null){
+        req.body.IVA = 0;
+      }
+      if(req.body.Total==null){
+        req.body.Total = 0;
+      }
+      const pool = await getConnection();
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .query(querys.editRequerimientoAprobacion);
+        if(result.rowsAffected==1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{
