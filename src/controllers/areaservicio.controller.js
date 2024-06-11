@@ -249,7 +249,7 @@ export const getAreaByPlaca = async (req, res) => {
       }
 
         const pool2 = await getConnection();
-        const result = await pool2
+        const result2 = await pool2
         .request()
         .input("AS_secuencial", sql.VarChar, secuencial)
         .input("AS_SS_id", sql.Decimal, req.body.REQ_SS_id)
@@ -273,12 +273,12 @@ export const getAreaByPlaca = async (req, res) => {
         .input("AS_USU_edit", sql.Decimal, req.body.id)
         .input("AS_REQ_id", sql.DateTime, req.body.REQ_id)
         .query(querys.addNewAreaServicioByReq);
-        if(result.rowsAffected[0]==1){
-          let idAS = result.recordset[0].AS_id;
+        if(result2.rowsAffected[0]==1){
+          let idAS = result2.recordset[0].AS_id;
           if(req.body.REQ_detalles.length>0){
             for(let i=0;i<req.body.REQ_detalles.length;i++){
               const pool3 = await getConnection();
-              const result = await pool3
+              const result3 = await pool3
               .request()
               .input("AS_DET_AS_id", sql.Decimal,idAS)
               .input("AS_DET_PROD_id", sql.Decimal, req.body.REQ_detalles[i].REQDET_PROD_id)

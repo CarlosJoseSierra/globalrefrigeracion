@@ -358,7 +358,7 @@ var getReporteGeneral = /*#__PURE__*/function () {
 exports.getReporteGeneral = getReporteGeneral;
 var createNewAreaServicioByRequerimiento = /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(req, res) {
-    var pool, codigo, idC, secuencial, AS_ES_id, pool2, result, idAS, i, pool3, _result;
+    var pool, codigo, idC, secuencial, AS_ES_id, pool2, result2, idAS, i, pool3, result3;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
@@ -394,12 +394,12 @@ var createNewAreaServicioByRequerimiento = /*#__PURE__*/function () {
           _context10.next = 18;
           return pool2.request().input("AS_secuencial", _database.sql.VarChar, secuencial).input("AS_SS_id", _database.sql.Decimal, req.body.REQ_SS_id).input("AS_USU_id", _database.sql.Decimal, req.body.REQ_USU_id).input("AS_CLI_id", _database.sql.Decimal, req.body.REQ_CLI_id).input("AS_TPS_id", _database.sql.Decimal, req.body.REQ_TPS_id).input("AS_UBIC_id", _database.sql.Decimal, req.body.REQ_UBIC_id).input("AS_serie", _database.sql.VarChar, req.body.REQ_serie).input("AS_placa", _database.sql.VarChar, req.body.REQ_placa).input("AS_EQUIP_id", _database.sql.Decimal, req.body.REQ_EQUIP_id).input("AS_observacionTecnica", _database.sql.VarChar, req.body.REQ_observacionTecnica).input("AS_USU_ing", _database.sql.Decimal, req.body.id).input("AS_Subtotal", _database.sql.Decimal(18, 2), req.body.REQ_SubTotal).input("AS_iva", _database.sql.Decimal(18, 2), req.body.REQ_IVA).input("AS_total", _database.sql.Decimal(18, 2), req.body.REQ_total).input("AS_fechaIngreso", _database.sql.VarChar, req.body.REQ_fechaVisita).input("AS_Reporte", _database.sql.VarChar, req.body.REQ_codigo).input("AS_ES_id", _database.sql.Decimal, AS_ES_id).input("AS_fechaReq", _database.sql.DateTime, req.body.REQ_fecha).input("AS_EM_id", _database.sql.Decimal, AS_EM_id).input("AS_USU_edit", _database.sql.Decimal, req.body.id).input("AS_REQ_id", _database.sql.DateTime, req.body.REQ_id).query(_database.querys.addNewAreaServicioByReq);
         case 18:
-          result = _context10.sent;
-          if (!(result.rowsAffected[0] == 1)) {
+          result2 = _context10.sent;
+          if (!(result2.rowsAffected[0] == 1)) {
             _context10.next = 36;
             break;
           }
-          idAS = result.recordset[0].AS_id;
+          idAS = result2.recordset[0].AS_id;
           if (!(req.body.REQ_detalles.length > 0)) {
             _context10.next = 33;
             break;
@@ -417,7 +417,7 @@ var createNewAreaServicioByRequerimiento = /*#__PURE__*/function () {
           _context10.next = 29;
           return pool3.request().input("AS_DET_AS_id", _database.sql.Decimal, idAS).input("AS_DET_PROD_id", _database.sql.Decimal, req.body.REQ_detalles[i].REQDET_PROD_id).input("AS_DET_PROD_codigo", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_item).input("AS_DET_PROD_descripcion", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_nombre).input("AS_DET_cantidad", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).input("AS_DET_costoU", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pvp", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pminimo", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_USU_ing", _database.sql.Decimal, req.body.id).input("AS_DET_pvp2", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_total", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_total).input("AS_DET_cantidadIngreso", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).query(_database.querys.addNewAreaServicioDetalle);
         case 29:
-          _result = _context10.sent;
+          result3 = _context10.sent;
         case 30:
           i++;
           _context10.next = 23;
