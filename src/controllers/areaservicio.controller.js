@@ -107,14 +107,19 @@ export const getAreaByPlaca = async (req, res) => {
       const pool = await getConnection();
       
       const codigo = await pool.request().query(querys.getLastIdAreaServivio);
-      let id = codigo.recordset[0].AS_id;
+      let idCT = 0;
+      if(codigo.recordset[0].REQ_id == 0){
+        idCT = 1; 
+      }
+      else{
+        idCT = codigo.recordset[0].REQ_id;
+      }
+     
       let secuencial = '';
-     let _as_es_id = AS_ES_id;
-      if(id>0){
-        secuencial = 'CT'+(id);
+      secuencial = "CT"+idCT;
       
-        const pool = await getConnection();
-        const result = await pool
+        const pool2 = await getConnection();
+        const result = await pool2
         .request()
         .input("AS_secuencial", sql.VarChar, secuencial)
         .input("AS_SS_id", sql.Decimal, AS_SS_id)
@@ -169,9 +174,6 @@ export const getAreaByPlaca = async (req, res) => {
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }else{
           return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
-        }
-      }else{
-        
       }
     } catch (error) {
       res.status(500);
@@ -236,29 +238,67 @@ export const getAreaByPlaca = async (req, res) => {
        let secuencial = '';
       secuencial = "CT"+idC
       
+      let AS_ES_id = 0
+      if(AS_SS_id==2){
+        AS_ES_id = 1;
+        AS_EM_id = 10;
+      }
+      else{
+        AS_ES_id = 4
+        AS_EM_id = 10;
+      }
+
         const pool2 = await getConnection();
         const result = await pool2
         .request()
         .input("AS_secuencial", sql.VarChar, secuencial)
-        .input("AS_SS_id", sql.Decimal, req.body.Servicio)
-        .input("AS_USU_id", sql.Decimal, req.body.TecnicoChofer)
-        .input("AS_CLI_id", sql.Decimal, req.body.Cliente)
-        .input("AS_TPS_id", sql.Decimal, req.body.TipoServicio)
-        .input("AS_UBIC_id", sql.Decimal, req.body.Ciudad)
-        .input("AS_serie", sql.VarChar, req.body.Serie)
-        .input("AS_placa", sql.VarChar, req.body.Placa)
-        .input("AS_EQUIP_id", sql.Decimal, req.body.Modelo)
-        .input("AS_observacionTecnica", sql.VarChar, req.body.ObservacionTecnica)
+        .input("AS_SS_id", sql.Decimal, req.body.REQ_SS_id)
+        .input("AS_USU_id", sql.Decimal, req.body.REQ_USU_id)
+        .input("AS_CLI_id", sql.Decimal, req.body.REQ_CLI_id)
+        .input("AS_TPS_id", sql.Decimal, req.body.REQ_TPS_id)
+        .input("AS_UBIC_id", sql.Decimal, req.body.REQ_UBIC_id)
+        .input("AS_serie", sql.VarChar, req.body.REQ_serie)
+        .input("AS_placa", sql.VarChar, req.body.REQ_placa)
+        .input("AS_EQUIP_id", sql.Decimal, req.body.REQ_EQUIP_id)
+        .input("AS_observacionTecnica", sql.VarChar, req.body.REQ_observacionTecnica)
         .input("AS_USU_ing", sql.Decimal, req.body.id)
-        .input("AS_Subtotal", sql.Decimal(18,2), req.body.Subtotal)
-        .input("AS_iva", sql.Decimal(18,2), req.body.IVA)
-        .input("AS_total", sql.Decimal, req.body.Total)
-        .input("AS_Reporte", sql.VarChar, req.body.CodigoReq)
-        .input("AS_IE_id", sql.Decimal, req.body.idReq)
-        .input("AS_fechaReq", sql.DateTime, req.body.FechaReq)
+        .input("AS_Subtotal", sql.Decimal(18,2), req.body.REQ_SubTotal)
+        .input("AS_iva", sql.Decimal(18,2), req.body.REQ_IVA)
+        .input("AS_total", sql.Decimal(18,2), req.body.REQ_total)
+        .input("AS_fechaIngreso", sql.VarChar, req.body.REQ_fechaVisita)
+        .input("AS_Reporte", sql.VarChar, req.body.REQ_codigo)
+        .input("AS_ES_id", sql.Decimal, AS_ES_id)
+        .input("AS_fechaReq", sql.DateTime, req.body.REQ_fecha)
+        .input("AS_EM_id", sql.Decimal, AS_EM_id)
+        .input("AS_USU_edit", sql.Decimal, req.body.id)
+        .input("AS_REQ_id", sql.DateTime, req.body.REQ_id)
         .query(querys.addNewAreaServicioByReq);
-        if(result.rowsAffected==1){
-          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,codigo:secuencial});
+        if(result.rowsAffected[0]==1){
+          let idAS = result.recordset[0].AS_id;
+          if(req.body.REQ_detalles.length>0){
+            for(let i=0;i<req.body.REQ_detalles.length;i++){
+              const pool3 = await getConnection();
+              const result = await pool3
+              .request()
+              .input("AS_DET_AS_id", sql.Decimal,idAS)
+              .input("AS_DET_PROD_id", sql.Decimal, req.body.REQ_detalles[i].REQDET_PROD_id)
+              .input("AS_DET_PROD_codigo", sql.VarChar, req.body.REQ_detalles[i].PROD_item)
+              .input("AS_DET_PROD_descripcion", sql.VarChar, req.body.REQ_detalles[i].PROD_nombre)
+              .input("AS_DET_cantidad", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_cantidad)
+              .input("AS_DET_costoU", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_pvp)
+              .input("AS_DET_pvp", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_pvp)
+              .input("AS_DET_pminimo", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_pvp)
+              .input("AS_DET_USU_ing", sql.Decimal, req.body.id)
+              .input("AS_DET_pvp2", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_pvp)
+              .input("AS_DET_total", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_total)
+              .input("AS_DET_cantidadIngreso", sql.Decimal(18,2), req.body.REQ_detalles[i].REQDET_cantidad)
+              .query(querys.addNewAreaServicioDetalle);
+            }
+          }
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0, codigo: secuencial});
+        
+
+          //return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0,codigo:secuencial});
         }else{
           return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0, codigo:''});
         }

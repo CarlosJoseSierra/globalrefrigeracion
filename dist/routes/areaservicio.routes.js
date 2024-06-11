@@ -21,5 +21,6 @@ router.get("/areaservicio/mov", _areaservicio.getAreaServicioMovimiento); //Obte
 router.get("/areaservicio/mant", _areaservicio.getAreaServicioMantenimiento); //Obtengo las cts con area de servicio mantenimiento
 
 router.get("/areaservicio/z", _areaservicio.getReporteGeneral);
+router.post("/areaservicio/new", _areaservicio.createNewAreaServicioByRequerimiento);
 var _default = router;
 exports["default"] = _default;
