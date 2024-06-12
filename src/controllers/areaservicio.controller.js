@@ -310,5 +310,32 @@ export const getAreaByPlaca = async (req, res) => {
     }
   };
 
+  export const getCotizaciones = async(req, res) =>{
+    try {
+      const pool = await getConnection();
+      const result = await pool
+      
+        .request()
+        .query(querys.getCotizaciones);
+        return res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+    }
+  };
 
-
+  export const getCTByTecnico = async (req, res) => {
+    
+    try {
+      const pool = await getConnection();
+  
+      const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.getCotizacionByTecnico);
+  
+        return res.json(result.recordset);
+      } catch (error) {
+        res.status(500);
+        res.send(error.message);
+      }
+  };

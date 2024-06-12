@@ -247,3 +247,16 @@ export const getRequerimientosActivos = async (req, res) => {
       res.send(error.message);
     }
   };
+
+  export const getRequerimientosActivosXtecnico = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request()
+      .input("id", req.params.id)
+      query(querys.getRequerimientosActivosXtec);
+      return res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+  };

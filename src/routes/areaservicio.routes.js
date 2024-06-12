@@ -10,6 +10,8 @@ import {
     getAreaServicioMantenimiento,
     getReporteGeneral,
     createNewAreaServicioByRequerimiento,
+    getCotizaciones,
+    getCTByTecnico,
 } from "../controllers/areaservicio.controller";
 
 const router = Router();
@@ -24,5 +26,7 @@ router.get("/areaservicio/mov", getAreaServicioMovimiento); //Obtengo las cts co
 router.get("/areaservicio/mant", getAreaServicioMantenimiento); //Obtengo las cts con area de servicio mantenimiento
 router.get("/areaservicio/z", getReporteGeneral);
 router.post("/areaservicio/new", createNewAreaServicioByRequerimiento);
+router.get("/areaservicio/xy", getCotizaciones);
+router.get("/areaservicio/xy/:id", getCTByTecnico); //Obtengo las tareas pendientes de los tecnicos
 
 export default router;

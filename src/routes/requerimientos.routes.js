@@ -6,6 +6,7 @@ import {
   editRequerimientos,
   editRequerimientosVisitaTecnica,
   editRequerimientosAprobacion,
+  getRequerimientosActivosXtecnico,
 } from "../controllers/requerimientos.controller";
 
 const router = Router();
@@ -16,5 +17,6 @@ router.post("/requerimientos/new", createRequerimientos);
 router.put("/requerimientos/:id",editRequerimientos);
 router.put("/requerimientos/x/:id",editRequerimientosVisitaTecnica);
 router.put("/requerimientos/y/:id",editRequerimientosAprobacion);
+router.get("/requerimientos/act/:id", getRequerimientosActivosXtecnico);
 
 export default router;
