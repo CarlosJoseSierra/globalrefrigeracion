@@ -237,9 +237,10 @@ export const getAreaByPlaca = async (req, res) => {
 
        let secuencial = '';
       secuencial = "CT"+idC
-      
-      let AS_ES_id = 0
-      if(AS_SS_id==2){
+      console.log(secuencial);
+      let AS_ES_id = 0;
+      let AS_EM_id = 0; 
+      if(req.body.REQ_SS_id==2){
         AS_ES_id = 1;
         AS_EM_id = 10;
       }
@@ -247,7 +248,7 @@ export const getAreaByPlaca = async (req, res) => {
         AS_ES_id = 4
         AS_EM_id = 10;
       }
-
+      console.log(req.body);
         const pool2 = await getConnection();
         const result2 = await pool2
         .request()
@@ -265,14 +266,15 @@ export const getAreaByPlaca = async (req, res) => {
         .input("AS_Subtotal", sql.Decimal(18,2), req.body.REQ_SubTotal)
         .input("AS_iva", sql.Decimal(18,2), req.body.REQ_IVA)
         .input("AS_total", sql.Decimal(18,2), req.body.REQ_total)
-        .input("AS_fechaIngreso", sql.VarChar, req.body.REQ_fechaVisita)
+        .input("AS_fechaIngreso", sql.DateTime, req.body.REQ_fechaVisita)
         .input("AS_Reporte", sql.VarChar, req.body.REQ_codigo)
         .input("AS_ES_id", sql.Decimal, AS_ES_id)
         .input("AS_fechaReq", sql.DateTime, req.body.REQ_fecha)
         .input("AS_EM_id", sql.Decimal, AS_EM_id)
         .input("AS_USU_edit", sql.Decimal, req.body.id)
-        .input("AS_REQ_id", sql.DateTime, req.body.REQ_id)
+        .input("AS_REQ_id", sql.Decimal, req.body.REQ_id)
         .query(querys.addNewAreaServicioByReq);
+        console.log(result2);
         if(result2.rowsAffected[0]==1){
           let idAS = result2.recordset[0].AS_id;
           if(req.body.REQ_detalles.length>0){

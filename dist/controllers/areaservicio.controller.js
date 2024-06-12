@@ -358,7 +358,7 @@ var getReporteGeneral = /*#__PURE__*/function () {
 exports.getReporteGeneral = getReporteGeneral;
 var createNewAreaServicioByRequerimiento = /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(req, res) {
-    var pool, codigo, idC, secuencial, AS_ES_id, pool2, result2, idAS, i, pool3, result3;
+    var pool, codigo, idC, secuencial, AS_ES_id, AS_EM_id, pool2, result2, idAS, i, pool3, result3;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
@@ -379,76 +379,80 @@ var createNewAreaServicioByRequerimiento = /*#__PURE__*/function () {
           }
           secuencial = '';
           secuencial = "CT" + idC;
+          console.log(secuencial);
           AS_ES_id = 0;
-          if (AS_SS_id == 2) {
+          AS_EM_id = 0;
+          if (req.body.REQ_SS_id == 2) {
             AS_ES_id = 1;
             AS_EM_id = 10;
           } else {
             AS_ES_id = 4;
             AS_EM_id = 10;
           }
-          _context10.next = 15;
-          return (0, _database.getConnection)();
-        case 15:
-          pool2 = _context10.sent;
+          console.log(req.body);
           _context10.next = 18;
-          return pool2.request().input("AS_secuencial", _database.sql.VarChar, secuencial).input("AS_SS_id", _database.sql.Decimal, req.body.REQ_SS_id).input("AS_USU_id", _database.sql.Decimal, req.body.REQ_USU_id).input("AS_CLI_id", _database.sql.Decimal, req.body.REQ_CLI_id).input("AS_TPS_id", _database.sql.Decimal, req.body.REQ_TPS_id).input("AS_UBIC_id", _database.sql.Decimal, req.body.REQ_UBIC_id).input("AS_serie", _database.sql.VarChar, req.body.REQ_serie).input("AS_placa", _database.sql.VarChar, req.body.REQ_placa).input("AS_EQUIP_id", _database.sql.Decimal, req.body.REQ_EQUIP_id).input("AS_observacionTecnica", _database.sql.VarChar, req.body.REQ_observacionTecnica).input("AS_USU_ing", _database.sql.Decimal, req.body.id).input("AS_Subtotal", _database.sql.Decimal(18, 2), req.body.REQ_SubTotal).input("AS_iva", _database.sql.Decimal(18, 2), req.body.REQ_IVA).input("AS_total", _database.sql.Decimal(18, 2), req.body.REQ_total).input("AS_fechaIngreso", _database.sql.VarChar, req.body.REQ_fechaVisita).input("AS_Reporte", _database.sql.VarChar, req.body.REQ_codigo).input("AS_ES_id", _database.sql.Decimal, AS_ES_id).input("AS_fechaReq", _database.sql.DateTime, req.body.REQ_fecha).input("AS_EM_id", _database.sql.Decimal, AS_EM_id).input("AS_USU_edit", _database.sql.Decimal, req.body.id).input("AS_REQ_id", _database.sql.DateTime, req.body.REQ_id).query(_database.querys.addNewAreaServicioByReq);
+          return (0, _database.getConnection)();
         case 18:
+          pool2 = _context10.sent;
+          _context10.next = 21;
+          return pool2.request().input("AS_secuencial", _database.sql.VarChar, secuencial).input("AS_SS_id", _database.sql.Decimal, req.body.REQ_SS_id).input("AS_USU_id", _database.sql.Decimal, req.body.REQ_USU_id).input("AS_CLI_id", _database.sql.Decimal, req.body.REQ_CLI_id).input("AS_TPS_id", _database.sql.Decimal, req.body.REQ_TPS_id).input("AS_UBIC_id", _database.sql.Decimal, req.body.REQ_UBIC_id).input("AS_serie", _database.sql.VarChar, req.body.REQ_serie).input("AS_placa", _database.sql.VarChar, req.body.REQ_placa).input("AS_EQUIP_id", _database.sql.Decimal, req.body.REQ_EQUIP_id).input("AS_observacionTecnica", _database.sql.VarChar, req.body.REQ_observacionTecnica).input("AS_USU_ing", _database.sql.Decimal, req.body.id).input("AS_Subtotal", _database.sql.Decimal(18, 2), req.body.REQ_SubTotal).input("AS_iva", _database.sql.Decimal(18, 2), req.body.REQ_IVA).input("AS_total", _database.sql.Decimal(18, 2), req.body.REQ_total).input("AS_fechaIngreso", _database.sql.DateTime, req.body.REQ_fechaVisita).input("AS_Reporte", _database.sql.VarChar, req.body.REQ_codigo).input("AS_ES_id", _database.sql.Decimal, AS_ES_id).input("AS_fechaReq", _database.sql.DateTime, req.body.REQ_fecha).input("AS_EM_id", _database.sql.Decimal, AS_EM_id).input("AS_USU_edit", _database.sql.Decimal, req.body.id).input("AS_REQ_id", _database.sql.Decimal, req.body.REQ_id).query(_database.querys.addNewAreaServicioByReq);
+        case 21:
           result2 = _context10.sent;
+          console.log(result2);
           if (!(result2.rowsAffected[0] == 1)) {
-            _context10.next = 36;
+            _context10.next = 40;
             break;
           }
           idAS = result2.recordset[0].AS_id;
           if (!(req.body.REQ_detalles.length > 0)) {
-            _context10.next = 33;
+            _context10.next = 37;
             break;
           }
           i = 0;
-        case 23:
+        case 27:
           if (!(i < req.body.REQ_detalles.length)) {
-            _context10.next = 33;
+            _context10.next = 37;
             break;
           }
-          _context10.next = 26;
+          _context10.next = 30;
           return (0, _database.getConnection)();
-        case 26:
-          pool3 = _context10.sent;
-          _context10.next = 29;
-          return pool3.request().input("AS_DET_AS_id", _database.sql.Decimal, idAS).input("AS_DET_PROD_id", _database.sql.Decimal, req.body.REQ_detalles[i].REQDET_PROD_id).input("AS_DET_PROD_codigo", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_item).input("AS_DET_PROD_descripcion", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_nombre).input("AS_DET_cantidad", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).input("AS_DET_costoU", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pvp", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pminimo", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_USU_ing", _database.sql.Decimal, req.body.id).input("AS_DET_pvp2", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_total", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_total).input("AS_DET_cantidadIngreso", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).query(_database.querys.addNewAreaServicioDetalle);
-        case 29:
-          result3 = _context10.sent;
         case 30:
-          i++;
-          _context10.next = 23;
-          break;
+          pool3 = _context10.sent;
+          _context10.next = 33;
+          return pool3.request().input("AS_DET_AS_id", _database.sql.Decimal, idAS).input("AS_DET_PROD_id", _database.sql.Decimal, req.body.REQ_detalles[i].REQDET_PROD_id).input("AS_DET_PROD_codigo", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_item).input("AS_DET_PROD_descripcion", _database.sql.VarChar, req.body.REQ_detalles[i].PROD_nombre).input("AS_DET_cantidad", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).input("AS_DET_costoU", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pvp", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_pminimo", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_USU_ing", _database.sql.Decimal, req.body.id).input("AS_DET_pvp2", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_pvp).input("AS_DET_total", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_total).input("AS_DET_cantidadIngreso", _database.sql.Decimal(18, 2), req.body.REQ_detalles[i].REQDET_cantidad).query(_database.querys.addNewAreaServicioDetalle);
         case 33:
+          result3 = _context10.sent;
+        case 34:
+          i++;
+          _context10.next = 27;
+          break;
+        case 37:
           return _context10.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0,
             codigo: secuencial
           }));
-        case 36:
+        case 40:
           return _context10.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0,
             codigo: ''
           }));
-        case 37:
-          _context10.next = 43;
+        case 41:
+          _context10.next = 47;
           break;
-        case 39:
-          _context10.prev = 39;
+        case 43:
+          _context10.prev = 43;
           _context10.t0 = _context10["catch"](0);
           res.status(500);
           res.send(_context10.t0.message);
-        case 43:
+        case 47:
         case "end":
           return _context10.stop();
       }
-    }, _callee10, null, [[0, 39]]);
+    }, _callee10, null, [[0, 43]]);
   }));
   return function createNewAreaServicioByRequerimiento(_x19, _x20) {
     return _ref10.apply(this, arguments);
