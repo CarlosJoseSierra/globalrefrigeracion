@@ -37,6 +37,18 @@ export const getRequerimientosActivos = async (req, res) => {
      
       let secuencial = '';
       secuencial = "REQ"+idR;
+
+      let subtotal = 0, iva = 0, total = 0;
+     
+        if(req.body.Subtotal==null){
+          subtotal = 0;
+        }else {subtotal = req.body.Subtotal}
+        if(req.body.IVA==null){
+          iva = 0;
+        }else{iva = req.body.IVA}
+        if(req.body.Total==null){
+          total = 0;
+        }else{ total = req.body.Total}
      
       const pool2 = await getConnection();
         const result = await pool2
@@ -58,9 +70,9 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
         .input("REQ_SS_id", sql.Decimal, req.body.Servicio)
         .input("REQ_USU_id", sql.Decimal, req.body.TecnicoChofer)
-        .input("REQ_SubTotal", sql.Decimal(18,2), req.body.Subtotal)
-        .input("REQ_IVA", sql.Decimal(18,2), req.body.IVA)
-        .input("REQ_total", sql.Decimal(18,2), req.body.Total) 
+        .input("REQ_SubTotal", sql.Decimal(18,2), subtotal)
+        .input("REQ_IVA", sql.Decimal(18,2),iva)
+        .input("REQ_total", sql.Decimal(18,2), total) 
         .input("REQ_USU_ing", sql.Decimal, req.body.id)
         .query(querys.addRequerimiento);
         if(result.rowsAffected[0]==1){
@@ -91,16 +103,17 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const editRequerimientos = async (req, res) => {
+    let subtotal = 0, iva = 0, total = 0;
     try {
       if(req.body.Subtotal==null){
-        req.body.Subtotal = 0;
-      }
+        subtotal = 0;
+      }else {subtotal = req.body.Subtotal}
       if(req.body.IVA==null){
-        req.body.IVA = 0;
-      }
+        iva = 0;
+      }else{iva = req.body.IVA}
       if(req.body.Total==null){
-        req.body.Total = 0;
-      }
+        total = 0;
+      }else{ total = req.body.Total}
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -121,9 +134,9 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_observacion", sql.VarChar, req.body.Observacion)
         .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
         .input("REQ_USU_id", sql.Decimal, req.body.TecnicoChofer)
-        .input("REQ_SubTotal", sql.Decimal(18,2), req.body.Subtotal)
-        .input("REQ_IVA", sql.Decimal(18,2), req.body.IVA)
-        .input("REQ_total", sql.Decimal(18,2), req.body.Total) 
+        .input("REQ_SubTotal", sql.Decimal(18,2), subtotal)
+        .input("REQ_IVA", sql.Decimal(18,2), iva)
+        .input("REQ_total", sql.Decimal(18,2), total) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimiento);
         if(result.rowsAffected==1){
@@ -176,16 +189,17 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const editRequerimientosVisitaTecnica = async (req, res) => {
+    let subtotal = 0, iva = 0, total = 0;
     try {
       if(req.body.Subtotal==null){
-        req.body.Subtotal = 0;
-      }
+        subtotal = 0;
+      }else {subtotal = req.body.Subtotal}
       if(req.body.IVA==null){
-        req.body.IVA = 0;
-      }
+        iva = 0;
+      }else{iva = req.body.IVA}
       if(req.body.Total==null){
-        req.body.Total = 0;
-      }
+        total = 0;
+      }else{ total = req.body.Total}
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -200,9 +214,9 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_telefono", sql.VarChar, req.body.Telefono)
         .input("REQ_direccion", sql.VarChar, req.body.Direccion)
         .input("REQ_observacionTecnica", sql.VarChar, req.body.ObservacionTecnica)
-        .input("REQ_SubTotal", sql.Decimal(18,2), req.body.Subtotal)
-        .input("REQ_IVA", sql.Decimal(18,2), req.body.IVA)
-        .input("REQ_total", sql.Decimal(18,2), req.body.Total) 
+        .input("REQ_SubTotal", sql.Decimal(18,2), subtotal)
+        .input("REQ_IVA", sql.Decimal(18,2), iva)
+        .input("REQ_total", sql.Decimal(18,2), total) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimientoVisitaTecnica);
         if(result.rowsAffected==1){
@@ -251,12 +265,14 @@ export const getRequerimientosActivos = async (req, res) => {
   export const getRequerimientosActivosXtecnico = async (req, res) => {
     try {
       const pool = await getConnection();
-      const result = await pool.request()
-      .input("id", req.params.id)
-      query(querys.getRequerimientosActivosXtec);
+  
+      const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.getRequerimientosActivosXtec);
       return res.json(result.recordset);
-  } catch (error) {
-    res.status(500);
-    res.send(error.message);
-  }
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
   };

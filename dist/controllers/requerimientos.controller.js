@@ -80,7 +80,7 @@ var getRequerimientosActivos = /*#__PURE__*/function () {
 exports.getRequerimientosActivos = getRequerimientosActivos;
 var createRequerimientos = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var pool, codigo, idR, secuencial, pool2, result, idReq, i, pool3, _result;
+    var pool, codigo, idR, secuencial, subtotal, iva, total, pool2, result, idReq, i, pool3, _result;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
@@ -101,66 +101,82 @@ var createRequerimientos = /*#__PURE__*/function () {
           }
           secuencial = '';
           secuencial = "REQ" + idR;
-          _context3.next = 13;
+          subtotal = 0, iva = 0, total = 0;
+          if (req.body.Subtotal == null) {
+            subtotal = 0;
+          } else {
+            subtotal = req.body.Subtotal;
+          }
+          if (req.body.IVA == null) {
+            iva = 0;
+          } else {
+            iva = req.body.IVA;
+          }
+          if (req.body.Total == null) {
+            total = 0;
+          } else {
+            total = req.body.Total;
+          }
+          _context3.next = 17;
           return (0, _database.getConnection)();
-        case 13:
+        case 17:
           pool2 = _context3.sent;
-          _context3.next = 16;
-          return pool2.request().input("REQ_codigo", _database.sql.VarChar, secuencial).input("REQ_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("REQ_fecha", _database.sql.DateTime, req.body.FechaReq).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_CLI_id", _database.sql.Decimal, req.body.Cliente).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("REQ_observacion", _database.sql.VarChar, req.body.Observacion).input("REQ_ubicacionMaps", _database.sql.VarChar, req.body.Maps).input("REQ_SS_id", _database.sql.Decimal, req.body.Servicio).input("REQ_USU_id", _database.sql.Decimal, req.body.TecnicoChofer).input("REQ_SubTotal", _database.sql.Decimal(18, 2), req.body.Subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), req.body.IVA).input("REQ_total", _database.sql.Decimal(18, 2), req.body.Total).input("REQ_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addRequerimiento);
-        case 16:
+          _context3.next = 20;
+          return pool2.request().input("REQ_codigo", _database.sql.VarChar, secuencial).input("REQ_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("REQ_fecha", _database.sql.DateTime, req.body.FechaReq).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_CLI_id", _database.sql.Decimal, req.body.Cliente).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("REQ_observacion", _database.sql.VarChar, req.body.Observacion).input("REQ_ubicacionMaps", _database.sql.VarChar, req.body.Maps).input("REQ_SS_id", _database.sql.Decimal, req.body.Servicio).input("REQ_USU_id", _database.sql.Decimal, req.body.TecnicoChofer).input("REQ_SubTotal", _database.sql.Decimal(18, 2), subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), iva).input("REQ_total", _database.sql.Decimal(18, 2), total).input("REQ_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addRequerimiento);
+        case 20:
           result = _context3.sent;
           if (!(result.rowsAffected[0] == 1)) {
-            _context3.next = 34;
+            _context3.next = 38;
             break;
           }
           idReq = result.recordset[0].REQ_id;
           if (!(req.body.details.length > 0)) {
-            _context3.next = 31;
+            _context3.next = 35;
             break;
           }
           i = 0;
-        case 21:
+        case 25:
           if (!(i < req.body.details.length)) {
-            _context3.next = 31;
+            _context3.next = 35;
             break;
           }
-          _context3.next = 24;
+          _context3.next = 28;
           return (0, _database.getConnection)();
-        case 24:
-          pool3 = _context3.sent;
-          _context3.next = 27;
-          return pool3.request().input("REQDET_REQ_id", _database.sql.Decimal, idReq).input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[i].total).query(_database.querys.addNewRequerimientoDetalle);
-        case 27:
-          _result = _context3.sent;
         case 28:
-          i++;
-          _context3.next = 21;
-          break;
+          pool3 = _context3.sent;
+          _context3.next = 31;
+          return pool3.request().input("REQDET_REQ_id", _database.sql.Decimal, idReq).input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[i].total).query(_database.querys.addNewRequerimientoDetalle);
         case 31:
+          _result = _context3.sent;
+        case 32:
+          i++;
+          _context3.next = 25;
+          break;
+        case 35:
           return _context3.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 34:
+        case 38:
           return _context3.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 35:
-          _context3.next = 41;
+        case 39:
+          _context3.next = 45;
           break;
-        case 37:
-          _context3.prev = 37;
+        case 41:
+          _context3.prev = 41;
           _context3.t0 = _context3["catch"](0);
           res.status(500);
           res.send(_context3.t0.message);
-        case 41:
+        case 45:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 37]]);
+    }, _callee3, null, [[0, 41]]);
   }));
   return function createRequerimientos(_x5, _x6) {
     return _ref3.apply(this, arguments);
@@ -169,117 +185,124 @@ var createRequerimientos = /*#__PURE__*/function () {
 exports.createRequerimientos = createRequerimientos;
 var editRequerimientos = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
-    var pool, result, pool2, result2, i, pool3, result3, _i, _pool, _result2;
+    var subtotal, iva, total, pool, result, pool2, result2, i, pool3, result3, _i, _pool, _result2;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.prev = 0;
+          subtotal = 0, iva = 0, total = 0;
+          _context4.prev = 1;
           if (req.body.Subtotal == null) {
-            req.body.Subtotal = 0;
+            subtotal = 0;
+          } else {
+            subtotal = req.body.Subtotal;
           }
           if (req.body.IVA == null) {
-            req.body.IVA = 0;
+            iva = 0;
+          } else {
+            iva = req.body.IVA;
           }
           if (req.body.Total == null) {
-            req.body.Total = 0;
+            total = 0;
+          } else {
+            total = req.body.Total;
           }
-          _context4.next = 6;
+          _context4.next = 7;
           return (0, _database.getConnection)();
-        case 6:
+        case 7:
           pool = _context4.sent;
-          _context4.next = 9;
-          return pool.request().input("id", req.params.id).input("REQ_fecha", _database.sql.DateTime, req.body.FechaReq).input("REQ_SS_id", _database.sql.VarChar, req.body.Servicio).input("REQ_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_CLI_id", _database.sql.Decimal, req.body.Cliente).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("REQ_observacion", _database.sql.VarChar, req.body.Observacion).input("REQ_ubicacionMaps", _database.sql.VarChar, req.body.Maps).input("REQ_USU_id", _database.sql.Decimal, req.body.TecnicoChofer).input("REQ_SubTotal", _database.sql.Decimal(18, 2), req.body.Subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), req.body.IVA).input("REQ_total", _database.sql.Decimal(18, 2), req.body.Total).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimiento);
-        case 9:
+          _context4.next = 10;
+          return pool.request().input("id", req.params.id).input("REQ_fecha", _database.sql.DateTime, req.body.FechaReq).input("REQ_SS_id", _database.sql.VarChar, req.body.Servicio).input("REQ_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_CLI_id", _database.sql.Decimal, req.body.Cliente).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("REQ_observacion", _database.sql.VarChar, req.body.Observacion).input("REQ_ubicacionMaps", _database.sql.VarChar, req.body.Maps).input("REQ_USU_id", _database.sql.Decimal, req.body.TecnicoChofer).input("REQ_SubTotal", _database.sql.Decimal(18, 2), subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), iva).input("REQ_total", _database.sql.Decimal(18, 2), total).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimiento);
+        case 10:
           result = _context4.sent;
           if (!(result.rowsAffected == 1)) {
-            _context4.next = 47;
+            _context4.next = 48;
             break;
           }
-          _context4.next = 13;
+          _context4.next = 14;
           return (0, _database.getConnection)();
-        case 13:
+        case 14:
           pool2 = _context4.sent;
-          _context4.next = 16;
+          _context4.next = 17;
           return pool2.request().input("REQDET_REQ_id", req.params.id).query(_database.querys.cambiarEstadoRequerimientoDetalle);
-        case 16:
+        case 17:
           result2 = _context4.sent;
           if (!(result2.rowsAffected > 0)) {
-            _context4.next = 32;
+            _context4.next = 33;
             break;
           }
           if (!(req.body.details.length > 0)) {
-            _context4.next = 30;
+            _context4.next = 31;
             break;
           }
           i = 0;
-        case 20:
+        case 21:
           if (!(i < req.body.details.length)) {
-            _context4.next = 30;
+            _context4.next = 31;
             break;
           }
-          _context4.next = 23;
+          _context4.next = 24;
           return (0, _database.getConnection)();
-        case 23:
+        case 24:
           pool3 = _context4.sent;
-          _context4.next = 26;
+          _context4.next = 27;
           return pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[i].total).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 26:
-          result3 = _context4.sent;
         case 27:
+          result3 = _context4.sent;
+        case 28:
           i++;
-          _context4.next = 20;
+          _context4.next = 21;
           break;
-        case 30:
-          _context4.next = 44;
+        case 31:
+          _context4.next = 45;
           break;
-        case 32:
+        case 33:
           if (!(req.body.details.length > 0)) {
-            _context4.next = 44;
+            _context4.next = 45;
             break;
           }
           _i = 0;
-        case 34:
+        case 35:
           if (!(_i < req.body.details.length)) {
-            _context4.next = 44;
+            _context4.next = 45;
             break;
           }
-          _context4.next = 37;
+          _context4.next = 38;
           return (0, _database.getConnection)();
-        case 37:
+        case 38:
           _pool = _context4.sent;
-          _context4.next = 40;
+          _context4.next = 41;
           return _pool.request().input("REQDET_PROD_id", _database.sql.Decimal, req.body.details[_i].productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i].qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i].salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), req.body.details[_i].total).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 40:
-          _result2 = _context4.sent;
         case 41:
+          _result2 = _context4.sent;
+        case 42:
           _i++;
-          _context4.next = 34;
+          _context4.next = 35;
           break;
-        case 44:
+        case 45:
           return _context4.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 47:
+        case 48:
           return _context4.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 48:
-          _context4.next = 54;
+        case 49:
+          _context4.next = 55;
           break;
-        case 50:
-          _context4.prev = 50;
-          _context4.t0 = _context4["catch"](0);
+        case 51:
+          _context4.prev = 51;
+          _context4.t0 = _context4["catch"](1);
           res.status(500);
           res.send(_context4.t0.message);
-        case 54:
+        case 55:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 50]]);
+    }, _callee4, null, [[1, 51]]);
   }));
   return function editRequerimientos(_x7, _x8) {
     return _ref4.apply(this, arguments);
@@ -288,30 +311,37 @@ var editRequerimientos = /*#__PURE__*/function () {
 exports.editRequerimientos = editRequerimientos;
 var editRequerimientosVisitaTecnica = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(req, res) {
-    var pool, result;
+    var subtotal, iva, total, pool, result;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          _context5.prev = 0;
+          subtotal = 0, iva = 0, total = 0;
+          _context5.prev = 1;
           if (req.body.Subtotal == null) {
-            req.body.Subtotal = 0;
+            subtotal = 0;
+          } else {
+            subtotal = req.body.Subtotal;
           }
           if (req.body.IVA == null) {
-            req.body.IVA = 0;
+            iva = 0;
+          } else {
+            iva = req.body.IVA;
           }
           if (req.body.Total == null) {
-            req.body.Total = 0;
+            total = 0;
+          } else {
+            total = req.body.Total;
           }
-          _context5.next = 6;
+          _context5.next = 7;
           return (0, _database.getConnection)();
-        case 6:
+        case 7:
           pool = _context5.sent;
-          _context5.next = 9;
-          return pool.request().input("id", req.params.id).input("REQ_fechaVisita", _database.sql.DateTime, req.body.FechaVisita).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_observacionTecnica", _database.sql.VarChar, req.body.ObservacionTecnica).input("REQ_SubTotal", _database.sql.Decimal(18, 2), req.body.Subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), req.body.IVA).input("REQ_total", _database.sql.Decimal(18, 2), req.body.Total).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimientoVisitaTecnica);
-        case 9:
+          _context5.next = 10;
+          return pool.request().input("id", req.params.id).input("REQ_fechaVisita", _database.sql.DateTime, req.body.FechaVisita).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_observacionTecnica", _database.sql.VarChar, req.body.ObservacionTecnica).input("REQ_SubTotal", _database.sql.Decimal(18, 2), subtotal).input("REQ_IVA", _database.sql.Decimal(18, 2), iva).input("REQ_total", _database.sql.Decimal(18, 2), total).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimientoVisitaTecnica);
+        case 10:
           result = _context5.sent;
           if (!(result.rowsAffected == 1)) {
-            _context5.next = 14;
+            _context5.next = 15;
             break;
           }
           return _context5.abrupt("return", res.status(200).json({
@@ -319,25 +349,25 @@ var editRequerimientosVisitaTecnica = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 14:
+        case 15:
           return _context5.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 15:
-          _context5.next = 21;
+        case 16:
+          _context5.next = 22;
           break;
-        case 17:
-          _context5.prev = 17;
-          _context5.t0 = _context5["catch"](0);
+        case 18:
+          _context5.prev = 18;
+          _context5.t0 = _context5["catch"](1);
           res.status(500);
           res.send(_context5.t0.message);
-        case 21:
+        case 22:
         case "end":
           return _context5.stop();
       }
-    }, _callee5, null, [[0, 17]]);
+    }, _callee5, null, [[1, 18]]);
   }));
   return function editRequerimientosVisitaTecnica(_x9, _x10) {
     return _ref5.apply(this, arguments);
@@ -414,21 +444,20 @@ var getRequerimientosActivosXtecnico = /*#__PURE__*/function () {
         case 3:
           pool = _context7.sent;
           _context7.next = 6;
-          return pool.request().input("id", req.params.id);
+          return pool.request().input("id", req.params.id).query(_database.querys.getRequerimientosActivosXtec);
         case 6:
           result = _context7.sent;
-          query(_database.querys.getRequerimientosActivosXtec);
           return _context7.abrupt("return", res.json(result.recordset));
-        case 11:
-          _context7.prev = 11;
+        case 10:
+          _context7.prev = 10;
           _context7.t0 = _context7["catch"](0);
           res.status(500);
           res.send(_context7.t0.message);
-        case 15:
+        case 14:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[0, 11]]);
+    }, _callee7, null, [[0, 10]]);
   }));
   return function getRequerimientosActivosXtecnico(_x13, _x14) {
     return _ref7.apply(this, arguments);

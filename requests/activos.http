@@ -67,15 +67,15 @@ Content-Type: application/json
 {{api4}}/4
 
 
-@api100 = http://localhost:3000/api/areaservicio/y
+@api100 = http://localhost:3000/api/requerimientos/z
 
 ### get idCliente
-{{api100}}/1
+{{api100}}/2
 
 
 ### get idCliente
-@api200 = http://localhost:3000/api/tservicioPers
-{{api200}}
+@api200 = http://localhost:3000/api/requerimientos/act
+{{api200}}/2
 
 
 ### get idCliente
