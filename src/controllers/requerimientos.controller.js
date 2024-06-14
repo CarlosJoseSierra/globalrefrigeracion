@@ -140,7 +140,6 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimiento);
         if(result.rowsAffected==1){
-          //cambiar estado deldetalle a cero
           const pool2 = await getConnection();
           const result2 = await pool2
           .request()
@@ -204,7 +203,6 @@ export const getRequerimientosActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("REQ_fechaVisita", sql.DateTime, req.body.FechaVisita)
         .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
         .input("REQ_serie", sql.VarChar, req.body.Serie)
         .input("REQ_placa", sql.VarChar, req.body.Placa)
@@ -213,13 +211,48 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_establecimiento", sql.VarChar, req.body.Establecimiento)
         .input("REQ_telefono", sql.VarChar, req.body.Telefono)
         .input("REQ_direccion", sql.VarChar, req.body.Direccion)
-        .input("REQ_observacionTecnica", sql.VarChar, req.body.ObservacionTecnica)
+        .input("REQ_observacionTecnica", sql.VarChar, req.body.Observacion)
         .input("REQ_SubTotal", sql.Decimal(18,2), subtotal)
         .input("REQ_IVA", sql.Decimal(18,2), iva)
         .input("REQ_total", sql.Decimal(18,2), total) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimientoVisitaTecnica);
         if(result.rowsAffected==1){
+          const pool2 = await getConnection();
+          const result2 = await pool2
+          .request()
+          .input("REQDET_REQ_id", req.params.id)
+          .query(querys.cambiarEstadoRequerimientoDetalle);
+          //ingresar los nuevos registros
+          if(result2.rowsAffected>0){
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].total)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
+                .query(querys.addNewRequerimientoDetalle);
+              }
+            }
+          }else{
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].total)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
+                .query(querys.addNewRequerimientoDetalle);
+              }
+            }
+          }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{
