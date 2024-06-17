@@ -200,6 +200,17 @@ export const getRequerimientosActivos = async (req, res) => {
         total = 0;
       }else{ total = req.body.Total}
       const pool = await getConnection();
+
+      let totalDetalle = 0;
+      let ivaDetalle = 0;
+      let totalFinalDetalle = 0;
+      if(req.body.details.length>0){
+        for(let i=0;i<req.body.details.length;i++){
+          totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+        }
+        ivaDetalle = totalDetalle * (15/100);
+        totalFinalDetalle = totalDetalle + ivaDetalle;
+      }
         const result = await pool
         .request()
         .input("id", req.params.id)
@@ -212,9 +223,9 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_telefono", sql.VarChar, req.body.Telefono)
         .input("REQ_direccion", sql.VarChar, req.body.Direccion)
         .input("REQ_observacionTecnica", sql.VarChar, req.body.Observacion)
-        .input("REQ_SubTotal", sql.Decimal(18,2), subtotal)
-        .input("REQ_IVA", sql.Decimal(18,2), iva)
-        .input("REQ_total", sql.Decimal(18,2), total) 
+        .input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("REQ_IVA", sql.Decimal(18,2), ivaDetalle)
+        .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimientoVisitaTecnica);
         if(result.rowsAffected==1){
@@ -233,7 +244,7 @@ export const getRequerimientosActivos = async (req, res) => {
                 .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
                 .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].total)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
                 .input("REQDET_REQ_id", sql.Decimal,req.params.id)
                 .query(querys.addNewRequerimientoDetalle);
               }
