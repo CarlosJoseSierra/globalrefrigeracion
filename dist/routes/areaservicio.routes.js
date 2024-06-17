@@ -10,7 +10,7 @@ var router = (0, _express.Router)();
 router.get("/areaservicio/:serie/:idCliente1/:idCliente2", _areaservicio.getAreaBySerie);
 router.get("/areaservicio/x/:placa/:idCliente1/:idCliente2", _areaservicio.getAreaByPlaca);
 router.post("/areaservicio", _areaservicio.createNewAreaServicio);
-router.get("/areaservicio/x", _areaservicio.getAreaSinTecnico); //Obtengo el listado de cts que no se haya asignado tecnico
+router.get("/areaservicio", _areaservicio.getAreaGeneral); //Obtengo el listado de cts que no se haya asignado tecnico
 router.put("/areaservicio/x/:id", _areaservicio.updateActivoByTecnico); //Actualizo ct pot tecnico
 router.get("/areaservicio/y/:id", _areaservicio.getAreaByTecnico); //Obtengo las tareas pendientes de los tecnicos
 router.get("/areaservicio/mov", _areaservicio.getAreaServicioMovimiento); //Obtengo las cts con area de servicio movimiento

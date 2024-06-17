@@ -35,11 +35,11 @@ export const getAreaByPlaca = async (req, res) => {
     }
   };
 
-  export const getAreaSinTecnico = async (req, res) => {
+  export const getAreaGeneral = async (req, res) => {
     try {
       const pool = await getConnection();
       const result = await pool.request()
-        .query(querys.getAreaSinTecnico);
+        .query(querys.getCotizaciones);
       return res.json(result.recordset);
     } catch (error) {
       res.status(500);
