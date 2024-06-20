@@ -37,19 +37,6 @@ export const getRequerimientosActivos = async (req, res) => {
      
       let secuencial = '';
       secuencial = "REQ"+idR;
-
-      //let subtotal = 0, iva = 0, total = 0;
-     
-//        if(req.body.Subtotal==null){
- //         subtotal = 0;
-   //     }else {subtotal = req.body.Subtotal}
-     //   if(req.body.IVA==null){
-       //   iva = 0;
-        //}else{iva = req.body.IVA}
-        //if(req.body.Total==null){
-          //total = 0;
-        //}else{ total = req.body.Total}
-
         let totalDetalle = 0;
         let ivaDetalle = 0;
         let totalFinalDetalle = 0;
@@ -116,16 +103,6 @@ export const getRequerimientosActivos = async (req, res) => {
   export const editRequerimientos = async (req, res) => {
     let subtotal = 0, iva = 0, total = 0;
     try {
-     // if(req.body.Subtotal==null){
-       // subtotal = 0;
-      //}else {subtotal = req.body.Subtotal}
-      //if(req.body.IVA==null){
-        //iva = 0;
-      //}else{iva = req.body.IVA}
-      //if(req.body.Total==null){
-        //total = 0;
-      //}else{ total = req.body.Total}
-      
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
@@ -212,17 +189,7 @@ export const getRequerimientosActivos = async (req, res) => {
   export const editRequerimientosVisitaTecnica = async (req, res) => {
     let subtotal = 0, iva = 0, total = 0;
     try {
-      if(req.body.Subtotal==null){
-        subtotal = 0;
-      }else {subtotal = req.body.Subtotal}
-      if(req.body.IVA==null){
-        iva = 0;
-      }else{iva = req.body.IVA}
-      if(req.body.Total==null){
-        total = 0;
-      }else{ total = req.body.Total}
       const pool = await getConnection();
-
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
