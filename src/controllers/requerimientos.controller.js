@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 export const getAllRequerimientos = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getRequerimientos);
+    const result = await pool.request().query(querys.getAllRequerimientos);
     res.json(result.recordset);
   } catch (error) {
     res.status(500);

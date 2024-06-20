@@ -22,7 +22,7 @@ var getAllRequerimientos = /*#__PURE__*/function () {
         case 3:
           pool = _context.sent;
           _context.next = 6;
-          return pool.request().query(_database.querys.getRequerimientos);
+          return pool.request().query(_database.querys.getAllRequerimientos);
         case 6:
           result = _context.sent;
           res.json(result.recordset);
