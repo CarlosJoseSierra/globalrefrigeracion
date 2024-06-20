@@ -14,5 +14,6 @@ router.put("/requerimientos/:id", _requerimientos.editRequerimientos);
 router.put("/requerimientos/x/:id", _requerimientos.editRequerimientosVisitaTecnica);
 router.put("/requerimientos/y/:id", _requerimientos.editRequerimientosAprobacion);
 router.get("/requerimientos/act/:id", _requerimientos.getRequerimientosActivosXtecnico);
+router.get("/requerimientos/rep/:id", _requerimientos.getReparacionesActivosXtecnico);
 var _default = router;
 exports["default"] = _default;
