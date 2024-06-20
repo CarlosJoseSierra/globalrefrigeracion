@@ -187,7 +187,6 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const editRequerimientosVisitaTecnica = async (req, res) => {
-    let subtotal = 0, iva = 0, total = 0;
     try {
       const pool = await getConnection();
       let totalDetalle = 0;
@@ -312,6 +311,84 @@ export const getRequerimientosActivos = async (req, res) => {
         .query(querys.getReparacionesActivosXtec);
       return res.json(result.recordset);
     } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editRequerimientosReparacion = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      let totalDetalle = 0;
+      let ivaDetalle = 0;
+      let totalFinalDetalle = 0;
+      if(req.body.details.length>0){
+        for(let i=0;i<req.body.details.length;i++){
+          totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+        }
+        ivaDetalle = totalDetalle * (15/100);
+        totalFinalDetalle = totalDetalle + ivaDetalle;
+      }
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
+        .input("REQ_serie", sql.VarChar, req.body.Serie)
+        .input("REQ_placa", sql.VarChar, req.body.Placa)
+        .input("REQ_EQUIP_id", sql.Decimal, req.body.Modelo)
+        .input("REQ_contacto", sql.VarChar, req.body.Subcliente)
+        .input("REQ_establecimiento", sql.VarChar, req.body.Establecimiento)
+        .input("REQ_telefono", sql.VarChar, req.body.Telefono)
+        .input("REQ_direccion", sql.VarChar, req.body.Direccion)
+        .input("REQ_observacionTecnica", sql.VarChar, req.body.Observacion)
+        .input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("REQ_IVA", sql.Decimal(18,2), ivaDetalle)
+        .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
+        .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .query(querys.editRequerimientoReparacion);
+        if(result.rowsAffected==1){
+          const pool2 = await getConnection();
+          const result2 = await pool2
+          .request()
+          .input("REQDET_REQ_id", req.params.id)
+          .query(querys.cambiarEstadoRequerimientoDetalle);
+          //ingresar los nuevos registros
+          if(result2.rowsAffected>0){
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
+                .query(querys.addNewRequerimientoDetalle);
+              }
+            }
+          }else{
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("REQDET_REQ_id", sql.Decimal,req.params.id)
+                .query(querys.addNewRequerimientoDetalle);
+              }
+            }
+          }
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+        }
+       else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+        }
+      }
+     catch (error) {
       res.status(500);
       res.send(error.message);
     }
