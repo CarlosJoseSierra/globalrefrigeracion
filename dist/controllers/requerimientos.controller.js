@@ -462,25 +462,16 @@ var editRequerimientosAprobacion = /*#__PURE__*/function () {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
           _context6.prev = 0;
-          if (req.body.Subtotal == null) {
-            req.body.Subtotal = 0;
-          }
-          if (req.body.IVA == null) {
-            req.body.IVA = 0;
-          }
-          if (req.body.Total == null) {
-            req.body.Total = 0;
-          }
-          _context6.next = 6;
+          _context6.next = 3;
           return (0, _database.getConnection)();
-        case 6:
+        case 3:
           pool = _context6.sent;
-          _context6.next = 9;
-          return pool.request().input("id", req.params.id).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimientoAprobacion);
-        case 9:
+          _context6.next = 6;
+          return pool.request().input("id", req.params.id).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).input("REQ_estado", _database.sql.Decimal, req.body.estado).query(_database.querys.editRequerimientoAprobacion);
+        case 6:
           result = _context6.sent;
           if (!(result.rowsAffected == 1)) {
-            _context6.next = 14;
+            _context6.next = 11;
             break;
           }
           return _context6.abrupt("return", res.status(200).json({
@@ -488,25 +479,25 @@ var editRequerimientosAprobacion = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 14:
+        case 11:
           return _context6.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 15:
-          _context6.next = 21;
+        case 12:
+          _context6.next = 18;
           break;
-        case 17:
-          _context6.prev = 17;
+        case 14:
+          _context6.prev = 14;
           _context6.t0 = _context6["catch"](0);
           res.status(500);
           res.send(_context6.t0.message);
-        case 21:
+        case 18:
         case "end":
           return _context6.stop();
       }
-    }, _callee6, null, [[0, 17]]);
+    }, _callee6, null, [[0, 14]]);
   }));
   return function editRequerimientosAprobacion(_x11, _x12) {
     return _ref6.apply(this, arguments);

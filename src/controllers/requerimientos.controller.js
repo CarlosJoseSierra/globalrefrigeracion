@@ -300,20 +300,12 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientosAprobacion = async (req, res) => {
     try {
-      if(req.body.Subtotal==null){
-        req.body.Subtotal = 0;
-      }
-      if(req.body.IVA==null){
-        req.body.IVA = 0;
-      }
-      if(req.body.Total==null){
-        req.body.Total = 0;
-      }
       const pool = await getConnection();
         const result = await pool
         .request()
         .input("id", req.params.id)
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .input("REQ_estado", sql.Decimal, req.body.estado)
         .query(querys.editRequerimientoAprobacion);
         if(result.rowsAffected==1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
