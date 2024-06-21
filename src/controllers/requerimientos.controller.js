@@ -72,6 +72,8 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_IVA", sql.Decimal(18,2),ivaDetalle)
         .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("REQ_USU_ing", sql.Decimal, req.body.id)
+        .input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
+        .input("REQ_estado", sql.Decimal, req.body.aprobado)
         .query(querys.addRequerimiento);
         if(result.rowsAffected[0]==1){
           let idReq = result.recordset[0].REQ_id;
