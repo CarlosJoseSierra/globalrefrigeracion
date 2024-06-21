@@ -58,7 +58,7 @@ var querys = {
   getAllPersonaReporta: "SELECT PR_id,PR_nombre,PR_CLI_id FROM PERSONA_REPORTA ORDER BY PR_nombre",
   getPersonaReportaByIdCliente: "SELECT * FROM PERSONA_REPORTA Where PR_CLI_id = @Id",
   //Query de obtencion de usuarios con cargo de tecnico
-  getAllUsuariosByCargo: "SELECT USU_id,USU_usuario FROM USUARIOS WHERE USU_cargo like 'TECNICO' ORDER BY USU_usuario",
+  getAllUsuariosByCargo: "SELECT USU_id,USU_usuario FROM USUARIOS WHERE USU_cargo like 'TECNICO' or USU_cargo like 'CHOFER' ORDER BY USU_usuario",
   //Query que actualiza la ct con el id del tecnico 
   updateActivoByTecnico: "UPDATE AREA_SERVICIO SET AS_USU_id = @AS_USU_id,AS_USU_ing = @AS_USU_ing WHERE AS_id = @id  ",
   //Query que obtiene todas las cotizaciones pedientes de los tecnicos
