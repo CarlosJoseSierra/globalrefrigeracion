@@ -22,6 +22,7 @@ import corteInventarioRoutes from "./routes/corteinventario.routes.js";
 import tiposervicio from "./routes/tiposervicio.routes.js";
 import requerimientos from "./routes/requerimientos.routes.js";
 import requerimientos_det from "./routes/requerimientos_det.routes.js";
+import path  from 'path'
 //import morgan from "morgan";
 //import config from "./config.js";
 //var cors = require('cors');
@@ -62,4 +63,6 @@ app.use((req,res,next)=>{
     })
 });
 
+//Para Almacenar Imagenes
+app.use('/uploads', express.static(path.resolve('uploads')));
 export default app;

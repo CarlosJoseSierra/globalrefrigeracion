@@ -1,5 +1,6 @@
 import { getConnection, querys, sql } from "../database";
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 export const getAllRequerimientos = async (req, res) => {
   try {
@@ -23,8 +24,18 @@ export const getRequerimientosActivos = async (req, res) => {
     }
   };
 
+  export const createRequerimientos2 = async (req, res) => {
+    console.log(req.files[0].path);
+    console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
+    return res.json({
+      message:'Foto subida con exito'
+    })
+  }
+
   export const createRequerimientos = async (req, res) => {
     try {
+      let image,image1,image2,image3,image4; 
+      let imageruta,imageruta1,imageruta2,imageruta3,imageruta4; 
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdRequerimiento);
       let idR = 0;
@@ -34,7 +45,56 @@ export const getRequerimientosActivos = async (req, res) => {
      else{
        idR = codigo.recordset[0].REQ_id;
      }
-     
+     if(req.files[0]!=undefined)
+     {
+      image = req.files[0].filename;
+      imageruta = req.files[0].path;
+     }
+     else
+     {
+      image = '';
+      imageruta = '';
+     }
+     if(req.files[1]!=undefined)
+     {
+      image1 = req.files[1].filename;
+      imageruta1 = req.files[1].path;
+     }
+     else
+     {
+      image1 = '';
+      imageruta1 = '';
+     }
+     if(req.files[2]!=undefined)
+     {
+      image2 = req.files[2].filename;
+      imageruta2 = req.files[2].path;
+     }
+     else
+     {
+      image2 = '';
+      imageruta2 = '';
+     }
+     if(req.files[3]!=undefined)
+     {
+      image3 = req.files[3].filename;
+      imageruta3 = req.files[3].path;
+     }
+     else
+     {
+      image3 = '';
+      imageruta3 = '';
+     }
+     if(req.files[4]!=undefined)
+     {
+      image4 = req.files[4].filename;
+      imageruta4 = req.files[4].path;
+     }
+     else
+     {
+      image4 = '';
+      imageruta4 = '';
+     }
       let secuencial = '';
       secuencial = "REQ"+idR;
         let totalDetalle = 0;
@@ -347,6 +407,16 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .input("REQ_imagen1", sql.VarChar, image)
+        .input("REQ_rutaimagen1", sql.VarChar, imageruta)
+        .input("REQ_imagen2", sql.VarChar, image1)
+        .input("REQ_rutaimagen2", sql.VarChar, imageruta1)
+        .input("REQ_imagen3", sql.VarChar, image2)
+        .input("REQ_rutaimagen3", sql.VarChar, imageruta2)
+        .input("REQ_imagen4", sql.VarChar, image3)
+        .input("REQ_rutaimagen4", sql.VarChar, imageruta3)
+        .input("REQ_imagen5", sql.VarChar, image4)
+        .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
         .query(querys.editRequerimientoReparacion);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();

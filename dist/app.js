@@ -27,6 +27,7 @@ var _corteinventarioRoutes = _interopRequireDefault(require("./routes/corteinven
 var _tiposervicioRoutes = _interopRequireDefault(require("./routes/tiposervicio.routes.js"));
 var _requerimientosRoutes = _interopRequireDefault(require("./routes/requerimientos.routes.js"));
 var _requerimientos_detRoutes = _interopRequireDefault(require("./routes/requerimientos_det.routes.js"));
+var _path = _interopRequireDefault(require("path"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
@@ -71,5 +72,8 @@ app.use(function (req, res, next) {
     message: 'endpoint not found'
   });
 });
+
+//Para Almacenar Imagenes
+app.use('/uploads', _express["default"]["static"](_path["default"].resolve('uploads')));
 var _default = app;
 exports["default"] = _default;
