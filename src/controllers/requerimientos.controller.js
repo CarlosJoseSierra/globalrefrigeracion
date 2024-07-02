@@ -26,6 +26,7 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const createRequerimientos2 = async (req, res) => {
     console.log(req.files.length);
+    
    // console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
     return res.json({
       message:'Foto subida con exito'

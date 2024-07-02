@@ -85,6 +85,7 @@ var createRequerimientos2 = /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           console.log(req.files.length);
+
           // console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
           return _context3.abrupt("return", res.json({
             message: 'Foto subida con exito'

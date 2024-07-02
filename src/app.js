@@ -64,5 +64,5 @@ app.use((req,res,next)=>{
 });
 
 //Para Almacenar Imagenes
-app.use('/uploads', express.static(path.resolve('uploads')));
+app.use('uploads', express.static(path.resolve('src/uploads')));
 export default app;

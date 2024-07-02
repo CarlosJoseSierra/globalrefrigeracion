@@ -74,6 +74,6 @@ app.use(function (req, res, next) {
 });
 
 //Para Almacenar Imagenes
-app.use('/uploads', _express["default"]["static"](_path["default"].resolve('uploads')));
+app.use('uploads', _express["default"]["static"](_path["default"].resolve('src/uploads')));
 var _default = app;
 exports["default"] = _default;
