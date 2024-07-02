@@ -25,8 +25,8 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const createRequerimientos2 = async (req, res) => {
-    console.log(req.files[0].path);
-    console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
+    console.log(req.files.length);
+   // console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
     return res.json({
       message:'Foto subida con exito'
     })
@@ -334,56 +334,59 @@ export const getRequerimientosActivos = async (req, res) => {
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
-      if(req.files[0]!=undefined)
-     {
-      image = req.files[0].filename;
-      imageruta = req.files[0].path;
-     }
-     else
-     {
-      image = '';
-      imageruta = '';
-     }
-     if(req.files[1]!=undefined)
-     {
-      image1 = req.files[1].filename;
-      imageruta1 = req.files[1].path;
-     }
-     else
-     {
-      image1 = '';
-      imageruta1 = '';
-     }
-     if(req.files[2]!=undefined)
-     {
-      image2 = req.files[2].filename;
-      imageruta2 = req.files[2].path;
-     }
-     else
-     {
-      image2 = '';
-      imageruta2 = '';
-     }
-     if(req.files[3]!=undefined)
-     {
-      image3 = req.files[3].filename;
-      imageruta3 = req.files[3].path;
-     }
-     else
-     {
-      image3 = '';
-      imageruta3 = '';
-     }
-     if(req.files[4]!=undefined)
-     {
-      image4 = req.files[4].filename;
-      imageruta4 = req.files[4].path;
-     }
-     else
-     {
-      image4 = '';
-      imageruta4 = '';
-     }
+      console.log(req.files);
+      if(req.files.length>0){
+        if(req.files[0]!=undefined)
+      {
+        image = req.files[0].filename;
+        imageruta = req.files[0].path;
+      }
+      else
+      {
+        image = '';
+        imageruta = '';
+      }
+      if(req.files[1]!=undefined)
+      {
+        image1 = req.files[1].filename;
+        imageruta1 = req.files[1].path;
+      }
+      else
+      {
+        image1 = '';
+        imageruta1 = '';
+      }
+      if(req.files[2]!=undefined)
+      {
+        image2 = req.files[2].filename;
+        imageruta2 = req.files[2].path;
+      }
+      else
+      {
+        image2 = '';
+        imageruta2 = '';
+      }
+      if(req.files[3]!=undefined)
+      {
+        image3 = req.files[3].filename;
+        imageruta3 = req.files[3].path;
+      }
+      else
+      {
+        image3 = '';
+        imageruta3 = '';
+      }
+      if(req.files[4]!=undefined)
+      {
+        image4 = req.files[4].filename;
+        imageruta4 = req.files[4].path;
+      }
+      else
+      {
+        image4 = '';
+        imageruta4 = '';
+      }
+    }
       if(req.body.details.length>0){
         for(let i=0;i<req.body.details.length;i++){
           totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);

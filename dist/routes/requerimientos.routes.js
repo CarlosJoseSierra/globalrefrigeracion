@@ -19,6 +19,6 @@ router.get("/requerimientos/rep/:id", _requerimientos.getReparacionesActivosXtec
 router.put("/requerimientos/z/:id", storage.array('image', 5), _requerimientos.editRequerimientosReparacion);
 router.get("/requerimientos/hijos/:id", _requerimientos.getRquerimientosPadre);
 router.put("/requerimientos/xy/:id", _requerimientos.editRequerimientosCierraCaso);
-//router.post("/requerimientos/new2", storage.array('image',3),createRequerimientos2);
+router.post("/requerimientos/new2", storage.array('image', 3), _requerimientos.createRequerimientos2);
 var _default = router;
 exports["default"] = _default;

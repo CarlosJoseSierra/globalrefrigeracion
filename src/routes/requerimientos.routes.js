@@ -13,6 +13,7 @@ import {
   editRequerimientosReparacion,
   getRquerimientosPadre,
   editRequerimientosCierraCaso,
+  createRequerimientos2,
 } from "../controllers/requerimientos.controller";
 
 
@@ -29,5 +30,5 @@ router.get("/requerimientos/rep/:id", getReparacionesActivosXtecnico);
 router.put("/requerimientos/z/:id",storage.array('image',5), editRequerimientosReparacion);
 router.get("/requerimientos/hijos/:id", getRquerimientosPadre);
 router.put("/requerimientos/xy/:id", editRequerimientosCierraCaso);
-//router.post("/requerimientos/new2", storage.array('image',3),createRequerimientos2);
+router.post("/requerimientos/new2", storage.array('image',3),createRequerimientos2);
 export default router;
