@@ -34,8 +34,6 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const createRequerimientos = async (req, res) => {
     try {
-      let image,image1,image2,image3,image4; 
-      let imageruta,imageruta1,imageruta2,imageruta3,imageruta4; 
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdRequerimiento);
       let idR = 0;
@@ -45,56 +43,7 @@ export const getRequerimientosActivos = async (req, res) => {
      else{
        idR = codigo.recordset[0].REQ_id;
      }
-     if(req.files[0]!=undefined)
-     {
-      image = req.files[0].filename;
-      imageruta = req.files[0].path;
-     }
-     else
-     {
-      image = '';
-      imageruta = '';
-     }
-     if(req.files[1]!=undefined)
-     {
-      image1 = req.files[1].filename;
-      imageruta1 = req.files[1].path;
-     }
-     else
-     {
-      image1 = '';
-      imageruta1 = '';
-     }
-     if(req.files[2]!=undefined)
-     {
-      image2 = req.files[2].filename;
-      imageruta2 = req.files[2].path;
-     }
-     else
-     {
-      image2 = '';
-      imageruta2 = '';
-     }
-     if(req.files[3]!=undefined)
-     {
-      image3 = req.files[3].filename;
-      imageruta3 = req.files[3].path;
-     }
-     else
-     {
-      image3 = '';
-      imageruta3 = '';
-     }
-     if(req.files[4]!=undefined)
-     {
-      image4 = req.files[4].filename;
-      imageruta4 = req.files[4].path;
-     }
-     else
-     {
-      image4 = '';
-      imageruta4 = '';
-     }
+     
       let secuencial = '';
       secuencial = "REQ"+idR;
         let totalDetalle = 0;
@@ -163,7 +112,6 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const editRequerimientos = async (req, res) => {
-    let subtotal = 0, iva = 0, total = 0;
     try {
       let totalDetalle = 0;
       let ivaDetalle = 0;
@@ -380,10 +328,62 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientosReparacion = async (req, res) => {
     try {
+      let image,image1,image2,image3,image4; 
+      let imageruta,imageruta1,imageruta2,imageruta3,imageruta4; 
       const pool = await getConnection();
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
+      if(req.files[0]!=undefined)
+     {
+      image = req.files[0].filename;
+      imageruta = req.files[0].path;
+     }
+     else
+     {
+      image = '';
+      imageruta = '';
+     }
+     if(req.files[1]!=undefined)
+     {
+      image1 = req.files[1].filename;
+      imageruta1 = req.files[1].path;
+     }
+     else
+     {
+      image1 = '';
+      imageruta1 = '';
+     }
+     if(req.files[2]!=undefined)
+     {
+      image2 = req.files[2].filename;
+      imageruta2 = req.files[2].path;
+     }
+     else
+     {
+      image2 = '';
+      imageruta2 = '';
+     }
+     if(req.files[3]!=undefined)
+     {
+      image3 = req.files[3].filename;
+      imageruta3 = req.files[3].path;
+     }
+     else
+     {
+      image3 = '';
+      imageruta3 = '';
+     }
+     if(req.files[4]!=undefined)
+     {
+      image4 = req.files[4].filename;
+      imageruta4 = req.files[4].path;
+     }
+     else
+     {
+      image4 = '';
+      imageruta4 = '';
+     }
       if(req.body.details.length>0){
         for(let i=0;i<req.body.details.length;i++){
           totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
