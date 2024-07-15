@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-
+app.use("/imagenes", express.static(path.resolve('uploads')));
 app.use("/api", productRoutes);
 app.use("/api", activoRoutes);
 app.use("/api", clienteRoutes);
@@ -64,5 +64,5 @@ app.use((req,res,next)=>{
 });
 
 //Para Almacenar Imagenes
-app.use('uploads', express.static(path.resolve('uploads')));
+//app.use("/imagenes", express.static(path.resolve('uploads')));
 export default app;

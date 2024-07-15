@@ -45,7 +45,7 @@ app.use(_express["default"].urlencoded({
 app.use(_express["default"].json());
 
 // Routes
-
+app.use("/imagenes", _express["default"]["static"](_path["default"].resolve('uploads')));
 app.use("/api", _productsRoutes["default"]);
 app.use("/api", _activosRouter["default"]);
 app.use("/api", _clientesRouter["default"]);
@@ -74,6 +74,6 @@ app.use(function (req, res, next) {
 });
 
 //Para Almacenar Imagenes
-app.use('uploads', _express["default"]["static"](_path["default"].resolve('uploads')));
+//app.use("/imagenes", express.static(path.resolve('uploads')));
 var _default = app;
 exports["default"] = _default;

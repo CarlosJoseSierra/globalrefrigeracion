@@ -25,8 +25,9 @@ export const getRequerimientosActivos = async (req, res) => {
   };
 
   export const createRequerimientos2 = async (req, res) => {
-    console.log(req.files.length);
-    
+    console.log(req.files);
+    console.log(req.body);
+   // console.log(req.body.image);
    // console.log(req.files[0]);//Sino esta subida la foto, te muestra unidefined como resultado
     return res.json({
       message:'Foto subida con exito'
@@ -329,68 +330,46 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientosReparacion = async (req, res) => {
     try {
-      let image,image1,image2,image3,image4; 
-      let imageruta,imageruta1,imageruta2,imageruta3,imageruta4; 
+      let image = '',image1= '',image2= '',image3= '',image4= ''; 
+      let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= ''; 
       const pool = await getConnection();
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
-      console.log(req.files);
-      if(req.files.length>0){
+    
+      if(req.files.length>0)
+      {
         if(req.files[0]!=undefined)
-      {
-        image = req.files[0].filename;
-        imageruta = req.files[0].path;
+        {
+          image = req.files[0].filename;
+          imageruta = req.files[0].path;
+        }
+        if(req.files[1]!=undefined)
+        {
+          image1 = req.files[1].filename;
+          imageruta1 = req.files[1].path;
+        }
+        if(req.files[2]!=undefined)
+        {
+          image2 = req.files[2].filename;
+          imageruta2 = req.files[2].path;
+        }
+        if(req.files[3]!=undefined)
+        {
+          image3 = req.files[3].filename;
+          imageruta3 = req.files[3].path;
+        }
+        if(req.files[4]!=undefined)
+        {
+          image4 = req.files[4].filename;
+          imageruta4 = req.files[4].path;
+        }
       }
-      else
-      {
-        image = '';
-        imageruta = '';
-      }
-      if(req.files[1]!=undefined)
-      {
-        image1 = req.files[1].filename;
-        imageruta1 = req.files[1].path;
-      }
-      else
-      {
-        image1 = '';
-        imageruta1 = '';
-      }
-      if(req.files[2]!=undefined)
-      {
-        image2 = req.files[2].filename;
-        imageruta2 = req.files[2].path;
-      }
-      else
-      {
-        image2 = '';
-        imageruta2 = '';
-      }
-      if(req.files[3]!=undefined)
-      {
-        image3 = req.files[3].filename;
-        imageruta3 = req.files[3].path;
-      }
-      else
-      {
-        image3 = '';
-        imageruta3 = '';
-      }
-      if(req.files[4]!=undefined)
-      {
-        image4 = req.files[4].filename;
-        imageruta4 = req.files[4].path;
-      }
-      else
-      {
-        image4 = '';
-        imageruta4 = '';
-      }
-    }
+      
       if(req.body.details.length>0){
         for(let i=0;i<req.body.details.length;i++){
-          totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+          const json = JSON.parse(req.body.details[i])            
+            totalDetalle = totalDetalle + (json.qty * json.salesPrice);
         }
         ivaDetalle = totalDetalle * (15/100);
         totalFinalDetalle = totalDetalle + ivaDetalle;
@@ -422,6 +401,7 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_imagen5", sql.VarChar, image4)
         .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
         .query(querys.editRequerimientoReparacion);
+        
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
           const result2 = await pool2
@@ -430,15 +410,27 @@ export const getRequerimientosActivos = async (req, res) => {
           .query(querys.cambiarEstadoRequerimientoDetalle);
           //ingresar los nuevos registros
           if(result2.rowsAffected>0){
+
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
+                const json = JSON.parse(req.body.details[i])            
+                  totalDetalle = totalDetalle + (json.qty * json.salesPrice);
+              }
+              ivaDetalle = totalDetalle * (15/100);
+              totalFinalDetalle = totalDetalle + ivaDetalle;
+            }
+
+
+            if(req.body.details.length>0){
+              for(let i=0;i<req.body.details.length;i++){
+                const json = JSON.parse(req.body.details[i])      
                 const pool3 = await getConnection();
                 const result3 = await pool3
                 .request()
-                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
-                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("REQDET_PROD_id", sql.Decimal, json.productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), json.qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), json.salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), json.qty * json.salesPrice)
                 .input("REQDET_REQ_id", sql.Decimal,req.params.id)
                 .query(querys.addNewRequerimientoDetalle);
               }
@@ -446,13 +438,14 @@ export const getRequerimientosActivos = async (req, res) => {
           }else{
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
+                const json = JSON.parse(req.body.details[i])      
                 const pool3 = await getConnection();
                 const result3 = await pool3
                 .request()
-                .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
-                .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("REQDET_PROD_id", sql.Decimal, json.productName)
+                .input("REQDET_cantidad", sql.Decimal(18,2), json.qty)
+                .input("REQDET_pvp", sql.Decimal(18,2), json.salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), json.qty * json.salesPrice)
                 .input("REQDET_REQ_id", sql.Decimal,req.params.id)
                 .query(querys.addNewRequerimientoDetalle);
               }
