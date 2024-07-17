@@ -119,6 +119,12 @@ var querys = {
   getAllClientes: "SELECT CLI_id,CLI_nombre, CLI_direccion, CLI_identificacion FROM CLIENTE ORDER BY CLI_nombre",
   getClienteById: "SELECT * FROM CLIENTE Where CLI_id = @Id",
   addNewCliente: "INSERT INTO CLIENTE(CLI_nombre,CLI_direccion,CLI_descuento,CLI_descuentoR,CLI_descuentoS,CLI_descuentoP,CLI_identificacion,CLI_USU_ing,CLI_fecha_ing,CLI_LP_id) VALUES (@CLI_nombre,@CLI_direccion,0, 0,0,0,@CLI_identificacion,@CLI_USU_ing,GETDATE(),0)",
-  updateClienteById: "UPDATE CLIENTE SET CLI_nombre = @CLI_nombre,CLI_direccion = @CLI_direccion,CLI_identificacion = @CLI_identificacion WHERE CLI_id = @Id"
+  updateClienteById: "UPDATE CLIENTE SET CLI_nombre = @CLI_nombre,CLI_direccion = @CLI_direccion,CLI_identificacion = @CLI_identificacion WHERE CLI_id = @Id",
+  getAllRoles: "SELECT * FROM ROL",
+  getAllCargos: "SELECT * FROM CARGO",
+  getAllUbicacion: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION ORDER BY UBIC_ciudad",
+  addNewUbicacion: "INSERT INTO UBICACION(UBIC_ciudad,UBIC_provincia,UBIC_USU_ing,UBIC_fecha_ing,UBIC_USU_edit,UBIC_fecha_edit) VALUES(@UBIC_ciudad,@UBIC_provincia,@UBIC_USU_ing,GETDATE(),@UBIC_USU_ing,GETDATE()); SELECT SCOPE_IDENTITY() AS UBIC_id;",
+  updateUbicacionById: "UPDATE UBICACION SET UBIC_ciudad = @UBIC_ciudad,UBIC_provincia = @UBIC_provincia,UBIC_USU_edit = @UBIC_USU_edit,UBIC_fecha_edit = GETDATE() WHERE UBIC_id = @Id",
+  getUbicacionById: "SELECT UBIC_ciudad, UBIC_provincia, UBIC_USU_ing, UBIC_fecha_ing FROM UBICACION WHERE UBIC_id = @Id "
 };
 exports.querys = querys;
