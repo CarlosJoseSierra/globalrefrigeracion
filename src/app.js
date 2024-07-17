@@ -23,6 +23,9 @@ import tiposervicio from "./routes/tiposervicio.routes.js";
 import requerimientos from "./routes/requerimientos.routes.js";
 import requerimientos_det from "./routes/requerimientos_det.routes.js";
 import path  from 'path'
+import cargosRoutes from "./routes/cargos.routes.js";
+import rolesRoutes from "./routes/roles.routes.js";
+import ubicacioRoutes from "./routes/ubicacion.routes.js";
 //import morgan from "morgan";
 //import config from "./config.js";
 //var cors = require('cors');
@@ -57,6 +60,9 @@ app.use("/api", corteInventarioRoutes);
 app.use("/api", tiposervicio);
 app.use("/api", requerimientos);
 app.use("/api", requerimientos_det);
+app.use("/api", cargosRoutes);
+app.use("/api", rolesRoutes);
+app.use("/api", ubicacioRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
