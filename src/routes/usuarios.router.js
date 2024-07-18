@@ -3,17 +3,16 @@ import {
   getUsuarios,
   getUsuarioByCargo,
   getByUserPass,
-  getUser,
+  createNewUser,
+  updateUserById,
 } from "../controllers/usuarios.controller";
 
 const router = Router();
 
 router.get("/usuarios", getUsuarios);
-
-//router.get("/usuarios/:id", getUsuarioById);
-
 router.post("/usuarios/login", getByUserPass);
-//router.post("/usuarios/login", getUser);
+router.post("/usuarios/new", createNewUser);
+router.put("/usuarios/x/:id", updateUserById);
 router.get("/usuarios/tec", getUsuarioByCargo);
 
 export default router;

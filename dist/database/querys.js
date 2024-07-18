@@ -125,6 +125,8 @@ var querys = {
   getAllUbicacion: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION ORDER BY UBIC_ciudad",
   addNewUbicacion: "INSERT INTO UBICACION(UBIC_ciudad,UBIC_provincia) VALUES(@UBIC_ciudad,@UBIC_provincia)",
   updateUbicacionById: "UPDATE UBICACION SET UBIC_ciudad = @UBIC_ciudad,UBIC_provincia = @UBIC_provincia WHERE UBIC_id = @Id",
-  getUbicacionById: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION WHERE UBIC_id = @Id "
+  getUbicacionById: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION WHERE UBIC_id = @Id ",
+  addNewUser: "INSERT INTO USUARIOS(USU_nombre,USU_usuario,USU_clave,USU_cargo,USU_rol,USU_estado,USU_conectado) VALUES(@USU_nombre,@USU_usuario,@USU_clave,@USU_cargo,@USU_rol,1,0)",
+  updateUserById: "UPDATE USUARIOS SET USU_nombre = @USU_nombre,USU_usuario = @USU_usuario,USU_clave = @USU_clave,USU_cargo = @USU_cargo,USU_rol = @USU_rol WHERE USU_id = @Id"
 };
 exports.querys = querys;

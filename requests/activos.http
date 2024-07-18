@@ -83,12 +83,15 @@ Content-Type: application/json
 {{api201}}
 
 ### add a product
-POST http://localhost:3000/api/ubicacion/new
+POST http://localhost:3000/api/usuarios/new
 Content-Type: application/json
 
 {
-    "UBIC_ciudad": "z",
-   "UBIC_provincia": "z"
+    "USU_nombre": "z",
+   "USU_usuario": "z",
+   "USU_clave":"123",
+   "USU_cargo":"z",
+   "USU_rol":"z"
 }
 
 

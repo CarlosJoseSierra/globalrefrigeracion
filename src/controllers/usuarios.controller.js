@@ -92,3 +92,57 @@ export const getUsuarioById = async (req, res) => {
       res.send(error.message);
     }
   };
+  export const createNewUser = async (req, res) => {
+    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol} = req.body;
+    
+  
+    try {
+      const pool = await getConnection();
+      const result = await pool
+        .request()
+        .input("USU_nombre", sql.VarChar, USU_nombre)
+        .input("USU_usuario", sql.VarChar, USU_usuario)
+        .input("USU_clave", sql.VarChar, USU_clave)
+        .input("USU_cargo", sql.VarChar, USU_cargo)
+        .input("USU_rol", sql.VarChar, USU_rol)
+        .query(querys.addNewUser);
+        if(result.rowsAffected==1){
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+        }else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+        }
+      
+    } catch (error) {
+      res.status(500);
+      console.log(error.message);
+      res.send(error.message);
+    }
+  };
+
+  export const updateUserById = async (req, res) => {
+    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol} = req.body;
+    
+    try {
+      const pool = await getConnection();
+      
+      const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("USU_nombre", sql.VarChar, USU_nombre)
+        .input("USU_usuario", sql.VarChar, USU_usuario)
+        .input("USU_clave", sql.VarChar, USU_clave)
+        .input("USU_cargo", sql.VarChar, USU_cargo)
+        .input("USU_rol", sql.VarChar, USU_rol)
+        .query(querys.updateUserById);
+  
+     if(result.rowsAffected==1){
+      return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+    }else{
+      return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+    }
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+  };
+
