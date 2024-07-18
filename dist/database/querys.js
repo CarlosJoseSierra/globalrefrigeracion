@@ -127,6 +127,7 @@ var querys = {
   updateUbicacionById: "UPDATE UBICACION SET UBIC_ciudad = @UBIC_ciudad,UBIC_provincia = @UBIC_provincia WHERE UBIC_id = @Id",
   getUbicacionById: "SELECT UBIC_id, UBIC_ciudad, UBIC_provincia FROM UBICACION WHERE UBIC_id = @Id ",
   addNewUser: "INSERT INTO USUARIOS(USU_nombre,USU_usuario,USU_clave,USU_cargo,USU_rol,USU_telefono,USU_estado,USU_conectado,USU_SEDE_id ,USU_CLI_id2,USU_ing,USU_fecha,USU_CLI_id) VALUES(@USU_nombre,@USU_usuario,@USU_clave,@USU_cargo,@USU_rol,'',1,0,1,0,@USU_ing, GETDATE(),1)",
-  updateUserById: "UPDATE USUARIOS SET USU_nombre = @USU_nombre,USU_usuario = @USU_usuario,USU_clave = @USU_clave,USU_cargo = @USU_cargo,USU_rol = @USU_rol WHERE USU_id = @Id"
+  updateUserById: "UPDATE USUARIOS SET USU_nombre = @USU_nombre,USU_usuario = @USU_usuario,USU_clave = @USU_clave,USU_cargo = @USU_cargo,USU_rol = @USU_rol WHERE USU_id = @Id",
+  getRequerimientosMapa: "SELECT UBIC_provincia,REQ_UBIC_id FROM REQUERIMIENTOS INNER JOIN UBICACION ON REQ_UBIC_id = UBIC_id WHERE REQ_revisado = 2 AND REQ_corteProceso=2"
 };
 exports.querys = querys;
