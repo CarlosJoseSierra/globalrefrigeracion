@@ -15,6 +15,7 @@ import {
   editRequerimientosCierraCaso,
   createRequerimientos2,
   getRequerimientosMapa,
+  editRequerimientosHabilitar,
 } from "../controllers/requerimientos.controller";
 
 
@@ -34,4 +35,5 @@ router.get("/requerimientos/hijos/:id", getRquerimientosPadre);
 router.put("/requerimientos/xy/:id", editRequerimientosCierraCaso);
 router.post("/requerimientos/new2", storage.array('image',3),createRequerimientos2);
 router.get("/requerimientos/mapa", getRequerimientosMapa);
+router.put("/requerimientos/xz/:id", editRequerimientosHabilitar);
 export default router;
