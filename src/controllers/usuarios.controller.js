@@ -93,7 +93,7 @@ export const getUsuarioById = async (req, res) => {
     }
   };
   export const createNewUser = async (req, res) => {
-    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol} = req.body;
+    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol, USU_ing} = req.body;
     
   
     try {
@@ -105,6 +105,7 @@ export const getUsuarioById = async (req, res) => {
         .input("USU_clave", sql.VarChar, USU_clave)
         .input("USU_cargo", sql.VarChar, USU_cargo)
         .input("USU_rol", sql.VarChar, USU_rol)
+        .input("USU_ing", sql.Decimal, USU_ing)
         .query(querys.addNewUser);
         if(result.rowsAffected==1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});

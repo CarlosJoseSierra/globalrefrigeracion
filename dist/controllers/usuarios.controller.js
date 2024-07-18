@@ -226,18 +226,18 @@ var getUsuarioByCargo = /*#__PURE__*/function () {
 exports.getUsuarioByCargo = getUsuarioByCargo;
 var createNewUser = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var _req$body3, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, pool, result;
+    var _req$body3, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, USU_ing, pool, result;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
-          _req$body3 = req.body, USU_nombre = _req$body3.USU_nombre, USU_usuario = _req$body3.USU_usuario, USU_clave = _req$body3.USU_clave, USU_cargo = _req$body3.USU_cargo, USU_rol = _req$body3.USU_rol;
+          _req$body3 = req.body, USU_nombre = _req$body3.USU_nombre, USU_usuario = _req$body3.USU_usuario, USU_clave = _req$body3.USU_clave, USU_cargo = _req$body3.USU_cargo, USU_rol = _req$body3.USU_rol, USU_ing = _req$body3.USU_ing;
           _context6.prev = 1;
           _context6.next = 4;
           return (0, _database.getConnection)();
         case 4:
           pool = _context6.sent;
           _context6.next = 7;
-          return pool.request().input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).query(_database.querys.addNewUser);
+          return pool.request().input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).input("USU_ing", _database.sql.Decimal, USU_ing).query(_database.querys.addNewUser);
         case 7:
           result = _context6.sent;
           if (!(result.rowsAffected == 1)) {
