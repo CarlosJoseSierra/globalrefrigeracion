@@ -790,7 +790,7 @@ var editRequerimientosCierraCaso = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimientoCorte);
         case 6:
           result = _context13.sent;
-          if (!(result.rowsAffected > 1)) {
+          if (!(result.rowsAffected > 0)) {
             _context13.next = 11;
             break;
           }
@@ -839,7 +839,7 @@ var editRequerimientosHabilitar = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).query(_database.querys.editRequerimientoHabilitar);
         case 6:
           result = _context14.sent;
-          if (!(result.rowsAffected > 1)) {
+          if (!(result.rowsAffected == 1)) {
             _context14.next = 11;
             break;
           }
