@@ -50,7 +50,7 @@ var createNewUbicacion = /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           _req$body = req.body, UBIC_ciudad = _req$body.UBIC_ciudad, UBIC_provincia = _req$body.UBIC_provincia, UBIC_USU_ing = _req$body.UBIC_USU_ing; // validating
-          if (!(UBIC_ciudad == null || UBIC_provincia == null || UBIC_USU_ing == null)) {
+          if (!(UBIC_ciudad == null || UBIC_provincia == null)) {
             _context2.next = 3;
             break;
           }
@@ -64,7 +64,7 @@ var createNewUbicacion = /*#__PURE__*/function () {
         case 6:
           pool = _context2.sent;
           _context2.next = 9;
-          return pool.request().input("UBIC_ciudad", _database.sql.VarChar, UBIC_ciudad).input("UBIC_provincia", _database.sql.VarChar, UBIC_provincia).input("UBIC_USU_ing", _database.sql.Decimal, UBIC_USU_ing).query(_database.querys.addNewUbicacion);
+          return pool.request().input("UBIC_ciudad", _database.sql.VarChar, UBIC_ciudad).input("UBIC_provincia", _database.sql.VarChar, UBIC_provincia).query(_database.querys.addNewUbicacion);
         case 9:
           result = _context2.sent;
           if (!(result.rowsAffected[0] == 1)) {
@@ -74,10 +74,7 @@ var createNewUbicacion = /*#__PURE__*/function () {
           return _context2.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
-            token: 0,
-            UBIC_id: result.recordset[0].UBIC_id,
-            UBIC_ciudad: UBIC_ciudad,
-            UBIC_provincia: UBIC_provincia
+            token: 0
           }));
         case 14:
           return _context2.abrupt("return", res.status(400).json({
@@ -107,12 +104,12 @@ var createNewUbicacion = /*#__PURE__*/function () {
 exports.createNewUbicacion = createNewUbicacion;
 var updateUbicacionById = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var _req$body2, UBIC_ciudad, UBIC_provincia, UBIC_USU_edit, pool, result;
+    var _req$body2, UBIC_ciudad, UBIC_provincia, pool, result;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _req$body2 = req.body, UBIC_ciudad = _req$body2.UBIC_ciudad, UBIC_provincia = _req$body2.UBIC_provincia, UBIC_USU_edit = _req$body2.UBIC_USU_edit; // validating
-          if (!(UBIC_ciudad == null || UBIC_provincia == null || UBIC_USU_edit == null)) {
+          _req$body2 = req.body, UBIC_ciudad = _req$body2.UBIC_ciudad, UBIC_provincia = _req$body2.UBIC_provincia; // validating
+          if (!(UBIC_ciudad == null || UBIC_provincia == null)) {
             _context3.next = 3;
             break;
           }
@@ -126,7 +123,7 @@ var updateUbicacionById = /*#__PURE__*/function () {
         case 6:
           pool = _context3.sent;
           _context3.next = 9;
-          return pool.request().input("id", req.params.id).input("UBIC_ciudad", _database.sql.VarChar, UBIC_ciudad).input("UBIC_provincia", _database.sql.VarChar, UBIC_provincia).input("UBIC_USU_edit", _database.sql.Decimal, UBIC_USU_edit).query(_database.querys.updateUbicacionById);
+          return pool.request().input("id", req.params.id).input("UBIC_ciudad", _database.sql.VarChar, UBIC_ciudad).input("UBIC_provincia", _database.sql.VarChar, UBIC_provincia).query(_database.querys.updateUbicacionById);
         case 9:
           result = _context3.sent;
           if (!(result.rowsAffected == 1)) {
@@ -136,19 +133,13 @@ var updateUbicacionById = /*#__PURE__*/function () {
           return _context3.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
-            token: 0,
-            UBIC_id: req.params.id,
-            UBIC_ciudad: UBIC_ciudad,
-            UBIC_provincia: UBIC_provincia
+            token: 0
           }));
         case 14:
           return _context3.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo actualizar, consulte al administrador",
-            token: 0,
-            UBIC_id: 0,
-            UBIC_ciudad: "",
-            UBIC_provincia: ""
+            token: 0
           }));
         case 15:
           _context3.next = 21;

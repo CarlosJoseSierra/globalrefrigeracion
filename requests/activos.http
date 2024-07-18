@@ -67,10 +67,10 @@ Content-Type: application/json
 {{api4}}/4
 
 
-@api100 = http://localhost:3000/api/requerimientos/z
+@api100 = http://localhost:3000/api/requerimientos/act/2
 
 ### get idCliente
-{{api100}}/2
+{{api100}}
 
 
 ### get idCliente
@@ -83,18 +83,12 @@ Content-Type: application/json
 {{api201}}
 
 ### add a product
-POST http://localhost:3000/api/subclienteC
+POST http://localhost:3000/api/ubicacion/new
 Content-Type: application/json
 
 {
-    "SC_nombre": "cjsa8",
-   "SC_codUniversal": "cjsa007",
-   "SC_direccion": "Tulipane7",
-    "SC_establecimiento": "Los Tulipanes7",
-   "SC_USU_ing": 18,
-   "SC_identificacion": "091935434056",
-   "SC_referencia": "Escuela Continente Americano5",
-   "SC_tipoNegocio": "Desarrollo de Software5"
+    "UBIC_ciudad": "z",
+   "UBIC_provincia": "z"
 }
 
 
