@@ -486,7 +486,7 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("id", req.params.id)
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimientoCorte);
-        if(result.rowsAffected==1){
+        if(result.rowsAffected>1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{
