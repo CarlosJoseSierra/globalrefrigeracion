@@ -836,7 +836,7 @@ var editRequerimientosHabilitar = /*#__PURE__*/function () {
         case 3:
           pool = _context14.sent;
           _context14.next = 6;
-          return pool.request().input("id", req.params.id).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).query(_database.querys.editRequerimientoHabilitar);
+          return pool.request().input("id", req.params.id).query(_database.querys.editRequerimientoHabilitar);
         case 6:
           result = _context14.sent;
           if (!(result.rowsAffected > 1)) {

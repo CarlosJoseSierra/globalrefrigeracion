@@ -517,7 +517,6 @@ export const getRequerimientosActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("REQ_USU_edit", sql.Decimal, req.body.id)
         .query(querys.editRequerimientoHabilitar);
         if(result.rowsAffected>1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
