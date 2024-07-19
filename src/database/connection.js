@@ -9,7 +9,7 @@ export const dbSettings = {
   user: "sa",
   password: "Solomon2011",
   server: "181.198.20.179",
-  //server: "192.168.15.6",
+ // server: "192.168.15.6",
   //server: "DESKTOP-DQQ2201",
   //database: "PRODUCCIONPRUEBA",
   database: "GLOBAL_REFRIGERACION",
