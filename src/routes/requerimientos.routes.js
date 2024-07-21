@@ -29,7 +29,7 @@ router.put("/requerimientos/x/:id", editRequerimientosVisitaTecnica);
 router.put("/requerimientos/y/:id", editRequerimientosAprobacion);
 router.get("/requerimientos/act/:id", getRequerimientosActivosXtecnico);
 router.get("/requerimientos/rep/:id", getReparacionesActivosXtecnico);
-router.put("/requerimientos/z/:id",storage.array('image',5), editRequerimientosReparacion);
+router.put("/requerimientos/z/:id",storage.array('image',6),editRequerimientosReparacion);
 //router.put("/requerimientos/z/:id",storage.single('image'), editRequerimientosReparacion);
 router.get("/requerimientos/hijos/:id", getRquerimientosPadre);
 router.put("/requerimientos/xy/:id", editRequerimientosCierraCaso);

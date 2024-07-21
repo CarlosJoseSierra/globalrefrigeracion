@@ -16,7 +16,7 @@ router.put("/requerimientos/x/:id", _requerimientos.editRequerimientosVisitaTecn
 router.put("/requerimientos/y/:id", _requerimientos.editRequerimientosAprobacion);
 router.get("/requerimientos/act/:id", _requerimientos.getRequerimientosActivosXtecnico);
 router.get("/requerimientos/rep/:id", _requerimientos.getReparacionesActivosXtecnico);
-router.put("/requerimientos/z/:id", storage.array('image', 5), _requerimientos.editRequerimientosReparacion);
+router.put("/requerimientos/z/:id", storage.array('image', 6), _requerimientos.editRequerimientosReparacion);
 //router.put("/requerimientos/z/:id",storage.single('image'), editRequerimientosReparacion);
 router.get("/requerimientos/hijos/:id", _requerimientos.getRquerimientosPadre);
 router.put("/requerimientos/xy/:id", _requerimientos.editRequerimientosCierraCaso);

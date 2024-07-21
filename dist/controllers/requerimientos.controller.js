@@ -590,12 +590,12 @@ var getReparacionesActivosXtecnico = /*#__PURE__*/function () {
 exports.getReparacionesActivosXtecnico = getReparacionesActivosXtecnico;
 var editRequerimientosReparacion = /*#__PURE__*/function () {
   var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(req, res) {
-    var image, image1, image2, image3, image4, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, pool, totalDetalle, ivaDetalle, totalFinalDetalle, i, json, result, pool2, result2, _i6, _json, _i7, _json2, pool3, result3, _i8, _json3, _pool3, _result4;
+    var image, image1, image2, image3, image4, firma, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, pool, totalDetalle, ivaDetalle, totalFinalDetalle, i, json, result, pool2, result2, _i6, _json, _i7, _json2, pool3, result3, _i8, _json3, _pool3, _result4;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
       while (1) switch (_context11.prev = _context11.next) {
         case 0:
           _context11.prev = 0;
-          image = '', image1 = '', image2 = '', image3 = '', image4 = '';
+          image = '', image1 = '', image2 = '', image3 = '', image4 = '', firma = '';
           imageruta = '', imageruta1 = '', imageruta2 = '', imageruta3 = '', imageruta4 = '';
           _context11.next = 5;
           return (0, _database.getConnection)();
@@ -604,26 +604,47 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           totalDetalle = 0;
           ivaDetalle = 0;
           totalFinalDetalle = 0;
+          console.log(req.files);
           if (req.files.length > 0) {
             if (req.files[0] != undefined) {
-              image = req.files[0].filename;
-              imageruta = req.files[0].path;
+              if (req.files[0].filename.includes('Firma')) {
+                firma = req.files[0].filename;
+              } else {
+                image = req.files[0].filename;
+                imageruta = req.files[0].path;
+              }
             }
             if (req.files[1] != undefined) {
-              image1 = req.files[1].filename;
-              imageruta1 = req.files[1].path;
+              if (req.files[1].filename.includes('Firma')) {
+                firma = req.files[1].filename;
+              } else {
+                image1 = req.files[1].filename;
+                imageruta1 = req.files[1].path;
+              }
             }
             if (req.files[2] != undefined) {
-              image2 = req.files[2].filename;
-              imageruta2 = req.files[2].path;
+              if (req.files[2].filename.includes('Firma')) {
+                firma = req.files[2].filename;
+              } else {
+                image2 = req.files[2].filename;
+                imageruta2 = req.files[2].path;
+              }
             }
             if (req.files[3] != undefined) {
-              image3 = req.files[3].filename;
-              imageruta3 = req.files[3].path;
+              if (req.files[3].filename.includes('Firma')) {
+                firma = req.files[3].filename;
+              } else {
+                image3 = req.files[3].filename;
+                imageruta3 = req.files[3].path;
+              }
             }
             if (req.files[4] != undefined) {
-              image4 = req.files[4].filename;
-              imageruta4 = req.files[4].path;
+              if (req.files[1].filename.includes('Firma')) {
+                firma = req.files[1].filename;
+              } else {
+                image4 = req.files[4].filename;
+                imageruta4 = req.files[4].path;
+              }
             }
           }
           if (req.body.details.length > 0) {
@@ -634,24 +655,24 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             ivaDetalle = totalDetalle * (15 / 100);
             totalFinalDetalle = totalDetalle + ivaDetalle;
           }
-          _context11.next = 13;
-          return pool.request().input("id", req.params.id).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_observacionTecnica", _database.sql.VarChar, req.body.Observacion).input("REQ_SubTotal", _database.sql.Decimal(18, 2), totalDetalle).input("REQ_IVA", _database.sql.Decimal(18, 2), ivaDetalle).input("REQ_total", _database.sql.Decimal(18, 2), totalFinalDetalle).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).input("REQ_imagen1", _database.sql.VarChar, image).input("REQ_rutaimagen1", _database.sql.VarChar, imageruta).input("REQ_imagen2", _database.sql.VarChar, image1).input("REQ_rutaimagen2", _database.sql.VarChar, imageruta1).input("REQ_imagen3", _database.sql.VarChar, image2).input("REQ_rutaimagen3", _database.sql.VarChar, imageruta2).input("REQ_imagen4", _database.sql.VarChar, image3).input("REQ_rutaimagen4", _database.sql.VarChar, imageruta3).input("REQ_imagen5", _database.sql.VarChar, image4).input("REQ_rutaimagen5", _database.sql.VarChar, imageruta4).query(_database.querys.editRequerimientoReparacion);
-        case 13:
+          _context11.next = 14;
+          return pool.request().input("id", req.params.id).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_observacionTecnica", _database.sql.VarChar, req.body.Observacion).input("REQ_SubTotal", _database.sql.Decimal(18, 2), totalDetalle).input("REQ_IVA", _database.sql.Decimal(18, 2), ivaDetalle).input("REQ_total", _database.sql.Decimal(18, 2), totalFinalDetalle).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).input("REQ_imagen1", _database.sql.VarChar, image).input("REQ_rutaimagen1", _database.sql.VarChar, imageruta).input("REQ_imagen2", _database.sql.VarChar, image1).input("REQ_rutaimagen2", _database.sql.VarChar, imageruta1).input("REQ_imagen3", _database.sql.VarChar, image2).input("REQ_rutaimagen3", _database.sql.VarChar, imageruta2).input("REQ_imagen4", _database.sql.VarChar, image3).input("REQ_rutaimagen4", _database.sql.VarChar, imageruta3).input("REQ_imagen5", _database.sql.VarChar, image4).input("REQ_rutaimagen5", _database.sql.VarChar, imageruta4).input("REQ_firmaCliente", _database.sql.VarChar, firma).query(_database.querys.editRequerimientoReparacion);
+        case 14:
           result = _context11.sent;
           if (!(result.rowsAffected == 1)) {
-            _context11.next = 54;
+            _context11.next = 55;
             break;
           }
-          _context11.next = 17;
+          _context11.next = 18;
           return (0, _database.getConnection)();
-        case 17:
+        case 18:
           pool2 = _context11.sent;
-          _context11.next = 20;
+          _context11.next = 21;
           return pool2.request().input("REQDET_REQ_id", req.params.id).query(_database.querys.cambiarEstadoRequerimientoDetalle);
-        case 20:
+        case 21:
           result2 = _context11.sent;
           if (!(result2.rowsAffected > 0)) {
-            _context11.next = 38;
+            _context11.next = 39;
             break;
           }
           if (req.body.details.length > 0) {
@@ -663,80 +684,80 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             totalFinalDetalle = totalDetalle + ivaDetalle;
           }
           if (!(req.body.details.length > 0)) {
-            _context11.next = 36;
+            _context11.next = 37;
             break;
           }
           _i7 = 0;
-        case 25:
+        case 26:
           if (!(_i7 < req.body.details.length)) {
-            _context11.next = 36;
+            _context11.next = 37;
             break;
           }
           _json2 = JSON.parse(req.body.details[_i7]);
-          _context11.next = 29;
+          _context11.next = 30;
           return (0, _database.getConnection)();
-        case 29:
+        case 30:
           pool3 = _context11.sent;
-          _context11.next = 32;
+          _context11.next = 33;
           return pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, _json2.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json2.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json2.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json2.qty * _json2.salesPrice).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 32:
-          result3 = _context11.sent;
         case 33:
+          result3 = _context11.sent;
+        case 34:
           _i7++;
-          _context11.next = 25;
+          _context11.next = 26;
           break;
-        case 36:
-          _context11.next = 51;
+        case 37:
+          _context11.next = 52;
           break;
-        case 38:
+        case 39:
           if (!(req.body.details.length > 0)) {
-            _context11.next = 51;
+            _context11.next = 52;
             break;
           }
           _i8 = 0;
-        case 40:
+        case 41:
           if (!(_i8 < req.body.details.length)) {
-            _context11.next = 51;
+            _context11.next = 52;
             break;
           }
           _json3 = JSON.parse(req.body.details[_i8]);
-          _context11.next = 44;
+          _context11.next = 45;
           return (0, _database.getConnection)();
-        case 44:
+        case 45:
           _pool3 = _context11.sent;
-          _context11.next = 47;
+          _context11.next = 48;
           return _pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, _json3.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json3.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json3.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json3.qty * _json3.salesPrice).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 47:
-          _result4 = _context11.sent;
         case 48:
+          _result4 = _context11.sent;
+        case 49:
           _i8++;
-          _context11.next = 40;
+          _context11.next = 41;
           break;
-        case 51:
+        case 52:
           return _context11.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 54:
+        case 55:
           return _context11.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 55:
-          _context11.next = 61;
+        case 56:
+          _context11.next = 62;
           break;
-        case 57:
-          _context11.prev = 57;
+        case 58:
+          _context11.prev = 58;
           _context11.t0 = _context11["catch"](0);
           res.status(500);
           res.send(_context11.t0.message);
-        case 61:
+        case 62:
         case "end":
           return _context11.stop();
       }
-    }, _callee11, null, [[0, 57]]);
+    }, _callee11, null, [[0, 58]]);
   }));
   return function editRequerimientosReparacion(_x21, _x22) {
     return _ref11.apply(this, arguments);
