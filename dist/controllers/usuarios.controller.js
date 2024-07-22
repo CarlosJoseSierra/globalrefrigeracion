@@ -226,22 +226,28 @@ var getUsuarioByCargo = /*#__PURE__*/function () {
 exports.getUsuarioByCargo = getUsuarioByCargo;
 var createNewUser = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var _req$body3, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, USU_ing, pool, result;
+    var _req$body3, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, USU_ing, image, pool, result;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
           _req$body3 = req.body, USU_nombre = _req$body3.USU_nombre, USU_usuario = _req$body3.USU_usuario, USU_clave = _req$body3.USU_clave, USU_cargo = _req$body3.USU_cargo, USU_rol = _req$body3.USU_rol, USU_ing = _req$body3.USU_ing;
           _context6.prev = 1;
-          _context6.next = 4;
+          image = '';
+          if (req.files.length > 0) {
+            if (req.files[0] != undefined) {
+              image = req.files[0].filename;
+            }
+          }
+          _context6.next = 6;
           return (0, _database.getConnection)();
-        case 4:
+        case 6:
           pool = _context6.sent;
-          _context6.next = 7;
-          return pool.request().input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).input("USU_ing", _database.sql.Decimal, USU_ing).query(_database.querys.addNewUser);
-        case 7:
+          _context6.next = 9;
+          return pool.request().input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).input("USU_ing", _database.sql.Decimal, USU_ing).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.addNewUser);
+        case 9:
           result = _context6.sent;
           if (!(result.rowsAffected == 1)) {
-            _context6.next = 12;
+            _context6.next = 14;
             break;
           }
           return _context6.abrupt("return", res.status(200).json({
@@ -249,26 +255,26 @@ var createNewUser = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 12:
+        case 14:
           return _context6.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 13:
-          _context6.next = 20;
-          break;
         case 15:
-          _context6.prev = 15;
+          _context6.next = 22;
+          break;
+        case 17:
+          _context6.prev = 17;
           _context6.t0 = _context6["catch"](1);
           res.status(500);
           console.log(_context6.t0.message);
           res.send(_context6.t0.message);
-        case 20:
+        case 22:
         case "end":
           return _context6.stop();
       }
-    }, _callee6, null, [[1, 15]]);
+    }, _callee6, null, [[1, 17]]);
   }));
   return function createNewUser(_x11, _x12) {
     return _ref6.apply(this, arguments);
@@ -277,22 +283,28 @@ var createNewUser = /*#__PURE__*/function () {
 exports.createNewUser = createNewUser;
 var updateUserById = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
-    var _req$body4, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, pool, result;
+    var _req$body4, USU_nombre, USU_usuario, USU_clave, USU_cargo, USU_rol, image, pool, result;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
           _req$body4 = req.body, USU_nombre = _req$body4.USU_nombre, USU_usuario = _req$body4.USU_usuario, USU_clave = _req$body4.USU_clave, USU_cargo = _req$body4.USU_cargo, USU_rol = _req$body4.USU_rol;
           _context7.prev = 1;
-          _context7.next = 4;
+          image = '';
+          if (req.files.length > 0) {
+            if (req.files[0] != undefined) {
+              image = req.files[0].filename;
+            }
+          }
+          _context7.next = 6;
           return (0, _database.getConnection)();
-        case 4:
+        case 6:
           pool = _context7.sent;
-          _context7.next = 7;
-          return pool.request().input("id", req.params.id).input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).query(_database.querys.updateUserById);
-        case 7:
+          _context7.next = 9;
+          return pool.request().input("id", req.params.id).input("USU_nombre", _database.sql.VarChar, USU_nombre).input("USU_usuario", _database.sql.VarChar, USU_usuario).input("USU_clave", _database.sql.VarChar, USU_clave).input("USU_cargo", _database.sql.VarChar, USU_cargo).input("USU_rol", _database.sql.VarChar, USU_rol).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.updateUserById);
+        case 9:
           result = _context7.sent;
           if (!(result.rowsAffected == 1)) {
-            _context7.next = 12;
+            _context7.next = 14;
             break;
           }
           return _context7.abrupt("return", res.status(200).json({
@@ -300,25 +312,25 @@ var updateUserById = /*#__PURE__*/function () {
             msg: "Actualizacion exitosa",
             token: 0
           }));
-        case 12:
+        case 14:
           return _context7.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo actualizar, consulte al administrador",
             token: 0
           }));
-        case 13:
-          _context7.next = 19;
-          break;
         case 15:
-          _context7.prev = 15;
+          _context7.next = 21;
+          break;
+        case 17:
+          _context7.prev = 17;
           _context7.t0 = _context7["catch"](1);
           res.status(500);
           res.send(_context7.t0.message);
-        case 19:
+        case 21:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[1, 15]]);
+    }, _callee7, null, [[1, 17]]);
   }));
   return function updateUserById(_x13, _x14) {
     return _ref7.apply(this, arguments);

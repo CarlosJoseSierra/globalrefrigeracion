@@ -97,6 +97,14 @@ export const getUsuarioById = async (req, res) => {
     
   
     try {
+      let image = '';
+      if(req.files.length>0)
+      {
+        if(req.files[0]!=undefined)
+        {
+            image = req.files[0].filename;
+        }
+      }
       const pool = await getConnection();
       const result = await pool
         .request()
@@ -106,6 +114,7 @@ export const getUsuarioById = async (req, res) => {
         .input("USU_cargo", sql.VarChar, USU_cargo)
         .input("USU_rol", sql.VarChar, USU_rol)
         .input("USU_ing", sql.Decimal, USU_ing)
+        .input("USU_firma", sql.VarChar, image)
         .query(querys.addNewUser);
         if(result.rowsAffected==1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -124,6 +133,14 @@ export const getUsuarioById = async (req, res) => {
     const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol} = req.body;
     
     try {
+      let image = '';
+      if(req.files.length>0)
+      {
+        if(req.files[0]!=undefined)
+        {
+            image = req.files[0].filename;
+        }
+      }
       const pool = await getConnection();
       
       const result = await pool
@@ -134,6 +151,7 @@ export const getUsuarioById = async (req, res) => {
         .input("USU_clave", sql.VarChar, USU_clave)
         .input("USU_cargo", sql.VarChar, USU_cargo)
         .input("USU_rol", sql.VarChar, USU_rol)
+        .input("USU_firma", sql.VarChar, image)
         .query(querys.updateUserById);
   
      if(result.rowsAffected==1){
