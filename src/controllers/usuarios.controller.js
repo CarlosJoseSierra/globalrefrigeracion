@@ -130,13 +130,12 @@ export const getUsuarioById = async (req, res) => {
         
     try {
       let image = '';
-      if(req.file.length>0)
-      {
+     
         if(req.file!=undefined)
         {
             image = req.file.filename;
         }
-      }
+      
       const pool = await getConnection();
       
       const result = await pool

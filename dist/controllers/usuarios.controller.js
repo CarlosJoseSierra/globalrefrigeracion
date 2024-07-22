@@ -288,10 +288,8 @@ var updateUserById = /*#__PURE__*/function () {
         case 0:
           _context7.prev = 0;
           image = '';
-          if (req.file.length > 0) {
-            if (req.file != undefined) {
-              image = req.file.filename;
-            }
+          if (req.file != undefined) {
+            image = req.file.filename;
           }
           _context7.next = 5;
           return (0, _database.getConnection)();
