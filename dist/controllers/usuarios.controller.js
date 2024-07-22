@@ -288,9 +288,9 @@ var updateUserById = /*#__PURE__*/function () {
         case 0:
           _context7.prev = 0;
           image = '';
-          if (req.files.length > 0) {
-            if (req.files[0] != undefined) {
-              image = req.files[0].filename;
+          if (req.file.length > 0) {
+            if (req.file != undefined) {
+              image = req.file.filename;
             }
           }
           _context7.next = 5;
