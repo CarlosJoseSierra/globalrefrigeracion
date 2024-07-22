@@ -348,12 +348,12 @@ export const getRequerimientosActivos = async (req, res) => {
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
-    console.log(req.files);
+    
       if(req.files.length>0)
       {
         if(req.files[0]!=undefined)
         {
-          if(req.files[0].filename.includes('Firma')){
+          if(req.files[0].originalname.includes('Firma')){
               firma = req.files[0].filename;
           }
           else{
@@ -363,16 +363,18 @@ export const getRequerimientosActivos = async (req, res) => {
         }
         if(req.files[1]!=undefined)
         {
-          if(req.files[1].filename.includes('Firma')){
+          if(req.files[1].originalname.includes('Firma')){
+            console.log('entro');
             firma = req.files[1].filename;
           }else{
+            console.log('no entro');
             image1 = req.files[1].filename;
             imageruta1 = req.files[1].path;
           }
         }
         if(req.files[2]!=undefined)
         {
-          if(req.files[2].filename.includes('Firma')){
+          if(req.files[2].originalname.includes('Firma')){
             firma = req.files[2].filename;
           }else{
             image2 = req.files[2].filename;
@@ -381,7 +383,7 @@ export const getRequerimientosActivos = async (req, res) => {
         }
         if(req.files[3]!=undefined)
         {
-          if(req.files[3].filename.includes('Firma')){
+          if(req.files[3].originalname.includes('Firma')){
             firma = req.files[3].filename;
           }else{
             image3 = req.files[3].filename;
@@ -390,8 +392,8 @@ export const getRequerimientosActivos = async (req, res) => {
         }
         if(req.files[4]!=undefined)
         {
-          if(req.files[1].filename.includes('Firma')){
-          firma = req.files[1].filename;
+          if(req.files[4].originalname.includes('Firma')){
+          firma = req.files[4].filename;
           }else{
             image4 = req.files[4].filename;
             imageruta4 = req.files[4].path;
