@@ -92,10 +92,7 @@ export const getUsuarioById = async (req, res) => {
       res.send(error.message);
     }
   };
-  export const createNewUser = async (req, res) => {
-    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol, USU_ing} = req.body;
-    
-  
+  export const createNewUser = async (req, res) => {  
     try {
       let image = '';
       if(req.files.length>0)
@@ -108,12 +105,12 @@ export const getUsuarioById = async (req, res) => {
       const pool = await getConnection();
       const result = await pool
         .request()
-        .input("USU_nombre", sql.VarChar, USU_nombre)
-        .input("USU_usuario", sql.VarChar, USU_usuario)
-        .input("USU_clave", sql.VarChar, USU_clave)
-        .input("USU_cargo", sql.VarChar, USU_cargo)
-        .input("USU_rol", sql.VarChar, USU_rol)
-        .input("USU_ing", sql.Decimal, USU_ing)
+        .input("USU_nombre", sql.VarChar, req.bodyUSU_nombre)
+        .input("USU_usuario", sql.VarChar, req.bodyUSU_usuario)
+        .input("USU_clave", sql.VarChar, req.bodyUSU_clave)
+        .input("USU_cargo", sql.VarChar, req.bodyUSU_cargo)
+        .input("USU_rol", sql.VarChar, req.bodyUSU_rol)
+        .input("USU_ing", sql.Decimal, req.bodyUSU_ing)
         .input("USU_firma", sql.VarChar, image)
         .query(querys.addNewUser);
         if(result.rowsAffected==1){
@@ -130,8 +127,7 @@ export const getUsuarioById = async (req, res) => {
   };
 
   export const updateUserById = async (req, res) => {
-    const { USU_nombre, USU_usuario, USU_clave,USU_cargo,USU_rol} = req.body;
-    
+        
     try {
       let image = '';
       if(req.files.length>0)
@@ -146,11 +142,11 @@ export const getUsuarioById = async (req, res) => {
       const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("USU_nombre", sql.VarChar, USU_nombre)
-        .input("USU_usuario", sql.VarChar, USU_usuario)
-        .input("USU_clave", sql.VarChar, USU_clave)
-        .input("USU_cargo", sql.VarChar, USU_cargo)
-        .input("USU_rol", sql.VarChar, USU_rol)
+        .input("USU_nombre", sql.VarChar, req.body.USU_nombre)
+        .input("USU_usuario", sql.VarChar, req.body.USU_usuario)
+        .input("USU_clave", sql.VarChar, req.body.USU_clave)
+        .input("USU_cargo", sql.VarChar, req.body.USU_cargo)
+        .input("USU_rol", sql.VarChar, req.body.USU_rol)
         .input("USU_firma", sql.VarChar, image)
         .query(querys.updateUserById);
   
