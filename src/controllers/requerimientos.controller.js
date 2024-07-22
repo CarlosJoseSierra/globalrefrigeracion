@@ -364,10 +364,8 @@ export const getRequerimientosActivos = async (req, res) => {
         if(req.files[1]!=undefined)
         {
           if(req.files[1].originalname.includes('Firma')){
-            console.log('entro');
             firma = req.files[1].filename;
           }else{
-            console.log('no entro');
             image1 = req.files[1].filename;
             imageruta1 = req.files[1].path;
           }
@@ -397,6 +395,12 @@ export const getRequerimientosActivos = async (req, res) => {
           }else{
             image4 = req.files[4].filename;
             imageruta4 = req.files[4].path;
+          }
+        }
+
+        if(req.files[5]!=undefined){
+          if(req.files[5].originalname.includes('Firma')){
+            firma = req.files[5].filename;
           }
         }
       }
