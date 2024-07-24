@@ -358,8 +358,8 @@ export const getRequerimientosActivos = async (req, res) => {
         if(req.files[0]!=undefined)
         {
           if(req.files[0].originalname.includes('Firma')){
-              firma = req.files[0].filename;
               const img = await cloudinary.uploader.upload(req.files[0].path);
+              firma = img.url;
           }
           else{
             image = req.files[0].filename;
@@ -370,8 +370,8 @@ export const getRequerimientosActivos = async (req, res) => {
         if(req.files[1]!=undefined)
         {
           if(req.files[1].originalname.includes('Firma')){
-            firma = req.files[1].filename;
             const img = await cloudinary.uploader.upload(req.files[1].path);
+            firma = img.url;
           }else{
             image1 = req.files[1].filename;
             const img = await cloudinary.uploader.upload(req.files[1].path);
@@ -381,8 +381,8 @@ export const getRequerimientosActivos = async (req, res) => {
         if(req.files[2]!=undefined)
         {
           if(req.files[2].originalname.includes('Firma')){
-            firma = req.files[2].filename;
             const img = await cloudinary.uploader.upload(req.files[2].path);
+            firma = img.url;
           }else{
             image2 = req.files[2].filename;
             const img = await cloudinary.uploader.upload(req.files[2].path);
@@ -393,7 +393,7 @@ export const getRequerimientosActivos = async (req, res) => {
         {
           if(req.files[3].originalname.includes('Firma')){
             const img = await cloudinary.uploader.upload(req.files[3].path);
-            firma = req.files[3].filename;
+            firma = img.url;
           }else{
             image3 = req.files[3].filename;
             const img = await cloudinary.uploader.upload(req.files[3].path);
@@ -403,8 +403,8 @@ export const getRequerimientosActivos = async (req, res) => {
         if(req.files[4]!=undefined)
         {
           if(req.files[4].originalname.includes('Firma')){
-          firma = req.files[4].filename;
-          const img = await cloudinary.uploader.upload(req.files[4].path);
+            const img = await cloudinary.uploader.upload(req.files[4].path);
+            firma = img.url;
           }else{
             image4 = req.files[4].filename;
             const img = await cloudinary.uploader.upload(req.files[4].path);

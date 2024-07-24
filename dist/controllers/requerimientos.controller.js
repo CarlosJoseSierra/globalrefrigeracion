@@ -619,11 +619,11 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             _context11.next = 18;
             break;
           }
-          firma = req.files[0].filename;
-          _context11.next = 15;
+          _context11.next = 14;
           return cloudinary.uploader.upload(req.files[0].path);
-        case 15:
+        case 14:
           img = _context11.sent;
+          firma = img.url;
           _context11.next = 23;
           break;
         case 18:
@@ -642,11 +642,11 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             _context11.next = 31;
             break;
           }
-          firma = req.files[1].filename;
-          _context11.next = 28;
+          _context11.next = 27;
           return cloudinary.uploader.upload(req.files[1].path);
-        case 28:
+        case 27:
           _img2 = _context11.sent;
+          firma = _img2.url;
           _context11.next = 36;
           break;
         case 31:
@@ -665,11 +665,11 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             _context11.next = 44;
             break;
           }
-          firma = req.files[2].filename;
-          _context11.next = 41;
+          _context11.next = 40;
           return cloudinary.uploader.upload(req.files[2].path);
-        case 41:
+        case 40:
           _img4 = _context11.sent;
+          firma = _img4.url;
           _context11.next = 49;
           break;
         case 44:
@@ -692,7 +692,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[3].path);
         case 53:
           _img6 = _context11.sent;
-          firma = req.files[3].filename;
+          firma = _img6.url;
           _context11.next = 62;
           break;
         case 57:
@@ -711,11 +711,11 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             _context11.next = 70;
             break;
           }
-          firma = req.files[4].filename;
-          _context11.next = 67;
+          _context11.next = 66;
           return cloudinary.uploader.upload(req.files[4].path);
-        case 67:
+        case 66:
           _img8 = _context11.sent;
+          firma = _img8.url;
           _context11.next = 75;
           break;
         case 70:
