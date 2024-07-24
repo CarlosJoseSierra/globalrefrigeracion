@@ -1,5 +1,7 @@
 import { getConnection, querys, sql } from "../database";
 const jwt = require('jsonwebtoken');
+const cloudinary = require("../libs/cloudinary");
+const upload = require ('../libs/multer');
 
 export const getUsuarios = async (req, res) => {
   try {
@@ -95,13 +97,11 @@ export const getUsuarioById = async (req, res) => {
   export const createNewUser = async (req, res) => {  
     try {
       let image = '';
-      if(req.files.length>0)
-      {
-        if(req.files[0]!=undefined)
+      if(req.file!=undefined)
         {
-            image = req.files[0].filename;
+          const img = await cloudinary.uploader.upload(req.file.path);
+          image = img.url;
         }
-      }
       const pool = await getConnection();
       const result = await pool
         .request()
@@ -133,7 +133,8 @@ export const getUsuarioById = async (req, res) => {
      
         if(req.file!=undefined)
         {
-            image = req.file.filename;
+          const img = await cloudinary.uploader.upload(req.file.path);
+          image = img.url;
         }
       
       const pool = await getConnection();

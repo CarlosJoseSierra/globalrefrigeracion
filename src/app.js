@@ -26,6 +26,7 @@ import path  from 'path'
 import cargosRoutes from "./routes/cargos.routes.js";
 import rolesRoutes from "./routes/roles.routes.js";
 import ubicacioRoutes from "./routes/ubicacion.routes.js";
+const cloudinary = require("cloudinary").v2
 //import morgan from "morgan";
 //import config from "./config.js";
 //var cors = require('cors');

@@ -1,6 +1,10 @@
+import { url } from "inspector";
 import { getConnection, querys, sql } from "../database";
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const cloudinary = require("../libs/cloudinary");
+const upload = require ('../libs/multer');
+
 
 export const getAllRequerimientos = async (req, res) => {
   try {
@@ -348,59 +352,73 @@ export const getRequerimientosActivos = async (req, res) => {
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
-    
+      
       if(req.files.length>0)
       {
         if(req.files[0]!=undefined)
         {
           if(req.files[0].originalname.includes('Firma')){
               firma = req.files[0].filename;
+              const img = await cloudinary.uploader.upload(req.files[0].path);
           }
           else{
             image = req.files[0].filename;
-            imageruta = req.files[0].path;
+            const img = await cloudinary.uploader.upload(req.files[0].path);
+            imageruta = img.url;
           }
         }
         if(req.files[1]!=undefined)
         {
           if(req.files[1].originalname.includes('Firma')){
             firma = req.files[1].filename;
+            const img = await cloudinary.uploader.upload(req.files[1].path);
           }else{
             image1 = req.files[1].filename;
-            imageruta1 = req.files[1].path;
+            const img = await cloudinary.uploader.upload(req.files[1].path);
+            imageruta1 = img.url;
           }
         }
         if(req.files[2]!=undefined)
         {
           if(req.files[2].originalname.includes('Firma')){
             firma = req.files[2].filename;
+            const img = await cloudinary.uploader.upload(req.files[2].path);
           }else{
             image2 = req.files[2].filename;
-            imageruta2 = req.files[2].path;
+            const img = await cloudinary.uploader.upload(req.files[2].path);
+            imageruta2 = img.url;
           }
         }
         if(req.files[3]!=undefined)
         {
           if(req.files[3].originalname.includes('Firma')){
+            const img = await cloudinary.uploader.upload(req.files[3].path);
             firma = req.files[3].filename;
           }else{
             image3 = req.files[3].filename;
-            imageruta3 = req.files[3].path;
+            const img = await cloudinary.uploader.upload(req.files[3].path);
+            imageruta3 = img.url;
           }
         }
         if(req.files[4]!=undefined)
         {
           if(req.files[4].originalname.includes('Firma')){
           firma = req.files[4].filename;
+          const img = await cloudinary.uploader.upload(req.files[4].path);
           }else{
             image4 = req.files[4].filename;
-            imageruta4 = req.files[4].path;
+            const img = await cloudinary.uploader.upload(req.files[4].path);
+            imageruta4 = img.url;
           }
         }
 
         if(req.files[5]!=undefined){
           if(req.files[5].originalname.includes('Firma')){
-            firma = req.files[5].filename;
+            const img = await cloudinary.uploader.upload(req.files[5].path);
+            firma = img.url;
+          }
+          else{
+            firma = '';
           }
         }
       }

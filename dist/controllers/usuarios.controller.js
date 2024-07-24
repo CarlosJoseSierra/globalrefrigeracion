@@ -10,6 +10,8 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var jwt = require('jsonwebtoken');
+var cloudinary = require("../libs/cloudinary");
+var upload = require('../libs/multer');
 var getUsuarios = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
     var pool, result;
@@ -226,27 +228,32 @@ var getUsuarioByCargo = /*#__PURE__*/function () {
 exports.getUsuarioByCargo = getUsuarioByCargo;
 var createNewUser = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var image, pool, result;
+    var image, img, pool, result;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
           _context6.prev = 0;
           image = '';
-          if (req.files.length > 0) {
-            if (req.files[0] != undefined) {
-              image = req.files[0].filename;
-            }
+          if (!(req.file != undefined)) {
+            _context6.next = 7;
+            break;
           }
           _context6.next = 5;
-          return (0, _database.getConnection)();
+          return cloudinary.uploader.upload(req.file.path);
         case 5:
+          img = _context6.sent;
+          image = img.url;
+        case 7:
+          _context6.next = 9;
+          return (0, _database.getConnection)();
+        case 9:
           pool = _context6.sent;
-          _context6.next = 8;
+          _context6.next = 12;
           return pool.request().input("USU_nombre", _database.sql.VarChar, req.bodyUSU_nombre).input("USU_usuario", _database.sql.VarChar, req.bodyUSU_usuario).input("USU_clave", _database.sql.VarChar, req.bodyUSU_clave).input("USU_cargo", _database.sql.VarChar, req.bodyUSU_cargo).input("USU_rol", _database.sql.VarChar, req.bodyUSU_rol).input("USU_ing", _database.sql.Decimal, req.bodyUSU_ing).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.addNewUser);
-        case 8:
+        case 12:
           result = _context6.sent;
           if (!(result.rowsAffected == 1)) {
-            _context6.next = 13;
+            _context6.next = 17;
             break;
           }
           return _context6.abrupt("return", res.status(200).json({
@@ -254,26 +261,26 @@ var createNewUser = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 13:
+        case 17:
           return _context6.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 14:
-          _context6.next = 21;
+        case 18:
+          _context6.next = 25;
           break;
-        case 16:
-          _context6.prev = 16;
+        case 20:
+          _context6.prev = 20;
           _context6.t0 = _context6["catch"](0);
           res.status(500);
           console.log(_context6.t0.message);
           res.send(_context6.t0.message);
-        case 21:
+        case 25:
         case "end":
           return _context6.stop();
       }
-    }, _callee6, null, [[0, 16]]);
+    }, _callee6, null, [[0, 20]]);
   }));
   return function createNewUser(_x11, _x12) {
     return _ref6.apply(this, arguments);
@@ -282,25 +289,32 @@ var createNewUser = /*#__PURE__*/function () {
 exports.createNewUser = createNewUser;
 var updateUserById = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
-    var image, pool, result;
+    var image, img, pool, result;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
           _context7.prev = 0;
           image = '';
-          if (req.file != undefined) {
-            image = req.file.filename;
+          if (!(req.file != undefined)) {
+            _context7.next = 7;
+            break;
           }
           _context7.next = 5;
-          return (0, _database.getConnection)();
+          return cloudinary.uploader.upload(req.file.path);
         case 5:
+          img = _context7.sent;
+          image = img.url;
+        case 7:
+          _context7.next = 9;
+          return (0, _database.getConnection)();
+        case 9:
           pool = _context7.sent;
-          _context7.next = 8;
+          _context7.next = 12;
           return pool.request().input("id", req.params.id).input("USU_nombre", _database.sql.VarChar, req.body.USU_nombre).input("USU_usuario", _database.sql.VarChar, req.body.USU_usuario).input("USU_clave", _database.sql.VarChar, req.body.USU_clave).input("USU_cargo", _database.sql.VarChar, req.body.USU_cargo).input("USU_rol", _database.sql.VarChar, req.body.USU_rol).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.updateUserById);
-        case 8:
+        case 12:
           result = _context7.sent;
           if (!(result.rowsAffected == 1)) {
-            _context7.next = 13;
+            _context7.next = 17;
             break;
           }
           return _context7.abrupt("return", res.status(200).json({
@@ -308,25 +322,25 @@ var updateUserById = /*#__PURE__*/function () {
             msg: "Actualizacion exitosa",
             token: 0
           }));
-        case 13:
+        case 17:
           return _context7.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo actualizar, consulte al administrador",
             token: 0
           }));
-        case 14:
-          _context7.next = 20;
+        case 18:
+          _context7.next = 24;
           break;
-        case 16:
-          _context7.prev = 16;
+        case 20:
+          _context7.prev = 20;
           _context7.t0 = _context7["catch"](0);
           res.status(500);
           res.send(_context7.t0.message);
-        case 20:
+        case 24:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[0, 16]]);
+    }, _callee7, null, [[0, 20]]);
   }));
   return function updateUserById(_x13, _x14) {
     return _ref7.apply(this, arguments);

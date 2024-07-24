@@ -5,12 +5,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getRquerimientosPadre = exports.getRequerimientosMapa = exports.getRequerimientosActivosXtecnico = exports.getRequerimientosActivos = exports.getReparacionesActivosXtecnico = exports.getAllRequerimientos = exports.editRequerimientosVisitaTecnica = exports.editRequerimientosReparacion = exports.editRequerimientosHabilitar = exports.editRequerimientosCierraCaso = exports.editRequerimientosAprobacion = exports.editRequerimientos = exports.createRequerimientos2 = exports.createRequerimientos = void 0;
+var _inspector = require("inspector");
 var _database = require("../database");
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var jwt = require('jsonwebtoken');
 var path = require('path');
+var cloudinary = require("../libs/cloudinary");
+var upload = require('../libs/multer');
 var getAllRequerimientos = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
     var pool, result;
@@ -590,7 +593,7 @@ var getReparacionesActivosXtecnico = /*#__PURE__*/function () {
 exports.getReparacionesActivosXtecnico = getReparacionesActivosXtecnico;
 var editRequerimientosReparacion = /*#__PURE__*/function () {
   var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(req, res) {
-    var image, image1, image2, image3, image4, firma, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, pool, totalDetalle, ivaDetalle, totalFinalDetalle, i, json, result, pool2, result2, _i6, _json, _i7, _json2, pool3, result3, _i8, _json3, _pool3, _result4;
+    var image, image1, image2, image3, image4, firma, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, pool, totalDetalle, ivaDetalle, totalFinalDetalle, img, _img, _img2, _img3, _img4, _img5, _img6, _img7, _img8, _img9, _img10, i, json, result, pool2, result2, _i6, _json, _i7, _json2, pool3, result3, _i8, _json3, _pool3, _result4;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
       while (1) switch (_context11.prev = _context11.next) {
         case 0:
@@ -604,53 +607,143 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           totalDetalle = 0;
           ivaDetalle = 0;
           totalFinalDetalle = 0;
-          if (req.files.length > 0) {
-            if (req.files[0] != undefined) {
-              if (req.files[0].originalname.includes('Firma')) {
-                firma = req.files[0].filename;
-              } else {
-                image = req.files[0].filename;
-                imageruta = req.files[0].path;
-              }
-            }
-            if (req.files[1] != undefined) {
-              if (req.files[1].originalname.includes('Firma')) {
-                firma = req.files[1].filename;
-              } else {
-                image1 = req.files[1].filename;
-                imageruta1 = req.files[1].path;
-              }
-            }
-            if (req.files[2] != undefined) {
-              if (req.files[2].originalname.includes('Firma')) {
-                firma = req.files[2].filename;
-              } else {
-                image2 = req.files[2].filename;
-                imageruta2 = req.files[2].path;
-              }
-            }
-            if (req.files[3] != undefined) {
-              if (req.files[3].originalname.includes('Firma')) {
-                firma = req.files[3].filename;
-              } else {
-                image3 = req.files[3].filename;
-                imageruta3 = req.files[3].path;
-              }
-            }
-            if (req.files[4] != undefined) {
-              if (req.files[4].originalname.includes('Firma')) {
-                firma = req.files[4].filename;
-              } else {
-                image4 = req.files[4].filename;
-                imageruta4 = req.files[4].path;
-              }
-            }
-            if (req.files[5] != undefined) {
-              if (req.files[5].originalname.includes('Firma')) {
-                firma = req.files[5].filename;
-              }
-            }
+          if (!(req.files.length > 0)) {
+            _context11.next = 84;
+            break;
           }
+          if (!(req.files[0] != undefined)) {
+            _context11.next = 23;
+            break;
+          }
+          if (!req.files[0].originalname.includes('Firma')) {
+            _context11.next = 18;
+            break;
+          }
+          firma = req.files[0].filename;
+          _context11.next = 15;
+          return cloudinary.uploader.upload(req.files[0].path);
+        case 15:
+          img = _context11.sent;
+          _context11.next = 23;
+          break;
+        case 18:
+          image = req.files[0].filename;
+          _context11.next = 21;
+          return cloudinary.uploader.upload(req.files[0].path);
+        case 21:
+          _img = _context11.sent;
+          imageruta = _img.url;
+        case 23:
+          if (!(req.files[1] != undefined)) {
+            _context11.next = 36;
+            break;
+          }
+          if (!req.files[1].originalname.includes('Firma')) {
+            _context11.next = 31;
+            break;
+          }
+          firma = req.files[1].filename;
+          _context11.next = 28;
+          return cloudinary.uploader.upload(req.files[1].path);
+        case 28:
+          _img2 = _context11.sent;
+          _context11.next = 36;
+          break;
+        case 31:
+          image1 = req.files[1].filename;
+          _context11.next = 34;
+          return cloudinary.uploader.upload(req.files[1].path);
+        case 34:
+          _img3 = _context11.sent;
+          imageruta1 = _img3.url;
+        case 36:
+          if (!(req.files[2] != undefined)) {
+            _context11.next = 49;
+            break;
+          }
+          if (!req.files[2].originalname.includes('Firma')) {
+            _context11.next = 44;
+            break;
+          }
+          firma = req.files[2].filename;
+          _context11.next = 41;
+          return cloudinary.uploader.upload(req.files[2].path);
+        case 41:
+          _img4 = _context11.sent;
+          _context11.next = 49;
+          break;
+        case 44:
+          image2 = req.files[2].filename;
+          _context11.next = 47;
+          return cloudinary.uploader.upload(req.files[2].path);
+        case 47:
+          _img5 = _context11.sent;
+          imageruta2 = _img5.url;
+        case 49:
+          if (!(req.files[3] != undefined)) {
+            _context11.next = 62;
+            break;
+          }
+          if (!req.files[3].originalname.includes('Firma')) {
+            _context11.next = 57;
+            break;
+          }
+          _context11.next = 53;
+          return cloudinary.uploader.upload(req.files[3].path);
+        case 53:
+          _img6 = _context11.sent;
+          firma = req.files[3].filename;
+          _context11.next = 62;
+          break;
+        case 57:
+          image3 = req.files[3].filename;
+          _context11.next = 60;
+          return cloudinary.uploader.upload(req.files[3].path);
+        case 60:
+          _img7 = _context11.sent;
+          imageruta3 = _img7.url;
+        case 62:
+          if (!(req.files[4] != undefined)) {
+            _context11.next = 75;
+            break;
+          }
+          if (!req.files[4].originalname.includes('Firma')) {
+            _context11.next = 70;
+            break;
+          }
+          firma = req.files[4].filename;
+          _context11.next = 67;
+          return cloudinary.uploader.upload(req.files[4].path);
+        case 67:
+          _img8 = _context11.sent;
+          _context11.next = 75;
+          break;
+        case 70:
+          image4 = req.files[4].filename;
+          _context11.next = 73;
+          return cloudinary.uploader.upload(req.files[4].path);
+        case 73:
+          _img9 = _context11.sent;
+          imageruta4 = _img9.url;
+        case 75:
+          if (!(req.files[5] != undefined)) {
+            _context11.next = 84;
+            break;
+          }
+          if (!req.files[5].originalname.includes('Firma')) {
+            _context11.next = 83;
+            break;
+          }
+          _context11.next = 79;
+          return cloudinary.uploader.upload(req.files[5].path);
+        case 79:
+          _img10 = _context11.sent;
+          firma = _img10.url;
+          _context11.next = 84;
+          break;
+        case 83:
+          firma = '';
+        case 84:
           if (req.body.details.length > 0) {
             for (i = 0; i < req.body.details.length; i++) {
               json = JSON.parse(req.body.details[i]);
@@ -659,24 +752,24 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             ivaDetalle = totalDetalle * (15 / 100);
             totalFinalDetalle = totalDetalle + ivaDetalle;
           }
-          _context11.next = 13;
+          _context11.next = 87;
           return pool.request().input("id", req.params.id).input("REQ_TPS_id", _database.sql.Decimal, req.body.TipoServicio).input("REQ_serie", _database.sql.VarChar, req.body.Serie).input("REQ_placa", _database.sql.VarChar, req.body.Placa).input("REQ_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("REQ_contacto", _database.sql.VarChar, req.body.Subcliente).input("REQ_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.Telefono).input("REQ_direccion", _database.sql.VarChar, req.body.Direccion).input("REQ_observacionTecnica", _database.sql.VarChar, req.body.Observacion).input("REQ_SubTotal", _database.sql.Decimal(18, 2), totalDetalle).input("REQ_IVA", _database.sql.Decimal(18, 2), ivaDetalle).input("REQ_total", _database.sql.Decimal(18, 2), totalFinalDetalle).input("REQ_USU_edit", _database.sql.Decimal, req.body.id).input("REQ_imagen1", _database.sql.VarChar, image).input("REQ_rutaimagen1", _database.sql.VarChar, imageruta).input("REQ_imagen2", _database.sql.VarChar, image1).input("REQ_rutaimagen2", _database.sql.VarChar, imageruta1).input("REQ_imagen3", _database.sql.VarChar, image2).input("REQ_rutaimagen3", _database.sql.VarChar, imageruta2).input("REQ_imagen4", _database.sql.VarChar, image3).input("REQ_rutaimagen4", _database.sql.VarChar, imageruta3).input("REQ_imagen5", _database.sql.VarChar, image4).input("REQ_rutaimagen5", _database.sql.VarChar, imageruta4).input("REQ_firmaCliente", _database.sql.VarChar, firma).query(_database.querys.editRequerimientoReparacion);
-        case 13:
+        case 87:
           result = _context11.sent;
           if (!(result.rowsAffected == 1)) {
-            _context11.next = 54;
+            _context11.next = 128;
             break;
           }
-          _context11.next = 17;
+          _context11.next = 91;
           return (0, _database.getConnection)();
-        case 17:
+        case 91:
           pool2 = _context11.sent;
-          _context11.next = 20;
+          _context11.next = 94;
           return pool2.request().input("REQDET_REQ_id", req.params.id).query(_database.querys.cambiarEstadoRequerimientoDetalle);
-        case 20:
+        case 94:
           result2 = _context11.sent;
           if (!(result2.rowsAffected > 0)) {
-            _context11.next = 38;
+            _context11.next = 112;
             break;
           }
           if (req.body.details.length > 0) {
@@ -688,80 +781,80 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
             totalFinalDetalle = totalDetalle + ivaDetalle;
           }
           if (!(req.body.details.length > 0)) {
-            _context11.next = 36;
+            _context11.next = 110;
             break;
           }
           _i7 = 0;
-        case 25:
+        case 99:
           if (!(_i7 < req.body.details.length)) {
-            _context11.next = 36;
+            _context11.next = 110;
             break;
           }
           _json2 = JSON.parse(req.body.details[_i7]);
-          _context11.next = 29;
+          _context11.next = 103;
           return (0, _database.getConnection)();
-        case 29:
+        case 103:
           pool3 = _context11.sent;
-          _context11.next = 32;
+          _context11.next = 106;
           return pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, _json2.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json2.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json2.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json2.qty * _json2.salesPrice).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 32:
+        case 106:
           result3 = _context11.sent;
-        case 33:
+        case 107:
           _i7++;
-          _context11.next = 25;
+          _context11.next = 99;
           break;
-        case 36:
-          _context11.next = 51;
+        case 110:
+          _context11.next = 125;
           break;
-        case 38:
+        case 112:
           if (!(req.body.details.length > 0)) {
-            _context11.next = 51;
+            _context11.next = 125;
             break;
           }
           _i8 = 0;
-        case 40:
+        case 114:
           if (!(_i8 < req.body.details.length)) {
-            _context11.next = 51;
+            _context11.next = 125;
             break;
           }
           _json3 = JSON.parse(req.body.details[_i8]);
-          _context11.next = 44;
+          _context11.next = 118;
           return (0, _database.getConnection)();
-        case 44:
+        case 118:
           _pool3 = _context11.sent;
-          _context11.next = 47;
+          _context11.next = 121;
           return _pool3.request().input("REQDET_PROD_id", _database.sql.Decimal, _json3.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json3.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json3.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json3.qty * _json3.salesPrice).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
-        case 47:
+        case 121:
           _result4 = _context11.sent;
-        case 48:
+        case 122:
           _i8++;
-          _context11.next = 40;
+          _context11.next = 114;
           break;
-        case 51:
+        case 125:
           return _context11.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 54:
+        case 128:
           return _context11.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 55:
-          _context11.next = 61;
+        case 129:
+          _context11.next = 135;
           break;
-        case 57:
-          _context11.prev = 57;
+        case 131:
+          _context11.prev = 131;
           _context11.t0 = _context11["catch"](0);
           res.status(500);
           res.send(_context11.t0.message);
-        case 61:
+        case 135:
         case "end":
           return _context11.stop();
       }
-    }, _callee11, null, [[0, 57]]);
+    }, _callee11, null, [[0, 131]]);
   }));
   return function editRequerimientosReparacion(_x21, _x22) {
     return _ref11.apply(this, arguments);
