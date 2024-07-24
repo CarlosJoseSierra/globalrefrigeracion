@@ -100,7 +100,7 @@ export const getUsuarioById = async (req, res) => {
       if(req.file!=undefined)
         {
           const img = await cloudinary.uploader.upload(req.file.path);
-          image = img.url;
+          image = img.secure_url;
         }
       const pool = await getConnection();
       const result = await pool
@@ -134,7 +134,7 @@ export const getUsuarioById = async (req, res) => {
         if(req.file!=undefined)
         {
           const img = await cloudinary.uploader.upload(req.file.path);
-          image = img.url;
+          image = img.secure_url;
         }
       
       const pool = await getConnection();

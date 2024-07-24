@@ -623,7 +623,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[0].path);
         case 14:
           img = _context11.sent;
-          firma = img.url;
+          firma = img.secure_url;
           _context11.next = 23;
           break;
         case 18:
@@ -632,7 +632,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[0].path);
         case 21:
           _img = _context11.sent;
-          imageruta = _img.url;
+          imageruta = _img.secure_url;
         case 23:
           if (!(req.files[1] != undefined)) {
             _context11.next = 36;
@@ -646,7 +646,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[1].path);
         case 27:
           _img2 = _context11.sent;
-          firma = _img2.url;
+          firma = _img2.secure_url;
           _context11.next = 36;
           break;
         case 31:
@@ -655,7 +655,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[1].path);
         case 34:
           _img3 = _context11.sent;
-          imageruta1 = _img3.url;
+          imageruta1 = _img3.secure_url;
         case 36:
           if (!(req.files[2] != undefined)) {
             _context11.next = 49;
@@ -669,7 +669,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[2].path);
         case 40:
           _img4 = _context11.sent;
-          firma = _img4.url;
+          firma = _img4.secure_url;
           _context11.next = 49;
           break;
         case 44:
@@ -678,7 +678,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[2].path);
         case 47:
           _img5 = _context11.sent;
-          imageruta2 = _img5.url;
+          imageruta2 = _img5.secure_url;
         case 49:
           if (!(req.files[3] != undefined)) {
             _context11.next = 62;
@@ -692,7 +692,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[3].path);
         case 53:
           _img6 = _context11.sent;
-          firma = _img6.url;
+          firma = _img6.secure_url;
           _context11.next = 62;
           break;
         case 57:
@@ -701,7 +701,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[3].path);
         case 60:
           _img7 = _context11.sent;
-          imageruta3 = _img7.url;
+          imageruta3 = _img7.secure_url;
         case 62:
           if (!(req.files[4] != undefined)) {
             _context11.next = 75;
@@ -715,7 +715,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[4].path);
         case 66:
           _img8 = _context11.sent;
-          firma = _img8.url;
+          firma = _img8.secure_url;
           _context11.next = 75;
           break;
         case 70:
@@ -724,7 +724,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[4].path);
         case 73:
           _img9 = _context11.sent;
-          imageruta4 = _img9.url;
+          imageruta4 = _img9.secure_url;
         case 75:
           if (!(req.files[5] != undefined)) {
             _context11.next = 84;
@@ -738,7 +738,7 @@ var editRequerimientosReparacion = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.files[5].path);
         case 79:
           _img10 = _context11.sent;
-          firma = _img10.url;
+          firma = _img10.secure_url;
           _context11.next = 84;
           break;
         case 83:

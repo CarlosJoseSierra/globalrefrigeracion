@@ -242,7 +242,7 @@ var createNewUser = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.file.path);
         case 5:
           img = _context6.sent;
-          image = img.url;
+          image = img.secure_url;
         case 7:
           _context6.next = 9;
           return (0, _database.getConnection)();
@@ -303,7 +303,7 @@ var updateUserById = /*#__PURE__*/function () {
           return cloudinary.uploader.upload(req.file.path);
         case 5:
           img = _context7.sent;
-          image = img.url;
+          image = img.secure_url;
         case 7:
           _context7.next = 9;
           return (0, _database.getConnection)();
