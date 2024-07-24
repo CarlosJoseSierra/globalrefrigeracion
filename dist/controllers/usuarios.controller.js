@@ -249,7 +249,7 @@ var createNewUser = /*#__PURE__*/function () {
         case 9:
           pool = _context6.sent;
           _context6.next = 12;
-          return pool.request().input("USU_nombre", _database.sql.VarChar, req.bodyUSU_nombre).input("USU_usuario", _database.sql.VarChar, req.bodyUSU_usuario).input("USU_clave", _database.sql.VarChar, req.bodyUSU_clave).input("USU_cargo", _database.sql.VarChar, req.bodyUSU_cargo).input("USU_rol", _database.sql.VarChar, req.bodyUSU_rol).input("USU_ing", _database.sql.Decimal, req.bodyUSU_ing).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.addNewUser);
+          return pool.request().input("USU_nombre", _database.sql.VarChar, req.body.USU_nombre).input("USU_usuario", _database.sql.VarChar, req.body.USU_usuario).input("USU_clave", _database.sql.VarChar, req.body.USU_clave).input("USU_cargo", _database.sql.VarChar, req.body.USU_cargo).input("USU_rol", _database.sql.VarChar, req.body.USU_rol).input("USU_ing", _database.sql.Decimal, req.body.USU_ing).input("USU_firma", _database.sql.VarChar, image).query(_database.querys.addNewUser);
         case 12:
           result = _context6.sent;
           if (!(result.rowsAffected == 1)) {
