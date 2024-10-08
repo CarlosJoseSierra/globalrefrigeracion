@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   getVentasDetalle,
 
-} from "../controllers/requerimientos_det.controller";
+} from "../controllers/ventasdetalle.controller";
 
 const router = Router();
 
