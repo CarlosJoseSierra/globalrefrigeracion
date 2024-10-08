@@ -101,7 +101,7 @@ var createventas = /*#__PURE__*/function () {
           secuencial = '';
           secuencial = "VENTA" + idR;
           brand = 0;
-          if (req.body.Brandeo) {
+          if (req.body.Brandeo == true) {
             brand = 1;
           }
           _context3.next = 15;
@@ -178,7 +178,7 @@ var editVentas = /*#__PURE__*/function () {
         case 0:
           _context4.prev = 0;
           brand = 0;
-          if (req.body.Brandeo) {
+          if (req.body.Brandeo == true) {
             brand = 1;
           }
           _context4.next = 5;

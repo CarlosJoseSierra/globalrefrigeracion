@@ -38,7 +38,7 @@ export const getVentasActivos = async (req, res) => {
       secuencial = "VENTA"+idR;
 
       let brand = 0;
-      if(req.body.Brandeo){
+      if(req.body.Brandeo==true){
         brand = 1;}
      
       const pool2 = await getConnection();
@@ -87,7 +87,7 @@ export const getVentasActivos = async (req, res) => {
   export const editVentas = async (req, res) => {
     try {
         let brand = 0;
-      if(req.body.Brandeo){
+      if(req.body.Brandeo==true){
         brand = 1;
       }
       const pool = await getConnection();
