@@ -33,9 +33,13 @@ export const getVentasActivos = async (req, res) => {
      else{
        idR = codigo.recordset[0].VENT_id;
      }
-     
+
       let secuencial = '';
       secuencial = "VENTA"+idR;
+
+      let brand = 0;
+      if(req.body.Brandeo){
+        brand = 1;}
      
       const pool2 = await getConnection();
         const result = await pool2
@@ -47,7 +51,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_observacion", sql.VarChar, req.body.Observacion)
         .input("VENT_temperatura", sql.VarChar, req.body.Temperatura)
         .input("VENT_EQUIP_id", sql.Decimal, req.body.Modelo)
-        .input("VENT_brandeoEquipo", sql.Decimal, req.body.Brandeo)
+        .input("VENT_brandeoEquipo", sql.Decimal, brand)
         .input("VENT_UBIC_id", sql.Decimal, req.body.Ciudad)
         .input("VENT_contacto", sql.VarChar, req.body.Subcliente)
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)
@@ -82,7 +86,10 @@ export const getVentasActivos = async (req, res) => {
 
   export const editVentas = async (req, res) => {
     try {
-      
+        let brand = 0;
+      if(req.body.Brandeo){
+        brand = 1;
+      }
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -93,7 +100,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_temperatura", sql.VarChar, req.body.Temperatura)
         .input("VENT_observacion", sql.VarChar, req.body.Observacion)
         .input("VENT_EQUIP_id", sql.Decimal, req.body.Modelo)
-        .input("VENT_brandeoEquipo", sql.Decimal, req.body.Brandeo)
+        .input("VENT_brandeoEquipo", sql.Decimal, brand)
         .input("VENT_UBIC_id", sql.Decimal, req.body.Ciudad)
         .input("VENT_contacto", sql.VarChar, req.body.Subcliente)
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)

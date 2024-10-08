@@ -79,7 +79,7 @@ var getVentasActivos = /*#__PURE__*/function () {
 exports.getVentasActivos = getVentasActivos;
 var createventas = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var pool, codigo, idR, secuencial, pool2, result, idVenta, i, pool3, _result;
+    var pool, codigo, idR, secuencial, brand, pool2, result, idVenta, i, pool3, _result;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
@@ -100,66 +100,70 @@ var createventas = /*#__PURE__*/function () {
           }
           secuencial = '';
           secuencial = "VENTA" + idR;
-          _context3.next = 13;
+          brand = 0;
+          if (req.body.Brandeo) {
+            brand = 1;
+          }
+          _context3.next = 15;
           return (0, _database.getConnection)();
-        case 13:
+        case 15:
           pool2 = _context3.sent;
-          _context3.next = 16;
-          return pool2.request().input("VENT_codigo", _database.sql.VarChar, secuencial).input("VENT_fecha", _database.sql.DateTime, req.body.FechaVenta).input("VENT_CLI_id", _database.sql.Decimal, req.body.Cliente).input("VENT_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("VENT_observacion", _database.sql.VarChar, req.body.Observacion).input("VENT_temperatura", _database.sql.VarChar, req.body.Temperatura).input("VENT_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("VENT_brandeoEquipo", _database.sql.Decimal, req.body.Brandeo).input("VENT_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("VENT_contacto", _database.sql.VarChar, req.body.Subcliente).input("VENT_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("VENT_telefono", _database.sql.VarChar, req.body.Telefono).input("VENT_direccion", _database.sql.VarChar, req.body.Direccion).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addVenta);
-        case 16:
+          _context3.next = 18;
+          return pool2.request().input("VENT_codigo", _database.sql.VarChar, secuencial).input("VENT_fecha", _database.sql.DateTime, req.body.FechaVenta).input("VENT_CLI_id", _database.sql.Decimal, req.body.Cliente).input("VENT_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("VENT_observacion", _database.sql.VarChar, req.body.Observacion).input("VENT_temperatura", _database.sql.VarChar, req.body.Temperatura).input("VENT_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("VENT_brandeoEquipo", _database.sql.Decimal, brand).input("VENT_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("VENT_contacto", _database.sql.VarChar, req.body.Subcliente).input("VENT_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("VENT_telefono", _database.sql.VarChar, req.body.Telefono).input("VENT_direccion", _database.sql.VarChar, req.body.Direccion).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addVenta);
+        case 18:
           result = _context3.sent;
           if (!(result.rowsAffected[0] == 1)) {
-            _context3.next = 34;
+            _context3.next = 36;
             break;
           }
           idVenta = result.recordset[0].VENT_id;
           if (!(req.body.details.length > 0)) {
-            _context3.next = 31;
+            _context3.next = 33;
             break;
           }
           i = 0;
-        case 21:
+        case 23:
           if (!(i < req.body.details.length)) {
-            _context3.next = 31;
+            _context3.next = 33;
             break;
           }
-          _context3.next = 24;
+          _context3.next = 26;
           return (0, _database.getConnection)();
-        case 24:
+        case 26:
           pool3 = _context3.sent;
-          _context3.next = 27;
+          _context3.next = 29;
           return pool3.request().input("VENTDET_VENT_id", _database.sql.Decimal, idVenta).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).query(_database.querys.addNewVentaDetalle);
-        case 27:
+        case 29:
           _result = _context3.sent;
-        case 28:
+        case 30:
           i++;
-          _context3.next = 21;
+          _context3.next = 23;
           break;
-        case 31:
+        case 33:
           return _context3.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 34:
+        case 36:
           return _context3.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 35:
-          _context3.next = 41;
-          break;
         case 37:
-          _context3.prev = 37;
+          _context3.next = 43;
+          break;
+        case 39:
+          _context3.prev = 39;
           _context3.t0 = _context3["catch"](0);
           res.status(500);
           res.send(_context3.t0.message);
-        case 41:
+        case 43:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 37]]);
+    }, _callee3, null, [[0, 39]]);
   }));
   return function createventas(_x5, _x6) {
     return _ref3.apply(this, arguments);
@@ -168,108 +172,112 @@ var createventas = /*#__PURE__*/function () {
 exports.createventas = createventas;
 var editVentas = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
-    var pool, result, pool2, result2, i, pool3, result3, _i, _pool, _result2;
+    var brand, pool, result, pool2, result2, i, pool3, result3, _i, _pool, _result2;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
           _context4.prev = 0;
-          _context4.next = 3;
+          brand = 0;
+          if (req.body.Brandeo) {
+            brand = 1;
+          }
+          _context4.next = 5;
           return (0, _database.getConnection)();
-        case 3:
+        case 5:
           pool = _context4.sent;
-          _context4.next = 6;
-          return pool.request().input("id", req.params.id).input("VENT_fecha", _database.sql.DateTime, req.body.FechaVenta).input("VENT_CLI_id", _database.sql.Decimal, req.body.Cliente).input("VENT_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("VENT_temperatura", _database.sql.VarChar, req.body.Temperatura).input("VENT_observacion", _database.sql.VarChar, req.body.Observacion).input("VENT_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("VENT_brandeoEquipo", _database.sql.Decimal, req.body.Brandeo).input("VENT_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("VENT_contacto", _database.sql.VarChar, req.body.Subcliente).input("VENT_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("VENT_telefono", _database.sql.VarChar, req.body.Telefono).input("VENT_direccion", _database.sql.VarChar, req.body.Direccion).query(_database.querys.editVentas);
-        case 6:
+          _context4.next = 8;
+          return pool.request().input("id", req.params.id).input("VENT_fecha", _database.sql.DateTime, req.body.FechaVenta).input("VENT_CLI_id", _database.sql.Decimal, req.body.Cliente).input("VENT_personaReporta", _database.sql.VarChar, req.body.PersonaR).input("VENT_temperatura", _database.sql.VarChar, req.body.Temperatura).input("VENT_observacion", _database.sql.VarChar, req.body.Observacion).input("VENT_EQUIP_id", _database.sql.Decimal, req.body.Modelo).input("VENT_brandeoEquipo", _database.sql.Decimal, brand).input("VENT_UBIC_id", _database.sql.Decimal, req.body.Ciudad).input("VENT_contacto", _database.sql.VarChar, req.body.Subcliente).input("VENT_establecimiento", _database.sql.VarChar, req.body.Establecimiento).input("VENT_telefono", _database.sql.VarChar, req.body.Telefono).input("VENT_direccion", _database.sql.VarChar, req.body.Direccion).query(_database.querys.editVentas);
+        case 8:
           result = _context4.sent;
           if (!(result.rowsAffected == 1)) {
-            _context4.next = 44;
+            _context4.next = 46;
             break;
           }
-          _context4.next = 10;
+          _context4.next = 12;
           return (0, _database.getConnection)();
-        case 10:
+        case 12:
           pool2 = _context4.sent;
-          _context4.next = 13;
+          _context4.next = 15;
           return pool2.request().input("VENTDET_VENT_id", req.params.id).query(_database.querys.cambiarEstadoVentasDetalle);
-        case 13:
+        case 15:
           result2 = _context4.sent;
           if (!(result2.rowsAffected > 0)) {
+            _context4.next = 31;
+            break;
+          }
+          if (!(req.body.details.length > 0)) {
             _context4.next = 29;
             break;
           }
-          if (!(req.body.details.length > 0)) {
-            _context4.next = 27;
-            break;
-          }
           i = 0;
-        case 17:
+        case 19:
           if (!(i < req.body.details.length)) {
-            _context4.next = 27;
+            _context4.next = 29;
             break;
           }
-          _context4.next = 20;
+          _context4.next = 22;
           return (0, _database.getConnection)();
-        case 20:
+        case 22:
           pool3 = _context4.sent;
-          _context4.next = 23;
+          _context4.next = 25;
           return pool3.request().input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[i].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[i].qty).input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewVentaDetalle);
-        case 23:
+        case 25:
           result3 = _context4.sent;
-        case 24:
+        case 26:
           i++;
-          _context4.next = 17;
-          break;
-        case 27:
-          _context4.next = 41;
+          _context4.next = 19;
           break;
         case 29:
+          _context4.next = 43;
+          break;
+        case 31:
           if (!(req.body.details.length > 0)) {
-            _context4.next = 41;
+            _context4.next = 43;
             break;
           }
           _i = 0;
-        case 31:
+        case 33:
           if (!(_i < req.body.details.length)) {
-            _context4.next = 41;
+            _context4.next = 43;
             break;
           }
-          _context4.next = 34;
+          _context4.next = 36;
           return (0, _database.getConnection)();
-        case 34:
+        case 36:
           _pool = _context4.sent;
-          _context4.next = 37;
+          _context4.next = 39;
           return _pool.request().input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i].qty).input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewVentaDetalle);
-        case 37:
+        case 39:
           _result2 = _context4.sent;
-        case 38:
+        case 40:
           _i++;
-          _context4.next = 31;
+          _context4.next = 33;
           break;
-        case 41:
+        case 43:
           return _context4.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 44:
+        case 46:
           return _context4.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 45:
-          _context4.next = 51;
-          break;
         case 47:
-          _context4.prev = 47;
+          _context4.next = 53;
+          break;
+        case 49:
+          _context4.prev = 49;
           _context4.t0 = _context4["catch"](0);
           res.status(500);
           res.send(_context4.t0.message);
-        case 51:
+        case 53:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 47]]);
+    }, _callee4, null, [[0, 49]]);
   }));
   return function editVentas(_x7, _x8) {
     return _ref4.apply(this, arguments);
