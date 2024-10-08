@@ -26,6 +26,8 @@ import path  from 'path'
 import cargosRoutes from "./routes/cargos.routes.js";
 import rolesRoutes from "./routes/roles.routes.js";
 import ubicacioRoutes from "./routes/ubicacion.routes.js";
+import ventasRoutes from "./routes/ventas.routes.js";
+import ventasDetallesRoutes from "./routes/ventasdetalle.routes.js";
 const cloudinary = require("cloudinary").v2
 //import morgan from "morgan";
 //import config from "./config.js";
@@ -64,6 +66,8 @@ app.use("/api", requerimientos_det);
 app.use("/api", cargosRoutes);
 app.use("/api", rolesRoutes);
 app.use("/api", ubicacioRoutes);
+app.use("/api", ventasRoutes);
+app.use("/api", ventasDetallesRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
