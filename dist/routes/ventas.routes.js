@@ -16,6 +16,7 @@ router.put("/ventas/x/:id", _ventas.editVentaPorSerie);
 router.put("/ventas/y/:id", _ventas.editVentaPorNumEnsamble);
 router.put("/ventas/z/:id", _ventas.editVentaPorTerminacionBrandeo);
 router.put("/ventas/w/:id", _ventas.editVentaPorPegadoBrandeo);
+router.put("/ventas/v/:id", _ventas.editVentaPorCierreCaso);
 router.get("/ventas/x/:id", _ventas.getVentaById);
 var _default = router;
 exports["default"] = _default;

@@ -11,6 +11,7 @@ import {
   editVentaPorTerminacionBrandeo,
   editVentaPorPegadoBrandeo,
   getVentaById,
+  editVentaPorCierreCaso,
   
 } from "../controllers/ventas.controller";
 
@@ -25,6 +26,7 @@ router.put("/ventas/x/:id", editVentaPorSerie);
 router.put("/ventas/y/:id", editVentaPorNumEnsamble);
 router.put("/ventas/z/:id", editVentaPorTerminacionBrandeo);
 router.put("/ventas/w/:id", editVentaPorPegadoBrandeo);
+router.put("/ventas/v/:id", editVentaPorCierreCaso);
 router.get("/ventas/x/:id", getVentaById);
 
 export default router;
