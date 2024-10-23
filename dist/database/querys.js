@@ -146,6 +146,7 @@ var querys = {
   getDetalleByIdVenta: "SELECT VENTDET_id,VENTDET_VENT_id,VENTDET_PROD_id,VENTDET_cantidad,PROD_nombre, PROD_item FROM VENTAS_DETALLE INNER JOIN PRODUCTO ON VENTDET_PROD_id = PROD_id WHERE (VENTDET_VENT_id = @VENTDET_VENT_id AND VENTDET_Estado = 1)",
   editVentaCorte: "UPDATE VENTAS SET VENT_fechaCorte = GETDATE(), VENT_corteProceso = 2 WHERE VENT_id = @id",
   getAllBrandeos: "SELECT BRAND_id,BRAND_descripcion,BRAND_CLI_id, CLI_nombre,BRAND_imagen FROM BRANDEO INNER JOIN CLIENTE ON BRAND_CLI_id = CLI_id ORDER BY CLI_nombre",
-  getBrandeoById: "SELECT BRAND_id,BRAND_descripcion,BRAND_CLI_id, CLI_nombre,BRAND_imagen FROM BRANDEO INNER JOIN CLIENTE ON BRAND_CLI_id = CLI_id ORDER BY CLI_nombre WHERE BRAND_id = @id"
+  getBrandeoById: "SELECT BRAND_id,BRAND_descripcion,BRAND_CLI_id, CLI_nombre,BRAND_imagen FROM BRANDEO INNER JOIN CLIENTE ON BRAND_CLI_id = CLI_id ORDER BY CLI_nombre WHERE BRAND_id = @id",
+  getActivoByModeloId: "SELECT * FROM EQUIPO_COMPLETO Where EQC_EQUIP_id = @Id"
 };
 exports.querys = querys;

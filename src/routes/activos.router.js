@@ -8,6 +8,7 @@ import {
   updateActivoById,
   getActivoByCodTag,
   getActivosXCliente,
+  getActivoByModeloId,
 } from "../controllers/activos.controller";
 
 const router = Router();
@@ -15,6 +16,8 @@ const router = Router();
 router.get("/activos", getActivos);
 
 router.get("/activos/x/:idCliente/:idCliente2", getActivosXCliente);
+
+router.get("/activos/x/:id", getActivoByModeloId);
 
 router.post("/activosI", createNewActivo);
 

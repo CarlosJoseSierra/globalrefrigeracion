@@ -9,6 +9,7 @@ var _activos = require("../controllers/activos.controller");
 var router = (0, _express.Router)();
 router.get("/activos", _activos.getActivos);
 router.get("/activos/x/:idCliente/:idCliente2", _activos.getActivosXCliente);
+router.get("/activos/x/:id", _activos.getActivoByModeloId);
 router.post("/activosI", _activos.createNewActivo);
 router.get("/activos/count", _activos.getTotalActivos);
 
