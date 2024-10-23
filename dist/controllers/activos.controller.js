@@ -206,7 +206,7 @@ var getActivoByModeloId = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).query(_database.querys.getActivoByModeloId);
         case 6:
           result = _context5.sent;
-          return _context5.abrupt("return", res.json(result.recordset[0]));
+          return _context5.abrupt("return", res.json(result.recordset));
         case 10:
           _context5.prev = 10;
           _context5.t0 = _context5["catch"](0);
