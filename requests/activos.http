@@ -91,36 +91,17 @@ Content-Type: application/json
    "USU_usuario": "z",
    "USU_clave":"123",
    "USU_cargo":"z",
-   "USU_rol":"z"
+   "USU_rol":"z",
+   "USU_ing":1
 }
 
 
 ### add a product
-PUT http://localhost:3000/api/requerimientos/2
+PUT http://localhost:3000/api/requerimientos/xz/2
 Content-Type: application/json
 
 {   
-    "Ciudad":81,
-    "Cliente":12,
-    "Direccion": "AlboradaA",
-    "Establecimiento":"Tiendas Don Guillermo",
-    "FechaReq":"10/06/2024",
-    "IVA":null,
-    "Maps":"algo",
-    "Modelo":2,
-    "Observacion":"Fuga",
-    "PersonaR":"Kevin Victores",
-    "Placa":"H558889",
-    "Serie":"P89625",
-    "Servicio":1,
-    "Subcliente":"Don Guillermo",
-    "Subtotal":null,
-    "TecnicoChofer":2,
-    "Telefono":"09193543401",
-    "TipoServicio":4,
-    "Total":null,
-    "details":[{
-    }]
+    
 }
 
 
