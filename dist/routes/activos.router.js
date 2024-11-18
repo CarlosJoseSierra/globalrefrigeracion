@@ -12,9 +12,6 @@ router.get("/activos/x/:idCliente/:idCliente2", _activos.getActivosXCliente);
 router.get("/activos/x/:id", _activos.getActivoByModeloId);
 router.post("/activosI", _activos.createNewActivo);
 router.get("/activos/count", _activos.getTotalActivos);
-
-//router.get("/activos/:id", getActivoById);
-
 router.get("/activos1/:EQC_codTag", _activos.getActivoByCodTag);
 router["delete"]("/activos/:id", _activos.deleteActivoById);
 router.put("/activos/:id", _activos.updateActivoById);
