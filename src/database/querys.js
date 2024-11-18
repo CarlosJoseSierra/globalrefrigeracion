@@ -163,5 +163,5 @@ export const querys = {
   editVentaCorte: "UPDATE VENTAS SET VENT_fechaCorte = GETDATE(), VENT_corteProceso = 2 WHERE VENT_id = @id",
   getAllBrandeos:"SELECT BRAND_id,BRAND_descripcion,BRAND_CLI_id, CLI_nombre,BRAND_imagen FROM BRANDEO INNER JOIN CLIENTE ON BRAND_CLI_id = CLI_id ORDER BY CLI_nombre",
   getBrandeoById:"SELECT BRAND_id,BRAND_descripcion,BRAND_CLI_id, CLI_nombre,BRAND_imagen FROM BRANDEO INNER JOIN CLIENTE ON BRAND_CLI_id = CLI_id ORDER BY CLI_nombre WHERE BRAND_id = @id",
-  getActivoByModeloId: "SELECT *, EQUIP_marca, EQUIP_modelo  FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id WHERE EQC_EQUIP_id = @Id ORDER BY EQC_fechaInventario DESC",
+  getActivoByModeloId: "SELECT EQC_id, EQC_serie, EQC_placa,EQC_fechaFabricacion, EQC_fechaInventario, EQC_fechaLlegada, EQUIP_marca, EQUIP_modelo  FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id WHERE EQC_EQUIP_id = @Id ORDER BY EQC_fechaInventario DESC",
 };
