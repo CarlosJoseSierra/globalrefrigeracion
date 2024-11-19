@@ -90,7 +90,7 @@ var getBrandeoByIdCliente = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).query(_database.querys.getBrandeoByIdCliente);
         case 6:
           result = _context3.sent;
-          return _context3.abrupt("return", res.json(result.recordset[0]));
+          return _context3.abrupt("return", res.json(result.recordset));
         case 10:
           _context3.prev = 10;
           _context3.t0 = _context3["catch"](0);

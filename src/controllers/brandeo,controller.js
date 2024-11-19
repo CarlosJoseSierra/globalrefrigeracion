@@ -35,7 +35,7 @@ export const getBrandeoByIdCliente = async (req, res) => {
       .request()
       .input("id", req.params.id)
       .query(querys.getBrandeoByIdCliente);
-    return res.json(result.recordset[0]);
+    return res.json(result.recordset);
   } catch (error) {
     res.status(500);
     res.send(error.message);
