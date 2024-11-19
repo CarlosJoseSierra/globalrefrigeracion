@@ -27,6 +27,21 @@ export const getBrandeoById = async (req, res) => {
   }
 };
 
+export const getBrandeoByIdCliente = async (req, res) => {
+  try {
+    const pool = await getConnection();
+
+    const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getBrandeoByIdCliente);
+    return res.json(result.recordset[0]);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 export const createNewBrandeo = async (req, res) => {
   const { CLI_nombre, CLI_direccion,CLI_identificacion,CLI_USU_ing} = req.body;
   
