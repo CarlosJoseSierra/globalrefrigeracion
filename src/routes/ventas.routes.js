@@ -6,13 +6,17 @@ import {
   getAllVentas,
   createventas,
   editVentas,
-  editVentaPorSerie,
+  editVentaPorDiseno,
   editVentaPorNumEnsamble,
-  editVentaPorTerminacionBrandeo,
-  editVentaPorPegadoBrandeo,
   getVentaById,
   editVentaPorCierreCaso,
-  
+  editVentaPorConfirmadoBrandeo,
+  editVentaPorImpresionBrandeo,
+  editVentaPorLaminadoBrandeo,
+  editVentaPorCorteBrandeo,
+  editVentaPorEntregadoBrandeo,
+  editVentaPorPegadoBrandeo,
+  editVentaPorCerrarBrandeo,
 } from "../controllers/ventas.controller";
 
 
@@ -22,11 +26,16 @@ router.get("/ventas", getAllVentas);
 router.get("/ventas/act", getVentasActivos);
 router.post("/ventas/new", createventas);
 router.put("/ventas/:id", editVentas);
-router.put("/ventas/x/:id", editVentaPorSerie);
+router.put("/ventas/x/:id", editVentaPorDiseno);
 router.put("/ventas/y/:id", editVentaPorNumEnsamble);
-router.put("/ventas/z/:id", editVentaPorTerminacionBrandeo);
-router.put("/ventas/w/:id", editVentaPorPegadoBrandeo);
-router.put("/ventas/v/:id", editVentaPorCierreCaso);
-router.get("/ventas/x/:id", getVentaById);
+router.get("/ventas/z/:id", getVentaById);
+router.put("/ventas/a/:id", editVentaPorCierreCaso);
+router.put("/ventas/b/:id", editVentaPorConfirmadoBrandeo);
+router.put("/ventas/c/:id", editVentaPorImpresionBrandeo);
+router.put("/ventas/d/:id", editVentaPorLaminadoBrandeo);
+router.put("/ventas/e/:id", editVentaPorCorteBrandeo);
+router.put("/ventas/f/:id", editVentaPorEntregadoBrandeo);
+router.put("/ventas/g/:id", editVentaPorPegadoBrandeo);
+router.put("/ventas/h/:id", editVentaPorCerrarBrandeo);
 
 export default router;

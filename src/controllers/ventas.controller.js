@@ -47,16 +47,13 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_codigo", sql.VarChar,secuencial)
         .input("VENT_fecha", sql.DateTime, req.body.FechaVenta)
         .input("VENT_CLI_id", sql.Decimal, req.body.Cliente)
-        .input("VENT_personaReporta", sql.VarChar, req.body.PersonaR)
         .input("VENT_observacion", sql.VarChar, req.body.Observacion)
-        .input("VENT_temperatura", sql.VarChar, req.body.Temperatura)
-        .input("VENT_EQUIP_id", sql.Decimal, req.body.Modelo)
-        .input("VENT_brandeoEquipo", sql.Decimal, brand)
         .input("VENT_UBIC_id", sql.Decimal, req.body.Ciudad)
         .input("VENT_contacto", sql.VarChar, req.body.Subcliente)
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)
-        .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_direccion", sql.VarChar, req.body.Direccion)
+        .input("VENT_telefono", sql.VarChar, req.body.Telefono)
+        .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
         .query(querys.addVenta);
         if(result.rowsAffected[0]==1){
@@ -69,7 +66,23 @@ export const getVentasActivos = async (req, res) => {
               .input("VENTDET_VENT_id", sql.Decimal,idVenta)
               .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
               .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+              .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+              .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
               .query(querys.addNewVentaDetalle);
+            }
+          }
+          if(req.body.detailsModelo.length>0){
+            for(let i=0;i<req.body.detailsModelo.length;i++){
+              const pool3 = await getConnection();
+              const result = await pool3
+              .request()
+              .input("EQVENT_VENT_id", sql.Decimal,idVenta)
+              .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+              .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
+              .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
+              .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
+              .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+              .query(querys.addNewVentaEquipo);
             }
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -96,16 +109,14 @@ export const getVentasActivos = async (req, res) => {
         .input("id", req.params.id)
         .input("VENT_fecha", sql.DateTime, req.body.FechaVenta)
         .input("VENT_CLI_id", sql.Decimal, req.body.Cliente)
-        .input("VENT_personaReporta", sql.VarChar, req.body.PersonaR)
-        .input("VENT_temperatura", sql.VarChar, req.body.Temperatura)
         .input("VENT_observacion", sql.VarChar, req.body.Observacion)
-        .input("VENT_EQUIP_id", sql.Decimal, req.body.Modelo)
-        .input("VENT_brandeoEquipo", sql.Decimal, brand)
         .input("VENT_UBIC_id", sql.Decimal, req.body.Ciudad)
         .input("VENT_contacto", sql.VarChar, req.body.Subcliente)
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)
-        .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_direccion", sql.VarChar, req.body.Direccion)
+        .input("VENT_telefono", sql.VarChar, req.body.Telefono)
+        .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
+        .input("VENT_USU_ing", sql.Decimal, req.body.id)
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
@@ -120,24 +131,56 @@ export const getVentasActivos = async (req, res) => {
                 const pool3 = await getConnection();
                 const result3 = await pool3
                 .request()
+                .input("VENTDET_VENT_id", sql.Decimal,req.params.id)
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-                .input("VENTDET_VENT_id", sql.Decimal,req.params.id)
+                .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
                 .query(querys.addNewVentaDetalle);
               }
             }
+            if(req.body.detailsModelo.length>0){
+              for(let i=0;i<req.body.detailsModelo.length;i++){
+                const pool3 = await getConnection();
+                const result = await pool3
+                .request()
+                .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
+                .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+                .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
+                .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
+                .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
+                .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+                .query(querys.addNewVentaEquipo);
+              }
+            } 
           }else{
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const pool3 = await getConnection();
                 const result3 = await pool3
                 .request()
+                .input("VENTDET_VENT_id", sql.Decimal,idVenta)
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-                .input("VENTDET_VENT_id", sql.Decimal,req.params.id)
+                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
                 .query(querys.addNewVentaDetalle);
               }
             }
+            if(req.body.detailsModelo.length>0){
+              for(let i=0;i<req.body.detailsModelo.length;i++){
+                const pool3 = await getConnection();
+                const result = await pool3
+                .request()
+                .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
+                .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+                .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
+                .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
+                .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
+                .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+                .query(querys.addNewVentaEquipo);
+              }
+            } 
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
@@ -151,16 +194,14 @@ export const getVentasActivos = async (req, res) => {
     }
   };
 
-  export const editVentaPorSerie = async (req, res) => {
+  export const editVentaPorDiseno = async (req, res) => {
     try {
       const pool = await getConnection();
     
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("VENT_serieCheck", sql.Decimal, req.body.SerieChek)
-        .input("VENT_serie", sql.VarChar, req.body.Serie)
-        .query(querys.editVentaPorSerie);
+        .query(querys.editVentaPorDiseno);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
           }else{
@@ -180,30 +221,8 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("VENT_NumEnsambleCheck", sql.Decimal, req.body.NumEnsambleChek)
-        .input("VENT_NumEnsamble", sql.VarChar, req.body.NumEnsamble)
-        .query(querys.editVentaPorNumEnsamble);
-        if(result.rowsAffected==1){
-            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
-          }else{
-            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
-          }
-      }
-     catch (error) {
-      res.status(500);
-      res.send(error.message);
-    }
-  };
-
-  export const editVentaPorTerminacionBrandeo = async (req, res) => {
-    try {
-      const pool = await getConnection();
-    
-        const result = await pool
-        .request()
-        .input("id", req.params.id)
-        .input("VENT_brandeoTerminadoCheck", sql.Decimal, req.body.BrandeoTerminadoCheck)
-        .query(querys.editVentaPorBrandeoTerminado);
+        .input("VENT_factura", sql.VarChar, req.body.NumFactura)
+        .query(querys.editVentaPorNumFactura);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
           }else{
@@ -216,26 +235,7 @@ export const getVentasActivos = async (req, res) => {
     }
   };
   
-  export const editVentaPorPegadoBrandeo = async (req, res) => {
-    try {
-      const pool = await getConnection();
-    
-        const result = await pool
-        .request()
-        .input("id", req.params.id)
-        .input("VENT_brandeoPegadoCheck", sql.Decimal, req.body.BrandeoPegadoCheck)
-        .query(querys.editVentaPorBrandeoPegado);
-        if(result.rowsAffected==1){
-            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
-          }else{
-            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
-          }
-      }
-     catch (error) {
-      res.status(500);
-      res.send(error.message);
-    }
-  };
+  
 
   export const getVentaById = async (req, res) => {
     try {
@@ -271,3 +271,142 @@ export const getVentasActivos = async (req, res) => {
     }
   };
   
+  export const editVentaPorConfirmadoBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorConfirmadoBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorImpresionBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorImpresionBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorLaminadoBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorLaminadoBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorCorteBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorCorteBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorEntregadoBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorEntregadoBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorPegadoBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorBrandeoPegado);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editVentaPorCerrarBrandeo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorCerrarBrandeo);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
