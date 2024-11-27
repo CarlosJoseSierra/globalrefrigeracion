@@ -37,6 +37,17 @@ export const getVentasActivos = async (req, res) => {
       let secuencial = '';
       secuencial = "VENTA"+idR;
 
+      let totalDetalle = 0;
+        let ivaDetalle = 0;
+        let totalFinalDetalle = 0;
+        if(req.body.details.length>0){
+          for(let i=0;i<req.body.details.length;i++){
+            totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+          }
+          ivaDetalle = totalDetalle * (15/100);
+          totalFinalDetalle = totalDetalle + ivaDetalle;
+        }
+
       let brand = 0;
       if(req.body.Brandeo==true){
         brand = 1;}
@@ -55,6 +66,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
+        .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("VENT_IVA", sql.Decimal(18,2),ivaDetalle)
+        .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .query(querys.addVenta);
         if(result.rowsAffected[0]==1){
           let idVenta = result.recordset[0].VENT_id;
@@ -99,9 +113,15 @@ export const getVentasActivos = async (req, res) => {
 
   export const editVentas = async (req, res) => {
     try {
-        let brand = 0;
-      if(req.body.Brandeo==true){
-        brand = 1;
+      let totalDetalle = 0;
+      let ivaDetalle = 0;
+      let totalFinalDetalle = 0;
+      if(req.body.details.length>0){
+        for(let i=0;i<req.body.details.length;i++){
+          totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+        }
+        ivaDetalle = totalDetalle * (15/100);
+        totalFinalDetalle = totalDetalle + ivaDetalle;
       }
       const pool = await getConnection();
         const result = await pool
@@ -117,6 +137,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
+        .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
+        .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
