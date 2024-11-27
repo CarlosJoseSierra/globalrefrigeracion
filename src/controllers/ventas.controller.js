@@ -47,10 +47,6 @@ export const getVentasActivos = async (req, res) => {
           ivaDetalle = totalDetalle * (15/100);
           totalFinalDetalle = totalDetalle + ivaDetalle;
         }
-
-      let brand = 0;
-      if(req.body.Brandeo==true){
-        brand = 1;}
      
       const pool2 = await getConnection();
         const result = await pool2
@@ -93,7 +89,6 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_VENT_id", sql.Decimal,idVenta)
               .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
               .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
-              .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
               .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
               .query(querys.addNewVentaEquipo);
@@ -170,7 +165,6 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
                 .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
                 .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
-                .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
                 .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
                 .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
                 .query(querys.addNewVentaEquipo);
@@ -185,8 +179,8 @@ export const getVentasActivos = async (req, res) => {
                 .input("VENTDET_VENT_id", sql.Decimal,idVenta)
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-                .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
                 .query(querys.addNewVentaDetalle);
               }
             }
@@ -198,7 +192,6 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
                 .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
                 .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
-                .input("EQVENT_EQC_fechaRevision", sql.DateTime, req.body.detailsModelo[i].qty)
                 .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
                 .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
                 .query(querys.addNewVentaEquipo);
