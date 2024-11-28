@@ -22,6 +22,20 @@ export const getVentasActivos = async (req, res) => {
     }
   };
 
+  export const getDetalleVentasEquipos = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getDetalleVentasEquiposById);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
   export const createventas = async (req, res) => {
     try {
       const pool = await getConnection();

@@ -17,6 +17,7 @@ import {
   editVentaPorEntregadoBrandeo,
   editVentaPorPegadoBrandeo,
   editVentaPorCerrarBrandeo,
+  getDetalleVentasEquipos,
 } from "../controllers/ventas.controller";
 
 
@@ -24,6 +25,7 @@ const router = Router();
 
 router.get("/ventas", getAllVentas);
 router.get("/ventas/act", getVentasActivos);
+router.get("/ventas/xx/:id", getDetalleVentasEquipos);
 router.post("/ventas/new", createventas);
 router.put("/ventas/:id", editVentas);
 router.put("/ventas/x/:id", editVentaPorDiseno);

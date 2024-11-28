@@ -10,6 +10,7 @@ var storage = require('../libs/multer');
 var router = (0, _express.Router)();
 router.get("/ventas", _ventas.getAllVentas);
 router.get("/ventas/act", _ventas.getVentasActivos);
+router.get("/ventas/xx/:id", _ventas.getDetalleVentasEquipos);
 router.post("/ventas/new", _ventas.createventas);
 router.put("/ventas/:id", _ventas.editVentas);
 router.put("/ventas/x/:id", _ventas.editVentaPorDiseno);
