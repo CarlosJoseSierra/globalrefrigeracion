@@ -460,7 +460,7 @@ var editVentaPorNumEnsamble = /*#__PURE__*/function () {
         case 3:
           pool = _context7.sent;
           _context7.next = 6;
-          return pool.request().input("id", req.params.id).input("VENT_factura", _database.sql.VarChar, req.body.NumFactura).query(_database.querys.editVentaPorNumFactura);
+          return pool.request().input("id", req.params.id).input("VENT_factura", _database.sql.VarChar, req.body.Factura).query(_database.querys.editVentaPorNumFactura);
         case 6:
           result = _context7.sent;
           if (!(result.rowsAffected == 1)) {

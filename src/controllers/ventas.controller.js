@@ -251,7 +251,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("VENT_factura", sql.VarChar, req.body.NumFactura)
+        .input("VENT_factura", sql.VarChar, req.body.Factura)
         .query(querys.editVentaPorNumFactura);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
