@@ -190,7 +190,7 @@ export const getVentasActivos = async (req, res) => {
                 const pool3 = await getConnection();
                 const result3 = await pool3
                 .request()
-                .input("VENTDET_VENT_id", sql.Decimal,idVenta)
+                .input("VENTDET_VENT_id", sql.Decimal,req.params.id)
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
                 .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
