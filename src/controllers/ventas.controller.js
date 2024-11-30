@@ -265,8 +265,6 @@ export const getVentasActivos = async (req, res) => {
     }
   };
   
-  
-
   export const getVentaById = async (req, res) => {
     try {
       const pool = await getConnection();
@@ -436,6 +434,31 @@ export const getVentasActivos = async (req, res) => {
           }
       }
      catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const getInventarioTotal = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request().query(querys.getInventarioTotal);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const getInventarioByIdEquipo = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getInventarioByIdEquipo);
+      res.json(result.recordset);
+    } catch (error) {
       res.status(500);
       res.send(error.message);
     }

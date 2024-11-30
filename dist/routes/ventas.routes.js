@@ -24,5 +24,9 @@ router.put("/ventas/e/:id", _ventas.editVentaPorCorteBrandeo);
 router.put("/ventas/f/:id", _ventas.editVentaPorEntregadoBrandeo);
 router.put("/ventas/g/:id", _ventas.editVentaPorPegadoBrandeo);
 router.put("/ventas/h/:id", _ventas.editVentaPorCerrarBrandeo);
+
+//Control de Inventario
+router.get("/ventas/inv", _ventas.getInventarioTotal);
+router.get("/ventas/inv/:id", _ventas.getInventarioByIdEquipo);
 var _default = router;
 exports["default"] = _default;

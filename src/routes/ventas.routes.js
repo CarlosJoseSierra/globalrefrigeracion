@@ -18,6 +18,8 @@ import {
   editVentaPorPegadoBrandeo,
   editVentaPorCerrarBrandeo,
   getDetalleVentasEquipos,
+  getInventarioTotal,
+  getInventarioByIdEquipo,
 } from "../controllers/ventas.controller";
 
 
@@ -39,5 +41,9 @@ router.put("/ventas/e/:id", editVentaPorCorteBrandeo);
 router.put("/ventas/f/:id", editVentaPorEntregadoBrandeo);
 router.put("/ventas/g/:id", editVentaPorPegadoBrandeo);
 router.put("/ventas/h/:id", editVentaPorCerrarBrandeo);
+
+//Control de Inventario
+router.get("/ventas/inv", getInventarioTotal);
+router.get("/ventas/inv/:id", getInventarioByIdEquipo);
 
 export default router;

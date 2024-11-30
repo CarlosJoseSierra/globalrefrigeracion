@@ -156,6 +156,8 @@ var querys = {
   editVentaPorCorteBrandeo: "UPDATE VENTAS SET VENT_corte = 1, VENT_fechaCorte = GETDATE() WHERE VENT_id = @id",
   editVentaPorEntregadoBrandeo: "UPDATE VENTAS SET VENT_entregado = 1, VENT_fechaEntregado = GETDATE() WHERE VENT_id = @id",
   editVentaPorBrandeoPegado: "UPDATE VENTAS SET VENT_pegado = 1, VENT_fechaPegado = GETDATE() WHERE VENT_id = @id",
-  editVentaPorCerrarBrandeo: "UPDATE VENTAS SET VENT_brandeoEquipo = 1, VENT_fechaCierreBrandeo = GETDATE() WHERE VENT_id = @id"
+  editVentaPorCerrarBrandeo: "UPDATE VENTAS SET VENT_brandeoEquipo = 1, VENT_fechaCierreBrandeo = GETDATE() WHERE VENT_id = @id",
+  getInventarioTotal: "SELECT T.EQC_EQUIP_id, T.stock,EQUIP_marca, EQUIP_modelo,EQUIP_descripcion FROM (SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id FROM EQUIPO_COMPLETO WHERE EQC_estado != 6 GROUP BY EQC_EQUIP_id) T INNER JOIN EQUIPO ON T.EQC_EQUIP_id = EQUIP_id",
+  getInventarioByIdEquipo: "SELECT T.stock,T.ENTSAL from (SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id,'1' AS ENTSAL FROM EQUIPO_COMPLETO WHERE EQC_estado != 6 GROUP BY EQC_EQUIP_id UNION SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id,'2' as ENTSAL FROM EQUIPO_COMPLETO WHERE EQC_estado = 6 GROUP BY EQC_EQUIP_id) T WHERE T.EQC_EQUIP_id = @id"
 };
 exports.querys = querys;
