@@ -41,13 +41,20 @@ export const getVentasActivos = async (req, res) => {
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdVenta);
       let idR = 0;
+      let brandeo = 0;
      if(codigo.recordset[0].VENT_id == 0){
       idR = 1; 
      }
      else{
        idR = codigo.recordset[0].VENT_id;
      }
-
+     if(req.body.details.length>0){
+      for(let i=0;i<req.body.details.length;i++){
+          if(req.body.details[i].productName!=34){//es 34 prque es el ID del no brandeo
+            brandeo = 1;
+          }
+      }
+     }
       let secuencial = '';
       secuencial = "VENTA"+idR;
 
@@ -74,7 +81,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)
         .input("VENT_direccion", sql.VarChar, req.body.Direccion)
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
-        .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
+        .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
         .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
         .input("VENT_IVA", sql.Decimal(18,2),ivaDetalle)
@@ -125,6 +132,7 @@ export const getVentasActivos = async (req, res) => {
       let totalDetalle = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
+      let brandeo = 0;
       if(req.body.details.length>0){
         for(let i=0;i<req.body.details.length;i++){
           totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
@@ -132,6 +140,14 @@ export const getVentasActivos = async (req, res) => {
         ivaDetalle = totalDetalle * (15/100);
         totalFinalDetalle = totalDetalle + ivaDetalle;
       }
+
+      if(req.body.details.length>0){
+        for(let i=0;i<req.body.details.length;i++){
+            if(req.body.details[i].productName!=34){//es 34 prque es el ID del no brandeo
+              brandeo = 1;
+            }
+        }
+       }
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -144,7 +160,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_establecimiento", sql.VarChar, req.body.Establecimiento)
         .input("VENT_direccion", sql.VarChar, req.body.Direccion)
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
-        .input("VENT_brandeoEquipo", sql.Decimal, req.body.id)
+        .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
         .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
         .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
