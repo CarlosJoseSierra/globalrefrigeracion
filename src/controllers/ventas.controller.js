@@ -316,12 +316,12 @@ export const getVentasActivos = async (req, res) => {
         .input("id", req.params.id)
         .query(querys.editVentaCorte);
         if(result.rowsAffected>0){
-          if(req.body.detailsModelo.length>0){
-            for(let i=0;i<req.body.detailsModelo.length;i++){
+          if(req.body.VENT_brandeos.length>0){
+            for(let i=0;i<req.body.VENT_brandeos.length;i++){
               const pool3 = await getConnection();
               const result = await pool3
               .request()
-              .input("EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+              .input("EQC_id", sql.Decimal, req.body.VENT_brandeos[i].EQVENT_EQC_id)
               .input("EQC_CLI_id", sql.Decimal, req.body.Cliente)
               .query(querys.updateEquipoCompleto);
             }

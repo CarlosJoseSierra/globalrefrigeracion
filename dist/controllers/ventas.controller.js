@@ -602,13 +602,13 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
             _context10.next = 23;
             break;
           }
-          if (!(req.body.detailsModelo.length > 0)) {
+          if (!(req.body.VENT_brandeos.length > 0)) {
             _context10.next = 20;
             break;
           }
           i = 0;
         case 10:
-          if (!(i < req.body.detailsModelo.length)) {
+          if (!(i < req.body.VENT_brandeos.length)) {
             _context10.next = 20;
             break;
           }
@@ -617,7 +617,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 13:
           pool3 = _context10.sent;
           _context10.next = 16;
-          return pool3.request().input("EQC_id", _database.sql.Decimal, req.body.detailsModelo[i].id).input("EQC_CLI_id", _database.sql.Decimal, req.body.Cliente).query(_database.querys.updateEquipoCompleto);
+          return pool3.request().input("EQC_id", _database.sql.Decimal, req.body.VENT_brandeos[i].EQVENT_EQC_id).input("EQC_CLI_id", _database.sql.Decimal, req.body.Cliente).query(_database.querys.updateEquipoCompleto);
         case 16:
           _result6 = _context10.sent;
         case 17:
