@@ -322,7 +322,7 @@ export const getVentasActivos = async (req, res) => {
               const result = await pool3
               .request()
               .input("EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
-              .input("EQC_CLI_id", sql.VarChar, req.body.Cliente)
+              .input("EQC_CLI_id", sql.Decimal, req.body.Cliente)
               .query(querys.updateEquipoCompleto);
             }
           }
