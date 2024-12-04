@@ -259,6 +259,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorDiseno);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -334,6 +335,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorConfirmadoBrandeo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -354,6 +356,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorImpresionBrandeo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -374,6 +377,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorLaminadoBrandeo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -394,6 +398,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorCorteBrandeo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -414,6 +419,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorEntregadoBrandeo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -434,6 +440,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorBrandeoPegado);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});

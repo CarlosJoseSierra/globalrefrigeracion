@@ -463,7 +463,7 @@ var editVentaPorDiseno = /*#__PURE__*/function () {
         case 3:
           pool = _context7.sent;
           _context7.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorDiseno);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorDiseno);
         case 6:
           result = _context7.sent;
           if (!(result.rowsAffected == 1)) {
@@ -644,7 +644,7 @@ var editVentaPorConfirmadoBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context11.sent;
           _context11.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorConfirmadoBrandeo);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorConfirmadoBrandeo);
         case 6:
           result = _context11.sent;
           if (!(result.rowsAffected == 1)) {
@@ -693,7 +693,7 @@ var editVentaPorImpresionBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context12.sent;
           _context12.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorImpresionBrandeo);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorImpresionBrandeo);
         case 6:
           result = _context12.sent;
           if (!(result.rowsAffected == 1)) {
@@ -742,7 +742,7 @@ var editVentaPorLaminadoBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context13.sent;
           _context13.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorLaminadoBrandeo);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorLaminadoBrandeo);
         case 6:
           result = _context13.sent;
           if (!(result.rowsAffected == 1)) {
@@ -791,7 +791,7 @@ var editVentaPorCorteBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context14.sent;
           _context14.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorCorteBrandeo);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorCorteBrandeo);
         case 6:
           result = _context14.sent;
           if (!(result.rowsAffected == 1)) {
@@ -840,7 +840,7 @@ var editVentaPorEntregadoBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context15.sent;
           _context15.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorEntregadoBrandeo);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorEntregadoBrandeo);
         case 6:
           result = _context15.sent;
           if (!(result.rowsAffected == 1)) {
@@ -889,7 +889,7 @@ var editVentaPorPegadoBrandeo = /*#__PURE__*/function () {
         case 3:
           pool = _context16.sent;
           _context16.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorBrandeoPegado);
+          return pool.request().input("id", req.params.id).input("VENT_brandeoEquipo", req.body.brandeo).query(_database.querys.editVentaPorBrandeoPegado);
         case 6:
           result = _context16.sent;
           if (!(result.rowsAffected == 1)) {
