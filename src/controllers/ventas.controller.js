@@ -319,11 +319,18 @@ export const getVentasActivos = async (req, res) => {
           if(req.body.VENT_brandeos.length>0){
             for(let i=0;i<req.body.VENT_brandeos.length;i++){
               const pool3 = await getConnection();
-              const result = await pool3
+              const result2 = await pool3
               .request()
               .input("EQC_id", sql.Decimal, req.body.VENT_brandeos[i].EQVENT_EQC_id)
               .input("EQC_CLI_id", sql.Decimal, req.body.Cliente)
               .query(querys.updateEquipoCompleto);
+            }
+            if(result2.rowsAffected>0){
+              return res.status(200).json({ status: "ok", msg: result2.rowsAffected ,token:0});    
+            }
+            else
+            {
+              return res.status(200).json({ status: "ok", msg: req.body.VENT_brandeos.length ,token:0});    
             }
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
