@@ -316,6 +316,16 @@ export const getVentasActivos = async (req, res) => {
         .input("id", req.params.id)
         .query(querys.editVentaCorte);
         if(result.rowsAffected>0){
+          if(req.body.detailsModelo.length>0){
+            for(let i=0;i<req.body.detailsModelo.length;i++){
+              const pool3 = await getConnection();
+              const result = await pool3
+              .request()
+              .input("EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+              .input("EQC_CLI_id", sql.VarChar, req.body.Cliente)
+              .query(querys.updateEquipoCompleto);
+            }
+          }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{

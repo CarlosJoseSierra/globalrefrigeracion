@@ -176,5 +176,5 @@ export const querys = {
   editVentaPorCerrarBrandeo:"UPDATE VENTAS SET VENT_cierreBrandeo = 1, VENT_fechaCierreBrandeo = GETDATE() WHERE VENT_id = @id",
   getInventarioTotal:"SELECT T.EQC_EQUIP_id, T.stock,EQUIP_marca, EQUIP_modelo,EQUIP_descripcion FROM (SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id FROM EQUIPO_COMPLETO WHERE EQC_estado != 6 GROUP BY EQC_EQUIP_id) T INNER JOIN EQUIPO ON T.EQC_EQUIP_id = EQUIP_id",
   getInventarioByIdEquipo:"SELECT T.stock,T.ENTSAL from (SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id,'1' AS ENTSAL FROM EQUIPO_COMPLETO WHERE EQC_estado != 6 GROUP BY EQC_EQUIP_id UNION SELECT COUNT(EQC_EQUIP_id) AS stock, EQC_EQUIP_id,'2' as ENTSAL FROM EQUIPO_COMPLETO WHERE EQC_estado = 6 GROUP BY EQC_EQUIP_id) T WHERE T.EQC_EQUIP_id = @id",
-
+  updateEquipoCompleto:"UPDATE EQUIPO_COMPLETO SET EQC_CLI_id = @EQC_CLI_id, EQC_estado = 2, EQC_fechaInventario = GETDATE() WHERE EQC_id = @EQC_id",
 };
