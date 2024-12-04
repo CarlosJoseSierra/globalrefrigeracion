@@ -278,7 +278,7 @@ var createventas = /*#__PURE__*/function () {
 exports.createventas = createventas;
 var editVentas = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var totalDetalle, ivaDetalle, totalFinalDetalle, brandeo, i, _i4, pool, result, pool2, _result3, _i5, pool3, result3, _i6, _pool2, _result4, _i7, _pool3, _result5, _i8, _pool4, _result6;
+    var totalDetalle, ivaDetalle, totalFinalDetalle, brandeo, i, _i4, pool, result, pool2, result2, _i5, pool3, result3, _i6, _pool2, _result3, _i7, _pool3, _result4, _i8, _pool4, _result5;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
@@ -321,8 +321,8 @@ var editVentas = /*#__PURE__*/function () {
           _context6.next = 19;
           return pool2.request().input("VENTDET_VENT_id", req.params.id).query(_database.querys.cambiarEstadoVentasDetalle);
         case 19:
-          _result3 = _context6.sent;
-          if (!(_result3.rowsAffected > 0)) {
+          result2 = _context6.sent;
+          if (!(result2.rowsAffected > 0)) {
             _context6.next = 47;
             break;
           }
@@ -366,7 +366,7 @@ var editVentas = /*#__PURE__*/function () {
           _context6.next = 41;
           return _pool2.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i6].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i6].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i6].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i6].productName).query(_database.querys.addNewVentaEquipo);
         case 41:
-          _result4 = _context6.sent;
+          _result3 = _context6.sent;
         case 42:
           _i6++;
           _context6.next = 35;
@@ -392,7 +392,7 @@ var editVentas = /*#__PURE__*/function () {
           _context6.next = 55;
           return _pool3.request().input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i7].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i7].qty).input("VENTDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i7].salesPrice).input("VENTDET_total", _database.sql.Decimal(18, 2), req.body.details[_i7].qty * req.body.details[_i7].salesPrice).query(_database.querys.addNewVentaDetalle);
         case 55:
-          _result5 = _context6.sent;
+          _result4 = _context6.sent;
         case 56:
           _i7++;
           _context6.next = 49;
@@ -415,7 +415,7 @@ var editVentas = /*#__PURE__*/function () {
           _context6.next = 67;
           return _pool4.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i8].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i8].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i8].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i8].productName).query(_database.querys.addNewVentaEquipo);
         case 67:
-          _result6 = _context6.sent;
+          _result5 = _context6.sent;
         case 68:
           _i8++;
           _context6.next = 61;
@@ -585,7 +585,7 @@ var getVentaById = /*#__PURE__*/function () {
 exports.getVentaById = getVentaById;
 var editVentaPorCierreCaso = /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(req, res) {
-    var pool, result, i, pool3, _result7;
+    var pool, result, i, pool3, result2;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
@@ -599,11 +599,11 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 6:
           result = _context10.sent;
           if (!(result.rowsAffected > 0)) {
-            _context10.next = 28;
+            _context10.next = 23;
             break;
           }
           if (!(req.body.VENT_brandeos.length > 0)) {
-            _context10.next = 25;
+            _context10.next = 20;
             break;
           }
           i = 0;
@@ -619,52 +619,36 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
           _context10.next = 16;
           return pool3.request().input("EQC_id", _database.sql.Decimal, req.body.VENT_brandeos[i].EQVENT_EQC_id).input("EQC_CLI_id", _database.sql.Decimal, req.body.Cliente).query(_database.querys.updateEquipoCompleto);
         case 16:
-          _result7 = _context10.sent;
+          result2 = _context10.sent;
         case 17:
           i++;
           _context10.next = 10;
           break;
         case 20:
-          if (!(result2.rowsAffected > 0)) {
-            _context10.next = 24;
-            break;
-          }
-          return _context10.abrupt("return", res.status(200).json({
-            status: "ok",
-            msg: result2.rowsAffected,
-            token: 0
-          }));
-        case 24:
           return _context10.abrupt("return", res.status(200).json({
             status: "ok",
             msg: req.body.VENT_brandeos.length,
             token: 0
           }));
-        case 25:
-          return _context10.abrupt("return", res.status(200).json({
-            status: "ok",
-            msg: "Registro exitoso",
-            token: 0
-          }));
-        case 28:
+        case 23:
           return _context10.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 29:
-          _context10.next = 35;
+        case 24:
+          _context10.next = 30;
           break;
-        case 31:
-          _context10.prev = 31;
+        case 26:
+          _context10.prev = 26;
           _context10.t0 = _context10["catch"](0);
           res.status(500);
           res.send(_context10.t0.message);
-        case 35:
+        case 30:
         case "end":
           return _context10.stop();
       }
-    }, _callee10, null, [[0, 31]]);
+    }, _callee10, null, [[0, 26]]);
   }));
   return function editVentaPorCierreCaso(_x19, _x20) {
     return _ref10.apply(this, arguments);
