@@ -627,7 +627,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 20:
           return _context10.abrupt("return", res.status(200).json({
             status: "ok",
-            msg: req.body.VENT_brandeos.length,
+            msg: req.body.VENT_brandeos,
             token: 0
           }));
         case 23:
