@@ -63,7 +63,7 @@ export const getVentasActivos = async (req, res) => {
      if(req.body.detailsModelo.length>0){
       for(let i=0;i<req.body.detailsModelo.length;i++){
           if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
-            brandeo = 0;
+            brandeo = 1;
           }
       }
      }
@@ -153,9 +153,9 @@ export const getVentasActivos = async (req, res) => {
         totalFinalDetalle = totalDetalle + ivaDetalle;
       }
 
-      if(req.body.details.length>0){
-        for(let i=0;i<req.body.details.length;i++){
-            if(req.body.details[i].productName!=34){//es 34 prque es el ID del no brandeo
+      if(req.body.detailsModelo.length>0){
+        for(let i=0;i<req.body.detailsModelo.length;i++){
+            if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
               brandeo = 1;
             }
         }

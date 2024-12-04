@@ -171,7 +171,7 @@ var createventas = /*#__PURE__*/function () {
             for (i = 0; i < req.body.detailsModelo.length; i++) {
               if (req.body.detailsModelo[i].productName != 34) {
                 //es 34 prque es el ID del no brandeo
-                brandeo = 0;
+                brandeo = 1;
               }
             }
           }
@@ -294,9 +294,9 @@ var editVentas = /*#__PURE__*/function () {
             ivaDetalle = totalDetalle * (15 / 100);
             totalFinalDetalle = totalDetalle + ivaDetalle;
           }
-          if (req.body.details.length > 0) {
-            for (_i4 = 0; _i4 < req.body.details.length; _i4++) {
-              if (req.body.details[_i4].productName != 34) {
+          if (req.body.detailsModelo.length > 0) {
+            for (_i4 = 0; _i4 < req.body.detailsModelo.length; _i4++) {
+              if (req.body.detailsModelo[_i4].productName != 34) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }
