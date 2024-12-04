@@ -316,18 +316,18 @@ export const getVentasActivos = async (req, res) => {
         .input("id", req.params.id)
         .query(querys.editVentaCorte);
         if(result.rowsAffected>0){
-          if(req.body.VENT_brandeos.length>0){
-            for(let i=0;i<req.body.VENT_brandeos.length;i++){
+          if(req.body.detailsModelo.length>0){
+            for(let i=0;i<req.body.detailsModelo.length;i++){
               const pool3 = await getConnection();
               const result2 = await pool3
               .request()
-              .input("EQC_id", sql.Decimal, req.body.VENT_brandeos[i].EQVENT_EQC_id)
+              .input("EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
               .input("EQC_CLI_id", sql.Decimal, req.body.Cliente)
               .query(querys.updateEquipoCompleto);
             }
           }
           //return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
-          return res.status(200).json({ status: "ok", msg: req.body.VENT_brandeos ,token:0});
+          return res.status(200).json({ status: "ok", msg: req.body.detailsModelo ,token:0});
         }
        else{
           return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
