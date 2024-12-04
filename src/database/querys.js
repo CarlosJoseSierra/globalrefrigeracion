@@ -168,7 +168,7 @@ export const querys = {
   editVentaPorNumFactura:"UPDATE VENTAS SET VENT_factura = @VENT_factura, VENT_fechaFactura = GETDATE() WHERE VENT_id = @id",
   editVentaPorDiseno:"UPDATE VENTAS SET VENT_disenado = @VENT_brandeoEquipo, VENT_fechaDisenado = GETDATE() WHERE VENT_id = @id",
   editVentaPorConfirmadoBrandeo:"UPDATE VENTAS SET VENT_confirmado = @VENT_brandeoEquipo, VENT_fechaConfirmado = GETDATE() WHERE VENT_id = @id",
-  editVentaPorImpresionBrandeo:"UPDATE VENTAS SET VENT_impreso = V@ENT_brandeoEquipo, VENT_fechaImpreso = GETDATE() WHERE VENT_id = @id",
+  editVentaPorImpresionBrandeo:"UPDATE VENTAS SET VENT_impreso = @VENT_brandeoEquipo, VENT_fechaImpreso = GETDATE() WHERE VENT_id = @id",
   editVentaPorLaminadoBrandeo:"UPDATE VENTAS SET VENT_laminado = @VENT_brandeoEquipo, VENT_fechaLaminado = GETDATE() WHERE VENT_id = @id",
   editVentaPorCorteBrandeo:"UPDATE VENTAS SET VENT_corte = @VENT_brandeoEquipo, VENT_fechaCorte = GETDATE() WHERE VENT_id = @id",
   editVentaPorEntregadoBrandeo:"UPDATE VENTAS SET VENT_entregado = @VENT_brandeoEquipo, VENT_fechaEntregado = GETDATE() WHERE VENT_id = @id",
