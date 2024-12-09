@@ -11,6 +11,7 @@ var router = (0, _express.Router)();
 router.get("/ventas", _ventas.getAllVentas);
 router.get("/ventas/act", _ventas.getVentasActivos);
 router.get("/ventas/br", _ventas.getVentasActivosPorBrandeo);
+router.get("/ventas/pe", _ventas.getBrandeosPorPegar);
 router.get("/ventas/xx/:id", _ventas.getDetalleVentasEquipos);
 router.post("/ventas/new", _ventas.createventas);
 router.put("/ventas/:id", _ventas.editVentas);
@@ -25,6 +26,7 @@ router.put("/ventas/e/:id", _ventas.editVentaPorCorteBrandeo);
 router.put("/ventas/f/:id", _ventas.editVentaPorEntregadoBrandeo);
 router.put("/ventas/g/:id", _ventas.editVentaPorPegadoBrandeo);
 router.put("/ventas/h/:id", _ventas.editVentaPorCerrarBrandeo);
+router.get("/ventas/all", _ventas.getAllBrandeosVenta);
 //Control de Inventario
 router.get("/ventas/inv", _ventas.getInventarioTotal);
 router.get("/ventas/inv/:id", _ventas.getInventarioByIdEquipo);

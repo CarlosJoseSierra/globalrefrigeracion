@@ -11,6 +11,17 @@ export const getAllVentas = async (req, res) => {
   }
 };
 
+export const getAllBrandeosVenta = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getAllBrandeosVenta);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 export const getVentasActivos = async (req, res) => {
     try {
       const pool = await getConnection();
@@ -33,6 +44,16 @@ export const getVentasActivos = async (req, res) => {
     }
   };
 
+  export const getBrandeosPorPegar = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request().query(querys.getBrandeosPorPegar);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
 
   export const getDetalleVentasEquipos = async (req, res) => {
     try {
@@ -451,7 +472,6 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("VENT_brandeoEquipo", req.body.brandeo)
         .query(querys.editVentaPorBrandeoPegado);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
