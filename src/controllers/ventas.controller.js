@@ -1,4 +1,5 @@
 import { getConnection, querys, sql } from "../database";
+const cloudinary = require("../libs/cloudinary");
 
 export const getAllVentas = async (req, res) => {
   try {
