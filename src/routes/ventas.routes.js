@@ -23,6 +23,8 @@ import {
   getVentasActivosPorBrandeo,
   getBrandeosPorPegar,
   getAllBrandeosVenta,
+  getImagenEquipoByVenta,
+  createImageEquipoPegado,
 } from "../controllers/ventas.controller";
 
 
@@ -47,6 +49,8 @@ router.put("/ventas/f/:id", editVentaPorEntregadoBrandeo);
 router.put("/ventas/g/:id", editVentaPorPegadoBrandeo);
 router.put("/ventas/h/:id", editVentaPorCerrarBrandeo);
 router.get("/ventas/all", getAllBrandeosVenta);
+router.get("/ventas/j/:id", getImagenEquipoByVenta);
+router.put("/ventas/k/:id",storage.array('image',10),createImageEquipoPegado);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioTotal);
 router.get("/ventas/inv/:id", getInventarioByIdEquipo);

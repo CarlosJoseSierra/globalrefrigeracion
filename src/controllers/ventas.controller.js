@@ -529,3 +529,42 @@ export const getVentasActivos = async (req, res) => {
       res.send(error.message);
     }
   };
+
+  export const getImagenEquipoByVenta = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getImagenEquipoByVenta);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const createImageEquipoPegado = async (req, res) => {
+    try {
+      let imageruta= '';      
+      if(req.files.length>0)
+      {
+        for(let i=0;i<req.files.length;i++){
+          const img = await cloudinary.uploader.upload(req.files[i].path);
+          imageruta = img.secure_url;
+          const pool = await getConnection();
+          const result = await pool
+          .request()
+          .input("IMGEQUIP_VENT_id", req.params.id)
+          .input("IMGEQUIP_ruta", sql.VarChar, imageruta)
+          .query(querys.createImageEquipoPegado);
+        }
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+      }
+    }
+    catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+  
