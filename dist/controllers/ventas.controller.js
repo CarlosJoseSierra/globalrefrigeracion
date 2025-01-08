@@ -250,7 +250,7 @@ var getDetalleVentasBrandeos = /*#__PURE__*/function () {
 exports.getDetalleVentasBrandeos = getDetalleVentasBrandeos;
 var createventas = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(req, res) {
-    var pool, codigo, idR, brandeo, i, secuencial, totalDetalle, ivaDetalle, totalFinalDetalle, _i, _i2, _i3, pool2, result, _idVenta, _i4, pool3, _result, _i5, _pool, _result2, _i6, _pool2, _result3;
+    var pool, codigo, idR, brandeo, i, secuencial, totalDetalle, ivaDetalle, totalFinalDetalle, _i, _i2, _i3, pool2, result, _idVenta, _i4, pool3, _result, laminado, _i5, _pool, _result2, _laminado, _i6, _pool2, _result3;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
@@ -309,7 +309,7 @@ var createventas = /*#__PURE__*/function () {
         case 26:
           result = _context8.sent;
           if (!(result.rowsAffected[0] == 1)) {
-            _context8.next = 68;
+            _context8.next = 72;
             break;
           }
           _idVenta = result.recordset[0].VENT_id;
@@ -337,77 +337,89 @@ var createventas = /*#__PURE__*/function () {
           break;
         case 41:
           if (!(req.body.detailsModelo.length > 0)) {
-            _context8.next = 53;
+            _context8.next = 55;
             break;
           }
+          laminado = 0;
           _i5 = 0;
-        case 43:
+        case 44:
           if (!(_i5 < req.body.detailsModelo.length)) {
-            _context8.next = 53;
+            _context8.next = 55;
             break;
           }
-          _context8.next = 46;
+          if (req.body.detailsModelo[_i5].matSlideB == 1) {
+            laminado = 1;
+          } else {
+            laminado = 0;
+          }
+          _context8.next = 48;
           return (0, _database.getConnection)();
-        case 46:
+        case 48:
           _pool = _context8.sent;
-          _context8.next = 49;
-          return _pool.request().input("EQVENT_VENT_id", _database.sql.Decimal, _idVenta).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i5].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i5].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i5].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i5].productName).input("EQVENT_laminado", _database.sql.Decimal, req.body.detailsModelo[_i5].matSlideB) //verificar si llega 0 o 1
+          _context8.next = 51;
+          return _pool.request().input("EQVENT_VENT_id", _database.sql.Decimal, _idVenta).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i5].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i5].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i5].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i5].productName).input("EQVENT_laminado", _database.sql.Decimal, laminado) //verificar si llega 0 o 1
           .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].qtyB).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].qtyB * req.body.detailsModelo[_i5].salesPriceB).query(_database.querys.addNewVentaEquipo);
-        case 49:
+        case 51:
           _result2 = _context8.sent;
-        case 50:
+        case 52:
           _i5++;
-          _context8.next = 43;
+          _context8.next = 44;
           break;
-        case 53:
-          if (!(req.body.detailsBrandeo.length > 0)) {
-            _context8.next = 65;
-            break;
-          }
-          _i6 = 0;
         case 55:
-          if (!(_i6 < req.body.detailsBrandeo.length)) {
-            _context8.next = 65;
+          if (!(req.body.detailsBrandeo.length > 0)) {
+            _context8.next = 69;
             break;
           }
-          _context8.next = 58;
-          return (0, _database.getConnection)();
+          _laminado = 0;
+          _i6 = 0;
         case 58:
-          _pool2 = _context8.sent;
-          _context8.next = 61;
-          return _pool2.request().input("EQBRAND_VENT_id", _database.sql.Decimal, _idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i6].productName).input("EQBRAND_laminado", _database.sql.Decimal, req.body.detailsBrandeo[_i6].matSlideB) //verificar si llega 0 o 1
-          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB * req.body.detailsBrandeo[_i6].salesPriceB).query(_database.querys.addNewVentaBrandeo);
-        case 61:
-          _result3 = _context8.sent;
+          if (!(_i6 < req.body.detailsBrandeo.length)) {
+            _context8.next = 69;
+            break;
+          }
+          if (req.body.detailsBrandeo[_i6].matSlideB == 1) {
+            _laminado = 1;
+          } else {
+            _laminado = 0;
+          }
+          _context8.next = 62;
+          return (0, _database.getConnection)();
         case 62:
-          _i6++;
-          _context8.next = 55;
-          break;
+          _pool2 = _context8.sent;
+          _context8.next = 65;
+          return _pool2.request().input("EQBRAND_VENT_id", _database.sql.Decimal, _idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i6].productName).input("EQBRAND_laminado", _database.sql.Decimal, _laminado) //verificar si llega 0 o 1
+          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB * req.body.detailsBrandeo[_i6].salesPriceB).query(_database.querys.addNewVentaBrandeo);
         case 65:
+          _result3 = _context8.sent;
+        case 66:
+          _i6++;
+          _context8.next = 58;
+          break;
+        case 69:
           return _context8.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 68:
+        case 72:
           return _context8.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 69:
-          _context8.next = 75;
+        case 73:
+          _context8.next = 79;
           break;
-        case 71:
-          _context8.prev = 71;
+        case 75:
+          _context8.prev = 75;
           _context8.t0 = _context8["catch"](0);
           res.status(500);
           res.send(_context8.t0.message);
-        case 75:
+        case 79:
         case "end":
           return _context8.stop();
       }
-    }, _callee8, null, [[0, 71]]);
+    }, _callee8, null, [[0, 75]]);
   }));
   return function createventas(_x15, _x16) {
     return _ref8.apply(this, arguments);
@@ -416,7 +428,7 @@ var createventas = /*#__PURE__*/function () {
 exports.createventas = createventas;
 var editVentas = /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(req, res) {
-    var totalDetalle, ivaDetalle, totalFinalDetalle, brandeo, i, _i7, _i8, _i9, pool, result, pool2, result2, _i10, pool3, result3, _i11, _pool3, _result4, _i12, _pool4, _result5, _i13, _pool5, _result6, _i14, _pool6, _result7;
+    var totalDetalle, ivaDetalle, totalFinalDetalle, brandeo, i, _i7, _i8, _i9, pool, result, pool2, result2, _i10, pool3, result3, laminado, _i11, _pool3, _result4, _laminado2, _i12, _pool4, _result5, _i13, _pool5, _result6, _i14, _pool6, _result7;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
       while (1) switch (_context9.prev = _context9.next) {
         case 0:
@@ -459,7 +471,7 @@ var editVentas = /*#__PURE__*/function () {
         case 16:
           result = _context9.sent;
           if (!(result.rowsAffected == 1)) {
-            _context9.next = 90;
+            _context9.next = 94;
             break;
           }
           _context9.next = 20;
@@ -471,7 +483,7 @@ var editVentas = /*#__PURE__*/function () {
         case 23:
           result2 = _context9.sent;
           if (!(result2.rowsAffected > 0)) {
-            _context9.next = 63;
+            _context9.next = 67;
             break;
           }
           if (!(req.body.details.length > 0)) {
@@ -498,126 +510,138 @@ var editVentas = /*#__PURE__*/function () {
           break;
         case 37:
           if (!(req.body.detailsModelo.length > 0)) {
-            _context9.next = 49;
+            _context9.next = 51;
             break;
           }
+          laminado = 0;
           _i11 = 0;
-        case 39:
+        case 40:
           if (!(_i11 < req.body.detailsModelo.length)) {
-            _context9.next = 49;
+            _context9.next = 51;
             break;
           }
-          _context9.next = 42;
+          if (req.body.detailsModelo[_i11].matSlideB == 1) {
+            laminado = 1;
+          } else {
+            laminado = 0;
+          }
+          _context9.next = 44;
           return (0, _database.getConnection)();
-        case 42:
+        case 44:
           _pool3 = _context9.sent;
-          _context9.next = 45;
-          return _pool3.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i11].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i11].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i11].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i11].productName).input("EQVENT_laminado", _database.sql.Decimal, req.body.detailsModelo[_i11].matSlideB) //verificar si llega 0 o 1
+          _context9.next = 47;
+          return _pool3.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i11].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i11].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i11].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i11].productName).input("EQVENT_laminado", _database.sql.Decimal, laminado) //verificar si llega 0 o 1
           .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].qtyB).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].qtyB * req.body.detailsModelo[_i11].salesPriceB).query(_database.querys.addNewVentaEquipo);
-        case 45:
+        case 47:
           _result4 = _context9.sent;
-        case 46:
+        case 48:
           _i11++;
-          _context9.next = 39;
+          _context9.next = 40;
           break;
-        case 49:
-          if (!(req.body.detailsBrandeo.length > 0)) {
-            _context9.next = 61;
-            break;
-          }
-          _i12 = 0;
         case 51:
-          if (!(_i12 < req.body.detailsBrandeo.length)) {
-            _context9.next = 61;
+          if (!(req.body.detailsBrandeo.length > 0)) {
+            _context9.next = 65;
             break;
           }
-          _context9.next = 54;
-          return (0, _database.getConnection)();
+          _laminado2 = 0;
+          _i12 = 0;
         case 54:
-          _pool4 = _context9.sent;
-          _context9.next = 57;
-          return _pool4.request().input("EQBRAND_VENT_id", _database.sql.Decimal, idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i12].productName).input("EQBRAND_laminado", _database.sql.Decimal, req.body.detailsBrandeo[_i12].matSlideB) //verificar si llega 0 o 1
-          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB * req.body.detailsBrandeo[_i12].salesPriceB).query(_database.querys.addNewVentaBrandeo);
-        case 57:
-          _result5 = _context9.sent;
+          if (!(_i12 < req.body.detailsBrandeo.length)) {
+            _context9.next = 65;
+            break;
+          }
+          if (req.body.detailsBrandeo[_i12].matSlideB == 1) {
+            _laminado2 = 1;
+          } else {
+            _laminado2 = 0;
+          }
+          _context9.next = 58;
+          return (0, _database.getConnection)();
         case 58:
-          _i12++;
-          _context9.next = 51;
-          break;
+          _pool4 = _context9.sent;
+          _context9.next = 61;
+          return _pool4.request().input("EQBRAND_VENT_id", _database.sql.Decimal, idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i12].productName).input("EQBRAND_laminado", _database.sql.Decimal, _laminado2) //verificar si llega 0 o 1
+          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB * req.body.detailsBrandeo[_i12].salesPriceB).query(_database.querys.addNewVentaBrandeo);
         case 61:
-          _context9.next = 87;
+          _result5 = _context9.sent;
+        case 62:
+          _i12++;
+          _context9.next = 54;
           break;
-        case 63:
+        case 65:
+          _context9.next = 91;
+          break;
+        case 67:
           if (!(req.body.details.length > 0)) {
-            _context9.next = 75;
+            _context9.next = 79;
             break;
           }
           _i13 = 0;
-        case 65:
+        case 69:
           if (!(_i13 < req.body.details.length)) {
-            _context9.next = 75;
+            _context9.next = 79;
             break;
           }
-          _context9.next = 68;
+          _context9.next = 72;
           return (0, _database.getConnection)();
-        case 68:
-          _pool5 = _context9.sent;
-          _context9.next = 71;
-          return _pool5.request().input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i13].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i13].qty).input("VENTDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i13].salesPrice).input("VENTDET_total", _database.sql.Decimal(18, 2), req.body.details[_i13].qty * req.body.details[_i13].salesPrice).query(_database.querys.addNewVentaDetalle);
-        case 71:
-          _result6 = _context9.sent;
         case 72:
-          _i13++;
-          _context9.next = 65;
-          break;
+          _pool5 = _context9.sent;
+          _context9.next = 75;
+          return _pool5.request().input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i13].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i13].qty).input("VENTDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i13].salesPrice).input("VENTDET_total", _database.sql.Decimal(18, 2), req.body.details[_i13].qty * req.body.details[_i13].salesPrice).query(_database.querys.addNewVentaDetalle);
         case 75:
+          _result6 = _context9.sent;
+        case 76:
+          _i13++;
+          _context9.next = 69;
+          break;
+        case 79:
           if (!(req.body.detailsModelo.length > 0)) {
-            _context9.next = 87;
+            _context9.next = 91;
             break;
           }
           _i14 = 0;
-        case 77:
+        case 81:
           if (!(_i14 < req.body.detailsModelo.length)) {
-            _context9.next = 87;
+            _context9.next = 91;
             break;
           }
-          _context9.next = 80;
+          _context9.next = 84;
           return (0, _database.getConnection)();
-        case 80:
-          _pool6 = _context9.sent;
-          _context9.next = 83;
-          return _pool6.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i14].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i14].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i14].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i14].productName).query(_database.querys.addNewVentaEquipo);
-        case 83:
-          _result7 = _context9.sent;
         case 84:
-          _i14++;
-          _context9.next = 77;
-          break;
+          _pool6 = _context9.sent;
+          _context9.next = 87;
+          return _pool6.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i14].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i14].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i14].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i14].productName).query(_database.querys.addNewVentaEquipo);
         case 87:
+          _result7 = _context9.sent;
+        case 88:
+          _i14++;
+          _context9.next = 81;
+          break;
+        case 91:
           return _context9.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 90:
+        case 94:
           return _context9.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 91:
-          _context9.next = 97;
+        case 95:
+          _context9.next = 101;
           break;
-        case 93:
-          _context9.prev = 93;
+        case 97:
+          _context9.prev = 97;
           _context9.t0 = _context9["catch"](0);
           res.status(500);
           res.send(_context9.t0.message);
-        case 97:
+        case 101:
         case "end":
           return _context9.stop();
       }
-    }, _callee9, null, [[0, 93]]);
+    }, _callee9, null, [[0, 97]]);
   }));
   return function editVentas(_x17, _x18) {
     return _ref9.apply(this, arguments);
