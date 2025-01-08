@@ -376,7 +376,7 @@ var createventas = /*#__PURE__*/function () {
           _pool2 = _context8.sent;
           _context8.next = 61;
           return _pool2.request().input("EQBRAND_VENT_id", _database.sql.Decimal, _idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i6].productName).input("EQBRAND_laminado", _database.sql.Decimal, req.body.detailsBrandeo[_i6].matSlideB) //verificar si llega 0 o 1
-          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB * req.body.detailsModelo[_i6].salesPriceB).query(_database.querys.addNewVentaBrandeo);
+          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i6].qtyB * req.body.detailsBrandeo[_i6].salesPriceB).query(_database.querys.addNewVentaBrandeo);
         case 61:
           _result3 = _context8.sent;
         case 62:
@@ -537,7 +537,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool4 = _context9.sent;
           _context9.next = 57;
           return _pool4.request().input("EQBRAND_VENT_id", _database.sql.Decimal, idVenta).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i12].productName).input("EQBRAND_laminado", _database.sql.Decimal, req.body.detailsBrandeo[_i12].matSlideB) //verificar si llega 0 o 1
-          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB * req.body.detailsModelo[_i12].salesPriceB).query(_database.querys.addNewVentaBrandeo);
+          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i12].qtyB * req.body.detailsBrandeo[_i12].salesPriceB).query(_database.querys.addNewVentaBrandeo);
         case 57:
           _result5 = _context9.sent;
         case 58:
