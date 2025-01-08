@@ -226,7 +226,7 @@ var getDetalleVentasBrandeos = /*#__PURE__*/function () {
         case 3:
           pool = _context7.sent;
           _context7.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.getDetalleVentasEquiposById);
+          return pool.request().input("id", req.params.id).query(_database.querys.getDetalleBrandeoByIdVenta);
         case 6:
           result = _context7.sent;
           res.json(result.recordset);

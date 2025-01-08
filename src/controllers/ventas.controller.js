@@ -76,7 +76,7 @@ export const getVentasActivos = async (req, res) => {
       const result = await pool
       .request()
       .input("id", req.params.id)
-      .query(querys.getDetalleVentasEquiposById);
+      .query(querys.getDetalleBrandeoByIdVenta);
       res.json(result.recordset);
     } catch (error) {
       res.status(500);
