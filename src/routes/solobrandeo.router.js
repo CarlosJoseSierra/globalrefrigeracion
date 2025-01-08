@@ -3,7 +3,7 @@ import {
     getBrandeos,
     getBrandeoById,
     getDetalleEquipoByIdVenta,
-} from "../controllers/solobrandeo,controller";
+} from "../controllers/solobrandeo.controller";
 
 const router = Router();
 

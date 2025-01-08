@@ -13,6 +13,7 @@ router.get("/ventas/act", _ventas.getVentasActivos);
 router.get("/ventas/br", _ventas.getVentasActivosPorBrandeo);
 router.get("/ventas/pe", _ventas.getBrandeosPorPegar);
 router.get("/ventas/xx/:id", _ventas.getDetalleVentasEquipos);
+router.get("/ventas/yy/:id", _ventas.getDetalleVentasBrandeos);
 router.post("/ventas/new", _ventas.createventas);
 router.put("/ventas/:id", _ventas.editVentas);
 router.put("/ventas/x/:id", _ventas.editVentaPorDiseno);

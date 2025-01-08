@@ -25,6 +25,7 @@ import {
   getAllBrandeosVenta,
   getImagenEquipoByVenta,
   createImageEquipoPegado,
+  getDetalleVentasBrandeos,
 } from "../controllers/ventas.controller";
 
 
@@ -35,6 +36,7 @@ router.get("/ventas/act", getVentasActivos);
 router.get("/ventas/br", getVentasActivosPorBrandeo);
 router.get("/ventas/pe", getBrandeosPorPegar);
 router.get("/ventas/xx/:id", getDetalleVentasEquipos);
+router.get("/ventas/yy/:id", getDetalleVentasBrandeos);
 router.post("/ventas/new", createventas);
 router.put("/ventas/:id", editVentas);
 router.put("/ventas/x/:id", editVentaPorDiseno);
