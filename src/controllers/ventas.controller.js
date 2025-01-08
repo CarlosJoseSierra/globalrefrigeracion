@@ -70,6 +70,20 @@ export const getVentasActivos = async (req, res) => {
     }
   };
 
+  export const getDetalleVentasBrandeos = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool
+      .request()
+      .input("id", req.params.id)
+      .query(querys.getDetalleVentasEquiposById);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
   export const createventas = async (req, res) => {
     try {
       const pool = await getConnection();
@@ -98,11 +112,22 @@ export const getVentasActivos = async (req, res) => {
         if(req.body.details.length>0){
           for(let i=0;i<req.body.details.length;i++){
             totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
-          }
-          ivaDetalle = totalDetalle * (15/100);
-          totalFinalDetalle = totalDetalle + ivaDetalle;
+          } 
         }
-     
+        if(req.body.detailsModelo.length>0){
+          for(let i=0;i<req.body.detailsModelo.length;i++){
+            totalDetalle = totalDetalle + (req.body.detailsModelo[i].qtyB * req.body.detailsModelo[i].salesPriceB);
+          } 
+        }
+        if(req.body.detailsBrandeo.length>0){
+          for(let i=0;i<req.body.detailsBrandeo.length;i++){
+            totalDetalle = totalDetalle + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
+          } 
+        }
+
+        ivaDetalle = totalDetalle * (15/100);
+        totalFinalDetalle = totalDetalle + ivaDetalle;
+
       const pool2 = await getConnection();
         const result = await pool2
         .request()
@@ -120,6 +145,8 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
         .input("VENT_IVA", sql.Decimal(18,2),ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
+        .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
+        .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .query(querys.addVenta);
         if(result.rowsAffected[0]==1){
           let idVenta = result.recordset[0].VENT_id;
@@ -146,7 +173,26 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
               .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+              .input("EQVENT_laminado", sql.Decimal, req.body.detailsModelo[i].matSlideB)//verificar si llega 0 o 1
+              .input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
+              .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
+              .input("EQVENT_total", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB * req.body.detailsModelo[i].salesPriceB)
               .query(querys.addNewVentaEquipo);
+            }
+          }
+
+          if(req.body.detailsBrandeo.length>0){
+            for(let i=0;i<req.body.detailsBrandeo.length;i++){
+              const pool3 = await getConnection();
+              const result = await pool3
+              .request()
+              .input("EQBRAND_VENT_id", sql.Decimal,idVenta)
+              .input("EQBRAND_BRAND_id", sql.Decimal, req.body.detailsBrandeo[i].productName)
+              .input("EQBRAND_laminado", sql.Decimal, req.body.detailsBrandeo[i].matSlideB)//verificar si llega 0 o 1
+              .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
+              .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
+              .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB * req.body.detailsModelo[i].salesPriceB)
+              .query(querys.addNewVentaBrandeo);
             }
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -171,8 +217,6 @@ export const getVentasActivos = async (req, res) => {
         for(let i=0;i<req.body.details.length;i++){
           totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
         }
-        ivaDetalle = totalDetalle * (15/100);
-        totalFinalDetalle = totalDetalle + ivaDetalle;
       }
 
       if(req.body.detailsModelo.length>0){
@@ -182,6 +226,18 @@ export const getVentasActivos = async (req, res) => {
             }
         }
        }
+       if(req.body.detailsModelo.length>0){
+        for(let i=0;i<req.body.detailsModelo.length;i++){
+          totalDetalle = totalDetalle + (req.body.detailsModelo[i].qtyB * req.body.detailsModelo[i].salesPriceB);
+        } 
+      }
+      if(req.body.detailsBrandeo.length>0){
+        for(let i=0;i<req.body.detailsBrandeo.length;i++){
+          totalDetalle = totalDetalle + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
+        } 
+      }
+       ivaDetalle = totalDetalle * (15/100);
+       totalFinalDetalle = totalDetalle + ivaDetalle;
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -199,6 +255,8 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
         .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
+        .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
+        .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
@@ -231,9 +289,27 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
                 .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
                 .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+                .input("EQVENT_laminado", sql.Decimal, req.body.detailsModelo[i].matSlideB)//verificar si llega 0 o 1
+                .input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
+                .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
+                .input("EQVENT_total", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB * req.body.detailsModelo[i].salesPriceB)
                 .query(querys.addNewVentaEquipo);
               }
             } 
+            if(req.body.detailsBrandeo.length>0){
+              for(let i=0;i<req.body.detailsBrandeo.length;i++){
+                const pool3 = await getConnection();
+                const result = await pool3
+                .request()
+                .input("EQBRAND_VENT_id", sql.Decimal,idVenta)
+                .input("EQBRAND_BRAND_id", sql.Decimal, req.body.detailsBrandeo[i].productName)
+                .input("EQBRAND_laminado", sql.Decimal, req.body.detailsBrandeo[i].matSlideB)//verificar si llega 0 o 1
+                .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
+                .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
+                .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB * req.body.detailsModelo[i].salesPriceB)
+                .query(querys.addNewVentaBrandeo);
+              }
+            }
           }else{
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){

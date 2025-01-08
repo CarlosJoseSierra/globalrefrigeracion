@@ -34,6 +34,7 @@ var _ubicacionRoutes = _interopRequireDefault(require("./routes/ubicacion.routes
 var _ventasRoutes = _interopRequireDefault(require("./routes/ventas.routes.js"));
 var _ventasdetalleRoutes = _interopRequireDefault(require("./routes/ventasdetalle.routes.js"));
 var _brandeoRouter = _interopRequireDefault(require("./routes/brandeo.router.js"));
+var _solobrandeoRouter = _interopRequireDefault(require("./routes/solobrandeo.router.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
@@ -80,6 +81,7 @@ app.use("/api", _ubicacionRoutes["default"]);
 app.use("/api", _ventasRoutes["default"]);
 app.use("/api", _ventasdetalleRoutes["default"]);
 app.use("/api", _brandeoRouter["default"]);
+app.use("/api", _solobrandeoRouter["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'
