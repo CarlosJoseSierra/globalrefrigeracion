@@ -109,7 +109,7 @@ export const getVentasActivos = async (req, res) => {
       let totalDetalle = 0;
       let totalDetalleModelo = 0;
       let totalDetalleBrandeo = 0;
-      let totalFinal = totalDetalle +  totalDetalleModelo + totalDetalleBrandeo;
+      let totalFinal = 0;
         let ivaDetalle = 0;
         let totalFinalDetalle = 0;
         if(req.body.details.length>0){
@@ -146,7 +146,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
-        .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("VENT_SubTotal", sql.Decimal(18,2), totalFinal)
         .input("VENT_IVA", sql.Decimal(18,2),ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
@@ -233,6 +233,9 @@ export const getVentasActivos = async (req, res) => {
   export const editVentas = async (req, res) => {
     try {
       let totalDetalle = 0;
+      let totalDetalleModelo = 0;
+      let totalDetalleBrandeo = 0;
+      let totalFinal = 0;
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
       let brandeo = 0;
@@ -251,17 +254,18 @@ export const getVentasActivos = async (req, res) => {
        }
        if(req.body.detailsModelo.length>0){
         for(let i=0;i<req.body.detailsModelo.length;i++){
-          totalDetalle = totalDetalle + req.body.detailsModelo[i].salesPriceB;
+          totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[i].salesPriceB;
         } 
       }
       if(req.body.detailsBrandeo.length>0){
         brandeo = 1;
         for(let i=0;i<req.body.detailsBrandeo.length;i++){
-          totalDetalle = totalDetalle + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
+          totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[i].salesPriceB;
         } 
       }
-       ivaDetalle = totalDetalle * (15/100);
-       totalFinalDetalle = totalDetalle + ivaDetalle;
+      totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
+       ivaDetalle = totalFinal * (15/100);
+       totalFinalDetalle = totalFinal + ivaDetalle;
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -276,7 +280,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
-        .input("VENT_SubTotal", sql.Decimal(18,2), totalDetalle)
+        .input("VENT_SubTotal", sql.Decimal(18,2), totalFinal)
         .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
