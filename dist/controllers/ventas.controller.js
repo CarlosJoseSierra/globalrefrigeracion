@@ -293,7 +293,7 @@ var createventas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (_i2 = 0; _i2 < req.body.detailsModelo.length; _i2++) {
-              totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[_i2].salesPriceB;
+              totalDetalleModelo = totalDetalleModelo + 1 * req.body.detailsModelo[_i2].salesPriceB;
             }
           }
           if (req.body.detailsBrandeo.length > 0) {

@@ -119,7 +119,8 @@ export const getVentasActivos = async (req, res) => {
         }
         if(req.body.detailsModelo.length>0){
           for(let i=0;i<req.body.detailsModelo.length;i++){
-            totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[i].salesPriceB;
+            totalDetalleModelo = totalDetalleModelo + (1 * req.body.detailsModelo[i].salesPriceB);
+            
           } 
         }
         if(req.body.detailsBrandeo.length>0){
