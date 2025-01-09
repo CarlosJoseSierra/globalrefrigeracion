@@ -107,6 +107,9 @@ export const getVentasActivos = async (req, res) => {
       secuencial = "VENTA"+idR;
 
       let totalDetalle = 0;
+      let totalDetalleModelo = 0;
+      let totalDetalleBrandeo = 0;
+      let totalFinal = totalDetalle +  totalDetalleModelo + totalDetalleBrandeo;
         let ivaDetalle = 0;
         let totalFinalDetalle = 0;
         if(req.body.details.length>0){
@@ -116,18 +119,18 @@ export const getVentasActivos = async (req, res) => {
         }
         if(req.body.detailsModelo.length>0){
           for(let i=0;i<req.body.detailsModelo.length;i++){
-            totalDetalle = totalDetalle + req.body.detailsModelo[i].salesPriceB;
+            totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[i].salesPriceB;
           } 
         }
         if(req.body.detailsBrandeo.length>0){
           brandeo = 1;
           for(let i=0;i<req.body.detailsBrandeo.length;i++){
-            totalDetalle = totalDetalle + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
+            totalDetalleBrandeo = totalDetalleBrandeo + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
           } 
         }
-
-        ivaDetalle = totalDetalle * (15/100);
-        totalFinalDetalle = totalDetalle + ivaDetalle;
+        totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
+        ivaDetalle = totalFinal * (15/100);
+        totalFinalDetalle = totalFinal + ivaDetalle;
 
       const pool2 = await getConnection();
         const result = await pool2
