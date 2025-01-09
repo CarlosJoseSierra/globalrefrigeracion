@@ -120,6 +120,7 @@ export const getVentasActivos = async (req, res) => {
           } 
         }
         if(req.body.detailsBrandeo.length>0){
+          brandeo = 1;
           for(let i=0;i<req.body.detailsBrandeo.length;i++){
             totalDetalle = totalDetalle + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
           } 
@@ -183,9 +184,10 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
               .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
-              .input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
+              //.input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
+              .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
               .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
-              .input("EQVENT_total", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB * req.body.detailsModelo[i].salesPriceB)
+              .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
               .query(querys.addNewVentaEquipo);
             }
           }
