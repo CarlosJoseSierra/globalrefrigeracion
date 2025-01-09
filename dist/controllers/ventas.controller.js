@@ -290,7 +290,7 @@ var createventas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (_i2 = 0; _i2 < req.body.detailsModelo.length; _i2++) {
-              totalDetalle = totalDetalle + req.body.detailsModelo[_i2].qtyB * req.body.detailsModelo[_i2].salesPriceB;
+              totalDetalle = totalDetalle + req.body.detailsModelo[_i2].salesPriceB;
             }
           }
           if (req.body.detailsBrandeo.length > 0) {
@@ -454,10 +454,11 @@ var editVentas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (_i8 = 0; _i8 < req.body.detailsModelo.length; _i8++) {
-              totalDetalle = totalDetalle + req.body.detailsModelo[_i8].qtyB * req.body.detailsModelo[_i8].salesPriceB;
+              totalDetalle = totalDetalle + req.body.detailsModelo[_i8].salesPriceB;
             }
           }
           if (req.body.detailsBrandeo.length > 0) {
+            brandeo = 1;
             for (_i9 = 0; _i9 < req.body.detailsBrandeo.length; _i9++) {
               totalDetalle = totalDetalle + req.body.detailsBrandeo[_i9].qtyB * req.body.detailsBrandeo[_i9].salesPriceB;
             }
@@ -533,7 +534,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool3 = _context9.sent;
           _context9.next = 47;
           return _pool3.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i11].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i11].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i11].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i11].productName).input("EQVENT_laminado", _database.sql.Decimal, laminado) //verificar si llega 0 o 1
-          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].qtyB).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].qtyB * req.body.detailsModelo[_i11].salesPriceB).query(_database.querys.addNewVentaEquipo);
+          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i11].salesPriceB).query(_database.querys.addNewVentaEquipo);
         case 47:
           _result4 = _context9.sent;
         case 48:
