@@ -189,6 +189,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
               .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
               //.input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
+              .input("VENT_USU_ing", sql.Decimal, req.body.id)
               .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
               .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
               .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
@@ -468,6 +469,8 @@ export const getVentasActivos = async (req, res) => {
               .request()
               .input("EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
               .input("EQC_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
+              .input("idUser", sql.Decimal, req.body.idUser)
+              .input("EQC_serie", sql.Decimal, req.body.EQC_serie)
               .query(querys.updateEquipoCompleto);
             }
           }
@@ -691,4 +694,27 @@ export const getVentasActivos = async (req, res) => {
       res.send(error.message);
     }
   };
+
+  export const updateEquipoInventory = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("serie", sql.Decimal, req.body.serie)
+        .input("idUser", sql.Decimal, req.body.idUser)
+        .query(querys.updateEquipoInventory);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+  
   

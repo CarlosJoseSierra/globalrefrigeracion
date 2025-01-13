@@ -33,5 +33,6 @@ router.put("/ventas/k/:id", storage.array('image', 10), _ventas.createImageEquip
 //Control de Inventario
 router.get("/ventas/inv", _ventas.getInventarioTotal);
 router.get("/ventas/inv/:id", _ventas.getInventarioByIdEquipo);
+router.put("/ventas/l/:id", _ventas.updateEquipoInventory);
 var _default = router;
 exports["default"] = _default;

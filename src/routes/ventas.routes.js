@@ -26,6 +26,7 @@ import {
   getImagenEquipoByVenta,
   createImageEquipoPegado,
   getDetalleVentasBrandeos,
+  updateEquipoInventory,
 } from "../controllers/ventas.controller";
 
 
@@ -56,5 +57,6 @@ router.put("/ventas/k/:id",storage.array('image',10),createImageEquipoPegado);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioTotal);
 router.get("/ventas/inv/:id", getInventarioByIdEquipo);
+router.put("/ventas/l/:id", updateEquipoInventory);
 
 export default router;
