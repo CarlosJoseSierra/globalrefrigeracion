@@ -286,7 +286,6 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
-        //.input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
@@ -296,6 +295,17 @@ export const getVentasActivos = async (req, res) => {
           .query(querys.cambiarEstadoVentasDetalle);
           //ingresar los nuevos registros
           if(result2.rowsAffected[0]>0){
+            if(req.body.VENT_list_removidos>0){
+              for(let i=0;i<req.body.VENT_list_removidos.length;i++){
+                const pool3 = await getConnection();
+                const result3 = await pool3
+                .request()
+                .input("id", req.body.VENT_list_removidos[i].id)
+                .input("serie", sql.Decimal, req.body.VENT_list_removidos[i].serie)
+                .input("idUser", sql.Decimal, req.body.id)
+                .query(querys.updateEquipoInventory);
+              }
+            }
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const pool3 = await getConnection();
@@ -323,7 +333,7 @@ export const getVentasActivos = async (req, res) => {
                 const pool3 = await getConnection();
                 const result = await pool3
                 .request()
-                .input("EQVENT_VENT_id", sql.Decimal,idVenta)
+                .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
                 .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
                 .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
                 .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
