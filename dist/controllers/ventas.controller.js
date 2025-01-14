@@ -364,7 +364,8 @@ var createventas = /*#__PURE__*/function () {
           _context8.next = 55;
           return _pool.request().input("EQVENT_VENT_id", _database.sql.Decimal, _idVenta).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i5].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i5].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i5].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i5].productName).input("EQVENT_laminado", _database.sql.Decimal, laminado) //verificar si llega 0 o 1
           //.input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
-          .input("VENT_USU_ing", _database.sql.Decimal, req.body.id).input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].salesPriceB).query(_database.querys.addNewVentaEquipo);
+          //.input("VENT_USU_ing", sql.Decimal, req.body.id)
+          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i5].salesPriceB).query(_database.querys.addNewVentaEquipo);
         case 55:
           _result2 = _context8.sent;
         case 56:
@@ -1383,7 +1384,7 @@ var updateEquipoInventory = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).input("serie", _database.sql.Decimal, req.body.serie).input("idUser", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateEquipoInventory);
         case 6:
           result = _context25.sent;
-          if (!(result.rowsAffected == 1)) {
+          if (!(result.rowsAffected == [1, 1])) {
             _context25.next = 11;
             break;
           }
@@ -1395,7 +1396,7 @@ var updateEquipoInventory = /*#__PURE__*/function () {
         case 11:
           return _context25.abrupt("return", res.status(400).json({
             status: "400",
-            result: result,
+            msg: "No se pudo actualizar, consulte con el administrador",
             token: 0
           }));
         case 12:

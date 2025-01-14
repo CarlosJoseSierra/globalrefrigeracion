@@ -189,7 +189,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
               .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
               //.input("EQVENT_cantidad", sql.Decimal(18,2), req.body.detailsModelo[i].qtyB)
-              .input("VENT_USU_ing", sql.Decimal, req.body.id)
+              //.input("VENT_USU_ing", sql.Decimal, req.body.id)
               .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
               .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
               .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
@@ -705,10 +705,10 @@ export const getVentasActivos = async (req, res) => {
         .input("serie", sql.Decimal, req.body.serie)
         .input("idUser", sql.Decimal, req.body.idUser)
         .query(querys.updateEquipoInventory);
-        if(result.rowsAffected==1){
+        if(result.rowsAffected==[1,1]){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
           }else{
-            return res.status(400).json({ status: "400", result ,token:0});
+            return res.status(400).json({ status: "400", msg:"No se pudo actualizar, consulte con el administrador" ,token:0});
           }
       }
      catch (error) {
