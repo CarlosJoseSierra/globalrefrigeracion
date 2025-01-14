@@ -1395,7 +1395,7 @@ var updateEquipoInventory = /*#__PURE__*/function () {
         case 11:
           return _context25.abrupt("return", res.status(400).json({
             status: "400",
-            msg: "No se pudo actualizar, consulte al administrador",
+            msg: req.body,
             token: 0
           }));
         case 12:
