@@ -169,6 +169,7 @@ var querys = {
   getAllVentasBrandeos: "SELECT EQBRAND_id,EQBRAND_VENT_id,EQBRAND_BRAND_id,EQBRAND_laminado,EQBRAND_cantidad,EQBRAND_precio,EQBRAND_total, BRAND_descripcion FROM VENTAS_BRANDEO INNER JOIN EQBRAND_BRAND_id = BRAND_id",
   getVentaBrandeoById: "SELECT EQBRAND_id,EQBRAND_VENT_id,EQBRAND_BRAND_id,EQBRAND_laminado,EQBRAND_cantidad,EQBRAND_precio,EQBRAND_total,BRAND_descripcion FROM VENTAS_BRANDEO INNER JOIN EQBRAND_BRAND_id = BRAND_id WHERE EQBRAND_id = @id",
   getDetalleBrandeoByIdVenta: "SELECT EQBRAND_id,EQBRAND_VENT_id,EQBRAND_BRAND_id,EQBRAND_laminado,EQBRAND_cantidad,EQBRAND_precio,EQBRAND_total,BRAND_descripcion FROM VENTAS_BRANDEO INNER JOIN BRANDEO ON EQBRAND_BRAND_id = BRAND_id WHERE EQBRAND_VENT_id = @id",
+  updateEquipoInventory2: "UPDATE EQUIPO_COMPLETO SET EQC_estado = 1, EQC_fechaInventario = GETDATE() WHERE EQC_id = @id; INSERT INTO HISTORIAL_AS_TIPOSERVICIO (HIST_AS_id,HIST_AS_fecha,HIST_AS_TPS_id,HIST_descripcion,HIST_FECHA_ing,HIST_USU_ing,HIST_placa,HIST_serie,HIST_USU_id) VALUES (@id,GETDATE(),1,'',GETDATE(),@idUser,0,@serie,@idUser);",
   updateEquipoInventory: "UPDATE EQUIPO_COMPLETO SET EQC_estado = 1, EQC_fechaInventario = GETDATE() WHERE EQC_id = @id; INSERT INTO HISTORIAL_AS_TIPOSERVICIO (HIST_AS_id,HIST_AS_fecha,HIST_AS_TPS_id,HIST_descripcion,HIST_FECHA_ing,HIST_USU_ing,HIST_placa,HIST_serie,HIST_USU_id) VALUES (@id,GETDATE(),1,'',GETDATE(),@idUser,0,@serie,@idUser);"
 };
 exports.querys = querys;
