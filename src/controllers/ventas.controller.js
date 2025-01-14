@@ -708,7 +708,7 @@ export const getVentasActivos = async (req, res) => {
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
           }else{
-            return res.status(400).json({ status: "400", msg: req.body ,token:0});
+            return res.status(400).json({ status: "400", result ,token:0});
           }
       }
      catch (error) {

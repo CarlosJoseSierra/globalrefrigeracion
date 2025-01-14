@@ -1395,7 +1395,7 @@ var updateEquipoInventory = /*#__PURE__*/function () {
         case 11:
           return _context25.abrupt("return", res.status(400).json({
             status: "400",
-            msg: req.body,
+            result: result,
             token: 0
           }));
         case 12:
