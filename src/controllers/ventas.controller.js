@@ -256,15 +256,17 @@ export const getVentasActivos = async (req, res) => {
        }
        if(req.body.detailsModelo.length>0){
         for(let i=0;i<req.body.detailsModelo.length;i++){
-          totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[i].salesPriceB;
+          totalDetalleModelo = totalDetalleModelo + (1 * req.body.detailsModelo[i].salesPriceB);
         } 
       }
       if(req.body.detailsBrandeo.length>0){
         brandeo = 1;
         for(let i=0;i<req.body.detailsBrandeo.length;i++){
-          totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[i].salesPriceB;
+          //totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[i].salesPriceB;
+          totalDetalleBrandeo = totalDetalleBrandeo + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
         } 
       }
+
       totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
        ivaDetalle = totalFinal * (15/100);
        totalFinalDetalle = totalFinal + ivaDetalle;

@@ -462,13 +462,14 @@ var editVentas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (_i8 = 0; _i8 < req.body.detailsModelo.length; _i8++) {
-              totalDetalleModelo = totalDetalleModelo + req.body.detailsModelo[_i8].salesPriceB;
+              totalDetalleModelo = totalDetalleModelo + 1 * req.body.detailsModelo[_i8].salesPriceB;
             }
           }
           if (req.body.detailsBrandeo.length > 0) {
             brandeo = 1;
             for (_i9 = 0; _i9 < req.body.detailsBrandeo.length; _i9++) {
-              totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[_i9].salesPriceB;
+              //totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[i].salesPriceB;
+              totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[_i9].qtyB * req.body.detailsBrandeo[_i9].salesPriceB;
             }
           }
           totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
