@@ -286,7 +286,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
-        .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
+        //.input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
