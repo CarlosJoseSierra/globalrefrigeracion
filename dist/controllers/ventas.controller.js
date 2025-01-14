@@ -497,7 +497,7 @@ var editVentas = /*#__PURE__*/function () {
           return pool2.request().input("VENTDET_VENT_id", req.params.id).query(_database.querys.cambiarEstadoVentasDetalle);
         case 27:
           result2 = _context9.sent;
-          if (!(result2.rowsAffected > 0)) {
+          if (!(result2.rowsAffected[0] > 0)) {
             _context9.next = 71;
             break;
           }
@@ -1387,7 +1387,7 @@ var updateEquipoInventory = /*#__PURE__*/function () {
           return pool.request().input("id", req.params.id).input("serie", _database.sql.Decimal, req.body.serie).input("idUser", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateEquipoInventory);
         case 6:
           result = _context25.sent;
-          if (!(result.rowsAffected == [1, 1])) {
+          if (!(result.rowsAffected[0] == 1)) {
             _context25.next = 11;
             break;
           }
