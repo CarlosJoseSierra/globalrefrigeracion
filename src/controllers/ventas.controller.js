@@ -370,7 +370,7 @@ export const getVentasActivos = async (req, res) => {
                 const pool3 = await getConnection();
                 const result = await pool3
                 .request()
-                .input("EQBRAND_VENT_id", sql.Decimal,idVenta)
+                .input("EQBRAND_VENT_id", sql.Decimal,req.params.id)
                 .input("EQBRAND_BRAND_id", sql.Decimal, req.body.detailsBrandeo[i].productName)
                 .input("EQBRAND_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
                 .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
@@ -454,7 +454,7 @@ export const getVentasActivos = async (req, res) => {
                 const pool3 = await getConnection();
                 const result = await pool3
                 .request()
-                .input("EQBRAND_VENT_id", sql.Decimal,idVenta)
+                .input("EQBRAND_VENT_id", sql.Decimal,req.params.id)
                 .input("EQBRAND_BRAND_id", sql.Decimal, req.body.detailsBrandeo[i].productName)
                 .input("EQBRAND_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
                 .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
