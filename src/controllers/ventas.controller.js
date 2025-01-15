@@ -191,6 +191,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
               .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
               .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+              .input("VENT_USU_ing", sql.Decimal, req.body.id)
               .query(querys.addNewVentaEquipo);
             }
           }
@@ -333,6 +334,7 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
                 .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
                 .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+                .input("VENT_USU_ing", sql.Decimal, req.body.id)
                 .query(querys.addNewVentaEquipo);
               }
             } 
@@ -396,6 +398,7 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
                 .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
                 .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+                .input("VENT_USU_ing", sql.Decimal, req.body.id)
                 .query(querys.addNewVentaEquipo);
               }
             }
