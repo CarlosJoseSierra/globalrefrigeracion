@@ -295,8 +295,6 @@ export const getVentasActivos = async (req, res) => {
           .input("VENTDET_VENT_id", req.params.id)
           .query(querys.cambiarEstadoVentasDetalle);
           //ingresar los nuevos registros
-          console.log('1: ' + result2.rowsAffected[0]);
-          console.log('2: ' + result2.rowsAffected[1]);
           if(result2.rowsAffected>0){
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
@@ -312,6 +310,7 @@ export const getVentasActivos = async (req, res) => {
               }
             }
             if(req.body.detailsModelo.length>0){
+              console.log(req.body.detailsModelo);
               let laminado = 0;
               for(let i=0;i<req.body.detailsModelo.length;i++){
                 if(req.body.detailsModelo[i].matSlideB==1)
@@ -322,7 +321,7 @@ export const getVentasActivos = async (req, res) => {
                   {
                     laminado = 0;
                   }
-                  console.log(req.body.detailsModelo[i].estado);
+                  
                   if(req.body.detailsModelo[i].estado==6){
                     const pool3 = await getConnection();
                     const result = await pool3
