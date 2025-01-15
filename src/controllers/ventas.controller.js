@@ -322,6 +322,7 @@ export const getVentasActivos = async (req, res) => {
                   {
                     laminado = 0;
                   }
+                  console.log(req.body.detailsModelo[i].estado);
                   if(req.body.detailsModelo[i].estado==6){
                     const pool3 = await getConnection();
                     const result = await pool3
