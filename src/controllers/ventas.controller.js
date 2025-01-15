@@ -294,7 +294,8 @@ export const getVentasActivos = async (req, res) => {
           .input("VENTDET_VENT_id", req.params.id)
           .query(querys.cambiarEstadoVentasDetalle);
           //ingresar los nuevos registros
-          console.log(result2.rowsAffected);
+          console.log('1: ' + result2.rowsAffected[0]);
+          console.log('2: ' + result2.rowsAffected[1]);
           if(result2.rowsAffected>0){
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
