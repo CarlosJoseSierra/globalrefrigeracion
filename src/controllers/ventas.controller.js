@@ -294,18 +294,8 @@ export const getVentasActivos = async (req, res) => {
           .input("VENTDET_VENT_id", req.params.id)
           .query(querys.cambiarEstadoVentasDetalle);
           //ingresar los nuevos registros
+          console.log(result2.rowsAffected);
           if(result2.rowsAffected>0){
-            if(req.body.VENT_list_removidos>0){
-              for(let i=0;i<req.body.VENT_list_removidos.length;i++){
-                const pool3 = await getConnection();
-                const result3 = await pool3
-                .request()
-                .input("id", req.body.VENT_list_removidos[i].id)
-                .input("serie", sql.Decimal, req.body.VENT_list_removidos[i].serie)
-                .input("idUser", sql.Decimal, req.body.id)
-                .query(querys.updateEquipoInventory);
-              }
-            }
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const pool3 = await getConnection();
@@ -369,17 +359,6 @@ export const getVentasActivos = async (req, res) => {
               }
             }
           }else{
-            if(req.body.VENT_list_removidos>0){
-              for(let i=0;i<req.body.VENT_list_removidos.length;i++){
-                const pool3 = await getConnection();
-                const result3 = await pool3
-                .request()
-                .input("id", req.body.VENT_list_removidos[i].id)
-                .input("serie", sql.Decimal, req.body.VENT_list_removidos[i].serie)
-                .input("idUser", sql.Decimal, req.body.id)
-                .query(querys.updateEquipoInventory);
-              }
-            }
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const pool3 = await getConnection();
