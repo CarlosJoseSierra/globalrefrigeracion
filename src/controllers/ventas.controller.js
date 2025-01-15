@@ -322,20 +322,38 @@ export const getVentasActivos = async (req, res) => {
                   {
                     laminado = 0;
                   }
-                const pool3 = await getConnection();
-                const result = await pool3
-                .request()
-                .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
-                .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
-                .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
-                .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
-                .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
-                .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
-                .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
-                .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
-                .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
-                .input("VENT_USU_ing", sql.Decimal, req.body.id)
-                .query(querys.addNewVentaEquipo);
+                  if(req.body.detailsModelo[i].estado==6){
+                    const pool3 = await getConnection();
+                    const result = await pool3
+                    .request()
+                    .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
+                    .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+                    .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
+                    .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
+                    .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+                    .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
+                    .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
+                    .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
+                    .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+                    .input("VENT_USU_ing", sql.Decimal, req.body.id)
+                    .query(querys.addNewVentaEquipo2);
+                  }
+                else{
+                  const pool3 = await getConnection();
+                  const result = await pool3
+                  .request()
+                  .input("EQVENT_VENT_id", sql.Decimal,req.params.id)
+                  .input("EQVENT_EQC_id", sql.Decimal, req.body.detailsModelo[i].id)
+                  .input("EQVENT_EQC_serie", sql.VarChar, req.body.detailsModelo[i].serie)
+                  .input("EQVENT_temperatura", sql.VarChar, req.body.detailsModelo[i].temperatura)
+                  .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
+                  .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
+                  .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
+                  .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
+                  .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+                  .input("VENT_USU_ing", sql.Decimal, req.body.id)
+                  .query(querys.addNewVentaEquipo);
+                }
               }
             } 
             if(req.body.detailsBrandeo.length>0){
