@@ -548,7 +548,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
               .input("EQC_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
               .input("idUser", sql.Decimal, req.body.idUser)
-              .input("EQC_serie", sql.Decimal, req.body.EQVENT_EQC_serie)
+              .input("EQC_serie", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_serie)
               .query(querys.updateEquipoCompleto);
             }
           }
