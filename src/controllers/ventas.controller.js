@@ -555,6 +555,48 @@ export const getVentasActivos = async (req, res) => {
               .query(querys.updateEquipoCompleto);
             }
           }
+          if(req.body.VENT_MovEntrega==1){
+            const pool = await getConnection();
+              const codigo = await pool.request().query(querys.getLastIdRequerimiento);
+              let idR = 0;
+            if(codigo.recordset[0].REQ_id == 0){
+              idR = 1; 
+            }
+            else{
+              idR = codigo.recordset[0].REQ_id;
+            }
+            let secuencial = '';
+            secuencial = "REQ"+idR;
+
+            const pool2 = await getConnection();
+            const result = await pool2
+            .request()
+            .input("REQ_codigo", sql.VarChar,secuencial)
+            //.input("REQ_personaReporta", sql.VarChar, '')
+            //.input("REQ_fecha", sql.DateTime, req.body.FechaReq)
+           // .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
+           // .input("REQ_serie", sql.VarChar, req.body.Serie)
+            //.input("REQ_placa", sql.VarChar, req.body.Placa)
+            //.input("REQ_EQUIP_id", sql.Decimal, req.body.Modelo)
+            .input("REQ_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
+            .input("REQ_contacto", sql.VarChar, req.body.VENT_contacto)
+            .input("REQ_establecimiento", sql.VarChar, req.body.VENT_establecimiento)
+            .input("REQ_telefono", sql.VarChar, req.body.VENT_telefono)
+            .input("REQ_direccion", sql.VarChar, req.body.VENT_direccion)
+            .input("REQ_UBIC_id", sql.Decimal, req.body.VENT_UBIC_id)
+            .input("REQ_observacion", sql.VarChar, req.body.VENT_observacion)
+           // .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
+            //.input("REQ_SS_id", sql.Decimal, req.body.Servicio)
+            .input("REQ_USU_id", sql.Decimal, req.body.idUser)
+            //.input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
+            //.input("REQ_IVA", sql.Decimal(18,2),ivaDetalle)
+            //.input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
+            .input("REQ_USU_ing", sql.Decimal, req.body.idUser)
+            //.input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
+            //.input("REQ_estado", sql.Decimal, req.body.aprobado)
+            .query(querys.addRequerimiento2);
+          }
+
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
           //return res.status(200).json({ status: "ok", msg: req.body.VENT_list_brandeos ,token:0});
         }

@@ -75,7 +75,7 @@ export const getRequerimientosActivos = async (req, res) => {
           totalFinalDetalle = totalDetalle + ivaDetalle;
         }
      
-      const pool2 = await getConnection();
+        const pool2 = await getConnection();
         const result = await pool2
         .request()
         .input("REQ_codigo", sql.VarChar,secuencial)
