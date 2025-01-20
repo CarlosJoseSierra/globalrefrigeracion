@@ -933,7 +933,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 36:
           _result11 = _context13.sent;
         case 37:
-          if (!(result.rowsAffected[0] == 1)) {
+          if (!(result.rowsAffected == 1)) {
             _context13.next = 66;
             break;
           }
@@ -999,7 +999,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 69:
           return _context13.abrupt("return", res.status(400).json({
             status: "400",
-            msg: "No se pudo registrar, consulte al administrador",
+            msg: result.rowsAffected,
             token: 0
           }));
         case 70:

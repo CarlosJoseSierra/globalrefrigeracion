@@ -584,7 +584,7 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);
           }
-          if(result.rowsAffected[0]==1){
+          if(result.rowsAffected==1){
             let idReq = result.recordset[0].REQ_id;
             if(req.body.VENT_tipoVenta==1){
               if(req.body.VENT_list_brandeos.length>0){
@@ -621,10 +621,11 @@ export const getVentasActivos = async (req, res) => {
 
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
-          //return res.status(200).json({ status: "ok", msg: req.body.VENT_list_brandeos ,token:0});
+          //return res.status(200).json({ status: "ok", msg: result.rowsAffected ,token:0});
         }
        else{
-          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+          //return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+          return res.status(400).json({ status: "400", msg: result.rowsAffected ,token:0});
         }
       }
      catch (error) {
