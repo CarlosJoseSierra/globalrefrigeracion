@@ -23,5 +23,6 @@ router.put("/requerimientos/xy/:id", _requerimientos.editRequerimientosCierraCas
 router.post("/requerimientos/new2", storage.array('image', 3), _requerimientos.createRequerimientos2);
 router.get("/requerimientos/mapa", _requerimientos.getRequerimientosMapa);
 router.put("/requerimientos/xz/:id", _requerimientos.editRequerimientosHabilitar);
+router.get("/requerimientos/not", _requerimientos.getRequerimientosNotificados);
 var _default = router;
 exports["default"] = _default;
