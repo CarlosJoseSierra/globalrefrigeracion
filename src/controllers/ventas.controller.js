@@ -584,6 +584,8 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);
             console.log(result4);
+            console.log(req.body.VENT_list_brandeos);
+            console.log(req.body.VENT_ventabrandeos);
             if(result4.rowsAffected[0]==1){
               let idReq = result4.recordset[0].REQ_id;
               if(req.body.VENT_tipoVenta==1){
