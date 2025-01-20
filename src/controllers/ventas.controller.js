@@ -543,16 +543,18 @@ export const getVentasActivos = async (req, res) => {
         .input("id", req.params.id)
         .query(querys.editVentaCorte);
         if(result.rowsAffected>0){
-         if(req.body.VENT_list_brandeos.length>0){
-            for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
-              const pool2 = await getConnection();
-              const result2 = await pool2
-              .request()
-              .input("EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
-              .input("EQC_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
-              .input("idUser", sql.Decimal, req.body.idUser)
-              .input("EQC_serie", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_serie)
-              .query(querys.updateEquipoCompleto);
+          if(req.body.VENT_tipoVenta==1){
+            if(req.body.VENT_list_brandeos.length>0){
+              for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
+                const pool2 = await getConnection();
+                const result2 = await pool2
+                .request()
+                .input("EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
+                .input("EQC_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
+                .input("idUser", sql.Decimal, req.body.idUser)
+                .input("EQC_serie", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_serie)
+                .query(querys.updateEquipoCompleto);
+              }
             }
           }
           if(req.body.VENT_MovEntrega==1){
@@ -583,9 +585,6 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_USU_ing", sql.Decimal, req.body.idUser)
             .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);
-            console.log(result4);
-            console.log(req.body.VENT_list_brandeos);
-            console.log(req.body.VENT_ventabrandeos);
             if(result4.rowsAffected[0]==1){
               let idReq = result4.recordset[0].REQ_id;
               if(req.body.VENT_tipoVenta==1){
