@@ -545,8 +545,8 @@ export const getVentasActivos = async (req, res) => {
         if(result.rowsAffected>0){
          if(req.body.VENT_list_brandeos.length>0){
             for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
-              const pool3 = await getConnection();
-              const result2 = await pool3
+              const pool2 = await getConnection();
+              const result2 = await pool2
               .request()
               .input("EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
               .input("EQC_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
@@ -556,8 +556,8 @@ export const getVentasActivos = async (req, res) => {
             }
           }
           if(req.body.VENT_MovEntrega==1){
-            const pool = await getConnection();
-              const codigo = await pool.request().query(querys.getLastIdRequerimiento);
+            const pool3 = await getConnection();
+              const codigo = await pool3.request().query(querys.getLastIdRequerimiento);
               let idR = 0;
             if(codigo.recordset[0].REQ_id == 0){
               idR = 1; 
@@ -568,8 +568,8 @@ export const getVentasActivos = async (req, res) => {
             let secuencial = '';
             secuencial = "REQ"+idR;
 
-            const pool2 = await getConnection();
-            const result = await pool2
+            const pool4 = await getConnection();
+            const result4 = await pool4
             .request()
             .input("REQ_codigo", sql.VarChar,secuencial)
             .input("REQ_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
@@ -583,50 +583,47 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_USU_ing", sql.Decimal, req.body.idUser)
             .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);
-          }
-          console.log(result);
-          if(result.rowsAffected[0]==1){
-            let idReq = result.recordset[0].REQ_id;
-            if(req.body.VENT_tipoVenta==1){
-              if(req.body.VENT_list_brandeos.length>0){
-                for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
-                  const pool3 = await getConnection();
-                  const result = await pool3
-                  .request()
-                  .input("REQMOV_REQ_id", sql.Decimal,idReq)
-                  .input("REQMOV_EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
-                  .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_BRAND_id)
-                  .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQC_EQUIP_id)
-                  .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_list_brandeos[i].EQVENT_cantidad)
-                  .input("REQMOV_tipo", sql.Decimal, 1)
-                  .query(querys.addNewRequerimientoMovimiento);
+            console.log(result4);
+            if(result4.rowsAffected[0]==1){
+              let idReq = result4.recordset[0].REQ_id;
+              if(req.body.VENT_tipoVenta==1){
+                if(req.body.VENT_list_brandeos.length>0){
+                  for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
+                    const pool3 = await getConnection();
+                    const result = await pool3
+                    .request()
+                    .input("REQMOV_REQ_id", sql.Decimal,idReq)
+                    .input("REQMOV_EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
+                    .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_BRAND_id)
+                    .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQC_EQUIP_id)
+                    .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_list_brandeos[i].EQVENT_cantidad)
+                    .input("REQMOV_tipo", sql.Decimal, 1)
+                    .query(querys.addNewRequerimientoMovimiento);
+                  }
+                }
+              }
+              else{
+                if(req.body.VENT_ventabrandeos.length>0){
+                  for(let i=0;i<req.body.VENT_ventabrandeos.length;i++){
+                    const pool3 = await getConnection();
+                    const result = await pool3
+                    .request()
+                    .input("REQMOV_REQ_id", sql.Decimal,idReq)
+                    .input("REQMOV_EQC_id", sql.Decimal, 0)
+                    .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_BRAND_id)
+                    .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_EQUIP_id)
+                    .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_ventabrandeos[i].EQBRAND_cantidad)
+                    .input("REQMOV_tipo", sql.Decimal, 2)
+                    .query(querys.addNewRequerimientoMovimiento);
+                  }
                 }
               }
             }
-            else{
-              if(req.body.VENT_ventabrandeos.length>0){
-                for(let i=0;i<req.body.VENT_ventabrandeos.length;i++){
-                  const pool3 = await getConnection();
-                  const result = await pool3
-                  .request()
-                  .input("REQMOV_REQ_id", sql.Decimal,idReq)
-                  .input("REQMOV_EQC_id", sql.Decimal, 0)
-                  .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_BRAND_id)
-                  .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_EQUIP_id)
-                  .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_ventabrandeos[i].EQBRAND_cantidad)
-                  .input("REQMOV_tipo", sql.Decimal, 2)
-                  .query(querys.addNewRequerimientoMovimiento);
-                }
-              }
-            }
-
           }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
-          //return res.status(200).json({ status: "ok", msg: result.rowsAffected ,token:0});
         }
        else{
-          //return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
-          return res.status(400).json({ status: "400", msg: result.rowsAffected ,token:0});
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
         }
       }
      catch (error) {
