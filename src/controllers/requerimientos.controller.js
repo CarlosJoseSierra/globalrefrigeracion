@@ -40,6 +40,17 @@ export const getRequerimientosActivos = async (req, res) => {
     }
   };
 
+  export const getRequerimientosNotificados = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request().query(querys.getRequerimientosNotificados);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
   export const createRequerimientos2 = async (req, res) => {
     console.log(req.files);
     console.log(req.body);

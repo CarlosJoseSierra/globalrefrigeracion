@@ -864,7 +864,7 @@ var getVentaById = /*#__PURE__*/function () {
 exports.getVentaById = getVentaById;
 var editVentaPorCierreCaso = /*#__PURE__*/function () {
   var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(req, res) {
-    var pool, result, i, pool3, result2, _pool10, codigo, idR, secuencial, pool2, _result11;
+    var pool, result, i, pool3, result2, _pool10, codigo, idR, secuencial, pool2, _result11, idReq, _i16, _pool11, _result12, _i17, _pool12, _result13;
     return _regeneratorRuntime().wrap(function _callee13$(_context13) {
       while (1) switch (_context13.prev = _context13.next) {
         case 0:
@@ -878,7 +878,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 6:
           result = _context13.sent;
           if (!(result.rowsAffected > 0)) {
-            _context13.next = 40;
+            _context13.next = 69;
             break;
           }
           if (!(req.body.VENT_list_brandeos.length > 0)) {
@@ -929,51 +929,92 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 33:
           pool2 = _context13.sent;
           _context13.next = 36;
-          return pool2.request().input("REQ_codigo", _database.sql.VarChar, secuencial)
-          //.input("REQ_personaReporta", sql.VarChar, '')
-          //.input("REQ_fecha", sql.DateTime, req.body.FechaReq)
-          // .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
-          // .input("REQ_serie", sql.VarChar, req.body.Serie)
-          //.input("REQ_placa", sql.VarChar, req.body.Placa)
-          //.input("REQ_EQUIP_id", sql.Decimal, req.body.Modelo)
-          .input("REQ_CLI_id", _database.sql.Decimal, req.body.VENT_CLI_id).input("REQ_contacto", _database.sql.VarChar, req.body.VENT_contacto).input("REQ_establecimiento", _database.sql.VarChar, req.body.VENT_establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.VENT_telefono).input("REQ_direccion", _database.sql.VarChar, req.body.VENT_direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.VENT_UBIC_id).input("REQ_observacion", _database.sql.VarChar, req.body.VENT_observacion)
-          // .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
-          //.input("REQ_SS_id", sql.Decimal, req.body.Servicio)
-          .input("REQ_USU_id", _database.sql.Decimal, req.body.idUser)
-          //.input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
-          //.input("REQ_IVA", sql.Decimal(18,2),ivaDetalle)
-          //.input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
-          .input("REQ_USU_ing", _database.sql.Decimal, req.body.idUser)
-          //.input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
-          //.input("REQ_estado", sql.Decimal, req.body.aprobado)
-          .query(_database.querys.addRequerimiento2);
+          return pool2.request().input("REQ_codigo", _database.sql.VarChar, secuencial).input("REQ_CLI_id", _database.sql.Decimal, req.body.VENT_CLI_id).input("REQ_contacto", _database.sql.VarChar, req.body.VENT_contacto).input("REQ_establecimiento", _database.sql.VarChar, req.body.VENT_establecimiento).input("REQ_telefono", _database.sql.VarChar, req.body.VENT_telefono).input("REQ_direccion", _database.sql.VarChar, req.body.VENT_direccion).input("REQ_UBIC_id", _database.sql.Decimal, req.body.VENT_UBIC_id).input("REQ_observacion", _database.sql.VarChar, req.body.VENT_observacion).input("REQ_USU_id", _database.sql.Decimal, req.body.idUser).input("REQ_USU_ing", _database.sql.Decimal, req.body.idUser).input("REQ_VENT_id", _database.sql.Decimal, req.body.VENT_id).query(_database.querys.addRequerimiento2);
         case 36:
           _result11 = _context13.sent;
         case 37:
+          if (!(result.rowsAffected[0] == 1)) {
+            _context13.next = 66;
+            break;
+          }
+          idReq = result.recordset[0].REQ_id;
+          if (!(req.body.VENT_tipoVenta == 1)) {
+            _context13.next = 54;
+            break;
+          }
+          if (!(req.body.VENT_list_brandeos.length > 0)) {
+            _context13.next = 52;
+            break;
+          }
+          _i16 = 0;
+        case 42:
+          if (!(_i16 < req.body.VENT_list_brandeos.length)) {
+            _context13.next = 52;
+            break;
+          }
+          _context13.next = 45;
+          return (0, _database.getConnection)();
+        case 45:
+          _pool11 = _context13.sent;
+          _context13.next = 48;
+          return _pool11.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i16].EQVENT_EQC_id).input("REQMOV_BRAND_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i16].EQVENT_BRAND_id).input("REQMOV_EQUIPO_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i16].EQC_EQUIP_id).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_list_brandeos[_i16].EQVENT_cantidad).input("REQMOV_tipo", _database.sql.Decimal, 1).query(_database.querys.addNewRequerimientoMovimiento);
+        case 48:
+          _result12 = _context13.sent;
+        case 49:
+          _i16++;
+          _context13.next = 42;
+          break;
+        case 52:
+          _context13.next = 66;
+          break;
+        case 54:
+          if (!(req.body.VENT_ventabrandeos.length > 0)) {
+            _context13.next = 66;
+            break;
+          }
+          _i17 = 0;
+        case 56:
+          if (!(_i17 < req.body.VENT_ventabrandeos.length)) {
+            _context13.next = 66;
+            break;
+          }
+          _context13.next = 59;
+          return (0, _database.getConnection)();
+        case 59:
+          _pool12 = _context13.sent;
+          _context13.next = 62;
+          return _pool12.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_id", _database.sql.Decimal, 0).input("REQMOV_BRAND_id", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i17].EQBRAND_BRAND_id).input("REQMOV_EQUIPO_id", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i17].EQBRAND_EQUIP_id).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_ventabrandeos[_i17].EQBRAND_cantidad).input("REQMOV_tipo", _database.sql.Decimal, 2).query(_database.querys.addNewRequerimientoMovimiento);
+        case 62:
+          _result13 = _context13.sent;
+        case 63:
+          _i17++;
+          _context13.next = 56;
+          break;
+        case 66:
           return _context13.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 40:
+        case 69:
           return _context13.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 41:
-          _context13.next = 47;
+        case 70:
+          _context13.next = 76;
           break;
-        case 43:
-          _context13.prev = 43;
+        case 72:
+          _context13.prev = 72;
           _context13.t0 = _context13["catch"](0);
           res.status(500);
           res.send(_context13.t0.message);
-        case 47:
+        case 76:
         case "end":
           return _context13.stop();
       }
-    }, _callee13, null, [[0, 43]]);
+    }, _callee13, null, [[0, 72]]);
   }));
   return function editVentaPorCierreCaso(_x25, _x26) {
     return _ref13.apply(this, arguments);

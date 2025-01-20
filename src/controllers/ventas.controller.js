@@ -572,12 +572,6 @@ export const getVentasActivos = async (req, res) => {
             const result = await pool2
             .request()
             .input("REQ_codigo", sql.VarChar,secuencial)
-            //.input("REQ_personaReporta", sql.VarChar, '')
-            //.input("REQ_fecha", sql.DateTime, req.body.FechaReq)
-           // .input("REQ_TPS_id", sql.Decimal, req.body.TipoServicio)
-           // .input("REQ_serie", sql.VarChar, req.body.Serie)
-            //.input("REQ_placa", sql.VarChar, req.body.Placa)
-            //.input("REQ_EQUIP_id", sql.Decimal, req.body.Modelo)
             .input("REQ_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
             .input("REQ_contacto", sql.VarChar, req.body.VENT_contacto)
             .input("REQ_establecimiento", sql.VarChar, req.body.VENT_establecimiento)
@@ -585,18 +579,47 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_direccion", sql.VarChar, req.body.VENT_direccion)
             .input("REQ_UBIC_id", sql.Decimal, req.body.VENT_UBIC_id)
             .input("REQ_observacion", sql.VarChar, req.body.VENT_observacion)
-           // .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
-            //.input("REQ_SS_id", sql.Decimal, req.body.Servicio)
             .input("REQ_USU_id", sql.Decimal, req.body.idUser)
-            //.input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
-            //.input("REQ_IVA", sql.Decimal(18,2),ivaDetalle)
-            //.input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
             .input("REQ_USU_ing", sql.Decimal, req.body.idUser)
-            //.input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
-            //.input("REQ_estado", sql.Decimal, req.body.aprobado)
+            .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);
           }
+          if(result.rowsAffected[0]==1){
+            let idReq = result.recordset[0].REQ_id;
+            if(req.body.VENT_tipoVenta==1){
+              if(req.body.VENT_list_brandeos.length>0){
+                for(let i=0;i<req.body.VENT_list_brandeos.length;i++){
+                  const pool3 = await getConnection();
+                  const result = await pool3
+                  .request()
+                  .input("REQMOV_REQ_id", sql.Decimal,idReq)
+                  .input("REQMOV_EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
+                  .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_BRAND_id)
+                  .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQC_EQUIP_id)
+                  .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_list_brandeos[i].EQVENT_cantidad)
+                  .input("REQMOV_tipo", sql.Decimal, 1)
+                  .query(querys.addNewRequerimientoMovimiento);
+                }
+              }
+            }
+            else{
+              if(req.body.VENT_ventabrandeos.length>0){
+                for(let i=0;i<req.body.VENT_ventabrandeos.length;i++){
+                  const pool3 = await getConnection();
+                  const result = await pool3
+                  .request()
+                  .input("REQMOV_REQ_id", sql.Decimal,idReq)
+                  .input("REQMOV_EQC_id", sql.Decimal, 0)
+                  .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_BRAND_id)
+                  .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_EQUIP_id)
+                  .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_ventabrandeos[i].EQBRAND_cantidad)
+                  .input("REQMOV_tipo", sql.Decimal, 2)
+                  .query(querys.addNewRequerimientoMovimiento);
+                }
+              }
+            }
 
+          }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
           //return res.status(200).json({ status: "ok", msg: req.body.VENT_list_brandeos ,token:0});
         }
