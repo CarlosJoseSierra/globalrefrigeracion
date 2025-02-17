@@ -30,6 +30,7 @@ router.put("/ventas/h/:id", _ventas.editVentaPorCerrarBrandeo);
 router.get("/ventas/all", _ventas.getAllBrandeosVenta);
 router.get("/ventas/j/:id", _ventas.getImagenEquipoByVenta);
 router.put("/ventas/k/:id", storage.array('image', 10), _ventas.createImageEquipoPegado);
+router.put("/ventas/l/:id", _ventas.editVentaPorRevisionBodega);
 //Control de Inventario
 router.get("/ventas/inv", _ventas.getInventarioTotal);
 router.get("/ventas/inv/:id", _ventas.getInventarioByIdEquipo);

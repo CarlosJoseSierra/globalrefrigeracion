@@ -106,33 +106,6 @@ export const getVentasActivos = async (req, res) => {
       let secuencial = '';
       secuencial = "VENTA"+idR;
 
-      let totalDetalle = 0;
-      let totalDetalleModelo = 0;
-      let totalDetalleBrandeo = 0;
-      let totalFinal = 0;
-        let ivaDetalle = 0;
-        let totalFinalDetalle = 0;
-        if(req.body.details.length>0){
-          for(let i=0;i<req.body.details.length;i++){
-            totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
-          } 
-        }
-        if(req.body.detailsModelo.length>0){
-          for(let i=0;i<req.body.detailsModelo.length;i++){
-            totalDetalleModelo = totalDetalleModelo + (1 * req.body.detailsModelo[i].salesPriceB);
-            
-          } 
-        }
-        if(req.body.detailsBrandeo.length>0){
-          brandeo = 1;
-          for(let i=0;i<req.body.detailsBrandeo.length;i++){
-            totalDetalleBrandeo = totalDetalleBrandeo + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
-          } 
-        }
-        totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
-        ivaDetalle = totalFinal * (15/100);
-        totalFinalDetalle = totalFinal + ivaDetalle;
-
       const pool2 = await getConnection();
         const result = await pool2
         .request()
@@ -147,9 +120,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
-        .input("VENT_SubTotal", sql.Decimal(18,2), totalFinal)
-        .input("VENT_IVA", sql.Decimal(18,2),ivaDetalle)
-        .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
+        .input("VENT_SubTotal", sql.Decimal(18,2), req.body.SubtotalCopia)
+        .input("VENT_IVA", sql.Decimal(18,2),req.body.IVACopia)
+        .input("VENT_total", sql.Decimal(18,2), req.body.TotalCopia) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
         .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .query(querys.addVenta);
@@ -164,7 +137,9 @@ export const getVentasActivos = async (req, res) => {
               .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
               .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
               .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-              .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+              .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].totalCopia)
+              .input("VENTDET_EQC_id", sql.Decimal, req.body.details[i].idCopia)
+              .input("VENTDET_EQC_serie", sql.VarChar, req.body.details[i].serieCopia)
               .query(querys.addNewVentaDetalle);
             }
           }
@@ -189,8 +164,8 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
               .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
               .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
-              .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
-              .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+              .input("EQVENT_precio", sql.Decimal(18,2), 0)
+              .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
               .input("VENT_USU_ing", sql.Decimal, req.body.id)
               .query(querys.addNewVentaEquipo);
             }
@@ -241,35 +216,6 @@ export const getVentasActivos = async (req, res) => {
       let ivaDetalle = 0;
       let totalFinalDetalle = 0;
       let brandeo = 0;
-      if(req.body.details.length>0){
-        for(let i=0;i<req.body.details.length;i++){
-          totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
-        }
-      }
-
-      if(req.body.detailsModelo.length>0){
-        for(let i=0;i<req.body.detailsModelo.length;i++){
-            if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
-              brandeo = 1;
-            }
-        }
-       }
-       if(req.body.detailsModelo.length>0){
-        for(let i=0;i<req.body.detailsModelo.length;i++){
-          totalDetalleModelo = totalDetalleModelo + (1 * req.body.detailsModelo[i].salesPriceB);
-        } 
-      }
-      if(req.body.detailsBrandeo.length>0){
-        brandeo = 1;
-        for(let i=0;i<req.body.detailsBrandeo.length;i++){
-          //totalDetalleBrandeo = totalDetalleBrandeo + req.body.detailsBrandeo[i].salesPriceB;
-          totalDetalleBrandeo = totalDetalleBrandeo + (req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB);
-        } 
-      }
-
-      totalFinal = totalDetalle + totalDetalleModelo + totalDetalleBrandeo;
-       ivaDetalle = totalFinal * (15/100);
-       totalFinalDetalle = totalFinal + ivaDetalle;
       const pool = await getConnection();
         const result = await pool
         .request()
@@ -284,9 +230,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_telefono", sql.VarChar, req.body.Telefono)
         .input("VENT_brandeoEquipo", sql.Decimal, brandeo)
         .input("VENT_USU_ing", sql.Decimal, req.body.id)
-        .input("VENT_SubTotal", sql.Decimal(18,2), totalFinal)
-        .input("VENT_IVA", sql.Decimal(18,2), ivaDetalle)
-        .input("VENT_total", sql.Decimal(18,2), totalFinalDetalle) 
+        .input("VENT_SubTotal", sql.Decimal(18,2), req.body.SubtotalCopia)
+        .input("VENT_IVA", sql.Decimal(18,2),req.body.IVACopia)
+        .input("VENT_total", sql.Decimal(18,2), req.body.TotalCopia) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
@@ -306,7 +252,9 @@ export const getVentasActivos = async (req, res) => {
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
                 .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].totalCopia)
+                .input("VENTDET_EQC_id", sql.Decimal, req.body.details[i].idCopia)
+                .input("VENTDET_EQC_serie", sql.VarChar, req.body.details[i].serieCopia)
                 .query(querys.addNewVentaDetalle);
               }
             }
@@ -334,8 +282,8 @@ export const getVentasActivos = async (req, res) => {
                     .input("EQVENT_BRAND_id", sql.Decimal, req.body.detailsModelo[i].productName)
                     .input("EQVENT_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
                     .input("EQVENT_cantidad", sql.Decimal(18,2), 1)
-                    .input("EQVENT_precio", sql.Decimal(18,2), req.body.detailsModelo[i].salesPriceB)
-                    .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].salesPriceB)
+                    .input("EQVENT_precio", sql.Decimal(18,2), 0)
+                    .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
                     .input("VENT_USU_ing", sql.Decimal, req.body.id)
                     .query(querys.addNewVentaEquipo2);
                   }
@@ -863,4 +811,22 @@ export const getVentasActivos = async (req, res) => {
     }
   };
   
-  
+  export const editVentaPorRevisionBodega = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editVentaPorRevisionBodega);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
