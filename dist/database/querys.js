@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.querys = void 0;
 var querys = {
-  getAllProducts: "SELECT * FROM PRODUCTO ORDER BY PROD_nombre WHERE PROD_estado = 1",
+  getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 ORDER BY PROD_nombre",
   getProductById: "SELECT * FROM PRODUCTO Where PROD_id = @Id",
   addNewProduct: "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida) VALUES (@name,@description,@quantity);",
   deleteProduct: "DELETE FROM PRODUCTO WHERE PROD_id= @Id",
@@ -21,7 +21,7 @@ var querys = {
   getTotalActivos: "SELECT COUNT(*) FROM EQUIPO_COMPLETO",
   updateActivoById: "UPDATE EQUIPO_COMPLETO SET EQC_serie = @EQC_serie, EQC_placa = @EQC_placa, EQC_EQUIP_id = @EQC_EQUIP_id,EQC_CLI_id = @EQC_CLI_id,EQC_USU_ing = @EQC_USU_ing, EQC_fecha_ing = GETDATE(), EQC_codTag = @EQC_codTag, EQC_LOGO_id = @EQC_LOGO_id WHERE EQC_id = @Id",
   //Querys Tabla Modelos de Equipos
-  getAllEquipos: "SELECT * FROM EQUIPO ORDER BY EQUIP_modelo WHERE EQUIP_estado = 1",
+  getAllEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 ORDER BY EQUIP_modelo",
   getEquipoById: "SELECT * FROM EQUIPO Where EQ_id = @Id",
   //Querys Tabla Modelos de Usuarios
   getAllUsuarios: "SELECT * FROM USUARIOS ORDER BY USU_nombre",
