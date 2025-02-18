@@ -28,6 +28,8 @@ import {
   getDetalleVentasBrandeos,
   updateEquipoInventory,
   editVentaPorRevisionBodega,
+  editVentaPorAprobacion,
+  editVentaPorNoAprobacion,
 } from "../controllers/ventas.controller";
 
 
@@ -56,6 +58,8 @@ router.get("/ventas/all", getAllBrandeosVenta);
 router.get("/ventas/j/:id", getImagenEquipoByVenta);
 router.put("/ventas/k/:id",storage.array('image',10),createImageEquipoPegado);
 router.put("/ventas/l/:id", editVentaPorRevisionBodega);
+router.put("/ventas/m/:id", editVentaPorAprobacion);
+router.put("/ventas/n/:id", editVentaPorNoAprobacion);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioTotal);
 router.get("/ventas/inv/:id", getInventarioByIdEquipo);
