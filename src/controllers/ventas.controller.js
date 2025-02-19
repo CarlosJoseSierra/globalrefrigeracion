@@ -34,6 +34,17 @@ export const getVentasActivos = async (req, res) => {
     }
   };
 
+  export const getRevisionesActivas = async (req, res) => {
+    try {
+      const pool = await getConnection();
+      const result = await pool.request().query(querys.getRevisionesActivas);
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
   export const getVentasActivosPorBrandeo = async (req, res) => {
     try {
       const pool = await getConnection();

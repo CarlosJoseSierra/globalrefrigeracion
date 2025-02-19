@@ -33,6 +33,8 @@ router.put("/ventas/k/:id", storage.array('image', 10), _ventas.createImageEquip
 router.put("/ventas/l/:id", _ventas.editVentaPorRevisionBodega);
 router.put("/ventas/m/:id", _ventas.editVentaPorAprobacion);
 router.put("/ventas/n/:id", _ventas.editVentaPorNoAprobacion);
+router.put("/ventas/o/:id", _ventas.editVentaEquipoRevisado);
+router.get("/ventas/rev", _ventas.getRevisionesActivas);
 //Control de Inventario
 router.get("/ventas/inv", _ventas.getInventarioTotal);
 router.get("/ventas/inv/:id", _ventas.getInventarioByIdEquipo);
