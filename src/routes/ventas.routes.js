@@ -32,6 +32,7 @@ import {
   editVentaPorNoAprobacion,
   getRevisionesActivas,
   editVentaEquipoRevisado,
+  getCountRevisionEquipo,
 } from "../controllers/ventas.controller";
 
 
@@ -64,6 +65,7 @@ router.put("/ventas/m/:id", editVentaPorAprobacion);
 router.put("/ventas/n/:id", editVentaPorNoAprobacion);
 router.put("/ventas/o/:id", editVentaEquipoRevisado);
 router.get("/ventas/rev", getRevisionesActivas);
+router.get("/ventas/count", getCountRevisionEquipo);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioTotal);
 router.get("/ventas/inv/:id", getInventarioByIdEquipo);
