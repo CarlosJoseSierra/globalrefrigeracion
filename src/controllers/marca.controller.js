@@ -4,7 +4,7 @@ import { getConnection, querys, sql } from "../database";
 export const getMarcas = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getAllEquipos);
+    const result = await pool.request().query(querys.getAllMarcas);
     res.json(result.recordset);
   } catch (error) {
     res.status(500);
