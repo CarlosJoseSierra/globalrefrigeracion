@@ -14,7 +14,7 @@ const router = Router();
 
 router.get("/equipos", getEquipos);
 router.get("/equipos/:id", getEquipoById);
-router.get("/equipos/marca", getMarcas);
+router.get("/equipos/b", getMarcas);
 router.get("/equipos/x/:id", getMarcasById);
 router.post("/equipos/new", createNewModelo);
 router.post("/equipos/a", createNewMarca);
