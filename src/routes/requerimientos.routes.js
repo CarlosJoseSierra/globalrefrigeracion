@@ -17,6 +17,7 @@ import {
   getRequerimientosMapa,
   editRequerimientosHabilitar,
   getRequerimientosNotificados,
+  RequerimientosNotificados,
 } from "../controllers/requerimientos.controller";
 
 
@@ -38,4 +39,5 @@ router.post("/requerimientos/new2", storage.array('image',3),createRequerimiento
 router.get("/requerimientos/mapa", getRequerimientosMapa);
 router.put("/requerimientos/xz/:id", editRequerimientosHabilitar);
 router.get("/requerimientos/not", getRequerimientosNotificados);
+router.get("/requerimientos/count", RequerimientosNotificados);
 export default router;

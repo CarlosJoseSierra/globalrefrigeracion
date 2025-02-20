@@ -164,7 +164,7 @@ var updateClienteById = /*#__PURE__*/function () {
           }
           return _context4.abrupt("return", res.status(200).json({
             status: "ok",
-            msg: "Registro exitoso",
+            msg: "Actualizacion exitosa",
             token: 0
           }));
         case 14:
