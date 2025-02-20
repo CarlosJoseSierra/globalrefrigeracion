@@ -184,8 +184,8 @@ var querys = _defineProperty({
   editVentaEquipoRevisado: "UPDATE VENTAS SET VENT_revisadoBodega = 1, VENT_fecharevisadoBod = GETDATE() WHERE VENT_id = @id",
   getCountRevisionEquipo: "SELECT COUNT(VENT_id) AS VENT_id FROM VENTAS WHERE (VENT_aprobado = 1 AND VENT_revisadoBodega = 0 AND VENT_tipoVenta = 1)",
   RequerimientosNotificados: "SELECT COUNT(REQ_id) AS REQ_id FROM REQUERIMIENTOS WHERE REQ_corteProceso = 1 AND REQ_REQ_Padre = 0 AND REQ_estado >0 AND REQ_notificacion=1",
-  getAllMarcas: "SELECT * FROM MARCA ORDER BY MARCA_descripcion",
-  getMarcaById: "SELECT * FROM MARCA Where MARCA_id = @Id",
+  getAllMarcas: "SELECT MARCA_id,MARCA_descripcion, FROM MARCA ORDER BY MARCA_descripcion",
+  getMarcaById: "SELECT MARCA_id,MARCA_descripcion, FROM MARCA Where MARCA_id = @Id",
   addNewModelo: "INSERT INTO EQUIPO(EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,EQUIP_codigo,EQUIP_puertas,EQUIP_estado) VALUES (@EQUIP_modelo,@EQUIP_marca,@EQUIP_descripcion,'','',1)",
   updateModeloById: "UPDATE EQUIPO SET EQUIP_modelo = @EQUIP_modelo,EQUIP_marca = @EQUIP_marca,EQUIP_descripcion = @EQUIP_descripcion WHERE EQUIP_id = @Id",
   addNewMarca: "INSERT INTO MARCA(MARCA_descripcion,MARCA_USU_ing,MARCA_fecha_ing) VALUES (@MARCA_descripcion,@MARCA_USU_ing,GETDATE())"
