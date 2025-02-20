@@ -32,9 +32,9 @@ export const createNewModelo = async (req, res) => {
     const pool = await getConnection();
     const result = await pool
       .request()
-      .input("EQUIP_modelo", sql.VarChar, EQUIP_modelo)
-      .input("EQUIP_marca", sql.VarChar, EQUIP_marca)
-      .input("EQUIP_descripcion", sql.VarChar, EQUIP_descripcion)
+      .input("EQUIP_modelo", sql.VarChar, req.body.EQUIP_modelo)
+      .input("EQUIP_marca", sql.VarChar, req.body.EQUIP_marca)
+      .input("EQUIP_descripcion", sql.VarChar, req.body.EQUIP_descripcion)
       .query(querys.addNewModelo);
       if(result.rowsAffected[0]==1){
         return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -56,9 +56,9 @@ export const updateModeloById = async (req, res) => {
     const result = await pool
       .request()
       .input("id", req.params.id)
-      .input("EQUIP_modelo", sql.VarChar, EQUIP_modelo)
-      .input("EQUIP_marca", sql.VarChar, EQUIP_marca)
-      .input("EQUIP_descripcion", sql.VarChar, EQUIP_descripcion)
+      .input("EQUIP_modelo", sql.VarChar, req.body.EQUIP_modelo)
+      .input("EQUIP_marca", sql.VarChar, req.body.EQUIP_marca)
+      .input("EQUIP_descripcion", sql.VarChar, req.body.EQUIP_descripcion)
       .query(querys.updateModeloById);
 
    if(result.rowsAffected==1){

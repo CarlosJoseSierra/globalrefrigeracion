@@ -87,7 +87,7 @@ var createNewMarca = /*#__PURE__*/function () {
         case 3:
           pool = _context3.sent;
           _context3.next = 6;
-          return pool.request().input("MARCA_descripcion", _database.sql.VarChar, EQUIP_modelo).input("MARCA_USU_ing", _database.sql.Decimal, EQUIP_marca).query(_database.querys.addNewMarca);
+          return pool.request().input("MARCA_descripcion", _database.sql.VarChar, req.body.EQUIP_modelo).input("MARCA_USU_ing", _database.sql.Decimal, req.body.EQUIP_marca).query(_database.querys.addNewMarca);
         case 6:
           result = _context3.sent;
           if (!(result.rowsAffected[0] == 1)) {
@@ -137,7 +137,7 @@ var updateMarcaById = /*#__PURE__*/function () {
         case 3:
           pool = _context4.sent;
           _context4.next = 6;
-          return pool.request().input("id", req.params.id).input("MARCA_descripcion", _database.sql.VarChar, EQUIP_modelo).input("MARCA_USU_ing", _database.sql.Decimal, EQUIP_marca).query(_database.querys.updateMarcaById);
+          return pool.request().input("id", req.params.id).input("MARCA_descripcion", _database.sql.VarChar, req.body.EQUIP_modelo).input("MARCA_USU_ing", _database.sql.Decimal, req.body.EQUIP_marca).query(_database.querys.updateMarcaById);
         case 6:
           result = _context4.sent;
           if (!(result.rowsAffected == 1)) {
