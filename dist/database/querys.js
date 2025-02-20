@@ -188,5 +188,5 @@ var querys = (_querys = {
   addNewModelo: "INSERT INTO EQUIPO(EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,EQUIP_codigo,EQUIP_puertas,EQUIP_estado) VALUES (@EQUIP_modelo,@EQUIP_marca,@EQUIP_descripcion,'','',1)",
   updateModeloById: "UPDATE EQUIPO SET EQUIP_modelo = @EQUIP_modelo,EQUIP_marca = @EQUIP_marca,EQUIP_descripcion = @EQUIP_descripcion WHERE EQUIP_id = @Id",
   addNewMarca: "INSERT INTO MARCA(MARCA_descripcion,MARCA_USU_ing,MARCA_fecha_ing) VALUES (@MARCA_descripcion,@MARCA_USU_ing,GETDATE())"
-}, _defineProperty(_querys, "updateModeloById", "UPDATE MARCA SET MARCA_descripcion = @MARCA_descripcion,MARCA_USU_ing = @MARCA_USU_ing WHERE MARCA_id = @Id"), _defineProperty(_querys, "getAllMarcas", "SELECT MARCA_id,MARCA_descripcion, FROM MARCA ORDER BY MARCA_descripcion"), _defineProperty(_querys, "getMarcaById", "SELECT MARCA_id,MARCA_descripcion, FROM MARCA Where MARCA_id = @Id"), _querys);
+}, _defineProperty(_querys, "updateModeloById", "UPDATE MARCA SET MARCA_descripcion = @MARCA_descripcion,MARCA_USU_ing = @MARCA_USU_ing WHERE MARCA_id = @Id"), _defineProperty(_querys, "getAllMarcas", "SELECT MARCA_id,MARCA_descripcion FROM MARCA ORDER BY MARCA_descripcion"), _defineProperty(_querys, "getMarcaById", "SELECT MARCA_id,MARCA_descripcion FROM MARCA Where MARCA_id = @Id"), _querys);
 exports.querys = querys;
