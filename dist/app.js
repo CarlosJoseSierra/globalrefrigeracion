@@ -35,10 +35,12 @@ var _ventasRoutes = _interopRequireDefault(require("./routes/ventas.routes.js"))
 var _ventasdetalleRoutes = _interopRequireDefault(require("./routes/ventasdetalle.routes.js"));
 var _brandeoRouter = _interopRequireDefault(require("./routes/brandeo.router.js"));
 var _solobrandeoRouter = _interopRequireDefault(require("./routes/solobrandeo.router.js"));
+var _marcaRouter = _interopRequireDefault(require("./routes/marca.router.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
 var cloudinary = require("cloudinary").v2;
+
 //import morgan from "morgan";
 //import config from "./config.js";
 //var cors = require('cors');
@@ -82,6 +84,7 @@ app.use("/api", _ventasRoutes["default"]);
 app.use("/api", _ventasdetalleRoutes["default"]);
 app.use("/api", _brandeoRouter["default"]);
 app.use("/api", _solobrandeoRouter["default"]);
+app.use("/api", _marcaRouter["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'

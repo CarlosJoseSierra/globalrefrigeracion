@@ -30,7 +30,10 @@ import ventasRoutes from "./routes/ventas.routes.js";
 import ventasDetallesRoutes from "./routes/ventasdetalle.routes.js";
 import brandeoRoutes from "./routes/brandeo.router.js";
 import solobrandeoRoutes from "./routes/solobrandeo.router.js";
+import marcasRoutes from "./routes/marca.router.js";
+
 const cloudinary = require("cloudinary").v2
+
 //import morgan from "morgan";
 //import config from "./config.js";
 //var cors = require('cors');
@@ -72,6 +75,7 @@ app.use("/api", ventasRoutes);
 app.use("/api", ventasDetallesRoutes);
 app.use("/api", brandeoRoutes);
 app.use("/api",solobrandeoRoutes);
+app.use("/api",marcasRoutes);
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'
