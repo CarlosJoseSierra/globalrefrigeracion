@@ -87,7 +87,7 @@ var getMarcas = /*#__PURE__*/function () {
         case 3:
           pool = _context3.sent;
           _context3.next = 6;
-          return pool.request().query(_database.querys.getAllMarcas);
+          return pool.request().query(_database.querys.getAllEquipos);
         case 6:
           result = _context3.sent;
           res.json(result.recordset);

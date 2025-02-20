@@ -30,7 +30,7 @@ export const getEquipoById = async (req, res) => {
 export const getMarcas = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getAllMarcas);
+    const result = await pool.request().query(querys.getAllEquipos);
     res.json(result.recordset);
   } catch (error) {
     res.status(500);
