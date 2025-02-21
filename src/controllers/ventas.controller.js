@@ -112,7 +112,15 @@ export const getVentasActivos = async (req, res) => {
           if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
             brandeo = 1;
           }
-      }
+        }
+     }
+
+     if(req.body.detailsBrandeo.length>0){
+      for(let i=0;i<req.body.detailsBrandeo.length;i++){
+          if(req.body.detailsBrandeo[i].productName!=34){//es 34 prque es el ID del no brandeo
+            brandeo = 1;
+          }
+        }
      }
       let secuencial = '';
       secuencial = "VENTA"+idR;
@@ -220,13 +228,22 @@ export const getVentasActivos = async (req, res) => {
 
   export const editVentas = async (req, res) => {
     try {
-      let totalDetalle = 0;
-      let totalDetalleModelo = 0;
-      let totalDetalleBrandeo = 0;
-      let totalFinal = 0;
-      let ivaDetalle = 0;
-      let totalFinalDetalle = 0;
       let brandeo = 0;
+      if(req.body.detailsModelo.length>0){
+        for(let i=0;i<req.body.detailsModelo.length;i++){
+            if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
+              brandeo = 1;
+            }
+          }
+       }
+  
+       if(req.body.detailsBrandeo.length>0){
+        for(let i=0;i<req.body.detailsBrandeo.length;i++){
+            if(req.body.detailsBrandeo[i].productName!=34){//es 34 prque es el ID del no brandeo
+              brandeo = 1;
+            }
+          }
+       }
       const pool = await getConnection();
         const result = await pool
         .request()
