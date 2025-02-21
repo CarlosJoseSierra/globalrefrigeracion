@@ -33,7 +33,7 @@ export const createNewModelo = async (req, res) => {
     const result = await pool
       .request()
       .input("EQUIP_modelo", sql.VarChar, req.body.Modelo)
-      .input("EQUIP_marca", sql.VarChar, req.body.Modelo)
+      .input("EQUIP_marca", sql.VarChar, req.body.Marca)
       .input("EQUIP_descripcion", sql.VarChar, req.body.Descripcion)
       .query(querys.addNewModelo);
       if(result.rowsAffected[0]==1){
@@ -57,7 +57,7 @@ export const updateModeloById = async (req, res) => {
       .request()
       .input("id", req.params.id)
       .input("EQUIP_modelo", sql.VarChar, req.body.Modelo)
-      .input("EQUIP_marca", sql.VarChar, req.body.Modelo)
+      .input("EQUIP_marca", sql.VarChar, req.body.Marca)
       .input("EQUIP_descripcion", sql.VarChar, req.body.Descripcion)
       .query(querys.updateModeloById);
 
