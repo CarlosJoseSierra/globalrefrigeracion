@@ -33,8 +33,8 @@ export const createNewMarca = async (req, res) => {
     const pool = await getConnection();
     const result = await pool
       .request()
-      .input("MARCA_descripcion", sql.VarChar, req.body.EQUIP_modelo)
-      .input("MARCA_USU_ing", sql.Decimal, req.body.EQUIP_marca)
+      .input("MARCA_descripcion", sql.VarChar, req.body.Marca)
+      .input("MARCA_USU_ing", sql.Decimal, req.body.idUser)
       .query(querys.addNewMarca);
       if(result.rowsAffected[0]==1){
         return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -57,8 +57,8 @@ export const updateMarcaById = async (req, res) => {
     const result = await pool
       .request()
       .input("id", req.params.id)
-      .input("MARCA_descripcion", sql.VarChar, req.body.EQUIP_modelo)
-      .input("MARCA_USU_ing", sql.Decimal, req.body.EQUIP_marca)
+      .input("MARCA_descripcion", sql.VarChar, req.body.Marca)
+      .input("MARCA_USU_ing", sql.Decimal, req.body.idUser)
       .query(querys.updateMarcaById);
 
    if(result.rowsAffected==1){

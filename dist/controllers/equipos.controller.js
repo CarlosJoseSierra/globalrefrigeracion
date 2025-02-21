@@ -87,7 +87,7 @@ var createNewModelo = /*#__PURE__*/function () {
         case 3:
           pool = _context3.sent;
           _context3.next = 6;
-          return pool.request().input("EQUIP_modelo", _database.sql.VarChar, req.body.EQUIP_modelo).input("EQUIP_marca", _database.sql.VarChar, req.body.EQUIP_marca).input("EQUIP_descripcion", _database.sql.VarChar, req.body.EQUIP_descripcion).query(_database.querys.addNewModelo);
+          return pool.request().input("EQUIP_modelo", _database.sql.VarChar, req.body.Modelo).input("EQUIP_marca", _database.sql.VarChar, req.body.Modelo).input("EQUIP_descripcion", _database.sql.VarChar, req.body.Descripcion).query(_database.querys.addNewModelo);
         case 6:
           result = _context3.sent;
           if (!(result.rowsAffected[0] == 1)) {
@@ -137,7 +137,7 @@ var updateModeloById = /*#__PURE__*/function () {
         case 3:
           pool = _context4.sent;
           _context4.next = 6;
-          return pool.request().input("id", req.params.id).input("EQUIP_modelo", _database.sql.VarChar, req.body.EQUIP_modelo).input("EQUIP_marca", _database.sql.VarChar, req.body.EQUIP_marca).input("EQUIP_descripcion", _database.sql.VarChar, req.body.EQUIP_descripcion).query(_database.querys.updateModeloById);
+          return pool.request().input("id", req.params.id).input("EQUIP_modelo", _database.sql.VarChar, req.body.Modelo).input("EQUIP_marca", _database.sql.VarChar, req.body.Modelo).input("EQUIP_descripcion", _database.sql.VarChar, req.body.Descripcion).query(_database.querys.updateModeloById);
         case 6:
           result = _context4.sent;
           if (!(result.rowsAffected == 1)) {
