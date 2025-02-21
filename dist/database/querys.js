@@ -4,12 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.querys = void 0;
-var _querys;
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-var querys = (_querys = {
+var querys = {
   getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 ORDER BY PROD_nombre",
   getProductById: "SELECT * FROM PRODUCTO Where PROD_id = @Id",
   addNewProduct: "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida) VALUES (@name,@description,@quantity);",
@@ -187,6 +182,9 @@ var querys = (_querys = {
   RequerimientosNotificados: "SELECT COUNT(REQ_id) AS REQ_id FROM REQUERIMIENTOS WHERE REQ_corteProceso = 1 AND REQ_REQ_Padre = 0 AND REQ_estado >0 AND REQ_notificacion=1",
   addNewModelo: "INSERT INTO EQUIPO(EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,EQUIP_codigo,EQUIP_puertas,EQUIP_estado) VALUES (@EQUIP_modelo,@EQUIP_marca,@EQUIP_descripcion,'','',1)",
   updateModeloById: "UPDATE EQUIPO SET EQUIP_modelo = @EQUIP_modelo,EQUIP_marca = @EQUIP_marca,EQUIP_descripcion = @EQUIP_descripcion WHERE EQUIP_id = @Id",
-  addNewMarca: "INSERT INTO MARCA(MARCA_descripcion,MARCA_USU_ing,MARCA_fecha_ing) VALUES (@MARCA_descripcion,@MARCA_USU_ing,GETDATE())"
-}, _defineProperty(_querys, "updateModeloById", "UPDATE MARCA SET MARCA_descripcion = @MARCA_descripcion,MARCA_USU_ing = @MARCA_USU_ing WHERE MARCA_id = @Id"), _defineProperty(_querys, "getAllMarcas", "SELECT MARCA_id,MARCA_descripcion FROM MARCA ORDER BY MARCA_descripcion"), _defineProperty(_querys, "getMarcaById", "SELECT MARCA_id,MARCA_descripcion FROM MARCA Where MARCA_id = @Id"), _querys);
+  addNewMarca: "INSERT INTO MARCA(MARCA_descripcion,MARCA_USU_ing,MARCA_fecha_ing) VALUES (@MARCA_descripcion,@MARCA_USU_ing,GETDATE())",
+  updateMarcaById: "UPDATE MARCA SET MARCA_descripcion = @MARCA_descripcion,MARCA_USU_ing = @MARCA_USU_ing WHERE MARCA_id = @Id",
+  getAllMarcas: "SELECT MARCA_id,MARCA_descripcion FROM MARCA ORDER BY MARCA_descripcion",
+  getMarcaById: "SELECT MARCA_id,MARCA_descripcion FROM MARCA Where MARCA_id = @Id"
+};
 exports.querys = querys;
