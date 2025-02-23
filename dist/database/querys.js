@@ -185,6 +185,8 @@ var querys = {
   addNewMarca: "INSERT INTO MARCA(MARCA_descripcion,MARCA_USU_ing,MARCA_fecha_ing) VALUES (@MARCA_descripcion,@MARCA_USU_ing,GETDATE())",
   updateMarcaById: "UPDATE MARCA SET MARCA_descripcion = @MARCA_descripcion,MARCA_USU_ing = @MARCA_USU_ing WHERE MARCA_id = @Id",
   getAllMarcas: "SELECT MARCA_id,MARCA_descripcion FROM MARCA ORDER BY MARCA_descripcion",
-  getMarcaById: "SELECT MARCA_id,MARCA_descripcion FROM MARCA Where MARCA_id = @Id"
+  getMarcaById: "SELECT MARCA_id,MARCA_descripcion FROM MARCA Where MARCA_id = @Id",
+  getInventarioIndividual: "SELECT EQC_id, EQC_serie, EQUIP_marca, EQUIP_modelo, EQUIP_descripcion,EQC_estado FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id ORDER BY EQC_id",
+  getInventarioAgrupado: "SELECT COUNT(EQC_id) AS EQC_id,EQUIP_marca, EQUIP_modelo, EQUIP_descripcion FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id GROUP BY EQUIP_marca, EQUIP_modelo, EQUIP_descripcion ORDER BY EQC_id"
 };
 exports.querys = querys;
