@@ -248,6 +248,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
+        .input("VENT_codigo", sql.VarChar,'VENT'+id)
         .input("VENT_fecha", sql.DateTime, req.body.FechaVenta)
         .input("VENT_CLI_id", sql.Decimal, req.body.Cliente)
         .input("VENT_observacion", sql.VarChar, req.body.Observacion)
