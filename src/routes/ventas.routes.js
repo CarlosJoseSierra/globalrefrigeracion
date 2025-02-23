@@ -35,7 +35,9 @@ import {
   getCountRevisionEquipo,
   getInventarioIndividual,
   getInventarioAgrupado,
-  
+  getHistPorSerie,
+  getHistPorCodTag,
+
 } from "../controllers/ventas.controller";
 
 
@@ -73,5 +75,7 @@ router.get("/ventas/count", getCountRevisionEquipo);
 router.get("/ventas/inv", getInventarioIndividual);
 router.get("/ventas/abc", getInventarioAgrupado);
 router.put("/ventas/abc/:id", updateEquipoInventory);
+router.get("/ventas/hist1", getHistPorSerie);
+router.get("/ventas/hist2", getHistPorCodTag);
 
 export default router;
