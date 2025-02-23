@@ -75,7 +75,7 @@ router.get("/ventas/count", getCountRevisionEquipo);
 router.get("/ventas/inv", getInventarioIndividual);
 router.get("/ventas/abc", getInventarioAgrupado);
 router.put("/ventas/abc/:id", updateEquipoInventory);
-router.get("/ventas/hist1/", getHistPorSerie);
-router.get("/ventas/hist2/", getHistPorCodTag);
+router.get("/ventas/hist1/:serie", getHistPorSerie);
+router.get("/ventas/hist2/:codtag", getHistPorCodTag);
 
 export default router;
