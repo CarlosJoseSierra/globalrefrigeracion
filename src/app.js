@@ -76,7 +76,7 @@ app.use("/api", ventasDetallesRoutes);
 app.use("/api", brandeoRoutes);
 app.use("/api",solobrandeoRoutes);
 app.use("/api",marcasRoutes);
-app.use("/api",historialRoutes);
+
 app.use((req,res,next)=>{
     res.status(404).json({
         message: 'endpoint not found'

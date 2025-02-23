@@ -9,8 +9,8 @@ import {
 
 const router = Router();
 
-router.get("/historial1", getHistPorSerie);
-router.get("/historial2", getHistPorCodTag);
+router.get("/historial", getHistPorSerie);
+router.get("/historial/x", getHistPorCodTag);
 router.get("/historialxy", getTotalEquiposMapa);
 router.get("/historialT", getTopFiveTecnicos);
 

@@ -85,7 +85,6 @@ app.use("/api", _ventasdetalleRoutes["default"]);
 app.use("/api", _brandeoRouter["default"]);
 app.use("/api", _solobrandeoRouter["default"]);
 app.use("/api", _marcaRouter["default"]);
-app.use("/api", _historialRouter["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'
