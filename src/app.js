@@ -31,6 +31,7 @@ import ventasDetallesRoutes from "./routes/ventasdetalle.routes.js";
 import brandeoRoutes from "./routes/brandeo.router.js";
 import solobrandeoRoutes from "./routes/solobrandeo.router.js";
 import marcasRoutes from "./routes/marca.router.js";
+import bodegaRoutes from "./routes/bodega.router.js";
 
 const cloudinary = require("cloudinary").v2
 
@@ -76,6 +77,7 @@ app.use("/api", ventasDetallesRoutes);
 app.use("/api", brandeoRoutes);
 app.use("/api",solobrandeoRoutes);
 app.use("/api",marcasRoutes);
+app.use("/api",bodegaRoutes);
 
 app.use((req,res,next)=>{
     res.status(404).json({

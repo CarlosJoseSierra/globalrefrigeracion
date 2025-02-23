@@ -36,6 +36,7 @@ var _ventasdetalleRoutes = _interopRequireDefault(require("./routes/ventasdetall
 var _brandeoRouter = _interopRequireDefault(require("./routes/brandeo.router.js"));
 var _solobrandeoRouter = _interopRequireDefault(require("./routes/solobrandeo.router.js"));
 var _marcaRouter = _interopRequireDefault(require("./routes/marca.router.js"));
+var _bodegaRouter = _interopRequireDefault(require("./routes/bodega.router.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 //const cors = require("cors");
 
@@ -85,6 +86,7 @@ app.use("/api", _ventasdetalleRoutes["default"]);
 app.use("/api", _brandeoRouter["default"]);
 app.use("/api", _solobrandeoRouter["default"]);
 app.use("/api", _marcaRouter["default"]);
+app.use("/api", _bodegaRouter["default"]);
 app.use(function (req, res, next) {
   res.status(404).json({
     message: 'endpoint not found'

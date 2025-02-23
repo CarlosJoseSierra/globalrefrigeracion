@@ -190,6 +190,10 @@ var querys = {
   getInventarioIndividual: "SELECT EQC_id, EQC_serie, EQUIP_marca, EQUIP_modelo, EQUIP_descripcion,EQC_estado, EQC_fechaInventario FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id WHERE EQC_estado = 1 OR EQC_estado = 3 OR EQC_estado = 4 OR EQC_estado = 5 OR EQC_estado = 6 ORDER BY EQC_id",
   getInventarioAgrupado: "SELECT COUNT(EQC_id) AS EQC_id,EQUIP_marca, EQUIP_modelo, EQUIP_descripcion FROM EQUIPO_COMPLETO INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id GROUP BY EQUIP_marca, EQUIP_modelo, EQUIP_descripcion ORDER BY EQC_id",
   getHistorialPorSerie: "SELECT HIST_AS_fecha,EQC_codTag, EQUIP_marca, EQUIP_modelo,EQUIP_descripcion, HIST_AS_TPS_id, HIST_serie, USU_nombre,HIST_descripcion FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN EQUIPO_COMPLETO ON HIST_AS_id = EQC_id INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id INNER JOIN USUARIOS ON HIST_USU_ing = USU_id WHERE HIST_serie like @serie",
-  getHistorialPorCodTag: "SELECT HIST_AS_fecha,EQC_codTag, EQUIP_marca, EQUIP_modelo,EQUIP_descripcion, HIST_AS_TPS_id, HIST_serie, USU_nombre,HIST_descripcion FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN EQUIPO_COMPLETO ON HIST_AS_id = EQC_id INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id INNER JOIN USUARIOS ON HIST_USU_ing = USU_id WHERE HIST_serie like @codTag"
+  getHistorialPorCodTag: "SELECT HIST_AS_fecha,EQC_codTag, EQUIP_marca, EQUIP_modelo,EQUIP_descripcion, HIST_AS_TPS_id, HIST_serie, USU_nombre,HIST_descripcion FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN EQUIPO_COMPLETO ON HIST_AS_id = EQC_id INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id INNER JOIN USUARIOS ON HIST_USU_ing = USU_id WHERE HIST_serie like @codTag",
+  addNewBodega: "INSERT INTO BODEGA(BOD_nombre,BOD_USU_ing,BOD_fecha_ing) VALUES (@BOD_nombre,@BOD_USU_ing,GETDATE())",
+  updateBodegaById: "UPDATE BODEGA SET BOD_nombre = @BOD_nombre WHERE MARCA_id = @Id",
+  getAllBodegas: "SELECT BOD_id,BOD_nombre FROM BODEGA ORDER BY BOD_nombre",
+  getBodegaById: "SELECT BOD_id,BOD_nombre FROM BODEGA Where BOD_id = @Id"
 };
 exports.querys = querys;
