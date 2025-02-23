@@ -26,7 +26,7 @@ import { getConnection, querys, sql } from "../database";
       }
   };
 
-  export const getHistTotalPorSerie = async (req, res) => {
+  export const getHistPorSerie = async (req, res) => {
     try {
       const pool = await getConnection();
       const result = await pool
