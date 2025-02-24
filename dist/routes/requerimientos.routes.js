@@ -25,5 +25,6 @@ router.get("/requerimientos/mapa", _requerimientos.getRequerimientosMapa);
 router.put("/requerimientos/xz/:id", _requerimientos.editRequerimientosHabilitar);
 router.get("/requerimientos/not", _requerimientos.getRequerimientosNotificados);
 router.get("/requerimientos/count", _requerimientos.RequerimientosNotificados);
+router.put("/requerimientos/ab/:id", _requerimientos.editRequerimientosCierraNot);
 var _default = router;
 exports["default"] = _default;

@@ -598,3 +598,23 @@ export const getRequerimientosActivos = async (req, res) => {
       res.send(error.message);
     }
   };
+
+  export const editRequerimientosCierraNot = async (req, res) => {
+    try {
+      const pool = await getConnection();
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.editRequerimientoNot);
+        if(result.rowsAffected>0){
+          return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+        }
+       else{
+          return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+        }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
