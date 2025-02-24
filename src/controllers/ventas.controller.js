@@ -144,7 +144,7 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_total", sql.Decimal(18,2), req.body.TotalCopia) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
         .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
-        .input("VENT_ubicacionMaps", sql.Decimal, req.body.Maps) 
+        .input("VENT_ubicacionMaps", sql.Varchar, req.body.Maps) 
         .query(querys.addVenta);
         if(result.rowsAffected[0]==1){
           let idVenta = result.recordset[0].VENT_id;
