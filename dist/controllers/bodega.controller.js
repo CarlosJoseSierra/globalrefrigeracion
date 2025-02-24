@@ -137,7 +137,7 @@ var updateBodegaById = /*#__PURE__*/function () {
         case 3:
           pool = _context4.sent;
           _context4.next = 6;
-          return pool.request().input("id", req.params.id).input("BOD_nombre", _database.sql.VarChar, req.body.Marca).input("BOD_USU_edit", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateBodegaById);
+          return pool.request().input("id", req.params.id).input("BOD_nombre", _database.sql.VarChar, req.body.Bodega).input("BOD_USU_edit", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateBodegaById);
         case 6:
           result = _context4.sent;
           if (!(result.rowsAffected == 1)) {

@@ -56,7 +56,7 @@ export const updateBodegaById = async (req, res) => {
     const result = await pool
       .request()
       .input("id", req.params.id)
-      .input("BOD_nombre", sql.VarChar, req.body.Marca)
+      .input("BOD_nombre", sql.VarChar, req.body.Bodega)
       .input("BOD_USU_edit", sql.Decimal, req.body.idUser)
       .query(querys.updateBodegaById);
 
