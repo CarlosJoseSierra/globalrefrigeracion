@@ -192,7 +192,7 @@ var querys = {
   getHistorialPorSerie: "SELECT HIST_AS_fecha,EQC_codTag, EQUIP_marca, EQUIP_modelo,EQUIP_descripcion, HIST_AS_TPS_id, HIST_serie, USU_nombre,HIST_descripcion FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN EQUIPO_COMPLETO ON HIST_AS_id = EQC_id INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id INNER JOIN USUARIOS ON HIST_USU_ing = USU_id WHERE HIST_serie like @serie",
   getHistorialPorCodTag: "SELECT HIST_AS_fecha,EQC_codTag, EQUIP_marca, EQUIP_modelo,EQUIP_descripcion, HIST_AS_TPS_id, HIST_serie, USU_nombre,HIST_descripcion FROM HISTORIAL_AS_TIPOSERVICIO INNER JOIN EQUIPO_COMPLETO ON HIST_AS_id = EQC_id INNER JOIN EQUIPO ON EQC_EQUIP_id = EQUIP_id INNER JOIN USUARIOS ON HIST_USU_ing = USU_id WHERE HIST_serie like @codTag",
   addNewBodega: "INSERT INTO BODEGA(BOD_nombre,BOD_USU_ing,BOD_fecha_ing) VALUES (@BOD_nombre,@BOD_USU_ing,GETDATE())",
-  updateBodegaById: "UPDATE BODEGA SET BOD_nombre = @BOD_nombre WHERE MARCA_id = @Id",
+  updateBodegaById: "UPDATE BODEGA SET BOD_nombre = @BOD_nombre WHERE BOD_id = @Id",
   getAllBodegas: "SELECT BOD_id,BOD_nombre FROM BODEGA ORDER BY BOD_nombre",
   getBodegaById: "SELECT BOD_id,BOD_nombre FROM BODEGA Where BOD_id = @Id"
 };
