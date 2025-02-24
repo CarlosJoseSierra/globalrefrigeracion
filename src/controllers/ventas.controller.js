@@ -187,6 +187,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_precio", sql.Decimal(18,2), 0)
               .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
               .input("VENT_USU_ing", sql.Decimal, req.body.id)
+              .input("VENT_codigo", sql.VarChar,secuencial)
               .query(querys.addNewVentaEquipo);
             }
           }
