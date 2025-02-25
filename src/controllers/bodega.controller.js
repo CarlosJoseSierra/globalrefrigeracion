@@ -88,7 +88,7 @@ export const createNewInventory = async (req, res) => {
       .request()
       .input("INV_descripcion", sql.VarChar, req.body.Nombres)
       .input("INV_BOD_id", sql.Decimal, req.body.Bodega)
-      .input("INV_USU_ing", sql.Decimal, req.body.Bodega)
+      .input("INV_USU_ing", sql.Decimal, req.body.idUser)
       .query(querys.addNewInventory);
       if(result.rowsAffected[0]==1){
         return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});

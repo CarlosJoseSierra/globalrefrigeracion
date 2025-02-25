@@ -220,7 +220,7 @@ var createNewInventory = /*#__PURE__*/function () {
         case 3:
           pool = _context6.sent;
           _context6.next = 6;
-          return pool.request().input("INV_descripcion", _database.sql.VarChar, req.body.Nombres).input("INV_BOD_id", _database.sql.Decimal, req.body.Bodega).input("INV_USU_ing", _database.sql.Decimal, req.body.Bodega).query(_database.querys.addNewInventory);
+          return pool.request().input("INV_descripcion", _database.sql.VarChar, req.body.Nombres).input("INV_BOD_id", _database.sql.Decimal, req.body.Bodega).input("INV_USU_ing", _database.sql.Decimal, req.body.idUser).query(_database.querys.addNewInventory);
         case 6:
           result = _context6.sent;
           if (!(result.rowsAffected[0] == 1)) {

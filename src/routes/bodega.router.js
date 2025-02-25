@@ -14,7 +14,7 @@ router.get("/bodega", getBodegas);
 router.post("/bodega/a", createNewBodega);
 router.get("/bodega/x/:id", getBodegasById);
 router.put("/bodega/z/:id", updateBodegaById);
-router.post("/bodega/newI", createNewInventory);
+router.post("/bodega/new", createNewInventory);
 router.get("/bodega/act", getInventarioActivo);
 
 export default router;
