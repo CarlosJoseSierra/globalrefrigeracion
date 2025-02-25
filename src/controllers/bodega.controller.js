@@ -12,6 +12,16 @@ export const getBodegas = async (req, res) => {
   }
 };
 
+export const getInventarioActivo = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getInventarioActivo);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
 
 export const getBodegasById = async (req, res) => {
   try {
@@ -68,5 +78,27 @@ export const updateBodegaById = async (req, res) => {
   } catch (error) {
       res.status(500);
       res.send(error.message);
+  }
+};
+
+export const createNewInventory = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool
+      .request()
+      .input("INV_descripcion", sql.VarChar, req.body.Nombres)
+      .input("INV_BOD_id", sql.Decimal, req.body.Bodega)
+      .input("INV_USU_ing", sql.Decimal, req.body.Bodega)
+      .query(querys.addNewInventory);
+      if(result.rowsAffected[0]==1){
+        return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+      }else{
+        return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+      }
+    
+  } catch (error) {
+    res.status(500);
+    console.log(error.message);
+    res.send(error.message);
   }
 };
