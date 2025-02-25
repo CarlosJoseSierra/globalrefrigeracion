@@ -112,6 +112,8 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_USU_ing", sql.Decimal, req.body.id)
         .input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
         .input("REQ_estado", sql.Decimal, req.body.aprobado)
+        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
+        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.addRequerimiento);
         if(result.rowsAffected[0]==1){
           let idReq = result.recordset[0].REQ_id;
@@ -176,6 +178,8 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
+        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.editRequerimiento);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
@@ -254,6 +258,8 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_IVA", sql.Decimal(18,2), ivaDetalle)
         .input("REQ_total", sql.Decimal(18,2), totalFinalDetalle) 
         .input("REQ_USU_edit", sql.Decimal, req.body.id)
+        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
+        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.editRequerimientoVisitaTecnica);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();
@@ -469,6 +475,8 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_imagen5", sql.VarChar, image4)
         .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
         .input("REQ_firmaCliente", sql.VarChar, firma)
+        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
+        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.editRequerimientoReparacion);
         
         if(result.rowsAffected==1){
