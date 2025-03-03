@@ -130,6 +130,23 @@ export const getRequerimientosActivos = async (req, res) => {
               .query(querys.addNewRequerimientoDetalle);
             }
           }
+          if(req.body.detailsMov.length>0){
+            for(let i=0;i<req.body.detailsMov.length;i++){
+              const pool3 = await getConnection();
+              const result = await pool3
+              .request()
+              .input("REQMOV_REQ_id", sql.Decimal,idReq)
+              .input("REQMOV_EQC_serie", sql.VarChar, req.body.detailsMov[i].serie)
+              .input("REQMOV_EQC_marca", sql.VarChar, req.body.detailsMov[i].marca)
+              .input("REQMOV_EQC_modelo", sql.VarChar, req.body.detailsMov[i].modelo)
+              .input("REQMOV_BRAND_desc", sql.VarChar, '')
+              .input("REQMOV_cantidad", sql.Decimal(18,2), 1)
+              .input("REQMOV_PROD_desc", sql.VarChar, '')
+              .input("REQMOV_tipo", sql.Decimal, 0)//ES 0, REGISTRADO DIRECTAMENTE DESDE REQUERIMIENTOS
+              .input("REQMOV_estado", sql.Decimal, 1)
+              .query(querys.addNewRequerimientoMovimiento);
+            }
+          }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
         }
        else{

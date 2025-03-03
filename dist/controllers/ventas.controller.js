@@ -877,7 +877,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 6:
           result = _context14.sent;
           if (!(result.rowsAffected > 0)) {
-            _context14.next = 70;
+            _context14.next = 69;
             break;
           }
           if (!(req.body.VENT_tipoVenta == 1)) {
@@ -908,7 +908,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
           break;
         case 21:
           if (!(req.body.VENT_MovEntrega == 1)) {
-            _context14.next = 67;
+            _context14.next = 66;
             break;
           }
           _context14.next = 24;
@@ -936,12 +936,12 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 37:
           result4 = _context14.sent;
           if (!(result4.rowsAffected[0] == 1)) {
-            _context14.next = 67;
+            _context14.next = 66;
             break;
           }
           idReq = result4.recordset[0].REQ_id;
           if (!(req.body.VENT_tipoVenta == 1)) {
-            _context14.next = 55;
+            _context14.next = 53;
             break;
           }
           if (!(req.body.VENT_list_brandeos.length > 0)) {
@@ -959,7 +959,8 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 46:
           _pool10 = _context14.sent;
           _context14.next = 49;
-          return _pool10.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i12].EQVENT_EQC_id).input("REQMOV_BRAND_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i12].EQVENT_BRAND_id).input("REQMOV_EQUIPO_id", _database.sql.Decimal, req.body.VENT_list_brandeos[_i12].EQC_EQUIP_id).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_list_brandeos[_i12].EQVENT_cantidad).input("REQMOV_tipo", _database.sql.Decimal, 1).query(_database.querys.addNewRequerimientoMovimiento);
+          return _pool10.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_serie", _database.sql.VarChar, req.body.VENT_list_brandeos[_i12].EQVENT_EQC_serie).input("REQMOV_EQC_marca", _database.sql.VarChar, req.body.VENT_list_brandeos[_i12].EQUIP_marca).input("REQMOV_EQC_modelo", _database.sql.VarChar, req.body.VENT_list_brandeos[_i12].EQUIP_modelo).input("REQMOV_BRAND_desc", _database.sql.VarChar, '').input("REQMOV_cantidad", _database.sql.Decimal(18, 2), 1).input("REQMOV_PROD_desc", _database.sql.VarChar, '').input("REQMOV_tipo", _database.sql.Decimal, 1) //ES 1, ENTREGA DE EQUIPOS DESDE VENTAS
+          .input("REQMOV_estado", _database.sql.Decimal, 1).query(_database.querys.addNewRequerimientoMovimiento);
         case 49:
           _result11 = _context14.sent;
         case 50:
@@ -967,56 +968,58 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
           _context14.next = 43;
           break;
         case 53:
-          _context14.next = 67;
-          break;
-        case 55:
+          if (!(req.body.VENT_tipoVenta == 2)) {
+            _context14.next = 66;
+            break;
+          }
           if (!(req.body.VENT_ventabrandeos.length > 0)) {
-            _context14.next = 67;
+            _context14.next = 66;
             break;
           }
           _i13 = 0;
-        case 57:
+        case 56:
           if (!(_i13 < req.body.VENT_ventabrandeos.length)) {
-            _context14.next = 67;
+            _context14.next = 66;
             break;
           }
-          _context14.next = 60;
+          _context14.next = 59;
           return (0, _database.getConnection)();
-        case 60:
+        case 59:
           _pool11 = _context14.sent;
-          _context14.next = 63;
-          return _pool11.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_id", _database.sql.Decimal, 0).input("REQMOV_BRAND_id", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i13].EQBRAND_BRAND_id).input("REQMOV_EQUIPO_id", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i13].EQBRAND_EQUIP_id).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_ventabrandeos[_i13].EQBRAND_cantidad).input("REQMOV_tipo", _database.sql.Decimal, 2).query(_database.querys.addNewRequerimientoMovimiento);
-        case 63:
+          _context14.next = 62;
+          return _pool11.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_serie", _database.sql.VarChar, '').input("REQMOV_EQC_marca", _database.sql.VarChar, '').input("REQMOV_EQC_modelo", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i13].EQUIP_modelo).input("REQMOV_BRAND_desc", _database.sql.VarChar, req.body.VENT_ventabrandeos[_i13].BRAND_descripcion).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_ventabrandeos[_i13].EQBRAND_cantidad).input("REQMOV_PROD_desc", _database.sql.VarChar, '').input("REQMOV_tipo", _database.sql.Decimal, 2) //ES 2, ENTREGA DE VIILES DESDE VENTAS
+          .input("REQMOV_estado", _database.sql.Decimal, 1).query(_database.querys.addNewRequerimientoMovimiento);
+        case 62:
           _result12 = _context14.sent;
-        case 64:
+        case 63:
           _i13++;
-          _context14.next = 57;
+          _context14.next = 56;
           break;
-        case 67:
+        case 66:
           return _context14.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
-        case 70:
+        case 69:
           return _context14.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 71:
-          _context14.next = 77;
+        case 70:
+          _context14.next = 76;
           break;
-        case 73:
-          _context14.prev = 73;
+        case 72:
+          _context14.prev = 72;
           _context14.t0 = _context14["catch"](0);
           res.status(500);
           res.send(_context14.t0.message);
-        case 77:
+        case 76:
         case "end":
           return _context14.stop();
       }
-    }, _callee14, null, [[0, 73]]);
+    }, _callee14, null, [[0, 72]]);
   }));
   return function editVentaPorCierreCaso(_x27, _x28) {
     return _ref14.apply(this, arguments);

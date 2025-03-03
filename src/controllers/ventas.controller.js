@@ -574,27 +574,33 @@ export const getVentasActivos = async (req, res) => {
                     const result = await pool3
                     .request()
                     .input("REQMOV_REQ_id", sql.Decimal,idReq)
-                    .input("REQMOV_EQC_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_EQC_id)
-                    .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQVENT_BRAND_id)
-                    .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_list_brandeos[i].EQC_EQUIP_id)
-                    .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_list_brandeos[i].EQVENT_cantidad)
-                    .input("REQMOV_tipo", sql.Decimal, 1)
+                    .input("REQMOV_EQC_serie", sql.VarChar, req.body.VENT_list_brandeos[i].EQVENT_EQC_serie)
+                    .input("REQMOV_EQC_marca", sql.VarChar, req.body.VENT_list_brandeos[i].EQUIP_marca)
+                    .input("REQMOV_EQC_modelo", sql.VarChar, req.body.VENT_list_brandeos[i].EQUIP_modelo)
+                    .input("REQMOV_BRAND_desc", sql.VarChar, '')
+                    .input("REQMOV_cantidad", sql.Decimal(18,2), 1)
+                    .input("REQMOV_PROD_desc", sql.VarChar, '')
+                    .input("REQMOV_tipo", sql.Decimal, 1)//ES 1, ENTREGA DE EQUIPOS DESDE VENTAS
+                    .input("REQMOV_estado", sql.Decimal, 1)
                     .query(querys.addNewRequerimientoMovimiento);
                   }
                 }
               }
-              else{
+              if(req.body.VENT_tipoVenta==2){
                 if(req.body.VENT_ventabrandeos.length>0){
                   for(let i=0;i<req.body.VENT_ventabrandeos.length;i++){
                     const pool3 = await getConnection();
                     const result = await pool3
                     .request()
                     .input("REQMOV_REQ_id", sql.Decimal,idReq)
-                    .input("REQMOV_EQC_id", sql.Decimal, 0)
-                    .input("REQMOV_BRAND_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_BRAND_id)
-                    .input("REQMOV_EQUIPO_id", sql.Decimal, req.body.VENT_ventabrandeos[i].EQBRAND_EQUIP_id)
+                    .input("REQMOV_EQC_serie", sql.VarChar, '')
+                    .input("REQMOV_EQC_marca", sql.VarChar, '')
+                    .input("REQMOV_EQC_modelo", sql.Decimal, req.body.VENT_ventabrandeos[i].EQUIP_modelo)
+                    .input("REQMOV_BRAND_desc", sql.VarChar, req.body.VENT_ventabrandeos[i].BRAND_descripcion)
                     .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_ventabrandeos[i].EQBRAND_cantidad)
-                    .input("REQMOV_tipo", sql.Decimal, 2)
+                    .input("REQMOV_PROD_desc", sql.VarChar, '')
+                    .input("REQMOV_tipo", sql.Decimal, 2)//ES 2, ENTREGA DE VIILES DESDE VENTAS
+                    .input("REQMOV_estado", sql.Decimal, 1)
                     .query(querys.addNewRequerimientoMovimiento);
                   }
                 }
