@@ -8,6 +8,7 @@ var _express = require("express");
 var _products = require("../controllers/products.controller");
 var router = (0, _express.Router)();
 router.get("/products", _products.getProducts);
+router.get("/products/venta", _products.getProductsVenta);
 router.post("/products", _products.createNewProduct);
 router.get("/products/count", _products.getTotalProducts);
 router.get("/products/:id", _products.getProductById);

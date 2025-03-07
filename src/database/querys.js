@@ -1,5 +1,6 @@
 export const querys = {
   getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 ORDER BY PROD_nombre",
+  getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 AND PROD_costoUnitarioH = 1 ORDER BY PROD_nombre",
   getProductById: "SELECT * FROM PRODUCTO Where PROD_id = @Id",
   addNewProduct:
     "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida) VALUES (@name,@description,@quantity);",
@@ -20,7 +21,7 @@ export const querys = {
     "UPDATE EQUIPO_COMPLETO SET EQC_serie = @EQC_serie, EQC_placa = @EQC_placa, EQC_EQUIP_id = @EQC_EQUIP_id,EQC_CLI_id = @EQC_CLI_id,EQC_USU_ing = @EQC_USU_ing, EQC_fecha_ing = GETDATE(), EQC_codTag = @EQC_codTag, EQC_LOGO_id = @EQC_LOGO_id WHERE EQC_id = @Id",
   
    //Querys Tabla Modelos de Equipos
-  getAllEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 ORDER BY EQUIP_modelo", 
+  getAllEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 ORDER BY EQUIP_marca", 
   getEquipoById: "SELECT * FROM EQUIPO Where EQ_id = @Id",
   //Querys Tabla Modelos de Usuarios
   getAllUsuarios: "SELECT * FROM USUARIOS ORDER BY USU_nombre", 
