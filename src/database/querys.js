@@ -1,6 +1,6 @@
 export const querys = {
   getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 ORDER BY PROD_nombre",
-  getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 AND PROD_costoUnitarioH = 1 ORDER BY PROD_nombre",
+  getAllProductsVenta: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 AND PROD_costoUnitarioH = 1 ORDER BY PROD_nombre",
   getProductById: "SELECT * FROM PRODUCTO Where PROD_id = @Id",
   addNewProduct:
     "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida) VALUES (@name,@description,@quantity);",
