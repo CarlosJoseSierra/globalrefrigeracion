@@ -380,8 +380,8 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientosReparacion = async (req, res) => {
     try {
-      let image = '',image1= '',image2= '',image3= '',image4= '',firma=''; 
-      let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= ''; 
+      let image = '',image1= '',image2= '',image3= '',image4= '',firma='', image5= ''; 
+      let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= '',imageruta5= ''; 
       const pool = await getConnection();
       let totalDetalle = 0;
       let ivaDetalle = 0;
@@ -446,9 +446,20 @@ export const getRequerimientosActivos = async (req, res) => {
           }
         }
 
-        if(req.files[5]!=undefined){
+        if(req.files[5]!=undefined)
+        {
           if(req.files[5].originalname.includes('Firma')){
             const img = await cloudinary.uploader.upload(req.files[5].path);
+            firma = img.secure_url;
+          }else{
+            const img = await cloudinary.uploader.upload(req.files[5].path);
+            imageruta5 = img.secure_url;
+          }
+        }
+
+        if(req.files[6]!=undefined){
+          if(req.files[6].originalname.includes('Firma')){
+            const img = await cloudinary.uploader.upload(req.files[6].path);
             firma = img.secure_url;
           }
           else{
@@ -491,6 +502,7 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_rutaimagen4", sql.VarChar, imageruta3)
         .input("REQ_imagen5", sql.VarChar, image4)
         .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
+        .input("REQ_rutaimagen6", sql.VarChar, imageruta5)
         .input("REQ_firmaCliente", sql.VarChar, firma)
         .input("REQ_garantia", sql.Decimal, req.body.Garantia)
         .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
