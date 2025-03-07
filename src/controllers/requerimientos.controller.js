@@ -380,7 +380,7 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const editRequerimientosReparacion = async (req, res) => {
     try {
-      let image = '',image1= '',image2= '',image3= '',image4= '',firma='', image5= ''; 
+      let image = '',image1= '',image2= '',image3= '',image4= '',firma=''; 
       let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= '',imageruta5= ''; 
       const pool = await getConnection();
       let totalDetalle = 0;

@@ -651,12 +651,12 @@ var getReparacionesActivosXtecnico = /*#__PURE__*/function () {
 exports.getReparacionesActivosXtecnico = getReparacionesActivosXtecnico;
 var editRequerimientosReparacion = /*#__PURE__*/function () {
   var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(req, res) {
-    var image, image1, image2, image3, image4, firma, image5, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, imageruta5, pool, totalDetalle, ivaDetalle, totalFinalDetalle, img, _img, _img2, _img3, _img4, _img5, _img6, _img7, _img8, _img9, _img10, _img11, _img12, i, json, result, pool2, result2, _i7, _json, _i8, _json2, pool3, result3, _i9, _json3, _pool4, _result5;
+    var image, image1, image2, image3, image4, firma, imageruta, imageruta1, imageruta2, imageruta3, imageruta4, imageruta5, pool, totalDetalle, ivaDetalle, totalFinalDetalle, img, _img, _img2, _img3, _img4, _img5, _img6, _img7, _img8, _img9, _img10, _img11, _img12, i, json, result, pool2, result2, _i7, _json, _i8, _json2, pool3, result3, _i9, _json3, _pool4, _result5;
     return _regeneratorRuntime().wrap(function _callee12$(_context12) {
       while (1) switch (_context12.prev = _context12.next) {
         case 0:
           _context12.prev = 0;
-          image = '', image1 = '', image2 = '', image3 = '', image4 = '', firma = '', image5 = '';
+          image = '', image1 = '', image2 = '', image3 = '', image4 = '', firma = '';
           imageruta = '', imageruta1 = '', imageruta2 = '', imageruta3 = '', imageruta4 = '', imageruta5 = '';
           _context12.next = 5;
           return (0, _database.getConnection)();
