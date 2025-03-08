@@ -987,7 +987,7 @@ var editVentaPorCierreCaso = /*#__PURE__*/function () {
         case 59:
           _pool11 = _context14.sent;
           _context14.next = 62;
-          return _pool11.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_serie", _database.sql.VarChar, '').input("REQMOV_EQC_marca", _database.sql.VarChar, '').input("REQMOV_EQC_modelo", _database.sql.Decimal, req.body.VENT_ventabrandeos[_i13].EQUIP_modelo).input("REQMOV_BRAND_desc", _database.sql.VarChar, req.body.VENT_ventabrandeos[_i13].BRAND_descripcion).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_ventabrandeos[_i13].EQBRAND_cantidad).input("REQMOV_PROD_desc", _database.sql.VarChar, '').input("REQMOV_tipo", _database.sql.Decimal, 2) //ES 2, ENTREGA DE VIILES DESDE VENTAS
+          return _pool11.request().input("REQMOV_REQ_id", _database.sql.Decimal, idReq).input("REQMOV_EQC_serie", _database.sql.VarChar, '').input("REQMOV_EQC_marca", _database.sql.VarChar, '').input("REQMOV_EQC_modelo", _database.sql.VarChar, req.body.VENT_ventabrandeos[_i13].EQUIP_modelo).input("REQMOV_BRAND_desc", _database.sql.VarChar, req.body.VENT_ventabrandeos[_i13].BRAND_descripcion).input("REQMOV_cantidad", _database.sql.Decimal(18, 2), req.body.VENT_ventabrandeos[_i13].EQBRAND_cantidad).input("REQMOV_PROD_desc", _database.sql.VarChar, '').input("REQMOV_tipo", _database.sql.Decimal, 2) //ES 2, ENTREGA DE VIILES DESDE VENTAS
           .input("REQMOV_estado", _database.sql.Decimal, 1).query(_database.querys.addNewRequerimientoMovimiento);
         case 62:
           _result12 = _context14.sent;

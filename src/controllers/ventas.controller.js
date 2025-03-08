@@ -596,7 +596,7 @@ export const getVentasActivos = async (req, res) => {
                     .input("REQMOV_REQ_id", sql.Decimal,idReq)
                     .input("REQMOV_EQC_serie", sql.VarChar, '')
                     .input("REQMOV_EQC_marca", sql.VarChar, '')
-                    .input("REQMOV_EQC_modelo", sql.Decimal, req.body.VENT_ventabrandeos[i].EQUIP_modelo)
+                    .input("REQMOV_EQC_modelo", sql.VarChar, req.body.VENT_ventabrandeos[i].EQUIP_modelo)
                     .input("REQMOV_BRAND_desc", sql.VarChar, req.body.VENT_ventabrandeos[i].BRAND_descripcion)
                     .input("REQMOV_cantidad", sql.Decimal(18,2), req.body.VENT_ventabrandeos[i].EQBRAND_cantidad)
                     .input("REQMOV_PROD_desc", sql.VarChar, '')
