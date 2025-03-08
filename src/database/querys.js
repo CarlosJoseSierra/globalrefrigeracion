@@ -216,4 +216,5 @@ export const querys = {
   getInventarioActivo:"SELECT TOP 1 INV_descripcion,INV_estado,INV_fecha_ing,BOD_nombre FROM INVENTARIO INNER JOIN BODEGA ON INV_BOD_id = BOD_id ORDER BY INV_id DESC",
   addNewRequerimientoMovimiento:"INSERT INTO REQUERIMIENTOS_MOVIMIENTO (REQMOV_REQ_id,REQMOV_EQC_serie,REQMOV_EQC_marca,REQMOV_EQC_modelo,REQMOV_BRAND_desc,REQMOV_cantidad,REQMOV_PROD_desc,REQMOV_tipo,REQMOV_estado) VALUES (@REQMOV_REQ_id,@REQMOV_EQC_serie,@REQMOV_EQC_marca,@REQMOV_EQC_modelo,@REQMOV_BRAND_desc,@REQMOV_cantidad,@REQMOV_PROD_desc,@REQMOV_tipo,@REQMOV_estado)",
   editFacturaRequerimiento:"UPDATE REQUERIMIENTOS SET REQ_factura = @REQ_factura, REQ_fechaFactura = GETDATE() WHERE REQ_id = @id",
+  getMovimientoRequerimiento:"SELECT * REQUERIMIENTOS_MOVIMIENTO WHERE REQMOV_REQ_id = @id AND REQMOV_estado = 1",
 };

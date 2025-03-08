@@ -86,7 +86,7 @@ export const getRequerimientosActivos = async (req, res) => {
           totalFinalDetalle = totalDetalle + ivaDetalle;
         }
         if(req.body.Modelo=='')
-          req.body.Modelo = 0;
+          req.body.Modelo = 137; 
      
         const pool2 = await getConnection();
         const result = await pool2
@@ -674,6 +674,21 @@ export const getRequerimientosActivos = async (req, res) => {
           }
       }
      catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const getMovimientoRequerimiento = async (req, res) => {
+    try {
+      const pool = await getConnection();
+  
+      const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .query(querys.getMovimientoRequerimiento);
+      return res.json(result.recordset);
+    } catch (error) {
       res.status(500);
       res.send(error.message);
     }
