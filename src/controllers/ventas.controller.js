@@ -554,6 +554,7 @@ export const getVentasActivos = async (req, res) => {
             const result4 = await pool4
             .request()
             .input("REQ_codigo", sql.VarChar,secuencial)
+            .input("REQ_personaReporta", sql.VarChar, req.body.USU_nombre)
             .input("REQ_CLI_id", sql.Decimal, req.body.VENT_CLI_id)
             .input("REQ_contacto", sql.VarChar, req.body.VENT_contacto)
             .input("REQ_establecimiento", sql.VarChar, req.body.VENT_establecimiento)
@@ -561,7 +562,7 @@ export const getVentasActivos = async (req, res) => {
             .input("REQ_direccion", sql.VarChar, req.body.VENT_direccion)
             .input("REQ_UBIC_id", sql.Decimal, req.body.VENT_UBIC_id)
             .input("REQ_observacion", sql.VarChar, req.body.VENT_observacion)
-            .input("REQ_USU_id", sql.Decimal, req.body.idUser)
+            .input("REQ_observacionTecnica", sql.VarChar, 'ENTREGA DE EQUIPOS PERTENECIENTE A LA VENTA'+ req.body.VENT_codigo)
             .input("REQ_USU_ing", sql.Decimal, req.body.idUser)
             .input("REQ_VENT_id", sql.Decimal, req.body.VENT_id)
             .query(querys.addRequerimiento2);

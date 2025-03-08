@@ -19,6 +19,7 @@ import {
   getRequerimientosNotificados,
   RequerimientosNotificados,
   editRequerimientosCierraNot,
+  editFacturaRequerimiento,
 } from "../controllers/requerimientos.controller";
 
 
@@ -42,4 +43,5 @@ router.put("/requerimientos/xz/:id", editRequerimientosHabilitar);
 router.get("/requerimientos/not", getRequerimientosNotificados);
 router.get("/requerimientos/count", RequerimientosNotificados);
 router.put("/requerimientos/ab/:id", editRequerimientosCierraNot);
+router.put("/requerimientos/ac/:id", editFacturaRequerimiento);
 export default router;

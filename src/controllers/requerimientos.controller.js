@@ -85,6 +85,8 @@ export const getRequerimientosActivos = async (req, res) => {
           ivaDetalle = totalDetalle * (15/100);
           totalFinalDetalle = totalDetalle + ivaDetalle;
         }
+        if(req.body.Modelo=='')
+          req.body.Modelo = 0;
      
         const pool2 = await getConnection();
         const result = await pool2
@@ -649,6 +651,27 @@ export const getRequerimientosActivos = async (req, res) => {
        else{
           return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
         }
+      }
+     catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+  export const editFacturaRequerimiento = async (req, res) => {
+    try {
+      const pool = await getConnection();
+    
+        const result = await pool
+        .request()
+        .input("id", req.params.id)
+        .input("REQ_factura", sql.VarChar, req.body.Factura)
+        .query(querys.editFacturaRequerimiento);
+        if(result.rowsAffected==1){
+            return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
+          }else{
+            return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});
+          }
       }
      catch (error) {
       res.status(500);
