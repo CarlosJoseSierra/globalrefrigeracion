@@ -145,6 +145,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
         .input("VENT_tipoVenta", sql.Decimal, req.body.tipoVenta) 
         .input("VENT_ubicacionMaps", sql.VarChar, req.body.Maps) 
+        .input("VENT_MovBrandeo", sql.Decimal, req.body.requiereBrandeo) 
+        .input("VENT_OT", sql.VarChar, req.body.OT) 
+        .input("VENT_urgencia", sql.Decimal, req.body.urgencia) 
         .query(querys.addVenta);
         if(result.rowsAffected[0]==1){
           let idVenta = result.recordset[0].VENT_id;
@@ -266,6 +269,9 @@ export const getVentasActivos = async (req, res) => {
         .input("VENT_total", sql.Decimal(18,2), req.body.TotalCopia) 
         .input("VENT_MovEntrega", sql.Decimal, req.body.entrega) 
         .input("VENT_ubicacionMaps", sql.VarChar, req.body.Maps) 
+        .input("VENT_MovBrandeo", sql.Decimal, req.body.requiereBrandeo) 
+        .input("VENT_OT", sql.VarChar, req.body.OT) 
+        .input("VENT_urgencia", sql.Decimal, req.body.urgencia) 
         .query(querys.editVentas);
         if(result.rowsAffected==1){
           const pool2 = await getConnection();

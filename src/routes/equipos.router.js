@@ -2,17 +2,15 @@ import { Router } from "express";
 import {
   getEquipos,
   getEquipoById,
-  getMarcas,
-  getMarcasById,
   createNewModelo,
-  createNewMarca,
   updateModeloById,
-  updateMarcaById,
+  getAllModeloEquipos,
 } from "../controllers/equipos.controller";
 
 const router = Router();
 
 router.get("/equipos", getEquipos);
+router.get("/equipos/x", getAllModeloEquipos);
 router.get("/equipos/:id", getEquipoById);
 
 router.post("/equipos/new", createNewModelo);

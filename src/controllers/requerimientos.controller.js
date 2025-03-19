@@ -191,6 +191,7 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_direccion", sql.VarChar, req.body.Direccion)
         .input("REQ_UBIC_id", sql.Decimal, req.body.Ciudad)
         .input("REQ_observacion", sql.VarChar, req.body.Observacion)
+        .input("REQ_observacionTecnica", sql.VarChar, req.body.ObservacionTec)
         .input("REQ_ubicacionMaps", sql.VarChar, req.body.Maps)
         .input("REQ_USU_id", sql.Decimal, req.body.TecnicoChofer)
         .input("REQ_SubTotal", sql.Decimal(18,2), totalDetalle)
