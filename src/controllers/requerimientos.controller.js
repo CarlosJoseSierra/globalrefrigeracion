@@ -529,7 +529,6 @@ export const getRequerimientosActivos = async (req, res) => {
               totalFinalDetalle = totalDetalle + ivaDetalle;
             }
 
-
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const json = JSON.parse(req.body.details[i])      
