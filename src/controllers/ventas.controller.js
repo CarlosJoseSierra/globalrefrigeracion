@@ -122,6 +122,9 @@ export const getVentasActivos = async (req, res) => {
           }
         }
      }
+     if(req.body.tipoVenta==1 || req.body.tipoVenta == 3){
+      req.body.OT = '';
+     }
       let secuencial = '';
       secuencial = "VENTA"+idR;
 
@@ -248,6 +251,9 @@ export const getVentasActivos = async (req, res) => {
               brandeo = 1;
             }
           }
+       }
+       if(req.body.tipoVenta==1 || req.body.tipoVenta == 3){
+        req.body.OT = '';
        }
       const pool = await getConnection();
         const result = await pool
