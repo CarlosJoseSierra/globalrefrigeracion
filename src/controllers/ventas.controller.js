@@ -383,7 +383,9 @@ export const getVentasActivos = async (req, res) => {
                 .input("VENTDET_PROD_id", sql.Decimal, req.body.details[i].productName)
                 .input("VENTDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
                 .input("VENTDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+                .input("VENTDET_total", sql.Decimal(18,2), req.body.details[i].totalCopia)
+                .input("VENTDET_EQC_id", sql.Decimal, req.body.details[i].idCopia)
+                .input("VENTDET_EQC_serie", sql.VarChar, req.body.details[i].serieCopia)
                 .query(querys.addNewVentaDetalle);
               }
             }

@@ -620,7 +620,7 @@ var editVentas = /*#__PURE__*/function () {
         case 76:
           _pool6 = _context10.sent;
           _context10.next = 79;
-          return _pool6.request().input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i9].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i9].qty).input("VENTDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i9].salesPrice).input("VENTDET_total", _database.sql.Decimal(18, 2), req.body.details[_i9].qty * req.body.details[_i9].salesPrice).query(_database.querys.addNewVentaDetalle);
+          return _pool6.request().input("VENTDET_VENT_id", _database.sql.Decimal, req.params.id).input("VENTDET_PROD_id", _database.sql.Decimal, req.body.details[_i9].productName).input("VENTDET_cantidad", _database.sql.Decimal(18, 2), req.body.details[_i9].qty).input("VENTDET_pvp", _database.sql.Decimal(18, 2), req.body.details[_i9].salesPrice).input("VENTDET_total", _database.sql.Decimal(18, 2), req.body.details[_i9].totalCopia).input("VENTDET_EQC_id", _database.sql.Decimal, req.body.details[_i9].idCopia).input("VENTDET_EQC_serie", _database.sql.VarChar, req.body.details[_i9].serieCopia).query(_database.querys.addNewVentaDetalle);
         case 79:
           _result7 = _context10.sent;
         case 80:
