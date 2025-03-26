@@ -564,7 +564,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool4 = _context10.sent;
           _context10.next = 51;
           return _pool4.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i7].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i7].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i7].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i7].productName).input("EQVENT_laminado", _database.sql.Decimal, laminado) //verificar si llega 0 o 1
-          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i7].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i7].salesPriceB).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).input("VENT_codigo", _database.sql.VarChar, 'VENT' + req.params.id).query(_database.querys.addNewVentaEquipo);
+          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), 0).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i7].totalBCopia).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).input("VENT_codigo", _database.sql.VarChar, 'VENT' + req.params.id).query(_database.querys.addNewVentaEquipo);
         case 51:
           _result5 = _context10.sent;
         case 52:
@@ -655,7 +655,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool7 = _context10.sent;
           _context10.next = 95;
           return _pool7.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i10].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i10].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i10].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i10].productName).input("EQVENT_laminado", _database.sql.Decimal, _laminado3) //verificar si llega 0 o 1
-          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].salesPriceB).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addNewVentaEquipo2);
+          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), 0).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].totalBCopia).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).query(_database.querys.addNewVentaEquipo2);
         case 95:
           _result8 = _context10.sent;
           _context10.next = 104;
@@ -667,7 +667,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool8 = _context10.sent;
           _context10.next = 103;
           return _pool8.request().input("EQVENT_VENT_id", _database.sql.Decimal, req.params.id).input("EQVENT_EQC_id", _database.sql.Decimal, req.body.detailsModelo[_i10].id).input("EQVENT_EQC_serie", _database.sql.VarChar, req.body.detailsModelo[_i10].serie).input("EQVENT_temperatura", _database.sql.VarChar, req.body.detailsModelo[_i10].temperatura).input("EQVENT_BRAND_id", _database.sql.Decimal, req.body.detailsModelo[_i10].productName).input("EQVENT_laminado", _database.sql.Decimal, _laminado3) //verificar si llega 0 o 1
-          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].salesPriceB).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].salesPriceB).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).input("VENT_codigo", _database.sql.VarChar, 'VENT' + req.params.id).query(_database.querys.addNewVentaEquipo);
+          .input("EQVENT_cantidad", _database.sql.Decimal(18, 2), 1).input("EQVENT_precio", _database.sql.Decimal(18, 2), 0).input("EQVENT_total", _database.sql.Decimal(18, 2), req.body.detailsModelo[_i10].totalBCopia).input("VENT_USU_ing", _database.sql.Decimal, req.body.id).input("VENT_codigo", _database.sql.VarChar, 'VENT' + req.params.id).query(_database.querys.addNewVentaEquipo);
         case 103:
           _result9 = _context10.sent;
         case 104:
