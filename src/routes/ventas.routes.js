@@ -37,6 +37,7 @@ import {
   getInventarioAgrupado,
   getHistPorSerie,
   getHistPorCodTag,
+  editFechaEntregaVinil,
 
 } from "../controllers/ventas.controller";
 
@@ -71,6 +72,7 @@ router.put("/ventas/n/:id", editVentaPorNoAprobacion);
 router.put("/ventas/o/:id", editVentaEquipoRevisado);
 router.get("/ventas/rev", getRevisionesActivas);
 router.get("/ventas/count", getCountRevisionEquipo);
+router.put("/ventas/p/:id", editFechaEntregaVinil);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioIndividual);
 router.get("/ventas/abc", getInventarioAgrupado);

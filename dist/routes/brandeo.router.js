@@ -8,6 +8,7 @@ var _express = require("express");
 var _brandeoController = require("../controllers/brandeo,controller");
 var router = (0, _express.Router)();
 router.get("/brandeo", _brandeoController.getBrandeos);
+router.get("/brandeo/z", _brandeoController.getBrandeos2);
 router.get("/brandeo/:id", _brandeoController.getBrandeoById);
 router.get("/brandeo/x/:id", _brandeoController.getBrandeoByIdCliente);
 router.get("/brandeo/y/:id", _brandeoController.getDetalleEquipoByIdVenta);
