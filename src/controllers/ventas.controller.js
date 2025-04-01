@@ -1018,8 +1018,8 @@ export const getVentasActivos = async (req, res) => {
         .input("ENTVINIL_fecha", sql.DateTime, req.body.FechaEntrega)
         .input("ENTVINIL_USU_ing",sql.Decimal ,req.body.idUser)
         .query(querys.addFechaEntregaVinil);
-        console.log(result);
-        if(result.rowsAffected>1){
+        
+        if(result.rowsAffected[0]==1){
             return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
           }else{
             return res.status(400).json({ status: "400", msg: "No se pudo actualizar, consulte al administrador" ,token:0});

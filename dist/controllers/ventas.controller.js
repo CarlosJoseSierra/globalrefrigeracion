@@ -1967,9 +1967,8 @@ var editFechaEntregaVinil = /*#__PURE__*/function () {
           return pool.request().input("ENTVINIL_VENT_id", req.params.id).input("ENTVINIL_fecha", _database.sql.DateTime, req.body.FechaEntrega).input("ENTVINIL_USU_ing", _database.sql.Decimal, req.body.idUser).query(_database.querys.addFechaEntregaVinil);
         case 6:
           result = _context36.sent;
-          console.log(result);
-          if (!(result.rowsAffected > 1)) {
-            _context36.next = 12;
+          if (!(result.rowsAffected[0] == 1)) {
+            _context36.next = 11;
             break;
           }
           return _context36.abrupt("return", res.status(200).json({
@@ -1977,25 +1976,25 @@ var editFechaEntregaVinil = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 12:
+        case 11:
           return _context36.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo actualizar, consulte al administrador",
             token: 0
           }));
-        case 13:
-          _context36.next = 19;
+        case 12:
+          _context36.next = 18;
           break;
-        case 15:
-          _context36.prev = 15;
+        case 14:
+          _context36.prev = 14;
           _context36.t0 = _context36["catch"](0);
           res.status(500);
           res.send(_context36.t0.message);
-        case 19:
+        case 18:
         case "end":
           return _context36.stop();
       }
-    }, _callee36, null, [[0, 15]]);
+    }, _callee36, null, [[0, 14]]);
   }));
   return function editFechaEntregaVinil(_x71, _x72) {
     return _ref36.apply(this, arguments);
