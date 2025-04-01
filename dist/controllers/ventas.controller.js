@@ -1967,7 +1967,7 @@ var editFechaEntregaVinil = /*#__PURE__*/function () {
           return pool.request().input("ENTVINIL_VENT_id", req.params.id).input("ENTVINIL_fecha", _database.sql.DateTime, req.body.FechaEntrega).input("ENTVINIL_USU_ing", _database.sql.Decimal, req.body.idUser).query(_database.querys.addFechaEntregaVinil);
         case 6:
           result = _context36.sent;
-          if (!(result.rowsAffected == 1)) {
+          if (!(result.rowsAffected > 1)) {
             _context36.next = 11;
             break;
           }

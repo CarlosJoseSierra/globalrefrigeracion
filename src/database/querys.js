@@ -220,5 +220,5 @@ export const querys = {
   addNewRequerimientoMovimiento:"INSERT INTO REQUERIMIENTOS_MOVIMIENTO (REQMOV_REQ_id,REQMOV_EQC_serie,REQMOV_EQC_marca,REQMOV_EQC_modelo,REQMOV_BRAND_desc,REQMOV_cantidad,REQMOV_PROD_desc,REQMOV_tipo,REQMOV_estado) VALUES (@REQMOV_REQ_id,@REQMOV_EQC_serie,@REQMOV_EQC_marca,@REQMOV_EQC_modelo,@REQMOV_BRAND_desc,@REQMOV_cantidad,@REQMOV_PROD_desc,@REQMOV_tipo,@REQMOV_estado)",
   editFacturaRequerimiento:"UPDATE REQUERIMIENTOS SET REQ_factura = @REQ_factura, REQ_fechaFactura = GETDATE() WHERE REQ_id = @id",
   getMovimientoRequerimiento:"SELECT * FROM REQUERIMIENTOS_MOVIMIENTO WHERE REQMOV_REQ_id = @id AND REQMOV_estado = 1",
-  addFechaEntregaVinil:"INSERT INTO ENTREGA_VINIL (ENTVINIL_VENT_id,ENTVINIL_fecha,ENTVINIL_USU_ing) VALUES (@ENTVINIL_VENT_id,@ENTVINIL_fecha,@ENTVINIL_USU_ing); UPDATE VENTAS SET VENT_fechaEntregaVinil = @ENTVINIL_fecha WHERE VENT_id = @ENTVINIL_VENT_id"
+  addFechaEntregaVinil:"INSERT INTO ENTREGA_VINIL (ENTVINIL_VENT_id,ENTVINIL_fecha,ENTVINIL_USU_ing) VALUES (@ENTVINIL_VENT_id,@ENTVINIL_fecha,@ENTVINIL_USU_ing); UPDATE VENTAS SET VENT_fechaEntregaVinil = @ENTVINIL_fecha WHERE VENT_id = @ENTVINIL_VENT_id;"
 };
