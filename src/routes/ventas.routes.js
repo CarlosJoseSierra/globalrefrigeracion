@@ -38,7 +38,8 @@ import {
   getHistPorSerie,
   getHistPorCodTag,
   editFechaEntregaVinil,
-
+  getImagenEquipoRevisionByVenta,
+  createImageEquipoRevisado,
 } from "../controllers/ventas.controller";
 
 
@@ -65,7 +66,9 @@ router.put("/ventas/g/:id", editVentaPorPegadoBrandeo);
 router.put("/ventas/h/:id", editVentaPorCerrarBrandeo);
 router.get("/ventas/all", getAllBrandeosVenta);
 router.get("/ventas/j/:id", getImagenEquipoByVenta);
+router.get("/ventas/jj/:id", getImagenEquipoRevisionByVenta);
 router.put("/ventas/k/:id",storage.array('image',10),createImageEquipoPegado);
+router.put("/ventas/kk/:id",storage.array('image',10),createImageEquipoRevisado);
 router.put("/ventas/l/:id", editVentaPorRevisionBodega);
 router.put("/ventas/m/:id", editVentaPorAprobacion);
 router.put("/ventas/n/:id", editVentaPorNoAprobacion);

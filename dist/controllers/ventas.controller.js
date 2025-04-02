@@ -4,7 +4,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateEquipoInventory = exports.getVentasActivosPorBrandeo = exports.getVentasActivos = exports.getVentaById = exports.getRevisionesActivas = exports.getInventarioTotal = exports.getInventarioIndividual = exports.getInventarioByIdEquipo = exports.getInventarioAgrupado = exports.getImagenEquipoByVenta = exports.getHistPorSerie = exports.getHistPorCodTag = exports.getDetalleVentasEquipos = exports.getDetalleVentasBrandeos = exports.getCountRevisionEquipo = exports.getBrandeosPorPegar = exports.getAllVentas = exports.getAllBrandeosVenta = exports.editVentas = exports.editVentaPorRevisionBodega = exports.editVentaPorPegadoBrandeo = exports.editVentaPorNumEnsamble = exports.editVentaPorNoAprobacion = exports.editVentaPorLaminadoBrandeo = exports.editVentaPorImpresionBrandeo = exports.editVentaPorEntregadoBrandeo = exports.editVentaPorDiseno = exports.editVentaPorCorteBrandeo = exports.editVentaPorConfirmadoBrandeo = exports.editVentaPorCierreCaso = exports.editVentaPorCerrarBrandeo = exports.editVentaPorAprobacion = exports.editVentaEquipoRevisado = exports.editFechaEntregaVinil = exports.createventas = exports.createImageEquipoPegado = void 0;
+exports.updateEquipoInventory = exports.getVentasActivosPorBrandeo = exports.getVentasActivos = exports.getVentaById = exports.getRevisionesActivas = exports.getInventarioTotal = exports.getInventarioIndividual = exports.getInventarioByIdEquipo = exports.getInventarioAgrupado = exports.getImagenEquipoRevisionByVenta = exports.getImagenEquipoByVenta = exports.getHistPorSerie = exports.getHistPorCodTag = exports.getDetalleVentasEquipos = exports.getDetalleVentasBrandeos = exports.getCountRevisionEquipo = exports.getBrandeosPorPegar = exports.getAllVentas = exports.getAllBrandeosVenta = exports.editVentas = exports.editVentaPorRevisionBodega = exports.editVentaPorPegadoBrandeo = exports.editVentaPorNumEnsamble = exports.editVentaPorNoAprobacion = exports.editVentaPorLaminadoBrandeo = exports.editVentaPorImpresionBrandeo = exports.editVentaPorEntregadoBrandeo = exports.editVentaPorDiseno = exports.editVentaPorCorteBrandeo = exports.editVentaPorConfirmadoBrandeo = exports.editVentaPorCierreCaso = exports.editVentaPorCerrarBrandeo = exports.editVentaPorAprobacion = exports.editVentaEquipoRevisado = exports.editFechaEntregaVinil = exports.createventas = exports.createImageEquipoRevisado = exports.createImageEquipoPegado = void 0;
 var _database = require("../database");
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1477,165 +1477,161 @@ var getImagenEquipoByVenta = /*#__PURE__*/function () {
   };
 }();
 exports.getImagenEquipoByVenta = getImagenEquipoByVenta;
-var createImageEquipoPegado = /*#__PURE__*/function () {
+var getImagenEquipoRevisionByVenta = /*#__PURE__*/function () {
   var _ref25 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee25(req, res) {
-    var imageruta, i, img, pool, result;
+    var pool, result;
     return _regeneratorRuntime().wrap(function _callee25$(_context25) {
       while (1) switch (_context25.prev = _context25.next) {
         case 0:
           _context25.prev = 0;
+          _context25.next = 3;
+          return (0, _database.getConnection)();
+        case 3:
+          pool = _context25.sent;
+          _context25.next = 6;
+          return pool.request().input("id", req.params.id).query(_database.querys.getImagenEquipoRevisionByVenta);
+        case 6:
+          result = _context25.sent;
+          res.json(result.recordset);
+          _context25.next = 14;
+          break;
+        case 10:
+          _context25.prev = 10;
+          _context25.t0 = _context25["catch"](0);
+          res.status(500);
+          res.send(_context25.t0.message);
+        case 14:
+        case "end":
+          return _context25.stop();
+      }
+    }, _callee25, null, [[0, 10]]);
+  }));
+  return function getImagenEquipoRevisionByVenta(_x49, _x50) {
+    return _ref25.apply(this, arguments);
+  };
+}();
+exports.getImagenEquipoRevisionByVenta = getImagenEquipoRevisionByVenta;
+var createImageEquipoPegado = /*#__PURE__*/function () {
+  var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee26(req, res) {
+    var imageruta, i, img, pool, result;
+    return _regeneratorRuntime().wrap(function _callee26$(_context26) {
+      while (1) switch (_context26.prev = _context26.next) {
+        case 0:
+          _context26.prev = 0;
           imageruta = '';
           if (!(req.files.length > 0)) {
-            _context25.next = 19;
+            _context26.next = 19;
             break;
           }
           i = 0;
         case 4:
           if (!(i < req.files.length)) {
-            _context25.next = 18;
+            _context26.next = 18;
             break;
           }
-          _context25.next = 7;
+          _context26.next = 7;
           return cloudinary.uploader.upload(req.files[i].path);
         case 7:
-          img = _context25.sent;
+          img = _context26.sent;
           imageruta = img.secure_url;
-          _context25.next = 11;
+          _context26.next = 11;
           return (0, _database.getConnection)();
         case 11:
-          pool = _context25.sent;
-          _context25.next = 14;
+          pool = _context26.sent;
+          _context26.next = 14;
           return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).query(_database.querys.createImageEquipoPegado);
         case 14:
-          result = _context25.sent;
+          result = _context26.sent;
         case 15:
           i++;
-          _context25.next = 4;
+          _context26.next = 4;
           break;
         case 18:
-          return _context25.abrupt("return", res.status(200).json({
+          return _context26.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
         case 19:
-          _context25.next = 25;
+          _context26.next = 25;
           break;
         case 21:
-          _context25.prev = 21;
-          _context25.t0 = _context25["catch"](0);
-          res.status(500);
-          res.send(_context25.t0.message);
-        case 25:
-        case "end":
-          return _context25.stop();
-      }
-    }, _callee25, null, [[0, 21]]);
-  }));
-  return function createImageEquipoPegado(_x49, _x50) {
-    return _ref25.apply(this, arguments);
-  };
-}();
-exports.createImageEquipoPegado = createImageEquipoPegado;
-var updateEquipoInventory = /*#__PURE__*/function () {
-  var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee26(req, res) {
-    var pool, result;
-    return _regeneratorRuntime().wrap(function _callee26$(_context26) {
-      while (1) switch (_context26.prev = _context26.next) {
-        case 0:
-          _context26.prev = 0;
-          _context26.next = 3;
-          return (0, _database.getConnection)();
-        case 3:
-          pool = _context26.sent;
-          _context26.next = 6;
-          return pool.request().input("id", req.params.id).input("serie", _database.sql.Decimal, req.body.serie).input("idUser", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateEquipoInventory);
-        case 6:
-          result = _context26.sent;
-          if (!(result.rowsAffected[0] == 1)) {
-            _context26.next = 11;
-            break;
-          }
-          return _context26.abrupt("return", res.status(200).json({
-            status: "ok",
-            msg: "Actualizacion exitosa",
-            token: 0
-          }));
-        case 11:
-          return _context26.abrupt("return", res.status(400).json({
-            status: "400",
-            msg: "No se pudo actualizar, consulte con el administrador",
-            token: 0
-          }));
-        case 12:
-          _context26.next = 18;
-          break;
-        case 14:
-          _context26.prev = 14;
+          _context26.prev = 21;
           _context26.t0 = _context26["catch"](0);
           res.status(500);
           res.send(_context26.t0.message);
-        case 18:
+        case 25:
         case "end":
           return _context26.stop();
       }
-    }, _callee26, null, [[0, 14]]);
+    }, _callee26, null, [[0, 21]]);
   }));
-  return function updateEquipoInventory(_x51, _x52) {
+  return function createImageEquipoPegado(_x51, _x52) {
     return _ref26.apply(this, arguments);
   };
 }();
-exports.updateEquipoInventory = updateEquipoInventory;
-var editVentaPorRevisionBodega = /*#__PURE__*/function () {
+exports.createImageEquipoPegado = createImageEquipoPegado;
+var createImageEquipoRevisado = /*#__PURE__*/function () {
   var _ref27 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee27(req, res) {
-    var pool, result;
+    var imageruta, i, img, pool, result;
     return _regeneratorRuntime().wrap(function _callee27$(_context27) {
       while (1) switch (_context27.prev = _context27.next) {
         case 0:
           _context27.prev = 0;
-          _context27.next = 3;
-          return (0, _database.getConnection)();
-        case 3:
-          pool = _context27.sent;
-          _context27.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorRevisionBodega);
-        case 6:
-          result = _context27.sent;
-          if (!(result.rowsAffected == 1)) {
-            _context27.next = 11;
+          imageruta = '';
+          if (!(req.files.length > 0)) {
+            _context27.next = 19;
             break;
           }
+          i = 0;
+        case 4:
+          if (!(i < req.files.length)) {
+            _context27.next = 18;
+            break;
+          }
+          _context27.next = 7;
+          return cloudinary.uploader.upload(req.files[i].path);
+        case 7:
+          img = _context27.sent;
+          imageruta = img.secure_url;
+          _context27.next = 11;
+          return (0, _database.getConnection)();
+        case 11:
+          pool = _context27.sent;
+          _context27.next = 14;
+          return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).query(_database.querys.createImageEquipoRevisado);
+        case 14:
+          result = _context27.sent;
+        case 15:
+          i++;
+          _context27.next = 4;
+          break;
+        case 18:
           return _context27.abrupt("return", res.status(200).json({
             status: "ok",
-            msg: "Actualizacion exitosa",
+            msg: "Registro exitoso",
             token: 0
           }));
-        case 11:
-          return _context27.abrupt("return", res.status(400).json({
-            status: "400",
-            msg: "No se pudo actualizar, consulte al administrador",
-            token: 0
-          }));
-        case 12:
-          _context27.next = 18;
+        case 19:
+          _context27.next = 25;
           break;
-        case 14:
-          _context27.prev = 14;
+        case 21:
+          _context27.prev = 21;
           _context27.t0 = _context27["catch"](0);
           res.status(500);
           res.send(_context27.t0.message);
-        case 18:
+        case 25:
         case "end":
           return _context27.stop();
       }
-    }, _callee27, null, [[0, 14]]);
+    }, _callee27, null, [[0, 21]]);
   }));
-  return function editVentaPorRevisionBodega(_x53, _x54) {
+  return function createImageEquipoRevisado(_x53, _x54) {
     return _ref27.apply(this, arguments);
   };
 }();
-exports.editVentaPorRevisionBodega = editVentaPorRevisionBodega;
-var editVentaPorAprobacion = /*#__PURE__*/function () {
+exports.createImageEquipoRevisado = createImageEquipoRevisado;
+var updateEquipoInventory = /*#__PURE__*/function () {
   var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee28(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee28$(_context28) {
@@ -1647,10 +1643,10 @@ var editVentaPorAprobacion = /*#__PURE__*/function () {
         case 3:
           pool = _context28.sent;
           _context28.next = 6;
-          return pool.request().input("id", req.params.id).input("VENT_aprobado", _database.sql.Decimal, req.body.estado).query(_database.querys.editVentaPorAprobacion);
+          return pool.request().input("id", req.params.id).input("serie", _database.sql.Decimal, req.body.serie).input("idUser", _database.sql.Decimal, req.body.idUser).query(_database.querys.updateEquipoInventory);
         case 6:
           result = _context28.sent;
-          if (!(result.rowsAffected == 1)) {
+          if (!(result.rowsAffected[0] == 1)) {
             _context28.next = 11;
             break;
           }
@@ -1662,7 +1658,7 @@ var editVentaPorAprobacion = /*#__PURE__*/function () {
         case 11:
           return _context28.abrupt("return", res.status(400).json({
             status: "400",
-            msg: "No se pudo actualizar, consulte al administrador",
+            msg: "No se pudo actualizar, consulte con el administrador",
             token: 0
           }));
         case 12:
@@ -1679,12 +1675,12 @@ var editVentaPorAprobacion = /*#__PURE__*/function () {
       }
     }, _callee28, null, [[0, 14]]);
   }));
-  return function editVentaPorAprobacion(_x55, _x56) {
+  return function updateEquipoInventory(_x55, _x56) {
     return _ref28.apply(this, arguments);
   };
 }();
-exports.editVentaPorAprobacion = editVentaPorAprobacion;
-var editVentaPorNoAprobacion = /*#__PURE__*/function () {
+exports.updateEquipoInventory = updateEquipoInventory;
+var editVentaPorRevisionBodega = /*#__PURE__*/function () {
   var _ref29 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee29(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee29$(_context29) {
@@ -1696,7 +1692,7 @@ var editVentaPorNoAprobacion = /*#__PURE__*/function () {
         case 3:
           pool = _context29.sent;
           _context29.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorNoAprobacion);
+          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorRevisionBodega);
         case 6:
           result = _context29.sent;
           if (!(result.rowsAffected == 1)) {
@@ -1728,12 +1724,12 @@ var editVentaPorNoAprobacion = /*#__PURE__*/function () {
       }
     }, _callee29, null, [[0, 14]]);
   }));
-  return function editVentaPorNoAprobacion(_x57, _x58) {
+  return function editVentaPorRevisionBodega(_x57, _x58) {
     return _ref29.apply(this, arguments);
   };
 }();
-exports.editVentaPorNoAprobacion = editVentaPorNoAprobacion;
-var editVentaEquipoRevisado = /*#__PURE__*/function () {
+exports.editVentaPorRevisionBodega = editVentaPorRevisionBodega;
+var editVentaPorAprobacion = /*#__PURE__*/function () {
   var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee30(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee30$(_context30) {
@@ -1745,7 +1741,7 @@ var editVentaEquipoRevisado = /*#__PURE__*/function () {
         case 3:
           pool = _context30.sent;
           _context30.next = 6;
-          return pool.request().input("id", req.params.id).query(_database.querys.editVentaEquipoRevisado);
+          return pool.request().input("id", req.params.id).input("VENT_aprobado", _database.sql.Decimal, req.body.estado).query(_database.querys.editVentaPorAprobacion);
         case 6:
           result = _context30.sent;
           if (!(result.rowsAffected == 1)) {
@@ -1777,12 +1773,12 @@ var editVentaEquipoRevisado = /*#__PURE__*/function () {
       }
     }, _callee30, null, [[0, 14]]);
   }));
-  return function editVentaEquipoRevisado(_x59, _x60) {
+  return function editVentaPorAprobacion(_x59, _x60) {
     return _ref30.apply(this, arguments);
   };
 }();
-exports.editVentaEquipoRevisado = editVentaEquipoRevisado;
-var getCountRevisionEquipo = /*#__PURE__*/function () {
+exports.editVentaPorAprobacion = editVentaPorAprobacion;
+var editVentaPorNoAprobacion = /*#__PURE__*/function () {
   var _ref31 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee31(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee31$(_context31) {
@@ -1794,29 +1790,44 @@ var getCountRevisionEquipo = /*#__PURE__*/function () {
         case 3:
           pool = _context31.sent;
           _context31.next = 6;
-          return pool.request().query(_database.querys.getCountRevisionEquipo);
+          return pool.request().input("id", req.params.id).query(_database.querys.editVentaPorNoAprobacion);
         case 6:
           result = _context31.sent;
-          res.json(result.recordset);
-          _context31.next = 14;
+          if (!(result.rowsAffected == 1)) {
+            _context31.next = 11;
+            break;
+          }
+          return _context31.abrupt("return", res.status(200).json({
+            status: "ok",
+            msg: "Actualizacion exitosa",
+            token: 0
+          }));
+        case 11:
+          return _context31.abrupt("return", res.status(400).json({
+            status: "400",
+            msg: "No se pudo actualizar, consulte al administrador",
+            token: 0
+          }));
+        case 12:
+          _context31.next = 18;
           break;
-        case 10:
-          _context31.prev = 10;
+        case 14:
+          _context31.prev = 14;
           _context31.t0 = _context31["catch"](0);
           res.status(500);
           res.send(_context31.t0.message);
-        case 14:
+        case 18:
         case "end":
           return _context31.stop();
       }
-    }, _callee31, null, [[0, 10]]);
+    }, _callee31, null, [[0, 14]]);
   }));
-  return function getCountRevisionEquipo(_x61, _x62) {
+  return function editVentaPorNoAprobacion(_x61, _x62) {
     return _ref31.apply(this, arguments);
   };
 }();
-exports.getCountRevisionEquipo = getCountRevisionEquipo;
-var getInventarioIndividual = /*#__PURE__*/function () {
+exports.editVentaPorNoAprobacion = editVentaPorNoAprobacion;
+var editVentaEquipoRevisado = /*#__PURE__*/function () {
   var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee32(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee32$(_context32) {
@@ -1828,29 +1839,44 @@ var getInventarioIndividual = /*#__PURE__*/function () {
         case 3:
           pool = _context32.sent;
           _context32.next = 6;
-          return pool.request().query(_database.querys.getInventarioIndividual);
+          return pool.request().input("id", req.params.id).query(_database.querys.editVentaEquipoRevisado);
         case 6:
           result = _context32.sent;
-          res.json(result.recordset);
-          _context32.next = 14;
+          if (!(result.rowsAffected == 1)) {
+            _context32.next = 11;
+            break;
+          }
+          return _context32.abrupt("return", res.status(200).json({
+            status: "ok",
+            msg: "Actualizacion exitosa",
+            token: 0
+          }));
+        case 11:
+          return _context32.abrupt("return", res.status(400).json({
+            status: "400",
+            msg: "No se pudo actualizar, consulte al administrador",
+            token: 0
+          }));
+        case 12:
+          _context32.next = 18;
           break;
-        case 10:
-          _context32.prev = 10;
+        case 14:
+          _context32.prev = 14;
           _context32.t0 = _context32["catch"](0);
           res.status(500);
           res.send(_context32.t0.message);
-        case 14:
+        case 18:
         case "end":
           return _context32.stop();
       }
-    }, _callee32, null, [[0, 10]]);
+    }, _callee32, null, [[0, 14]]);
   }));
-  return function getInventarioIndividual(_x63, _x64) {
+  return function editVentaEquipoRevisado(_x63, _x64) {
     return _ref32.apply(this, arguments);
   };
 }();
-exports.getInventarioIndividual = getInventarioIndividual;
-var getInventarioAgrupado = /*#__PURE__*/function () {
+exports.editVentaEquipoRevisado = editVentaEquipoRevisado;
+var getCountRevisionEquipo = /*#__PURE__*/function () {
   var _ref33 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee33(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee33$(_context33) {
@@ -1862,7 +1888,7 @@ var getInventarioAgrupado = /*#__PURE__*/function () {
         case 3:
           pool = _context33.sent;
           _context33.next = 6;
-          return pool.request().query(_database.querys.getInventarioAgrupado);
+          return pool.request().query(_database.querys.getCountRevisionEquipo);
         case 6:
           result = _context33.sent;
           res.json(result.recordset);
@@ -1879,12 +1905,12 @@ var getInventarioAgrupado = /*#__PURE__*/function () {
       }
     }, _callee33, null, [[0, 10]]);
   }));
-  return function getInventarioAgrupado(_x65, _x66) {
+  return function getCountRevisionEquipo(_x65, _x66) {
     return _ref33.apply(this, arguments);
   };
 }();
-exports.getInventarioAgrupado = getInventarioAgrupado;
-var getHistPorSerie = /*#__PURE__*/function () {
+exports.getCountRevisionEquipo = getCountRevisionEquipo;
+var getInventarioIndividual = /*#__PURE__*/function () {
   var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee34(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee34$(_context34) {
@@ -1896,7 +1922,7 @@ var getHistPorSerie = /*#__PURE__*/function () {
         case 3:
           pool = _context34.sent;
           _context34.next = 6;
-          return pool.request().input("serie", req.params.serie).query(_database.querys.getHistorialPorSerie);
+          return pool.request().query(_database.querys.getInventarioIndividual);
         case 6:
           result = _context34.sent;
           res.json(result.recordset);
@@ -1913,12 +1939,12 @@ var getHistPorSerie = /*#__PURE__*/function () {
       }
     }, _callee34, null, [[0, 10]]);
   }));
-  return function getHistPorSerie(_x67, _x68) {
+  return function getInventarioIndividual(_x67, _x68) {
     return _ref34.apply(this, arguments);
   };
 }();
-exports.getHistPorSerie = getHistPorSerie;
-var getHistPorCodTag = /*#__PURE__*/function () {
+exports.getInventarioIndividual = getInventarioIndividual;
+var getInventarioAgrupado = /*#__PURE__*/function () {
   var _ref35 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee35(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee35$(_context35) {
@@ -1930,7 +1956,7 @@ var getHistPorCodTag = /*#__PURE__*/function () {
         case 3:
           pool = _context35.sent;
           _context35.next = 6;
-          return pool.request().input("codTag", req.params.codTag).query(_database.querys.getHistorialPorCodTag);
+          return pool.request().query(_database.querys.getInventarioAgrupado);
         case 6:
           result = _context35.sent;
           res.json(result.recordset);
@@ -1947,12 +1973,12 @@ var getHistPorCodTag = /*#__PURE__*/function () {
       }
     }, _callee35, null, [[0, 10]]);
   }));
-  return function getHistPorCodTag(_x69, _x70) {
+  return function getInventarioAgrupado(_x69, _x70) {
     return _ref35.apply(this, arguments);
   };
 }();
-exports.getHistPorCodTag = getHistPorCodTag;
-var editFechaEntregaVinil = /*#__PURE__*/function () {
+exports.getInventarioAgrupado = getInventarioAgrupado;
+var getHistPorSerie = /*#__PURE__*/function () {
   var _ref36 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee36(req, res) {
     var pool, result;
     return _regeneratorRuntime().wrap(function _callee36$(_context36) {
@@ -1964,40 +1990,108 @@ var editFechaEntregaVinil = /*#__PURE__*/function () {
         case 3:
           pool = _context36.sent;
           _context36.next = 6;
-          return pool.request().input("ENTVINIL_VENT_id", req.params.id).input("ENTVINIL_fecha", _database.sql.DateTime, req.body.FechaEntrega).input("ENTVINIL_USU_ing", _database.sql.Decimal, req.body.idUser).query(_database.querys.addFechaEntregaVinil);
+          return pool.request().input("serie", req.params.serie).query(_database.querys.getHistorialPorSerie);
         case 6:
           result = _context36.sent;
+          res.json(result.recordset);
+          _context36.next = 14;
+          break;
+        case 10:
+          _context36.prev = 10;
+          _context36.t0 = _context36["catch"](0);
+          res.status(500);
+          res.send(_context36.t0.message);
+        case 14:
+        case "end":
+          return _context36.stop();
+      }
+    }, _callee36, null, [[0, 10]]);
+  }));
+  return function getHistPorSerie(_x71, _x72) {
+    return _ref36.apply(this, arguments);
+  };
+}();
+exports.getHistPorSerie = getHistPorSerie;
+var getHistPorCodTag = /*#__PURE__*/function () {
+  var _ref37 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee37(req, res) {
+    var pool, result;
+    return _regeneratorRuntime().wrap(function _callee37$(_context37) {
+      while (1) switch (_context37.prev = _context37.next) {
+        case 0:
+          _context37.prev = 0;
+          _context37.next = 3;
+          return (0, _database.getConnection)();
+        case 3:
+          pool = _context37.sent;
+          _context37.next = 6;
+          return pool.request().input("codTag", req.params.codTag).query(_database.querys.getHistorialPorCodTag);
+        case 6:
+          result = _context37.sent;
+          res.json(result.recordset);
+          _context37.next = 14;
+          break;
+        case 10:
+          _context37.prev = 10;
+          _context37.t0 = _context37["catch"](0);
+          res.status(500);
+          res.send(_context37.t0.message);
+        case 14:
+        case "end":
+          return _context37.stop();
+      }
+    }, _callee37, null, [[0, 10]]);
+  }));
+  return function getHistPorCodTag(_x73, _x74) {
+    return _ref37.apply(this, arguments);
+  };
+}();
+exports.getHistPorCodTag = getHistPorCodTag;
+var editFechaEntregaVinil = /*#__PURE__*/function () {
+  var _ref38 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee38(req, res) {
+    var pool, result;
+    return _regeneratorRuntime().wrap(function _callee38$(_context38) {
+      while (1) switch (_context38.prev = _context38.next) {
+        case 0:
+          _context38.prev = 0;
+          _context38.next = 3;
+          return (0, _database.getConnection)();
+        case 3:
+          pool = _context38.sent;
+          _context38.next = 6;
+          return pool.request().input("ENTVINIL_VENT_id", req.params.id).input("ENTVINIL_fecha", _database.sql.DateTime, req.body.FechaEntrega).input("ENTVINIL_USU_ing", _database.sql.Decimal, req.body.idUser).query(_database.querys.addFechaEntregaVinil);
+        case 6:
+          result = _context38.sent;
           if (!(result.rowsAffected[0] == 1)) {
-            _context36.next = 11;
+            _context38.next = 11;
             break;
           }
-          return _context36.abrupt("return", res.status(200).json({
+          return _context38.abrupt("return", res.status(200).json({
             status: "ok",
             msg: "Registro exitoso",
             token: 0
           }));
         case 11:
-          return _context36.abrupt("return", res.status(400).json({
+          return _context38.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo actualizar, consulte al administrador",
             token: 0
           }));
         case 12:
-          _context36.next = 18;
+          _context38.next = 18;
           break;
         case 14:
-          _context36.prev = 14;
-          _context36.t0 = _context36["catch"](0);
+          _context38.prev = 14;
+          _context38.t0 = _context38["catch"](0);
           res.status(500);
-          res.send(_context36.t0.message);
+          res.send(_context38.t0.message);
         case 18:
         case "end":
-          return _context36.stop();
+          return _context38.stop();
       }
-    }, _callee36, null, [[0, 14]]);
+    }, _callee38, null, [[0, 14]]);
   }));
-  return function editFechaEntregaVinil(_x71, _x72) {
-    return _ref36.apply(this, arguments);
+  return function editFechaEntregaVinil(_x75, _x76) {
+    return _ref38.apply(this, arguments);
   };
 }();
 exports.editFechaEntregaVinil = editFechaEntregaVinil;
