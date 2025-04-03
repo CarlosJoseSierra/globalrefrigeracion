@@ -1539,7 +1539,7 @@ var createImageEquipoPegado = /*#__PURE__*/function () {
         case 11:
           pool = _context26.sent;
           _context26.next = 14;
-          return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).query(_database.querys.createImageEquipoPegado);
+          return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).input("IMGEQUIP_USU_id", _database.sql.Decimal, req.body.idUser).query(_database.querys.createImageEquipoPegado);
         case 14:
           result = _context26.sent;
         case 15:
@@ -1599,7 +1599,7 @@ var createImageEquipoRevisado = /*#__PURE__*/function () {
         case 11:
           pool = _context27.sent;
           _context27.next = 14;
-          return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).query(_database.querys.createImageEquipoRevisado);
+          return pool.request().input("IMGEQUIP_VENT_id", req.params.id).input("IMGEQUIP_ruta", _database.sql.VarChar, imageruta).input("IMGEQUIP_USU_id", _database.sql.Decimal, req.body.idUser).query(_database.querys.createImageEquipoRevisado);
         case 14:
           result = _context27.sent;
         case 15:

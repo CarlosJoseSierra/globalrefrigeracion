@@ -847,6 +847,7 @@ export const getVentasActivos = async (req, res) => {
           .request()
           .input("IMGEQUIP_VENT_id", req.params.id)
           .input("IMGEQUIP_ruta", sql.VarChar, imageruta)
+          .input("IMGEQUIP_USU_id", sql.Decimal, req.body.idUser)
           .query(querys.createImageEquipoPegado);
         }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
@@ -871,6 +872,7 @@ export const getVentasActivos = async (req, res) => {
           .request()
           .input("IMGEQUIP_VENT_id", req.params.id)
           .input("IMGEQUIP_ruta", sql.VarChar, imageruta)
+          .input("IMGEQUIP_USU_id", sql.Decimal, req.body.idUser)
           .query(querys.createImageEquipoRevisado);
         }
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
