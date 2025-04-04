@@ -32,7 +32,7 @@ export const createNewProduct = async (req, res) => {
       .input("PROD_pvp", sql.Decimal(18,2), req.body.Precio)
       .input("PROD_item", sql.VarChar, req.body.TipoItem)
       .input("PROD_costoUnitarioH", sql.Decimal, req.body.entrega)
-      .query(querys.addNewModelo);
+      .query(querys.addNewProduct);
       if(result.rowsAffected[0]==1){
         return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
       }else{

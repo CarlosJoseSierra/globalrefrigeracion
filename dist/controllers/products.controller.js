@@ -89,7 +89,7 @@ var createNewProduct = /*#__PURE__*/function () {
         case 3:
           pool = _context3.sent;
           _context3.next = 6;
-          return pool.request().input("PROD_codigo", _database.sql.VarChar, req.body.Codigo).input("PROD_nombre", _database.sql.VarChar, req.body.Descripcion).input("PROD_pvp", _database.sql.Decimal(18, 2), req.body.Precio).input("PROD_item", _database.sql.VarChar, req.body.TipoItem).input("PROD_costoUnitarioH", _database.sql.Decimal, req.body.entrega).query(_database.querys.addNewModelo);
+          return pool.request().input("PROD_codigo", _database.sql.VarChar, req.body.Codigo).input("PROD_nombre", _database.sql.VarChar, req.body.Descripcion).input("PROD_pvp", _database.sql.Decimal(18, 2), req.body.Precio).input("PROD_item", _database.sql.VarChar, req.body.TipoItem).input("PROD_costoUnitarioH", _database.sql.Decimal, req.body.entrega).query(_database.querys.addNewProduct);
         case 6:
           result = _context3.sent;
           if (!(result.rowsAffected[0] == 1)) {
