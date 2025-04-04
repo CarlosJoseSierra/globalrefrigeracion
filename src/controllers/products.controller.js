@@ -23,29 +23,25 @@ export const getProductsVenta = async (req, res) => {
 };
 
 export const createNewProduct = async (req, res) => {
-  const { name, description } = req.body;
-  let { quantity } = req.body;
-
-  // validating
-  if (description == null || name == null) {
-    return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
-  }
-
-  if (quantity == null) quantity = 0;
-
   try {
     const pool = await getConnection();
-
-    await pool
+    const result = await pool
       .request()
-      .input("name", sql.VarChar, name)
-      .input("description", sql.Text, description)
-      .input("quantity", sql.Int, quantity)
-      .query(querys.addNewProduct);
-
-    res.json({ name, description, quantity });
+      .input("PROD_codigo", sql.VarChar, req.body.Codigo)
+      .input("PROD_nombre", sql.VarChar, req.body.Descripcion)
+      .input("PROD_pvp", sql.Decimal(18,2), req.body.Precio)
+      .input("PROD_item", sql.VarChar, req.body.TipoItem)
+      .input("PROD_costoUnitarioH", sql.Decimal, req.body.entrega)
+      .query(querys.addNewModelo);
+      if(result.rowsAffected[0]==1){
+        return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+      }else{
+        return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+      }
+    
   } catch (error) {
     res.status(500);
+    console.log(error.message);
     res.send(error.message);
   }
 };
@@ -93,25 +89,27 @@ export const getTotalProducts = async (req, res) => {
 };
 
 export const updateProductById = async (req, res) => {
-  const { description, name, quantity } = req.body;
-
-  // validating
-  if (description == null || name == null || quantity == null) {
-    return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
-  }
-
   try {
     const pool = await getConnection();
-    await pool
+    const result = await pool
       .request()
-      .input("name", sql.VarChar, name)
-      .input("description", sql.VarChar, description)
-      .input("quantity", sql.VarChar, quantity)
       .input("id", req.params.id)
+      .input("PROD_codigo", sql.VarChar, req.body.Codigo)
+      .input("PROD_nombre", sql.VarChar, req.body.Descripcion)
+      .input("PROD_pvp", sql.Decimal(18,2), req.body.Precio)
+      .input("PROD_item", sql.VarChar, req.body.TipoItem)
+      .input("PROD_costoUnitarioH", sql.Decimal, req.body.entrega)
       .query(querys.updateProductById);
-    res.json({ name, description, quantity });
+      if(result.rowsAffected==1){
+        return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
+      }else{
+        return res.status(400).json({ status: "400", msg: "No se pudo registrar, consulte al administrador" ,token:0});
+      }
+    
   } catch (error) {
     res.status(500);
+    console.log(error.message);
     res.send(error.message);
   }
+  
 };

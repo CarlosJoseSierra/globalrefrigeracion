@@ -79,46 +79,48 @@ var getProductsVenta = /*#__PURE__*/function () {
 exports.getProductsVenta = getProductsVenta;
 var createNewProduct = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var _req$body, name, description, quantity, pool;
+    var pool, result;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _req$body = req.body, name = _req$body.name, description = _req$body.description;
-          quantity = req.body.quantity; // validating
-          if (!(description == null || name == null)) {
-            _context3.next = 4;
+          _context3.prev = 0;
+          _context3.next = 3;
+          return (0, _database.getConnection)();
+        case 3:
+          pool = _context3.sent;
+          _context3.next = 6;
+          return pool.request().input("PROD_codigo", _database.sql.VarChar, req.body.Codigo).input("PROD_nombre", _database.sql.VarChar, req.body.Descripcion).input("PROD_pvp", _database.sql.Decimal(18, 2), req.body.Precio).input("PROD_item", _database.sql.VarChar, req.body.TipoItem).input("PROD_costoUnitarioH", _database.sql.Decimal, req.body.entrega).query(_database.querys.addNewModelo);
+        case 6:
+          result = _context3.sent;
+          if (!(result.rowsAffected[0] == 1)) {
+            _context3.next = 11;
             break;
           }
-          return _context3.abrupt("return", res.status(400).json({
-            msg: "Bad Request. Please fill all fields"
+          return _context3.abrupt("return", res.status(200).json({
+            status: "ok",
+            msg: "Registro exitoso",
+            token: 0
           }));
-        case 4:
-          if (quantity == null) quantity = 0;
-          _context3.prev = 5;
-          _context3.next = 8;
-          return (0, _database.getConnection)();
-        case 8:
-          pool = _context3.sent;
-          _context3.next = 11;
-          return pool.request().input("name", _database.sql.VarChar, name).input("description", _database.sql.Text, description).input("quantity", _database.sql.Int, quantity).query(_database.querys.addNewProduct);
         case 11:
-          res.json({
-            name: name,
-            description: description,
-            quantity: quantity
-          });
-          _context3.next = 18;
+          return _context3.abrupt("return", res.status(400).json({
+            status: "400",
+            msg: "No se pudo registrar, consulte al administrador",
+            token: 0
+          }));
+        case 12:
+          _context3.next = 19;
           break;
         case 14:
           _context3.prev = 14;
-          _context3.t0 = _context3["catch"](5);
+          _context3.t0 = _context3["catch"](0);
           res.status(500);
+          console.log(_context3.t0.message);
           res.send(_context3.t0.message);
-        case 18:
+        case 19:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[5, 14]]);
+    }, _callee3, null, [[0, 14]]);
   }));
   return function createNewProduct(_x5, _x6) {
     return _ref3.apply(this, arguments);
@@ -226,44 +228,48 @@ var getTotalProducts = /*#__PURE__*/function () {
 exports.getTotalProducts = getTotalProducts;
 var updateProductById = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
-    var _req$body2, description, name, quantity, pool;
+    var pool, result;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
-          _req$body2 = req.body, description = _req$body2.description, name = _req$body2.name, quantity = _req$body2.quantity; // validating
-          if (!(description == null || name == null || quantity == null)) {
-            _context7.next = 3;
+          _context7.prev = 0;
+          _context7.next = 3;
+          return (0, _database.getConnection)();
+        case 3:
+          pool = _context7.sent;
+          _context7.next = 6;
+          return pool.request().input("id", req.params.id).input("PROD_codigo", _database.sql.VarChar, req.body.Codigo).input("PROD_nombre", _database.sql.VarChar, req.body.Descripcion).input("PROD_pvp", _database.sql.Decimal(18, 2), req.body.Precio).input("PROD_item", _database.sql.VarChar, req.body.TipoItem).input("PROD_costoUnitarioH", _database.sql.Decimal, req.body.entrega).query(_database.querys.updateProductById);
+        case 6:
+          result = _context7.sent;
+          if (!(result.rowsAffected == 1)) {
+            _context7.next = 11;
             break;
           }
-          return _context7.abrupt("return", res.status(400).json({
-            msg: "Bad Request. Please fill all fields"
+          return _context7.abrupt("return", res.status(200).json({
+            status: "ok",
+            msg: "Registro exitoso",
+            token: 0
           }));
-        case 3:
-          _context7.prev = 3;
-          _context7.next = 6;
-          return (0, _database.getConnection)();
-        case 6:
-          pool = _context7.sent;
-          _context7.next = 9;
-          return pool.request().input("name", _database.sql.VarChar, name).input("description", _database.sql.VarChar, description).input("quantity", _database.sql.VarChar, quantity).input("id", req.params.id).query(_database.querys.updateProductById);
-        case 9:
-          res.json({
-            name: name,
-            description: description,
-            quantity: quantity
-          });
-          _context7.next = 16;
-          break;
+        case 11:
+          return _context7.abrupt("return", res.status(400).json({
+            status: "400",
+            msg: "No se pudo registrar, consulte al administrador",
+            token: 0
+          }));
         case 12:
-          _context7.prev = 12;
-          _context7.t0 = _context7["catch"](3);
+          _context7.next = 19;
+          break;
+        case 14:
+          _context7.prev = 14;
+          _context7.t0 = _context7["catch"](0);
           res.status(500);
+          console.log(_context7.t0.message);
           res.send(_context7.t0.message);
-        case 16:
+        case 19:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[3, 12]]);
+    }, _callee7, null, [[0, 14]]);
   }));
   return function updateProductById(_x13, _x14) {
     return _ref7.apply(this, arguments);
