@@ -6,8 +6,7 @@ export const querys = {
     "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida,PROD_costoUnitario,PROD_precioMinimo,PROD_pvp,PROD_item,PROD_costoUnitarioH,PROD_precioMinimoH,PROD_pvpH,PROD_estado) VALUES (@PROD_codigo,@PROD_nombre,'Unidad',0,0,@PROD_pvp,@PROD_item,@PROD_costoUnitarioH,0,0,1);",
   deleteProduct: "DELETE FROM PRODUCTO WHERE PROD_id= @Id",
   getTotalProducts: "SELECT COUNT(*) FROM PRODUCTO",
-  updateProductById:
-    "UPDATE [PRODUCTO SET PROD_codigo = @PROD_codigo, PROD_nombre = @PROD_nombre, PROD_pvp = @PROD_pvp, PROD_item = @PROD_item, PROD_costoUnitarioH = @PROD_costoUnitarioH WHERE PROD_id = @Id",
+  updateProductById: "UPDATE PRODUCTO SET PROD_codigo = @PROD_codigo, PROD_nombre = @PROD_nombre, PROD_pvp = @PROD_pvp, PROD_item = @PROD_item, PROD_costoUnitarioH = @PROD_costoUnitarioH WHERE PROD_id = @Id",
   //Querys Tabla Equipo_Completo
   getAllActivos: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre,EQC_LOGO_id,LOGO_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id inner join LOGO ON EQC_LOGO_id = LOGO_id",
   getActivoByCliente: "SELECT EQC_id,EQC_serie,EQC_placa,EQC_EQUIP_id,EQC_CLI_id,EQC_codTag,EQUIP_modelo,EQUIP_marca,EQUIP_descripcion,CLI_nombre FROM EQUIPO_COMPLETO AS E inner join EQUIPO ON EQC_EQUIP_id = EQUIP_id inner join CLIENTE ON EQC_CLI_id = CLI_id WHERE (EQC_CLI_id = @idCliente  or EQC_CLI_id = @idCliente2) and EQC_id in (SELECT max(EQC_id) from EQUIPO_COMPLETO GROUP BY EQC_serie) order by EQC_serie",  
