@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.querys = void 0;
 var querys = {
-  getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 AND PROD_costoUnitarioH = 0 ORDER BY PROD_nombre",
+  getAllProducts: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1  ORDER BY PROD_nombre",
   getAllProductsVenta: "SELECT * FROM PRODUCTO  WHERE PROD_estado = 1 AND PROD_costoUnitarioH = 1 ORDER BY PROD_nombre",
   getProductById: "SELECT * FROM PRODUCTO Where PROD_id = @Id",
   addNewProduct: "INSERT INTO PRODUCTO (PROD_codigo, PROD_nombre, PROD_medida,PROD_costoUnitario,PROD_precioMinimo,PROD_pvp,PROD_item,PROD_costoUnitarioH,PROD_precioMinimoH,PROD_pvpH,PROD_estado) VALUES (@PROD_codigo,@PROD_nombre,'Unidad',0,0,@PROD_pvp,@PROD_item,@PROD_costoUnitarioH,0,0,1);",
