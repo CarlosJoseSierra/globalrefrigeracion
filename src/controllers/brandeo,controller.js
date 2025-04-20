@@ -11,10 +11,21 @@ export const getBrandeos = async (req, res) => {
   }
 };
 
-export const getBrandeos2 = async (req, res) => {
+export const getBrandeosNoVinil = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getAllBrandeos2);
+    const result = await pool.request().query(querys.getAllBrandeosNoVinil);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+export const getBrandeosVinil = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getAllBrandeosVinil);
     res.json(result.recordset);
   } catch (error) {
     res.status(500);
