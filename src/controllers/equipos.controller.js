@@ -22,6 +22,29 @@ export const getAllModeloEquipos = async (req, res) => {
   }
 };
 
+export const getAllModeloEquiposVinil = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getAllModeloEquiposVinil);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+export const getAllModeloEquiposNoVinil = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getAllModeloEquiposNoVinil);
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+
 export const getEquipoById = async (req, res) => {
   try {
     const pool = await getConnection();
