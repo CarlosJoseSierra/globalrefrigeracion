@@ -21,9 +21,8 @@ export const querys = {
   
    //Querys Tabla Modelos de Equipos
   getAllEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 ORDER BY EQUIP_marca", 
-  getAllModeloEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 ORDER BY EQUIP_modelo", 
+  getAllModeloEquipos: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 AND EQUIP_tipoVenta = 0 ORDER BY EQUIP_modelo", 
   getAllModeloEquiposVinil: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 AND EQUIP_tipoVenta = 1 ORDER BY EQUIP_modelo", 
-  getAllModeloEquiposNoVinil: "SELECT * FROM EQUIPO WHERE EQUIP_estado = 1 AND EQUIP_tipoVenta = 0 ORDER BY EQUIP_modelo", 
   getEquipoById: "SELECT * FROM EQUIPO Where EQ_id = @Id",
   //Querys Tabla Modelos de Usuarios
   getAllUsuarios: "SELECT * FROM USUARIOS ORDER BY USU_nombre", 
