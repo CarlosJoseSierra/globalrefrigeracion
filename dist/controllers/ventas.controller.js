@@ -306,7 +306,7 @@ var createventas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (i = 0; i < req.body.detailsModelo.length; i++) {
-              if (req.body.detailsModelo[i].productName != 34) {
+              if (req.body.detailsModelo[i].productName != 34 || req.body.detailsBrandeo[i].productName != 0) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }
@@ -314,7 +314,7 @@ var createventas = /*#__PURE__*/function () {
           }
           if (req.body.detailsBrandeo.length > 0) {
             for (_i = 0; _i < req.body.detailsBrandeo.length; _i++) {
-              if (req.body.detailsBrandeo[_i].productName != 34) {
+              if (req.body.detailsBrandeo[_i].productName != 34 || req.body.detailsBrandeo[_i].productName != 0) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }

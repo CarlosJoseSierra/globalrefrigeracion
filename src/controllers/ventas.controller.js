@@ -109,7 +109,7 @@ export const getVentasActivos = async (req, res) => {
      }
      if(req.body.detailsModelo.length>0){
       for(let i=0;i<req.body.detailsModelo.length;i++){
-          if(req.body.detailsModelo[i].productName!=34){//es 34 prque es el ID del no brandeo
+          if(req.body.detailsModelo[i].productName!=34 || req.body.detailsBrandeo[i].productName!=0){//es 34 prque es el ID del no brandeo
             brandeo = 1;
           }
         }
@@ -117,7 +117,7 @@ export const getVentasActivos = async (req, res) => {
 
      if(req.body.detailsBrandeo.length>0){
       for(let i=0;i<req.body.detailsBrandeo.length;i++){
-          if(req.body.detailsBrandeo[i].productName!=34){//es 34 prque es el ID del no brandeo
+          if(req.body.detailsBrandeo[i].productName!=34 || req.body.detailsBrandeo[i].productName!=0){//es 34 prque es el ID del no brandeo
             brandeo = 1;
           }
         }
