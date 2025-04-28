@@ -218,6 +218,7 @@ export const querys = {
   getAllBodegas: "SELECT BOD_id,BOD_nombre FROM BODEGA ORDER BY BOD_nombre", 
   getBodegaById: "SELECT BOD_id,BOD_nombre FROM BODEGA Where BOD_id = @Id",
   editRequerimientoNot: "UPDATE REQUERIMIENTOS SET REQ_notificacion = 0, REQ_estado = 2 WHERE REQ_id = @id",
+  editRequerimientoNot2: "UPDATE REQUERIMIENTOS SET REQ_notificacion = 0, REQ_estado = 2 WHERE REQ_id = @id",
   addNewInventory:"INSERT INTO INVENTARIO(INV_descripcion,INV_BOD_id,INV_USU_ing,INV_fecha_ing,INV_estado,INV_USU_edit,INV_fecha_edit,INV_fechaCierre) VALUES (@INV_descripcion,@INV_BOD_id,@INV_USU_ing,GETDATE(),1,@INV_USU_ing,GETDATE(),GETDATE())",
   getInventarioActivo:"SELECT TOP 1 INV_descripcion,INV_estado,INV_fecha_ing,BOD_nombre FROM INVENTARIO INNER JOIN BODEGA ON INV_BOD_id = BOD_id ORDER BY INV_id DESC",
   addNewRequerimientoMovimiento:"INSERT INTO REQUERIMIENTOS_MOVIMIENTO (REQMOV_REQ_id,REQMOV_EQC_serie,REQMOV_EQC_marca,REQMOV_EQC_modelo,REQMOV_BRAND_desc,REQMOV_cantidad,REQMOV_PROD_desc,REQMOV_tipo,REQMOV_estado) VALUES (@REQMOV_REQ_id,@REQMOV_EQC_serie,@REQMOV_EQC_marca,@REQMOV_EQC_modelo,@REQMOV_BRAND_desc,@REQMOV_cantidad,@REQMOV_PROD_desc,@REQMOV_tipo,@REQMOV_estado)",
