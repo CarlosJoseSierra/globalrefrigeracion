@@ -178,7 +178,7 @@ export const getVentasActivos = async (req, res) => {
                 }
                 else
                 {
-                  laminado = 0;
+                  laminado = 1;
                 }
               const pool3 = await getConnection();
               const result = await pool3
@@ -207,7 +207,7 @@ export const getVentasActivos = async (req, res) => {
                 }
                 else
                 {
-                  laminado = 0;
+                  laminado = 1;
                 }
               const pool3 = await getConnection();
               const result = await pool3
@@ -312,7 +312,7 @@ export const getVentasActivos = async (req, res) => {
                   }
                   else
                   {
-                    laminado = 0;
+                    laminado = 1;
                   }
                   
                   if(req.body.detailsModelo[i].estado==6){
@@ -359,7 +359,7 @@ export const getVentasActivos = async (req, res) => {
                 }
                 else
                 {
-                  laminado = 0;
+                  laminado = 1;
                 }
                 const pool3 = await getConnection();
                 const result = await pool3
@@ -400,7 +400,7 @@ export const getVentasActivos = async (req, res) => {
                   }
                   else
                   {
-                    laminado = 0;
+                    laminado = 1;
                   }
                   
                   if(req.body.detailsModelo[i].estado==6){
@@ -447,7 +447,7 @@ export const getVentasActivos = async (req, res) => {
                 }
                 else
                 {
-                  laminado = 0;
+                  laminado = 1;
                 }
                 const pool3 = await getConnection();
                 const result = await pool3

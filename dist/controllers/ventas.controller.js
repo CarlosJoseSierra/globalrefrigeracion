@@ -375,7 +375,7 @@ var createventas = /*#__PURE__*/function () {
           if (req.body.detailsModelo[_i3].matSlideB == 1) {
             laminado = 1;
           } else {
-            laminado = 0;
+            laminado = 1;
           }
           _context9.next = 42;
           return (0, _database.getConnection)();
@@ -405,7 +405,7 @@ var createventas = /*#__PURE__*/function () {
           if (req.body.detailsBrandeo[_i4].matSlideB == 1) {
             _laminado = 1;
           } else {
-            _laminado = 0;
+            _laminado = 1;
           }
           _context9.next = 56;
           return (0, _database.getConnection)();
@@ -540,7 +540,7 @@ var editVentas = /*#__PURE__*/function () {
           if (req.body.detailsModelo[_i7].matSlideB == 1) {
             laminado = 1;
           } else {
-            laminado = 0;
+            laminado = 1;
           }
           if (!(req.body.detailsModelo[_i7].estado == 6)) {
             _context10.next = 46;
@@ -586,7 +586,7 @@ var editVentas = /*#__PURE__*/function () {
           if (req.body.detailsBrandeo[_i8].matSlideB == 1) {
             _laminado2 = 1;
           } else {
-            _laminado2 = 0;
+            _laminado2 = 1;
           }
           _context10.next = 62;
           return (0, _database.getConnection)();
@@ -643,7 +643,7 @@ var editVentas = /*#__PURE__*/function () {
           if (req.body.detailsModelo[_i10].matSlideB == 1) {
             _laminado3 = 1;
           } else {
-            _laminado3 = 0;
+            _laminado3 = 1;
           }
           if (!(req.body.detailsModelo[_i10].estado == 6)) {
             _context10.next = 98;
@@ -689,7 +689,7 @@ var editVentas = /*#__PURE__*/function () {
           if (req.body.detailsBrandeo[_i11].matSlideB == 1) {
             _laminado4 = 1;
           } else {
-            _laminado4 = 0;
+            _laminado4 = 1;
           }
           _context10.next = 114;
           return (0, _database.getConnection)();
