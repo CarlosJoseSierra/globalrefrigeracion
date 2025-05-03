@@ -353,6 +353,7 @@ export const getVentasActivos = async (req, res) => {
             if(req.body.detailsBrandeo.length>0){
               let laminado = 0;
               for(let i=0;i<req.body.detailsBrandeo.length;i++){
+                req.body.detailsBrandeo[i].totalBCopia;
                 if(req.body.detailsBrandeo[i].matSlideB==1)
                 {
                   laminado = 1;
