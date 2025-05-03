@@ -306,7 +306,7 @@ var createventas = /*#__PURE__*/function () {
           }
           if (req.body.detailsModelo.length > 0) {
             for (i = 0; i < req.body.detailsModelo.length; i++) {
-              if (req.body.detailsModelo[i].productName != 34 || req.body.detailsBrandeo[i].productName != 0) {
+              if (req.body.detailsModelo[i].productName != 34 || req.body.detailsModelo[i].productName != 0) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }
@@ -461,7 +461,7 @@ var editVentas = /*#__PURE__*/function () {
           brandeo = 0;
           if (req.body.detailsModelo.length > 0) {
             for (i = 0; i < req.body.detailsModelo.length; i++) {
-              if (req.body.detailsModelo[i].productName != 34) {
+              if (req.body.detailsModelo[i].productName != 34 || req.body.detailsModelo[i].productName != 0) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }
@@ -469,7 +469,7 @@ var editVentas = /*#__PURE__*/function () {
           }
           if (req.body.detailsBrandeo.length > 0) {
             for (_i5 = 0; _i5 < req.body.detailsBrandeo.length; _i5++) {
-              if (req.body.detailsBrandeo[_i5].productName != 34) {
+              if (req.body.detailsBrandeo[_i5].productName != 34 || req.body.detailsBrandeo[_i5].productName != 0) {
                 //es 34 prque es el ID del no brandeo
                 brandeo = 1;
               }
@@ -594,7 +594,7 @@ var editVentas = /*#__PURE__*/function () {
           _pool5 = _context10.sent;
           _context10.next = 65;
           return _pool5.request().input("EQBRAND_VENT_id", _database.sql.Decimal, req.params.id).input("EQBRAND_EQUIP_id", _database.sql.Decimal, req.body.detailsBrandeo[_i8].modelname).input("EQBRAND_BRAND_id", _database.sql.Decimal, req.body.detailsBrandeo[_i8].productName).input("EQBRAND_laminado", _database.sql.Decimal, _laminado2) //verificar si llega 0 o 1
-          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].qtyB * req.body.detailsBrandeo[_i8].salesPriceB).query(_database.querys.addNewVentaBrandeo);
+          .input("EQBRAND_cantidad", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].qtyB).input("EQBRAND_precio", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].salesPriceB).input("EQBRAND_total", _database.sql.Decimal(18, 2), req.body.detailsBrandeo[_i8].totalBCopia).query(_database.querys.addNewVentaBrandeo);
         case 65:
           _result6 = _context10.sent;
         case 66:
