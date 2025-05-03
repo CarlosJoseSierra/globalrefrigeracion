@@ -353,7 +353,6 @@ export const getVentasActivos = async (req, res) => {
             if(req.body.detailsBrandeo.length>0){
               let laminado = 0;
               for(let i=0;i<req.body.detailsBrandeo.length;i++){
-                req.body.detailsBrandeo[i].totalBCopia;
                 if(req.body.detailsBrandeo[i].matSlideB==1)
                 {
                   laminado = 1;
@@ -392,7 +391,6 @@ export const getVentasActivos = async (req, res) => {
               }
             }
             if(req.body.detailsModelo.length>0){
-              console.log(req.body.detailsModelo);
               let laminado = 0;
               for(let i=0;i<req.body.detailsModelo.length;i++){
                 if(req.body.detailsModelo[i].matSlideB==1)
@@ -459,7 +457,7 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQBRAND_laminado", sql.Decimal, laminado)//verificar si llega 0 o 1
                 .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
                 .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
-                .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB * req.body.detailsBrandeo[i].salesPriceB)
+                .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].totalBCopia)
                 .query(querys.addNewVentaBrandeo);
               }
             } 
