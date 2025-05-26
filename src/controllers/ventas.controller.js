@@ -194,6 +194,8 @@ export const getVentasActivos = async (req, res) => {
               .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
               .input("VENT_USU_ing", sql.Decimal, req.body.id)
               .input("VENT_codigo", sql.VarChar,secuencial)
+              .input("EQVENT_codEnsambleB", sql.VarChar,'')
+              .input("EQVENT_codEnsambleE", sql.VarChar,'')
               .query(querys.addNewVentaEquipo);
             }
           }
@@ -219,6 +221,7 @@ export const getVentasActivos = async (req, res) => {
               .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
               .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
               .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].totalBCopia)
+              .input("EQBRAND_codEnsamble", sql.VarChar,'')
               .query(querys.addNewVentaBrandeo);
             }
           }
@@ -329,6 +332,8 @@ export const getVentasActivos = async (req, res) => {
                     .input("EQVENT_precio", sql.Decimal(18,2), 0)
                     .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
                     .input("VENT_USU_ing", sql.Decimal, req.body.id)
+                    .input("EQVENT_codEnsambleB", sql.VarChar,'')
+                    .input("EQVENT_codEnsambleE", sql.VarChar,'')
                     .query(querys.addNewVentaEquipo2);
                   }
                 else{
@@ -346,6 +351,8 @@ export const getVentasActivos = async (req, res) => {
                   .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
                   .input("VENT_USU_ing", sql.Decimal, req.body.id)
                   .input("VENT_codigo", sql.VarChar,'VENTA'+req.params.id)
+                  .input("EQVENT_codEnsambleB", sql.VarChar,'')
+                  .input("EQVENT_codEnsambleE", sql.VarChar,'')
                   .query(querys.addNewVentaEquipo);
                 }
               }
@@ -371,6 +378,7 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
                 .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
                 .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].totalBCopia)
+                .input("EQBRAND_codEnsamble", sql.VarChar,'')
                 .query(querys.addNewVentaBrandeo);
               }
             }
@@ -416,6 +424,8 @@ export const getVentasActivos = async (req, res) => {
                     .input("EQVENT_precio", sql.Decimal(18,2), 0)
                     .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
                     .input("VENT_USU_ing", sql.Decimal, req.body.id)
+                    .input("EQVENT_codEnsambleB", sql.VarChar,'')
+                    .input("EQVENT_codEnsambleE", sql.VarChar,'') 
                     .query(querys.addNewVentaEquipo2);
                   }
                 else{
@@ -433,6 +443,8 @@ export const getVentasActivos = async (req, res) => {
                   .input("EQVENT_total", sql.Decimal(18,2),  req.body.detailsModelo[i].totalBCopia)
                   .input("VENT_USU_ing", sql.Decimal, req.body.id)
                   .input("VENT_codigo", sql.VarChar,'VENTA'+req.params.id)
+                  .input("EQVENT_codEnsambleB", sql.VarChar,'')
+                  .input("EQVENT_codEnsambleE", sql.VarChar,'')
                   .query(querys.addNewVentaEquipo);
                 }
               }
@@ -458,6 +470,7 @@ export const getVentasActivos = async (req, res) => {
                 .input("EQBRAND_cantidad", sql.Decimal(18,2), req.body.detailsBrandeo[i].qtyB)
                 .input("EQBRAND_precio", sql.Decimal(18,2), req.body.detailsBrandeo[i].salesPriceB)
                 .input("EQBRAND_total", sql.Decimal(18,2), req.body.detailsBrandeo[i].totalBCopia)
+                .input("EQBRAND_codEnsamble", sql.VarChar,'')
                 .query(querys.addNewVentaBrandeo);
               }
             } 
