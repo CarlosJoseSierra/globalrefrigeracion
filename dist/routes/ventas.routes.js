@@ -39,6 +39,9 @@ router.put("/ventas/o/:id", _ventas.editVentaEquipoRevisado);
 router.get("/ventas/rev", _ventas.getRevisionesActivas);
 router.get("/ventas/count", _ventas.getCountRevisionEquipo);
 router.put("/ventas/p/:id", _ventas.editFechaEntregaVinil);
+router.put("/ventas/pp/:id", _ventas.addNumEnsambleVinil);
+router.put("/ventas/qq/:id", _ventas.addNumEnsambleEquipo);
+router.put("/ventas/rr/:id", _ventas.addNumEnsambleVinilEquipo);
 //Control de Inventario
 router.get("/ventas/inv", _ventas.getInventarioIndividual);
 router.get("/ventas/abc", _ventas.getInventarioAgrupado);

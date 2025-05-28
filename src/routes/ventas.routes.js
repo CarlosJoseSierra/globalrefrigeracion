@@ -40,6 +40,9 @@ import {
   editFechaEntregaVinil,
   getImagenEquipoRevisionByVenta,
   createImageEquipoRevisado,
+  addNumEnsambleVinil,
+  addNumEnsambleEquipo,
+  addNumEnsambleVinilEquipo,
 } from "../controllers/ventas.controller";
 
 
@@ -76,6 +79,9 @@ router.put("/ventas/o/:id", editVentaEquipoRevisado);
 router.get("/ventas/rev", getRevisionesActivas);
 router.get("/ventas/count", getCountRevisionEquipo);
 router.put("/ventas/p/:id", editFechaEntregaVinil);
+router.put("/ventas/pp/:id", addNumEnsambleVinil);
+router.put("/ventas/qq/:id", addNumEnsambleEquipo);
+router.put("/ventas/rr/:id", addNumEnsambleVinilEquipo);
 //Control de Inventario
 router.get("/ventas/inv", getInventarioIndividual);
 router.get("/ventas/abc", getInventarioAgrupado);
