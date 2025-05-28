@@ -2155,7 +2155,7 @@ var addNumEnsambleVinilEquipo = /*#__PURE__*/function () {
         case 3:
           pool = _context40.sent;
           _context40.next = 6;
-          return pool.request().input("id", req.params.id).input("EQBRAND_codEnsambleB", req.body.Factura).query(_database.querys.addNumEnsambleVinilEquipo);
+          return pool.request().input("id", req.params.id).input("EQVENT_codEnsambleB", req.body.Factura).query(_database.querys.addNumEnsambleVinilEquipo);
         case 6:
           result = _context40.sent;
           if (!(result.rowsAffected == 1)) {
@@ -2204,7 +2204,7 @@ var addNumEnsambleEquipo = /*#__PURE__*/function () {
         case 3:
           pool = _context41.sent;
           _context41.next = 6;
-          return pool.request().input("id", req.params.id).input("EQBRAND_codEnsambleE", req.body.Factura).query(_database.querys.addNumEnsambleVinilEquipo);
+          return pool.request().input("id", req.params.id).input("EQVENT_codEnsambleE", req.body.Factura).query(_database.querys.addNumEnsambleEquipo);
         case 6:
           result = _context41.sent;
           if (!(result.rowsAffected == 1)) {

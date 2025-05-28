@@ -1109,7 +1109,7 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("EQBRAND_codEnsambleB", req.body.Factura)
+        .input("EQVENT_codEnsambleB", req.body.Factura)
         .query(querys.addNumEnsambleVinilEquipo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
@@ -1129,8 +1129,8 @@ export const getVentasActivos = async (req, res) => {
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("EQBRAND_codEnsambleE", req.body.Factura)
-        .query(querys.addNumEnsambleVinilEquipo);
+        .input("EQVENT_codEnsambleE", req.body.Factura)
+        .query(querys.addNumEnsambleEquipo);
         if(result.rowsAffected==1){
             return res.status(200).json({ status: "ok", msg: "Actualizacion exitosa" ,token:0});
           }else{

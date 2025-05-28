@@ -225,7 +225,7 @@ export const querys = {
   getMovimientoRequerimiento:"SELECT * FROM REQUERIMIENTOS_MOVIMIENTO WHERE REQMOV_REQ_id = @id AND REQMOV_estado = 1",
   addFechaEntregaVinil:"INSERT INTO ENTREGA_VINIL (ENTVINIL_VENT_id,ENTVINIL_fecha,ENTVINIL_USU_ing) VALUES (@ENTVINIL_VENT_id,@ENTVINIL_fecha,@ENTVINIL_USU_ing); UPDATE VENTAS SET VENT_fechaEntregaVinil = @ENTVINIL_fecha WHERE VENT_id = @ENTVINIL_VENT_id;",
   addNumEnsambleVinil:"UPDATE VENTAS_BRANDEO SET  EQBRAND_codEnsamble = @EQBRAND_codEnsamble WHERE EQBRAND_id = @id",
-  addNumEnsambleVinilEquipo:"UPDATE VENTAS_EQUIPO SET  EQVENT_codEnsambleB = @EQVENT_codEnsambleB WHERE EQVENT_id = @id",
-  addNumEnsambleEquipo:"UPDATE VENTAS_EQUIPO SET  EQVENT_codEnsambleE = @EQVENT_codEnsambleE WHERE EQVENT_id = @id",
+  addNumEnsambleVinilEquipo:"UPDATE VENTAS_EQUIPO SET EQVENT_codEnsambleB = @EQVENT_codEnsambleB WHERE EQVENT_id = @id",
+  addNumEnsambleEquipo:"UPDATE VENTAS_EQUIPO SET EQVENT_codEnsambleE = @EQVENT_codEnsambleE WHERE EQVENT_id = @id",
 };
 
