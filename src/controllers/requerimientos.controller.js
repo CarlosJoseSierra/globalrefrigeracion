@@ -697,7 +697,7 @@ export const getRequerimientosActivos = async (req, res) => {
   export const editCostoRequerimiento = async (req, res) => {
     try {
       let valor = 0;
-      valor =  req.body.REQ_costo;
+      valor =  req.body.Factura;
       const pool = await getConnection();
         const result = await pool
         .request()

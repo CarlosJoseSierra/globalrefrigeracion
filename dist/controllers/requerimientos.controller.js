@@ -1244,7 +1244,7 @@ var editCostoRequerimiento = /*#__PURE__*/function () {
         case 0:
           _context20.prev = 0;
           valor = 0;
-          valor = req.body.REQ_costo;
+          valor = req.body.Factura;
           _context20.next = 5;
           return (0, _database.getConnection)();
         case 5:
