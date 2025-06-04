@@ -21,6 +21,7 @@ import {
   editRequerimientosCierraNot,
   editFacturaRequerimiento,
   getMovimientoRequerimiento,
+  editCostoRequerimiento,
 } from "../controllers/requerimientos.controller";
 
 
@@ -46,4 +47,5 @@ router.get("/requerimientos/count", RequerimientosNotificados);
 router.put("/requerimientos/ab/:id", editRequerimientosCierraNot);
 router.put("/requerimientos/ac/:id", editFacturaRequerimiento);
 router.get("/requerimientos/mov/:id", getMovimientoRequerimiento);
+router.put("/requerimientos/req/:id", editCostoRequerimiento);
 export default router;

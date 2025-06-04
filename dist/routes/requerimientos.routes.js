@@ -28,5 +28,6 @@ router.get("/requerimientos/count", _requerimientos.RequerimientosNotificados);
 router.put("/requerimientos/ab/:id", _requerimientos.editRequerimientosCierraNot);
 router.put("/requerimientos/ac/:id", _requerimientos.editFacturaRequerimiento);
 router.get("/requerimientos/mov/:id", _requerimientos.getMovimientoRequerimiento);
+router.put("/requerimientos/req/:id", _requerimientos.editCostoRequerimiento);
 var _default = router;
 exports["default"] = _default;
