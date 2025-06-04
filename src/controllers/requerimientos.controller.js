@@ -697,11 +697,13 @@ export const getRequerimientosActivos = async (req, res) => {
   export const editCostoRequerimiento = async (req, res) => {
     const { REQ_costo} = req.body;
     try {
+      let valor = 0;
+      valor = REQ_costo;
       const pool = await getConnection();
         const result = await pool
         .request()
         .input("id", req.params.id)
-        .input("REQ_costo", sql.Decimal(18,2), REQ_costo)
+        .input("REQ_costo", sql.Decimal(18,2), valor)
         .query(querys.editCostoRequerimiento);
         if(result.rowsAffected==1){
           return res.status(200).json({ status: "ok", msg: "Registro exitoso" ,token:0});
