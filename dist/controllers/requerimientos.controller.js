@@ -1238,21 +1238,22 @@ var getMovimientoRequerimiento = /*#__PURE__*/function () {
 exports.getMovimientoRequerimiento = getMovimientoRequerimiento;
 var editCostoRequerimiento = /*#__PURE__*/function () {
   var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20(req, res) {
-    var pool, result;
+    var REQ_costo, pool, result;
     return _regeneratorRuntime().wrap(function _callee20$(_context20) {
       while (1) switch (_context20.prev = _context20.next) {
         case 0:
-          _context20.prev = 0;
-          _context20.next = 3;
+          REQ_costo = req.body.REQ_costo;
+          _context20.prev = 1;
+          _context20.next = 4;
           return (0, _database.getConnection)();
-        case 3:
+        case 4:
           pool = _context20.sent;
-          _context20.next = 6;
-          return pool.request().input("id", req.params.id).input("REQ_costo", _database.sql.Decimal(18, 2), req.body.Factura).query(_database.querys.editCostoRequerimiento);
-        case 6:
+          _context20.next = 7;
+          return pool.request().input("id", req.params.id).input("REQ_costo", _database.sql.Decimal(18, 2), REQ_costo).query(_database.querys.editCostoRequerimiento);
+        case 7:
           result = _context20.sent;
           if (!(result.rowsAffected == 1)) {
-            _context20.next = 11;
+            _context20.next = 12;
             break;
           }
           return _context20.abrupt("return", res.status(200).json({
@@ -1260,25 +1261,25 @@ var editCostoRequerimiento = /*#__PURE__*/function () {
             msg: "Registro exitoso",
             token: 0
           }));
-        case 11:
+        case 12:
           return _context20.abrupt("return", res.status(400).json({
             status: "400",
             msg: "No se pudo registrar, consulte al administrador",
             token: 0
           }));
-        case 12:
-          _context20.next = 18;
+        case 13:
+          _context20.next = 19;
           break;
-        case 14:
-          _context20.prev = 14;
-          _context20.t0 = _context20["catch"](0);
+        case 15:
+          _context20.prev = 15;
+          _context20.t0 = _context20["catch"](1);
           res.status(500);
           res.send(_context20.t0.message);
-        case 18:
+        case 19:
         case "end":
           return _context20.stop();
       }
-    }, _callee20, null, [[0, 14]]);
+    }, _callee20, null, [[1, 15]]);
   }));
   return function editCostoRequerimiento(_x39, _x40) {
     return _ref20.apply(this, arguments);
