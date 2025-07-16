@@ -200,7 +200,6 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
         .input("REQ_estado", sql.Decimal, req.body.aprobado)
         .input("REQ_garantia", sql.Decimal, req.body.Garantia)
-        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .input("REQ_imagen1", sql.VarChar, image)
         .input("REQ_rutaimagen1", sql.VarChar, imageruta)
         .input("REQ_imagen2", sql.VarChar, image1)
