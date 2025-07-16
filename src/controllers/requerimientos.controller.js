@@ -65,7 +65,9 @@ export const getRequerimientosActivos = async (req, res) => {
     try {
       let image = '',image1= '',image2= '',image3= '',image4= '',firma=''; 
       let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= '',imageruta5= ''; 
-
+      let totalDetalle = 0;
+      let ivaDetalle = 0;
+      let totalFinalDetalle = 0;
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdRequerimiento);
       let idR = 0;
@@ -78,18 +80,16 @@ export const getRequerimientosActivos = async (req, res) => {
      
       let secuencial = '';
       secuencial = "REQ"+idR;
-        let totalDetalle = 0;
-        let ivaDetalle = 0;
-        let totalFinalDetalle = 0;
-        if(req.body.details.length>0){
-          for(let i=0;i<req.body.details.length;i++){
-            totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
-          }
-          ivaDetalle = totalDetalle * (15/100);
-          totalFinalDetalle = totalDetalle + ivaDetalle;
-        }
-        if(req.body.Modelo=='')
-          req.body.Modelo = 137; 
+      //  if(req.body.details.length>0){
+        //  for(let i=0;i<req.body.details.length;i++){
+          //  totalDetalle = totalDetalle + (req.body.details[i].qty * req.body.details[i].salesPrice);
+          //}
+          //ivaDetalle = totalDetalle * (15/100);
+          //totalFinalDetalle = totalDetalle + ivaDetalle;
+       // }
+       
+        if(req.body.Modelo==''){
+          req.body.Modelo = 137;} 
 
           if(req.files.length>0)
           {
@@ -170,7 +170,13 @@ export const getRequerimientosActivos = async (req, res) => {
                 firma = '';
               }
             }
-          }  
+          }
+          for(let i=0;i<req.body.details.length;i++){
+           const json = JSON.parse(req.body.details[i])            
+            totalDetalle = totalDetalle + (json.qty * json.salesPrice);
+          }
+          ivaDetalle = totalDetalle * (15/100);
+          totalFinalDetalle = totalDetalle + ivaDetalle;  
      
         const pool2 = await getConnection();
         const result = await pool2
@@ -218,16 +224,35 @@ export const getRequerimientosActivos = async (req, res) => {
           let idReq = result.recordset[0].REQ_id;
           if(req.body.details.length>0){
             for(let i=0;i<req.body.details.length;i++){
+              const json = JSON.parse(req.body.details[i])      
               const pool3 = await getConnection();
-              const result = await pool3
+              const result3 = await pool3
               .request()
-              .input("REQDET_REQ_id", sql.Decimal,idReq)
-              .input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
-              .input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
-              .input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
-              .input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+              .input("REQDET_PROD_id", sql.Decimal, json.productName)
+              .input("REQDET_cantidad", sql.Decimal(18,2), json.qty)
+              .input("REQDET_pvp", sql.Decimal(18,2), json.salesPrice)
+              .input("REQDET_total", sql.Decimal(18,2), json.qty * json.salesPrice)
+              .input("REQDET_REQ_id", sql.Decimal,req.params.id)
               .query(querys.addNewRequerimientoDetalle);
             }
+              //for(let i=0;i<req.body.details.length;i++){
+               // const json = JSON.parse(req.body.details[i])            
+                //  totalDetalle = totalDetalle + (json.qty * json.salesPrice);
+              //}
+              //ivaDetalle = totalDetalle * (15/100);
+              //totalFinalDetalle = totalDetalle + ivaDetalle;
+            //for(let i=0;i<req.body.details.length;i++){
+              //const pool3 = await getConnection();
+              //const result = await pool3
+              //.request()
+              //.input("REQDET_REQ_id", sql.Decimal,idReq)
+              //.input("REQDET_PROD_id", sql.Decimal, req.body.details[i].productName)
+              //.input("REQDET_cantidad", sql.Decimal(18,2), req.body.details[i].qty)
+              //.input("REQDET_pvp", sql.Decimal(18,2), req.body.details[i].salesPrice)
+              //.input("REQDET_total", sql.Decimal(18,2), req.body.details[i].qty * req.body.details[i].salesPrice)
+              //.query(querys.addNewRequerimientoDetalle);
+            //}
+              
           }
           if(req.body.detailsMov.length>0){
             for(let i=0;i<req.body.detailsMov.length;i++){
@@ -616,7 +641,6 @@ export const getRequerimientosActivos = async (req, res) => {
           .query(querys.cambiarEstadoRequerimientoDetalle);
           //ingresar los nuevos registros
           if(result2.rowsAffected>0){
-
             if(req.body.details.length>0){
               for(let i=0;i<req.body.details.length;i++){
                 const json = JSON.parse(req.body.details[i])            
