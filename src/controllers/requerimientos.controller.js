@@ -63,6 +63,9 @@ export const getRequerimientosActivos = async (req, res) => {
 
   export const createRequerimientos = async (req, res) => {
     try {
+      let image = '',image1= '',image2= '',image3= '',image4= '',firma=''; 
+      let imageruta= '',imageruta1= '',imageruta2= '',imageruta3= '',imageruta4= '',imageruta5= ''; 
+
       const pool = await getConnection();
       const codigo = await pool.request().query(querys.getLastIdRequerimiento);
       let idR = 0;
@@ -87,6 +90,87 @@ export const getRequerimientosActivos = async (req, res) => {
         }
         if(req.body.Modelo=='')
           req.body.Modelo = 137; 
+
+          if(req.files.length>0)
+          {
+            if(req.files[0]!=undefined)
+            {
+              if(req.files[0].originalname.includes('Firma')){
+                  const img = await cloudinary.uploader.upload(req.files[0].path);
+                  firma = img.secure_url;
+              }
+              else{
+                image = req.files[0].filename;
+                const img = await cloudinary.uploader.upload(req.files[0].path);
+                imageruta = img.secure_url;
+              }
+            }
+            if(req.files[1]!=undefined)
+            {
+              if(req.files[1].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[1].path);
+                firma = img.secure_url;
+              }else{
+                image1 = req.files[1].filename;
+                const img = await cloudinary.uploader.upload(req.files[1].path);
+                imageruta1 = img.secure_url;
+              }
+            }
+            if(req.files[2]!=undefined)
+            {
+              if(req.files[2].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[2].path);
+                firma = img.secure_url;
+              }else{
+                image2 = req.files[2].filename;
+                const img = await cloudinary.uploader.upload(req.files[2].path);
+                imageruta2 = img.secure_url;
+              }
+            }
+            if(req.files[3]!=undefined)
+            {
+              if(req.files[3].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[3].path);
+                firma = img.secure_url;
+              }else{
+                image3 = req.files[3].filename;
+                const img = await cloudinary.uploader.upload(req.files[3].path);
+                imageruta3 = img.secure_url;
+              }
+            }
+            if(req.files[4]!=undefined)
+            {
+              if(req.files[4].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[4].path);
+                firma = img.secure_url;
+              }else{
+                image4 = req.files[4].filename;
+                const img = await cloudinary.uploader.upload(req.files[4].path);
+                imageruta4 = img.secure_url;
+              }
+            }
+    
+            if(req.files[5]!=undefined)
+            {
+              if(req.files[5].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[5].path);
+                firma = img.secure_url;
+              }else{
+                const img = await cloudinary.uploader.upload(req.files[5].path);
+                imageruta5 = img.secure_url;
+              }
+            }
+    
+            if(req.files[6]!=undefined){
+              if(req.files[6].originalname.includes('Firma')){
+                const img = await cloudinary.uploader.upload(req.files[6].path);
+                firma = img.secure_url;
+              }
+              else{
+                firma = '';
+              }
+            }
+          }  
      
         const pool2 = await getConnection();
         const result = await pool2
@@ -115,6 +199,20 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_USU_ing", sql.Decimal, req.body.id)
         .input("REQ_REQ_Padre", sql.Decimal, req.body.idPadre)
         .input("REQ_estado", sql.Decimal, req.body.aprobado)
+        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
+        .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
+        .input("REQ_imagen1", sql.VarChar, image)
+        .input("REQ_rutaimagen1", sql.VarChar, imageruta)
+        .input("REQ_imagen2", sql.VarChar, image1)
+        .input("REQ_rutaimagen2", sql.VarChar, imageruta1)
+        .input("REQ_imagen3", sql.VarChar, image2)
+        .input("REQ_rutaimagen3", sql.VarChar, imageruta2)
+        .input("REQ_imagen4", sql.VarChar, image3)
+        .input("REQ_rutaimagen4", sql.VarChar, imageruta3)
+        .input("REQ_imagen5", sql.VarChar, image4)
+        .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
+        .input("REQ_rutaimagen6", sql.VarChar, imageruta5)
+        .input("REQ_firmaCliente", sql.VarChar, firma)
         .input("REQ_garantia", sql.Decimal, req.body.Garantia)
         .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.addRequerimiento);
