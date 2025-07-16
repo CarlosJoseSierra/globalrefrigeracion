@@ -213,7 +213,6 @@ export const getRequerimientosActivos = async (req, res) => {
         .input("REQ_rutaimagen5", sql.VarChar, imageruta4)
         .input("REQ_rutaimagen6", sql.VarChar, imageruta5)
         .input("REQ_firmaCliente", sql.VarChar, firma)
-        .input("REQ_garantia", sql.Decimal, req.body.Garantia)
         .input("REQ_codCliente", sql.VarChar, req.body.CodCliente)
         .query(querys.addRequerimiento);
         if(result.rowsAffected[0]==1){
