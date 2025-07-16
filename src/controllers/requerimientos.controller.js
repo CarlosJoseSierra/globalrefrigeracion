@@ -228,6 +228,7 @@ export const getRequerimientosActivos = async (req, res) => {
               const pool3 = await getConnection();
               const result3 = await pool3
               .request()
+              .input("REQDET_REQ_id", sql.Decimal,idReq)
               .input("REQDET_PROD_id", sql.Decimal, json.productName)
               .input("REQDET_cantidad", sql.Decimal(18,2), json.qty)
               .input("REQDET_pvp", sql.Decimal(18,2), json.salesPrice)
