@@ -406,7 +406,7 @@ var createRequerimientos = /*#__PURE__*/function () {
         case 121:
           pool3 = _context6.sent;
           _context6.next = 124;
-          return pool3.request().input("REQDET_REQ_id", _database.sql.Decimal, idReq).input("REQDET_PROD_id", _database.sql.Decimal, _json.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json.qty * _json.salesPrice).input("REQDET_REQ_id", _database.sql.Decimal, req.params.id).query(_database.querys.addNewRequerimientoDetalle);
+          return pool3.request().input("REQDET_REQ_id", _database.sql.Decimal, idReq).input("REQDET_PROD_id", _database.sql.Decimal, _json.productName).input("REQDET_cantidad", _database.sql.Decimal(18, 2), _json.qty).input("REQDET_pvp", _database.sql.Decimal(18, 2), _json.salesPrice).input("REQDET_total", _database.sql.Decimal(18, 2), _json.qty * _json.salesPrice).query(_database.querys.addNewRequerimientoDetalle);
         case 124:
           result3 = _context6.sent;
         case 125:

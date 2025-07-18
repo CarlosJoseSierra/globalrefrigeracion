@@ -233,7 +233,6 @@ export const getRequerimientosActivos = async (req, res) => {
               .input("REQDET_cantidad", sql.Decimal(18,2), json.qty)
               .input("REQDET_pvp", sql.Decimal(18,2), json.salesPrice)
               .input("REQDET_total", sql.Decimal(18,2), json.qty * json.salesPrice)
-              .input("REQDET_REQ_id", sql.Decimal,req.params.id)
               .query(querys.addNewRequerimientoDetalle);
             }
               //for(let i=0;i<req.body.details.length;i++){
